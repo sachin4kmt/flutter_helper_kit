@@ -11,12 +11,11 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+TODO: flutter_helper_kit help to minimum code reproduce.
 
-## Features
+## flutter_helper_kit
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+TODO: Features describe soon with example.
 
 ## Getting started
 
