@@ -1,7 +1,17 @@
 name: flutter_helper_kit
 description: A new Flutter project.
 version: 0.0.1
-homepage:
+#homepage: https://github.com/sachin4kmt/flutter_helper_kit.git
+repository: https://github.com/sachin4kmt/flutter_helper_kit
+issue_tracker: https://github.com/sachin4kmt/flutter_helper_kit/issues
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
 
 environment:
   sdk: '>=3.1.5 <4.0.0'
@@ -15,11 +25,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-#screenshots:
-#  - description: "Icons Launcher"
-#    path: assets/icons_launcher_profile.png
-
-#topics:
-#  - icons
-#  - app-icon
-#  - icon-launcher
+topics:
+  - widgets
+  - extensions
+  - utils
