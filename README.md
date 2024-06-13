@@ -1,46 +1,28 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+## Installation
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+Add this package to `pubspec.yaml` as follows:
 
-TODO: flutter_helper_kit help to minimum code reproduce.
+```console
+$ flutter pub add flutter_helper_kit
+```
 
-## flutter_helper_kit
+Import package
 
-TODO: Features describe soon with example.
+```dart
+import 'package:flutter_helper_kit/flutter_helper_kit.dart';
+```
 
-[//]: # (## Getting started)
+## Features and bugs
 
-[//]: # ()
-[//]: # (TODO: List prerequisites and provide or point to information on how to)
+Please file feature requests and bugs at the [issue tracker][tracker].
 
-[//]: # (start using the package.)
+[tracker]: https://github.com/sachin4kmt/flutter_helper_kit/issues
 
-[//]: # ()
-[//]: # (## Usage)
+## ⭐ If you like the package, a star to the repo will mean a lot.
 
-[//]: # ()
-[//]: # (TODO: Include short and useful examples for package users. Add longer examples)
+## You can also contribute by adding new widgets or helpful methods.
 
-[//]: # (to `/example` folder.)
+## If you want to give suggestion, please contact me via email - bhoominn@gmail.com
 
-[//]: # ()
-[//]: # (```dart)
-
-[//]: # (const like = 'sample';)
-
-[//]: # (```)
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Thank you ❤
