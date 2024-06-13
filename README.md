@@ -23,6 +23,6 @@ Please file feature requests and bugs at the [issue tracker][tracker].
 
 ## You can also contribute by adding new widgets or helpful methods.
 
-## If you want to give suggestion, please contact me via email - bhoominn@gmail.com
+## If you want to give suggestion, please contact me via email - sahcin4kmt@gmail.com
 
 ## Thank you ❤
