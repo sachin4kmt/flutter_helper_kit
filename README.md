@@ -240,10 +240,10 @@ textAlign: TextAlign.start,
 ## Avatar Glow
 ![AvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow.gif)
 
-## Outline Avatar Glow
+## Avatar Glow MultiColor
 ![OutlineAvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow_multi_color.gif)
 
-## Avatar Glow MultiColor
+## Outline Avatar Glow
 ![AvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow.gif)
 
 ## Outline Avatar Glow MultiColor
