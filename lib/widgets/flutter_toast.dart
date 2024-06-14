@@ -1,12 +1,21 @@
 part of flutter_helper_kit;
 
+enum FlutterToastPosition{
+  bottom(0),
+  center(1),
+  top(2);
+  final int value;
+
+  const FlutterToastPosition(this.value);
+}
 
 /// the package library class for calling from client end.
 class FlutterToast {
-  static const int lengthShort = 1;
+
+  static const Duration lengthShort = Duration(seconds: 1);
 
   /// a fixed length to show toast message
-  static const int lengthLong = 2;
+  static const Duration lengthLong = Duration(seconds: 2);
 
   /// a fixed length to show toast message
   static const int bottom = 0;
@@ -22,10 +31,10 @@ class FlutterToast {
   static void show(
       String msg,
       BuildContext context, {
-        int? duration = 1,
+        Duration? duration = const Duration(seconds: 1),
 
         /// duration : how long do you want to show the message
-        int? position = 0,
+        FlutterToastPosition position = FlutterToastPosition.bottom,
 
         /// position : where do you want to show the toast message, you can pass bottom, center, top or any defined value
         Color backgroundColor = const Color(0xAA000000),
@@ -43,8 +52,8 @@ class FlutterToast {
         /// you can specify background border
       }) {
 
-    FlutterToastView.dismiss();
-    FlutterToastView.createView(msg, context, duration, position,
+    _FlutterToastView.dismiss();
+    _FlutterToastView.createView(msg, context, duration, position,
         backgroundColor, textStyle, backgroundRadius, border, rootNavigator);
   }
 
@@ -53,14 +62,14 @@ class FlutterToast {
 
 }
 
-class FlutterToastView {
-  static final FlutterToastView _singleton = FlutterToastView._internal();
+class _FlutterToastView {
+  static final _FlutterToastView _singleton = _FlutterToastView._internal();
 
-  factory FlutterToastView() {
+  factory _FlutterToastView() {
     return _singleton;
   }
 
-  FlutterToastView._internal();
+  _FlutterToastView._internal();
 
   static OverlayState? overlayState;
   static OverlayEntry? _overlayEntry;
@@ -71,10 +80,11 @@ class FlutterToastView {
 
       /// the message you want to show as toast
       BuildContext context,
-      int? duration,
+      Duration? duration,
+
 
       /// duration : how long do you want to show the message
-      int? position,
+      FlutterToastPosition? position,
 
       /// position : where do you want to show the toast message, you can pass bottom, center, top or any defined value
       Color background,
@@ -93,7 +103,7 @@ class FlutterToastView {
     overlayState = Overlay.of(context, rootOverlay: rootNavigator ?? false);
 
     _overlayEntry = OverlayEntry(
-      builder: (BuildContext context) => FlutterToastWidget(
+      builder: (BuildContext context) => _FlutterToastWidget(
           widget: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Container(
@@ -110,12 +120,11 @@ class FlutterToastView {
                   child: Text(msg, softWrap: true, style: textStyle),
                 )),
           ),
-          position: position),
+          position: (position?.value??FlutterToastPosition.bottom.value)),
     );
     _isVisible = true;
     overlayState!.insert(_overlayEntry!);
-    await Future.delayed(
-        Duration(seconds: duration ?? FlutterToast.lengthShort));
+    await Future.delayed(duration ?? FlutterToast.lengthShort);
     dismiss();
   }
 
@@ -130,8 +139,8 @@ class FlutterToastView {
 }
 
 /// the widget to implement the toast message
-class FlutterToastWidget extends StatelessWidget {
-  const FlutterToastWidget({
+class _FlutterToastWidget extends StatelessWidget {
+  const _FlutterToastWidget({
     Key? key,
     required this.widget,
     required this.position,
