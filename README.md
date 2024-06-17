@@ -600,7 +600,7 @@ Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMod
 <img src="/screenshots/rating_bar.gif?raw=true" width="200px">
 
 ## Read More Text
-<img src="/screenshots/read_more.gif?raw=true" width=400px">
+<img src="/screenshots/read_more.gif?raw=true" width="400px">
 
 ## Rounded Check Box
 <img src="/screenshots/roundedcheckbox.gif?raw=true" width="200px">
