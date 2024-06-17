@@ -587,10 +587,10 @@ Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMod
 ## Avatar Glow
 <img src="/screenshots/avatar_glow.gif?raw=true">
 
-## Avatar Glow MultiColor
+## Outline Avatar Glow
 <img src="/screenshots/outline_avatar_glow.gif?raw=true">
 
-## Outline Avatar Glow
+## Avatar Glow MultiColor
 <img src="/screenshots/avatar_glow_multi_color.gif?raw=true">
 
 ## Outline Avatar Glow MultiColor
