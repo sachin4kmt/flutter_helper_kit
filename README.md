@@ -327,16 +327,11 @@ List<Widget> mappedWidgets = WidgetHelper.widgetMap(
 ## String Extensions
 ```dart
 bool get isNotEmptyOrNull
-bool get isEmptyOrNull
-String get defaultBlank
-bool get isInt
-int? get toInt
-bool get isNumber
-? get toNumber
+num? get toNumber
 bool get isDateTime
-? get toDateTime
+DateTime? get toDateTime
 bool get isDouble
-? get toDouble
+double? get toDouble
 int get toLength
 bool get validatePhone
 bool get validatePhoneWithCountryCode
