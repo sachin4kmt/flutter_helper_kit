@@ -626,13 +626,9 @@ Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMod
 ## Features and bugs
 
 Please file feature requests and bugs at the [issue tracker][tracker].
-
 [tracker]: https://github.com/sachin4kmt/flutter_helper_kit/issues
 
 ## ⭐ If you like the package, a star to the repo will mean a lot.
-
 ## You can also contribute by adding new widgets or helpful methods.
-
 ## If you want to give suggestion, please contact me via email - sachin4kmt@gmail.com
-
 ## Thank you ❤
