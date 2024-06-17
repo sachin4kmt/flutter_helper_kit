@@ -582,34 +582,34 @@ Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMod
 
 # Image Previews
 ## Flutter Toast
-![FlutterToast](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/flutetr_toast.gif)
+![FlutterToast](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutetr_toast.gif)
 
 ## Avatar Glow
-![AvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/avatar_glow.gif)
+![AvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow.gif)
 
 ## Outline Avatar Glow
-![OutlineAvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/avatar_glow_multi_color.gif)
+![OutlineAvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow_multi_color.gif)
 
 ## Avatar Glow MultiColor
-![AvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/outline_avatar_glow.gif)
+![AvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow.gif)
 
 ## Outline Avatar Glow MultiColor
-![OutlineAvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/outline_avatar_glow_multi_color.gif)
+![OutlineAvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow_multi_color.gif)
 
 ## App Button
-![AppButton](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/app_button.gif)
+![AppButton](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/app_button.gif)
 
 ## Marquee
-![Marquee](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/marquee.gif)
+![Marquee](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/marquee.gif)
 
 ## RatingBar
-![RatingBarWidget](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/rating_bar.gif)
+![RatingBarWidget](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/rating_bar.gif)
 
 ## Read More Text
-![ReadMoreText](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/read_more.gif)
+![ReadMoreText](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/read_more.gif)
 
 ## Rounded Check Box
-![RoundedCheckBox](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/roundedcheckbox.gif)
+![RoundedCheckBox](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/roundedcheckbox.gif)
 
 ## Text Icon
 ![TextIcon](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/text_icon.gif)
