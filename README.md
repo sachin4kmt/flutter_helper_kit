@@ -579,16 +579,16 @@ Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMod
 <img src="/screenshots/flutetr_toast.gif?raw=true" height="400px">
 
 ## Avatar Glow
-<img src="/screenshots/avatar_glow.gif?raw=true">
+<img src="/screenshots/avatar_glow.gif?raw=true" width="200px">
 
 ## Outline Avatar Glow
-<img src="/screenshots/outline_avatar_glow.gif?raw=true">
+<img src="/screenshots/outline_avatar_glow.gif?raw=true" width="200px">
 
 ## Avatar Glow MultiColor
-<img src="/screenshots/avatar_glow_multi_color.gif?raw=true">
+<img src="/screenshots/avatar_glow_multi_color.gif?raw=true" width="200px">
 
 ## Outline Avatar Glow MultiColor
-<img src="/screenshots/outline_avatar_glow_multi_color.gif?raw=true">
+<img src="/screenshots/outline_avatar_glow_multi_color.gif?raw=true" width="200px">
 
 ## App Button
 <img src="/screenshots/app_button.gif?raw=true">
