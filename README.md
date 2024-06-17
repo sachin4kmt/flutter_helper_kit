@@ -591,23 +591,22 @@ Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMod
 <img src="/screenshots/outline_avatar_glow_multi_color.gif?raw=true" width="200px">
 
 ## App Button
-<img src="/screenshots/app_button.gif?raw=true">
+<img src="/screenshots/app_button.gif?raw=true" width="200px">
 
 ## Marquee
-<img src="/screenshots/marquee.gif?raw=true">
+<img src="/screenshots/marquee.gif?raw=true" width="200px">
 
 ## RatingBar
-<img src="/screenshots/rating_bar.gif?raw=true">
+<img src="/screenshots/rating_bar.gif?raw=true" width="200px">
 
 ## Read More Text
-<img src="/screenshots/read_more.gif?raw=true">
+<img src="/screenshots/read_more.gif?raw=true" width=400px">
 
 ## Rounded Check Box
-<img src="/screenshots/roundedcheckbox.gif?raw=true">
-
+<img src="/screenshots/roundedcheckbox.gif?raw=true" width="200px">
 
 ## Text Icon
-<img src="/screenshots/text_icon.gif?raw=true">
+<img src="/screenshots/text_icon.gif?raw=true" width="400px">
 
 
 ## Features and bugs
