@@ -27,7 +27,6 @@ import 'package:flutter_helper_kit/flutter_helper_kit.dart';
   - [int Extensions](#int-extensions)
   - [List Extensions](#list-extensions)
   - [num Extensions](#num-extensions)
-  - [ScrollController Extensions](#scrollcontroller-extensions)
   - [Widget Extensions](#widget-extensions)
 - [System Methods](#systems-methods)
 - [System Methods](#systems-methods)
