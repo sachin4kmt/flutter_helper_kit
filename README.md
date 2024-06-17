@@ -612,7 +612,8 @@ Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMod
 ![RoundedCheckBox](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/roundedcheckbox.gif)
 
 ## Text Icon
-![TextIcon](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/text_icon.gif)
+![TextIcon](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/text_icon.gif)
+
 
 ## Features and bugs
 
