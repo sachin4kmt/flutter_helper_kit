@@ -582,7 +582,7 @@ Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMod
 
 # Image Previews
 ## Flutter Toast
-<img src="/screenshots/flutetr_toast.gif?raw=true">
+<img src="/screenshots/flutetr_toast.gif?raw=true" height="200px">
 
 ## Avatar Glow
 <img src="/screenshots/avatar_glow.gif?raw=true">
