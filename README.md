@@ -583,36 +583,47 @@ Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMod
 # Image Previews
 ## Flutter Toast
 ![FlutterToast](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutetr_toast.gif)
+<img src="/screenshots/flutetr_toast.gif?raw=true">
 
 ## Avatar Glow
 ![AvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow.gif)
+<img src="/screenshots/avatar_glow.gif?raw=true">
 
 ## Outline Avatar Glow
 ![OutlineAvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow_multi_color.gif)
+<img src="/screenshots/avatar_glow_multi_color.gif?raw=true">
 
 ## Avatar Glow MultiColor
 ![AvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow.gif)
+<img src="/screenshots/outline_avatar_glow.gif?raw=true">
 
 ## Outline Avatar Glow MultiColor
 ![OutlineAvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow_multi_color.gif)
+<img src="/screenshots/outline_avatar_glow_multi_color.gif?raw=true">
 
 ## App Button
 ![AppButton](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/app_button.gif)
+<img src="/screenshots/app_button.gif?raw=true">
 
 ## Marquee
 ![Marquee](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/marquee.gif)
+<img src="/screenshots/marquee.gif?raw=true">
 
 ## RatingBar
 ![RatingBarWidget](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/rating_bar.gif)
+<img src="/screenshots/rating_bar.gif?raw=true">
 
 ## Read More Text
 ![ReadMoreText](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/read_more.gif)
+<img src="/screenshots/read_more.gif?raw=true">
 
 ## Rounded Check Box
 ![RoundedCheckBox](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/roundedcheckbox.gif)
+<img src="/screenshots/roundedcheckbox.gif?raw=true">
+
 
 ## Text Icon
-<img src="/screenshots/text_icon.gif?raw=true" width="200px">
+<img src="/screenshots/text_icon.gif?raw=true">
 
 
 ## Features and bugs
