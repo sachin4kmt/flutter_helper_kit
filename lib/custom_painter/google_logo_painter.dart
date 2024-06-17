@@ -1,4 +1,6 @@
-part of flutter_helper_kit;
+
+import 'package:flutter/material.dart';
+
 /// A widget that displays the Google logo using CustomPaint.
 ///
 /// This widget renders the Google logo using a CustomPaint widget. It provides

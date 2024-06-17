@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+import 'package:flutter/material.dart';
 
 /// A widget that displays its child in a scrolling manner.
 ///

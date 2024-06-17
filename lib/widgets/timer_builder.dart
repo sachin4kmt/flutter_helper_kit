@@ -1,4 +1,6 @@
-part of flutter_helper_kit;
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 
 
 

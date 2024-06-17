@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+import 'dart:math' as math;
 
 extension RandomExtension on math.Random{
   String  generateLoremIpsumWords([int? limit]) {

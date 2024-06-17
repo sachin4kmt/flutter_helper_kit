@@ -1,4 +1,7 @@
-part of flutter_helper_kit;
+import 'dart:async';
+import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_helper_kit/extensions/color_extension.dart';
 
 class SystemChromeUtils  {
   /// Change status bar Color and Brightness

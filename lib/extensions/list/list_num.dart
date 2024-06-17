@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+
 
 extension ListnumManipulation on List<num>? {
   /// check nullable and empty in nullable list return true

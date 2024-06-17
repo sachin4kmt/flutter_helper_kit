@@ -1,4 +1,10 @@
-part of flutter_helper_kit;
+import 'dart:convert';
+import 'dart:math' as math;
+import 'package:flutter/material.dart';
+import 'package:flutter_helper_kit/extensions/number_extension.dart';
+import 'package:flutter_helper_kit/utils/common_functions.dart';
+import 'package:flutter_helper_kit/utils/password_validator.dart';
+
 
 extension NullStringExtension on String? {
 

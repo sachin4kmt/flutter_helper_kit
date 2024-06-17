@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+import 'package:flutter/material.dart';
 
 
 typedef RatingChangeCallback = void Function(double rating);

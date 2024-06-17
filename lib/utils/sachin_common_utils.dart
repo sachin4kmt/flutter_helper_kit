@@ -1,4 +1,8 @@
-part of flutter_helper_kit;
+import 'dart:async';
+import 'dart:io';
+import 'dart:math' as math;
+import 'dart:ui' as ui;
+import 'package:flutter/services.dart';
 
 class SachinUtils {
   /// Converts degrees to radians.

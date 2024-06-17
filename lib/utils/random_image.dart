@@ -1,4 +1,6 @@
-part of flutter_helper_kit;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_helper_kit/extensions/color_extension.dart';
 
 enum ImageSet{
   any('any'),

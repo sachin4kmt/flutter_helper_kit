@@ -1,5 +1,5 @@
-part of flutter_helper_kit;
 
+import 'package:flutter/material.dart';
 
 // Widget Extensions
 extension WidgetExtension on Widget? {

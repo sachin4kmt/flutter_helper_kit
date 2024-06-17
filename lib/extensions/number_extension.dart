@@ -1,5 +1,6 @@
-part of flutter_helper_kit;
+import 'dart:math' as math;
 
+import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 
 /// Num Extensions

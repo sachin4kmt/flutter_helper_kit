@@ -1,4 +1,11 @@
-part of flutter_helper_kit;
+
+
+import 'package:flutter/material.dart';
+import 'package:flutter_helper_kit/extensions/widget_extension.dart';
+
+import '../extensions/string_extension.dart';
+import '../utils/decorations.dart';
+import 'marquee_widget.dart';
 
 /// A custom widget that displays a text with optional prefix and suffix widgets.
 ///

@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+
 class Validator {
   /// Checks if the password has a minimum length.
   ///

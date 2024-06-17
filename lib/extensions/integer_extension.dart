@@ -1,4 +1,7 @@
-part of flutter_helper_kit;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_helper_kit/extensions/string_extension.dart';
+import 'package:flutter_helper_kit/widgets/space/space.dart';
 
 /// int Extensions
 extension IntNullableExtensions on int? {

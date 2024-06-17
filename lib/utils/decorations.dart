@@ -1,5 +1,6 @@
-part of flutter_helper_kit;
 
+
+import 'package:flutter/material.dart';
 
 /// returns default InputDecoration for AppTextField widget
 double defaultRadius = 16;

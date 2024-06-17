@@ -1,5 +1,6 @@
-part of flutter_helper_kit;
-
+import 'package:flutter/material.dart';
+import 'package:flutter_helper_kit/extensions/bool_extensions.dart';
+import 'package:flutter_helper_kit/extensions/string_extension.dart';
 
 /// Default App Button
 class AppButton extends StatefulWidget {
@@ -57,8 +58,7 @@ class AppButtonState extends State<AppButton>
 
   @override
   void initState() {
-    if (widget.enableScaleAnimation
-        .validate(value: true)) {
+    if (widget.enableScaleAnimation.validate(value: true)) {
       _controller = AnimationController(
         vsync: this,
         duration: const Duration(

@@ -1,7 +1,9 @@
-part of flutter_helper_kit;
+
+import 'package:flutter_helper_kit/extensions/list_extension.dart';
+import 'package:flutter_helper_kit/extensions/string_extension.dart';
 
 ///Map
-extension SachinUtilsMapExtension<K, V> on Map<K, V>? {
+extension MapExtension<K, V> on Map<K, V>? {
 
 
 

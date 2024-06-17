@@ -1,4 +1,5 @@
-part of flutter_helper_kit;
+import 'package:flutter/material.dart';
+import 'package:flutter_helper_kit/extensions/list_extension.dart';
 
 
 class WidgetHelper {

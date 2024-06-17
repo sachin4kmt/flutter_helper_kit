@@ -1,4 +1,5 @@
-part of flutter_helper_kit;
+import 'package:flutter/services.dart';
+
 ///user can't use space
 class NoSpaceFormatter extends TextInputFormatter {
   @override

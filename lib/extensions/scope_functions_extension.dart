@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+
 
 extension ScopeFunction<T> on T {
   /// Calls the specified function block with this value as its argument and returns its result

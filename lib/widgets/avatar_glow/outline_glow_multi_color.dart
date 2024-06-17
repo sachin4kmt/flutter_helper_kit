@@ -1,4 +1,6 @@
-part of flutter_helper_kit;
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 
 class OutlineAvatarGlowMultiColor extends StatefulWidget {

@@ -1,4 +1,3 @@
-part of flutter_helper_kit;
 /// A collection of boolean extension methods to simplify boolean operations.
 ///
 /// This extension provides convenient methods to perform various operations

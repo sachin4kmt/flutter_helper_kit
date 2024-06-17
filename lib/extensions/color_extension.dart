@@ -1,5 +1,5 @@
-part of flutter_helper_kit;
 
+import 'package:flutter/material.dart';
 
 /// Color Extensions
 extension Hex on Color {

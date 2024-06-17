@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+
 /// A utility class for formatting numbers in either Indian or International numeral systems.
 ///
 /// This class provides methods to format numbers based on the chosen numeral system.

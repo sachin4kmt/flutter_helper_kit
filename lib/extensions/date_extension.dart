@@ -1,6 +1,11 @@
-part of flutter_helper_kit;
 
-extension SachinDateTimeUtils on DateTime? {
+import 'package:flutter/material.dart';
+import 'package:flutter_helper_kit/extensions/integer_extension.dart';
+import 'package:flutter_helper_kit/extensions/string_extension.dart';
+import 'package:flutter_helper_kit/utils/ago_time.dart';
+
+
+extension DateTimeExtension on DateTime? {
   /// Returns `true` if the given date is `null`.
   bool get isNull => this == null;
 

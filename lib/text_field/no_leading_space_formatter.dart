@@ -1,4 +1,5 @@
-part of flutter_helper_kit;
+
+import 'package:flutter/services.dart';
 
 /// A text input formatter that prevents users from starting the text with a space.
 ///

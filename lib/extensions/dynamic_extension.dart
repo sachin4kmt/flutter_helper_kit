@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+
 
 extension MapExtensions on dynamic {
   /// Safely retrieves a value from a Map using the specified [key].

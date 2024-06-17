@@ -1,5 +1,5 @@
-part of flutter_helper_kit;
-
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 /// A widget that takes a fixed amount of space in the direction of its parent.
 ///

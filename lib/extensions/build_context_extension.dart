@@ -1,6 +1,9 @@
-part of flutter_helper_kit;
 
-extension SachinBuildContext on BuildContext {
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_helper_kit/extensions/integer_extension.dart';
+
+extension BuildContextExension on BuildContext {
   /// Returns the screen size.
   Size get size => MediaQuery.of(this).size;
 

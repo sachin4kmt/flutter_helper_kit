@@ -1,8 +1,6 @@
-part of flutter_helper_kit;
-
-
-
-
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 /// A widget that adds a glowing effect around its child.
 class AvatarGlow extends StatefulWidget {

@@ -17,19 +17,18 @@ import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 - [Useful Methods](#useful-methods-or-extensions-you-will-ever-need)
 - [Widgets](#widgets)
 - [Extensions](#extensions)
-    - [String Extensions](#string-extensions)
-    - [bool Extensions](#bool-extensions)
-    - [Color Extensions](#color-extensions)
-    - [BuildContext Extensions](#buildcontext-extensions)
-    - [DateTime Extensions](#datetime-extensions---utils)
-    - [Device Extensions](#device-extensions)
-    - [double Extensions](#double-extensions)
-    - [Duration Extensions](#duration-extensions)
-    - [int Extensions](#int-extensions)
-    - [List Extensions](#list-extensions)
-    - [num Extensions](#num-extensions)
-    - [ScrollController Extensions](#scrollcontroller-extensions)
-    - [Widget Extensions](#widget-extensions)
+  - [String Extensions](#string-extensions)
+  - [bool Extensions](#bool-extensions)
+  - [Color Extensions](#color-extensions)
+  - [BuildContext Extensions](#build-context-extensions)
+  - [DateTime Extensions](#datetime-extensions---utils)
+  - [double Extensions](#double-extensions)
+  - [Duration Extensions](#duration-extensions)
+  - [int Extensions](#int-extensions)
+  - [List Extensions](#list-extensions)
+  - [num Extensions](#num-extensions)
+  - [ScrollController Extensions](#scrollcontroller-extensions)
+  - [Widget Extensions](#widget-extensions)
 - [System Methods](#systems-methods)
 - [System Methods](#systems-methods)
 - [Network Utils](#network-utils)
@@ -223,43 +222,406 @@ ReadMoreText(
 ```
 [GIF](#read-more-text)
 
+```dart
+RoundedCheckBox(
+  isChecked: true,
+  borderColor: Colors.grey,
+  onTap: (isChecked) {
+    print('Checkbox is now: $isChecked');
+  },
+  text: 'Accept Terms',
+),
+```
+[Image](#rounded-check-box)
+
+```dart
+// To use the `SeparatedColumn` widget, simply wrap your children widgets with `SeparatedColumn` and provide a `separatorBuilder` to create the separators between the children.
+SeparatedColumn(
+  separatorBuilder: (BuildContext context, int index) => Container(height: 1, color: Colors.grey),
+  children: const [
+    Text('Item 1'),
+    Text('Item 2'),
+    Text('Item 3'),
+  ],
+)
+```
+
+```dart
+//To use the `TextAvatar` widget, simply create an instance of it and provide the required parameters.
+TextAvatar(
+  text: 'Flutter Helper Kit',
+)
+```
+
+```dart
+TextIcon(
+  text: 'Hello World',
+  textStyle: TextStyle(color: Colors.blue, fontSize: 18),
+  prefix: Icon(Icons.star, color: Colors.yellow),
+  suffix: Icon(Icons.arrow_forward, color: Colors.red),
+  spacing: 8,
+  maxLine: 1,
+  onTap: () {
+    print('TextIcon tapped!');
+  },
+  edgeInsets: EdgeInsets.all(10),
+  expandedText: true,
+  useMarquee: false,
+  boxDecoration: BoxDecoration(
+    border: Border.all(color: Colors.grey),
+    borderRadius: BorderRadius.circular(8),
+  ),
+)
+```
+[Image](#text-icon)
+
+
+```dart
+// The `TimerBuilder` widget in Flutter allows you to rebuild your widget tree on specific and/or periodic timer events. It's highly customizable and can be used to create widgets that update at certain intervals or on a schedule.
+//The example below shows how to use `TimerBuilder.periodic` to rebuild a widget every 5 seconds:
+TimerBuilder.periodic(
+  Duration(seconds: 5),
+  builder: (context) {
+  return Text(
+      'Current Time: ${DateTime.now()}',
+      style: TextStyle(fontSize: 20),
+    );
+  },
+)
+
+//The example below shows how to use TimerBuilder.scheduled to rebuild a widget at specific times:
+TimerBuilder.scheduled(
+  [
+    DateTime.now().add(Duration(seconds: 10)),
+    DateTime.now().add(Duration(seconds: 20)),
+    DateTime.now().add(Duration(seconds: 30)),
+  ],
+  builder: (context) {
+    return Text(
+      'Current Time: ${DateTime.now()}',
+      style: TextStyle(fontSize: 20),
+    );
+  },
+),
+```
+
+```dart
+//A new list of widgets where the divider is inserted between each pair of adjacent widgets in the input list.
+List<Widget> interspersedItems = WidgetHelper.intersperse(
+  items,
+  Divider(color: Colors.black),
+  leading: true,
+  trailing: true,
+);
+
+//A new list of widgets where each object in the input list is mapped to a list of widgets using the provided mapping function.
+List<Widget> mappedWidgets = WidgetHelper.widgetMap(
+  items, (item) => [
+    Text(item), 
+    SizedBox(height: 10)
+  ],
+);
+```
+
+# Extensions
+## String Extensions
+```dart
+bool get isNotEmptyOrNull
+bool get isEmptyOrNull
+String get defaultBlank
+bool get isInt
+int? get toInt
+bool get isNumber
+? get toNumber
+bool get isDateTime
+? get toDateTime
+bool get isDouble
+? get toDouble
+int get toLength
+bool get validatePhone
+bool get validatePhoneWithCountryCode
+bool get isValidateEmail
+bool get isContainsAlphabetLetter
+bool get isAlphabetOnly
+String get removeAllWhiteSpace
+String get reversed
+bool get validateURL
+String get capitalizeFirstCharacter
+String get capitalizeEachWordFirstCharacter
+bool get isJsonDecodable
+int get countWords
+
+String validate([String value = ""])
+bool startsWithCharacters(String characters,{bool matchCase = false})
+String lastChars(int n)
+String toWordsFirstCharacters({int? numberOfCharacters, String splitBy = "\\s+"})
+String take(int numberOfCharacters)
+bool isPasswordValidator({int minLength = 6,int uppercaseCharCount = 0,int lowercaseCharCount = 0,int numericCharCount = 0,int specialCharCount = 0})
+```
+
+## Bool Extensions
+```dart
+bool validate({bool value = false})
+
+bool get isTrue
+bool get isFalse
+bool get isNotTrue
+bool get isNotFalse
+int get toInt
+bool get toggle
+```
+
+## Color Extensions
+```dart
+String toHex({bool leadingHashSign = true, bool includeAlpha = false})
+MaterialColor createMaterialColor()
+Color lighten([double amount = .1])
+Color darken([double amount = .1])
+
+bool get isDark
+bool get isLight
+double get getBrightness
+double get getLuminance
+```
+
+## Build Context Extensions
+```dart
+void requestFocus(FocusNode focus)
+void unFocus(FocusNode focus)
+void unFocusKeyboard()
+void pop<T extends Object>([T? result])
+void openDrawer()
+void openEndDrawer()
+void hideCurrentSnackBar()
+void removeCurrentSnackBar()
+void clearSnackBars()
+void showSnackBar()
+
+Size get size
+double get width
+double get height
+double get pixelRatio
+double get minScreenSize
+double get maxScreenSize
+Brightness get platformBrightness
+double get statusBarHeight
+double get navigationBarHeight
+ThemeData get theme
+TextTheme get textTheme
+DefaultTextStyle get defaultTextStyle
+FormState? get formState
+ScaffoldState get scaffoldState
+OverlayState? get overlayState
+Color get primaryColor
+Color get secondaryColor
+Color get accentColor
+Color get scaffoldBackgroundColor
+Color get cardColor
+Color get dividerColor
+Color get iconColor
+dynamic get getArguments
+Orientation get orientation
+bool get isLandscape
+bool get isPortrait
+bool get canPop
+TargetPlatform get platform
+bool get isAndroid
+bool get isIOS
+bool get isMacOS
+bool get isWindows
+bool get isFuchsia
+bool get isLinux
+```
+
+## DateTime Extensions - Utils
+```dart
+/// You can use .timeAgo on a DateTime object like this
+String result = DateTime.now().timeAgo;
+
+/// Returns the current timestamp in seconds.
+int get currentTimeStamp
+
+/// Returns the number between the current DateTime instance and [differenceDateTime].
+int countSeconds(DateTime? differenceDateTime)
+int countMinutes(DateTime? differenceDateTime)
+int countHours(DateTime? differenceDateTime)
+int countDays(DateTime? differenceDateTime)
+int countWeeks(DateTime? differenceDateTime)
+int countMonths(DateTime? differenceDateTime)
+int countYears(DateTime? differenceDateTime)
+
+bool get isToday
+bool get isYesterday
+bool get isTomorrow
+
+String? get toTimeAmPm
+
+DateTime? toIndiaTimeZone()
+
+/// Returns a DateTime object in UTC timezone.
+DateTime? get asUtc
+
+String? weekdayName({bool isHalfName = false})
+String? monthName({bool isHalfName = false})
+```
+
+## Double Extensions
+```dart
+double validate({double value = 0.0})
+bool isBetween(num first, num second)
+SizedBox get squareSizeBox
+Size get squareSize
+
+/// Returns a [BorderRadius] with circular radius.
+BorderRadius get circularRadius
+```
+
+## Duration Extensions
+```dart
+/// await Duration(seconds: 1).delay();
+Future<void> get delay
+```
+
+## int Extensions
+```dart
+bool get isEmptyOrNull
+Widget get height
+Widget get width
+Widget get space
+Widget get maxSpace
+Widget get spaceExpand
+Duration get microseconds
+Duration get milliseconds
+Duration get seconds
+Duration get minutes
+Duration get hours
+Duration get days
+Duration get weeks
+Duration get month
+Duration get years
+Size get size
+BorderRadius get circularBorderRadius
+String? get addZeroPrefix
+
+bool toBool([int value = 1])
+int validate({int value = 0})
+int lastDigits(int n)
+/// returns month name from the given int value between [1-12]
+String toMonthName({bool isHalfName = false})
+/// returns WeekDay from the given int value [1-7]
+String toWeekDay({bool isHalfName = false})
+```
+
+## List Extensions
+```dart
+T? get firstOrNull
+List<T> get removeFirstElement
+List<T> get removeLastElement
+int? get lastIndex
+
+T? firstWhereOrNull(bool Function(T element) test)
+T? lastWhereOrNull(bool Function(T element) test)
+int countWhere(bool Function(T element) predicate)
+T? elementAtOrNull(int index)
+Iterable<T> filterOrNewList(bool Function(T e) fun)
+Iterable<T> filterNot(bool Function(T element) fun)
+List<Widget> toWidgetList(Widget Function(T value) mapFunc)
+int countWhere(bool Function(T) test)
+void forEachIndexed(void Function( int index,T element) f)
+T? random({int? seed})
+List<T> separatorEvery(T separator,{bool start= false,bool end=false})
+List<List<T>> divideListByFunction(bool Function(T) condition)
+List<List<T>>? divideListByRange(int rangeSize)
+```
+
+## num Extensions
+```dart
+bool get isNullOrEmpty
+num validate({num value = 0})
+bool between(int min, int max)
+bool isInRange(num min, num max)
+List<num> randomList({int min = 0, int max = 100})
+String toNumeral({bool international = true, int digitAfterDecimal = 0})
+```
+
+## Widget Extensions
+```dart
+/// Make Image Circular with these extension
+ClipRRect cornerRadiusWithClipRRectOnly({int bottomLeft = 0, int bottomRight = 0, int topLeft = 0, int topRight = 0})
+ClipRRect cornerRadiusWithClipRRect(double radius)
+
+Widget opacity({required double opacity, int durationInSecond = 1, Duration? duration})
+Widget rotate({required double angle, bool transformHitTests = true, Offset? origin})
+Widget scale({required double scale, Offset? origin, AlignmentGeometry? alignment, bool transformHitTests = true})
+Widget translate({required Offset offset, bool transformHitTests = true, Key? key})
+
+SizedBox withSize({double width = 0.0, double height = 0.0})
+SizedBox withWidth(double width) 
+SizedBox withHeight(double height)
+Padding paddingTop(double top)
+Padding paddingLeft(double left) 
+Padding paddingRight(double right)
+Padding paddingBottom(double bottom)
+Padding paddingAll(double padding) 
+Padding paddingSymmetric({double vertical = 0.0, double horizontal = 0.0})
+
+Widget onTap(Function? function, {BorderRadius? borderRadius, Color? splashColor, Color? hoverColor, Color? highlightColor})
+Widget visible(bool visible, {Widget? defaultWidget})
+Widget center({double? heightFactor, double? widthFactor})
+Widget expand({flex = 1})
+Widget flexible({flex = 1, FlexFit? fit})
+Widget fit({BoxFit? fit, AlignmentGeometry? alignment})
+Widget validate({Widget value = const SizedBox()})
+Widget withTooltip({required String msg})
+
+Widget get makeRefreshable
+
+Widget withShaderMask(List<Color> colors, {BlendMode blendMode = BlendMode.srcATop})
+Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMode.srcATop})
+```
+## Systems Methods
+```dart
+
+```
 
 
 
 
 
-
-
-
-
-
+# Image Previews
 
 ## Flutter Toast
-![FlutterToast](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutetr_toast.gif)
+![FlutterToast](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/flutetr_toast.gif)
 
 ## Avatar Glow
-![AvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow.gif)
+![AvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/avatar_glow.gif)
 
 ## Outline Avatar Glow
-![OutlineAvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow_multi_color.gif)
+![OutlineAvatarGlow](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/avatar_glow_multi_color.gif)
 
 ## Avatar Glow MultiColor
-![AvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow.gif)
+![AvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/outline_avatar_glow.gif)
 
 ## Outline Avatar Glow MultiColor
-![OutlineAvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow_multi_color.gif)
+![OutlineAvatarGlowMultiColor](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/outline_avatar_glow_multi_color.gif)
 
 ## App Button
-![AppButton](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/app_button.gif)
+![AppButton](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/app_button.gif)
 
 ## Marquee
-![Marquee](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/marquee.gif)
+![Marquee](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/marquee.gif)
 
 ## RatingBar
-![RatingBarWidget](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/rating_bar.gif)
+![RatingBarWidget](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/rating_bar.gif)
 
 ## Read More Text
-![ReadMoreText](https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/read_more.gif)
+![ReadMoreText](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/read_more.gif)
+
+## Rounded Check Box
+![ReadMoreText](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/roundedcheckbox.jpg)
+
+## Text Icon
+![Text Icon](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/text_icon.jpg)
 
 ## Features and bugs
 

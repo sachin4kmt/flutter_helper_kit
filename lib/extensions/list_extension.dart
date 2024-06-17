@@ -1,5 +1,5 @@
-part of flutter_helper_kit;
-
+import 'dart:math' as math;
+import 'package:flutter/material.dart';
 
 extension MyIterable<T> on Iterable<T>? {
   /// Returns `true` if this nullable iterable is either `null` or empty.

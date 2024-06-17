@@ -1,4 +1,6 @@
-part of flutter_helper_kit;
+
+
+import 'package:flutter/foundation.dart';
 
 /// Formats provided [date] to a fuzzy time like 'a moment ago'
 ///

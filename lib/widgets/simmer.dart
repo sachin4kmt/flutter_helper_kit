@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+import 'package:flutter/material.dart';
 // ************************************defaultColorsList*************************
 const List<Color> _defaultColors = [Color.fromRGBO(0, 0, 0, 0.1), Color(0x44CCCCCC), Color.fromRGBO(0, 0, 0, 0.1)];
 

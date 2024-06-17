@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+import 'package:flutter/material.dart';
 
 ///
 /// This widget wraps the main content of your app and listens for back button presses.

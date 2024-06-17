@@ -1,4 +1,4 @@
-part of flutter_helper_kit;
+import 'package:flutter/material.dart';
 
 class DashDivider extends StatelessWidget {
   /// Creates a [DashDivider] widget.

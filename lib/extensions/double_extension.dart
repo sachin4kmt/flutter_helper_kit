@@ -1,4 +1,6 @@
-part of flutter_helper_kit;
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 
 /// Double Extensions
