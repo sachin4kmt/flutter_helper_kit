@@ -580,13 +580,7 @@ Widget withShaderMask(List<Color> colors, {BlendMode blendMode = BlendMode.srcAT
 Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMode.srcATop})
 ```
 
-
-
-
-
-
 # Image Previews
-
 ## Flutter Toast
 ![FlutterToast](https://github.com/sachin4kmt/flutter_helper_kit/tree/master/screenshots/flutetr_toast.gif)
 
