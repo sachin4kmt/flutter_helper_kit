@@ -579,10 +579,7 @@ Widget get makeRefreshable
 Widget withShaderMask(List<Color> colors, {BlendMode blendMode = BlendMode.srcATop})
 Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMode.srcATop})
 ```
-## Systems Methods
-```dart
 
-```
 
 
 
