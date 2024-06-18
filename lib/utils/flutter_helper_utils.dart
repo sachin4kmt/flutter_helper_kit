@@ -9,7 +9,7 @@ class FlutterHelperUtils {
   /// Returns the equivalent value in radians for the given [degree].
   ///
   ///  Convert degrees to radians
-  ///   double radian = SachinUtils.degreeToRadian(degree);
+  ///   double radian = FlutterHelperUtils.degreeToRadian(degree);
   ///   print('45 degrees in radians: $radian'); // Output: 0.7853981633974483
   static double degreeToRadian(double degree) {
     return degree * (-math.pi / 180);
@@ -23,10 +23,10 @@ class FlutterHelperUtils {
   /// Example:
   /// ```dart
   /// // Delay execution for 1 second.
-  /// await SachinUtils.wait(1000);
+  /// await FlutterHelperUtils.wait(1000);
   ///
   /// // Delay execution for 500 milliseconds and return a value.
-  /// String result = await SachinUtils.wait<String>(500, () {
+  /// String result = await FlutterHelperUtils.wait<String>(500, () {
   ///   return 'Delayed value';
   /// });
   /// ```
@@ -64,7 +64,7 @@ class FlutterHelperUtils {
   ///
   /// Example usage:
   /// ```dart
-  /// Future<Uint8List> bytes = SachinUtils.getBytesFromAsset('assets/marker.png', width: 100);
+  /// Future<Uint8List> bytes = FlutterHelperUtils.getBytesFromAsset('assets/marker.png', width: 100);
     static Future<Uint8List> getBytesFromAsset(String path, {int? width}) async {
     ByteData data = await rootBundle.load(path);
     if (width == null) {

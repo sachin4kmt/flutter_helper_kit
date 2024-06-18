@@ -67,7 +67,7 @@ extension MapExtension<K, V> on Map<K, V>? {
   }
 }
 
-extension SachinUtilsStringKeyMapExtension<T, V> on Map<String, V>? {
+extension MapStringKeyExtension<T, V> on Map<String, V>? {
   ///Returns a new map with new keys default blank map if null.
   ///Example: final map= {'framework': "Flutter", 'Language': "Dart"};
   ///final newMap= map.updateKeys((key) => key+"\'s");

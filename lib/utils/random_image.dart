@@ -67,10 +67,10 @@ class RandomImage{
   /// Example:
   /// ```dart
   /// // Get a random image URL with default dimensions (200x200).
-  /// String imageUrl = SachinUtils.picsumImage();
+  /// String imageUrl = FlutterHelperUtils.picsumImage();
   ///
   /// // Get a random image URL with custom dimensions (300x400).
-  /// String customImageUrl = SachinUtils.picsumImage(300, 400);
+  /// String customImageUrl = FlutterHelperUtils.picsumImage(300, 400);
   /// ```
   static String picsumImage([int width = 200, int height = 200]) {
     return "https://picsum.photos/$width/$height";

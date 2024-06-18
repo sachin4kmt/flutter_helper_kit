@@ -6,7 +6,7 @@
 ///
 /// Example usage:
 /// ```dart
-/// import 'package:sachin_utils/sachin_utils.dart';
+/// import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 ///
 /// void main() {
 ///   // Example usage of boolean extensions
