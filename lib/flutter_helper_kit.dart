@@ -29,7 +29,6 @@ export 'extensions/number_extension.dart';
 export 'extensions/random_extension.dart';
 export 'extensions/scope_functions_extension.dart';
 export 'extensions/string_extension.dart';
-export 'extensions/system_chrome_extension.dart';
 export 'extensions/widget_extension.dart';
 export 'extensions/widget_list_extension.dart';
 
@@ -40,6 +39,7 @@ export 'text_field/no_leading_space_formatter.dart';
 export 'text_field/no_space_formatter.dart';
 
 ///Utils
+export 'utils/system_chrome_utils.dart';
 export 'utils/common_functions.dart';
 export 'utils/decorations.dart';
 export 'utils/password_validator.dart';
