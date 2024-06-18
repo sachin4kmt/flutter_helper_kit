@@ -4,14 +4,13 @@ import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 
-class FlutterHelperUtils {
   /// Converts degrees to radians.
   /// Returns the equivalent value in radians for the given [degree].
   ///
   ///  Convert degrees to radians
   ///   double radian = FlutterHelperUtils.degreeToRadian(degree);
   ///   print('45 degrees in radians: $radian'); // Output: 0.7853981633974483
-  static double degreeToRadian(double degree) {
+  double degreeToRadian(double degree) {
     return degree * (-math.pi / 180);
   }
 
@@ -30,7 +29,7 @@ class FlutterHelperUtils {
   ///   return 'Delayed value';
   /// });
   /// ```
-  static Future<T> wait<T>([
+   Future<T> wait<T>([
     int millisecond = 1500,
     FutureOr<T> Function()? value,
   ]) async {
@@ -42,7 +41,7 @@ class FlutterHelperUtils {
   ///
   /// Returns `true` if the device is connected to the internet,
   /// otherwise returns `false`.
-  static Future<bool> checkConnection() async {
+  Future<bool> checkConnection() async {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
@@ -65,7 +64,7 @@ class FlutterHelperUtils {
   /// Example usage:
   /// ```dart
   /// Future<Uint8List> bytes = FlutterHelperUtils.getBytesFromAsset('assets/marker.png', width: 100);
-    static Future<Uint8List> getBytesFromAsset(String path, {int? width}) async {
+  Future<Uint8List> getBytesFromAsset(String path, {int? width}) async {
     ByteData data = await rootBundle.load(path);
     if (width == null) {
       return data.buffer.asUint8List();
@@ -82,5 +81,5 @@ class FlutterHelperUtils {
   }
 
 
-}
+
 
