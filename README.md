@@ -687,37 +687,37 @@ DoubleArgVoidCallback   // void Function(double arg);
 
 # Image Previews
 ## Flutter Toast
-<img src="/screenshots/flutetr_toast.gif?raw=true" height="300px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutetr_toast.gif?raw=true" height="300px">
 
 ## Avatar Glow
-<img src="/screenshots/avatar_glow.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow.gif?raw=true" width="200px">
 
 ## Outline Avatar Glow
-<img src="/screenshots/outline_avatar_glow.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow.gif?raw=true" width="200px">
 
 ## Avatar Glow MultiColor
-<img src="/screenshots/avatar_glow_multi_color.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow_multi_color.gif?raw=true" width="200px">
 
 ## Outline Avatar Glow MultiColor
-<img src="/screenshots/outline_avatar_glow_multi_color.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow_multi_color.gif?raw=true" width="200px">
 
 ## App Button
-<img src="/screenshots/app_button.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/app_button.gif?raw=true" width="200px">
 
 ## Marquee
-<img src="/screenshots/marquee.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/marquee.gif?raw=true" width="200px">
 
 ## RatingBar
-<img src="/screenshots/rating_bar.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/rating_bar.gif?raw=true" width="200px">
 
 ## Read More Text
-<img src="/screenshots/read_more.gif?raw=true" width="400px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/read_more.gif?raw=true" width="400px">
 
 ## Rounded Check Box
-<img src="/screenshots/roundedcheckbox.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/roundedcheckbox.gif?raw=true" width="200px">
 
 ## Text Icon
-<img src="/screenshots/text_icon.gif?raw=true" width="400px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/text_icon.gif?raw=true" width="400px">
 
 
 ## Features and bugs
