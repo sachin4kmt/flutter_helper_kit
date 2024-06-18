@@ -1,8 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_helper_kit/extensions/integer_extension.dart';
-import 'package:flutter_helper_kit/extensions/widget_extension.dart';
-
 import '../flutter_helper_kit.dart';
 
 ///Widget that draw a beautiful checkbox rounded. Provided with animation if wanted

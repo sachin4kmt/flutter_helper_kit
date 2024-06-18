@@ -1,63 +1,64 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
+/// A widget that handles double press back navigation.
 ///
-/// This widget wraps the main content of your app and listens for back button presses.
-/// If the back button is pressed once, it shows a message (optional) and waits for another press.
-/// If the back button is pressed twice within a short time frame (default is 2 seconds),
-/// it exits the app.
-///
-
-
-DateTime? _currentBackPressTime;
-
-class DoublePressBackWidget extends StatelessWidget {
-  /// The main content of the app.
+/// This widget allows users to navigate back by pressing the back button
+/// twice within a 1-second window. It displays a customizable message
+/// prompting the user for the second press.
+class DoublePressBackWidget extends StatefulWidget {
+  /// The child widget to display.
   final Widget child;
 
-  /// The message to be shown when the back button is pressed once.
-  ///
-  /// Defaults to 'Press back again to exit'.
+  /// The message to display when prompting the user to double press back.
   final String? message;
 
-  /// Callback function to be called when the back button is pressed.
-  ///
-  /// This function will be called before showing the message.
-  final WillPopCallback? onWillPop;
+  /// Callback function that gets called on pop confirmation (double press).
+  final VoidCallback? onWillPop; // Changed type to VoidCallback
 
-  /// Creates a DoublePressBackWidget.
-  ///
-  /// The [child] parameter is required and represents the main content of the app.
-  /// The [message] parameter is optional and represents the message to be shown when the back button is pressed once.
-  /// The [onWillPop] parameter is optional and represents a callback function to be called when the back button is pressed.
-  const DoublePressBackWidget({
-    Key? key,
+  DoublePressBackWidget({
+    super.key,
     required this.child,
     this.message,
     this.onWillPop,
-  }) : super(key: key);
+  });
+
+  @override
+  State<DoublePressBackWidget> createState() => _DoublePressBackWidgetState();
+}
+
+class _DoublePressBackWidgetState extends State<DoublePressBackWidget> {
+  DateTime? _currentBackPressTime;
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: child,
-      onWillPop: () {
-        DateTime now = DateTime.now();
-
-        onWillPop?.call();
-        if (_currentBackPressTime == null ||
-            now.difference(_currentBackPressTime!) > const Duration(seconds: 2)) {
-          _currentBackPressTime = now;
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(message ?? 'Press back again to exit'),
-              duration: const Duration(milliseconds: 1500),
-            ),
-          );
-
-          return Future.value(false);
+    return PopScope(
+      // Allow pop only after 2 seconds since last press
+      canPop: _currentBackPressTime != null,
+      onPopInvoked: (bool didPop) async {
+        if (didPop) {
+          // User confirmed with double press within 2 seconds
+          widget.onWillPop?.call(); // Call the user-defined callback
+          Navigator.pop(context); // Assuming this triggers back navigation
+          return;
         }
-        return Future.value(true);
+
+        _currentBackPressTime = DateTime.now();
+        setState(() {});
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(widget.message ?? 'Press back again to exit'),
+            duration: const Duration(milliseconds: 1500),
+          ),
+        );
+
+        // Start a timer to reset state after 2 seconds
+        Future.delayed(const Duration(seconds: 2), () {
+          _currentBackPressTime = null;
+          setState(() {});
+        });
       },
+      child: widget.child,
     );
   }
 }

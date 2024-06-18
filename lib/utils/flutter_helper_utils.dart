@@ -4,7 +4,7 @@ import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 
-class SachinUtils {
+class FlutterHelperUtils {
   /// Converts degrees to radians.
   /// Returns the equivalent value in radians for the given [degree].
   ///

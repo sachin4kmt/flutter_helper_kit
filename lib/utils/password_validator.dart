@@ -4,7 +4,7 @@ class Validator {
   ///
   /// Returns `true` if the length of the [password] is greater than or equal to [minLength],
   /// otherwise returns `false`.
-  bool hasMinimumLength(String password, int minLength) {
+  static bool hasMinimumLength(String password, int minLength) {
     return password.length >= minLength;
   }
 
@@ -12,7 +12,7 @@ class Validator {
   ///
   /// Returns `true` if the [password] contains at least [uppercaseCount] uppercase characters,
   /// otherwise returns `false`.
-  bool hasMinimumUppercase(String password, int uppercaseCount) {
+  static bool hasMinimumUppercase(String password, int uppercaseCount) {
     String pattern = '^(.*?[A-Z]){$uppercaseCount,}';
     return password.contains(RegExp(pattern));
   }
@@ -21,7 +21,7 @@ class Validator {
   ///
   /// Returns `true` if the [password] contains at least [lowercaseCount] lowercase characters,
   /// otherwise returns `false`.
-  bool hasMinimumLowercase(String password, int lowercaseCount) {
+  static bool hasMinimumLowercase(String password, int lowercaseCount) {
     String pattern = '^(.*?[a-z]){$lowercaseCount,}';
     return password.contains(RegExp(pattern));
   }
@@ -30,7 +30,7 @@ class Validator {
   ///
   /// Returns `true` if the [password] contains at least [numericCount] numeric characters,
   /// otherwise returns `false`.
-  bool hasMinimumNumericCharacters(String password, int numericCount) {
+  static bool hasMinimumNumericCharacters(String password, int numericCount) {
     String pattern = '^(.*?[0-9]){$numericCount,}';
     return password.contains(RegExp(pattern));
   }
@@ -39,7 +39,7 @@ class Validator {
   ///
   /// Returns `true` if the [password] contains at least [specialCharactersCount] special characters,
   /// otherwise returns `false`.
-  bool hasMinimumSpecialCharacters(String password, int specialCharactersCount) {
+  static bool hasMinimumSpecialCharacters(String password, int specialCharactersCount) {
     String pattern = r"^(.*?[$&+,\:;/=?@#|'<>.^*()_%!-]){$specialCharactersCount,}";
     return password.contains(RegExp(pattern));
   }

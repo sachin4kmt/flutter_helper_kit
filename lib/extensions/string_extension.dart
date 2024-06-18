@@ -184,23 +184,23 @@ extension NullStringExtension on String? {
     if (isEmptyOrNull) return false;
     if (this!.contains(" ")) return false;
     if (minLength != 0 &&
-        !Validator().hasMinimumLength(this!, minLength == 0 ? 6 : minLength)) {
+        !Validator.hasMinimumLength(this!, minLength == 0 ? 6 : minLength)) {
       return false;
     }
     if (uppercaseCharCount != 0 &&
-        !Validator().hasMinimumUppercase(this!, uppercaseCharCount)) {
+        !Validator.hasMinimumUppercase(this!, uppercaseCharCount)) {
       return false;
     }
     if (lowercaseCharCount != 0 &&
-        !Validator().hasMinimumLowercase(this!, lowercaseCharCount)) {
+        !Validator.hasMinimumLowercase(this!, lowercaseCharCount)) {
       return false;
     }
     if (numericCharCount != 0 &&
-        !Validator().hasMinimumNumericCharacters(this!, numericCharCount)) {
+        !Validator.hasMinimumNumericCharacters(this!, numericCharCount)) {
       return false;
     }
     if (specialCharCount != 0 &&
-        !Validator().hasMinimumSpecialCharacters(this!, specialCharCount)) {
+        !Validator.hasMinimumSpecialCharacters(this!, specialCharCount)) {
       return false;
     }
     return true;

@@ -9,7 +9,7 @@ library flutter_helper_kit;
 // import 'package:flutter/gestures.dart';
 // import 'package:flutter/services.dart';
 // import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart';
 
 
@@ -44,7 +44,7 @@ export 'utils/common_functions.dart';
 export 'utils/decorations.dart';
 export 'utils/password_validator.dart';
 export 'utils/ago_time.dart';
-export 'utils/sachin_common_utils.dart';
+export 'utils/flutter_helper_utils.dart';
 export 'utils/numberal_utils.dart';
 export 'utils/random_image.dart';
 

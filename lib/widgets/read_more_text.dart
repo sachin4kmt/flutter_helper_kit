@@ -36,21 +36,21 @@ class ReadMoreText extends StatefulWidget {
   ///
   /// The [semanticsLabel] parameter specifies a label for screen readers.
   const ReadMoreText(
-    this.data, {
-    Key? key,
-    this.trimExpandedText = ' read less',
-    this.trimCollapsedText = ' ...read more',
-    this.colorClickableText,
-    this.trimLength = 240,
-    this.trimLines = 2,
-    this.trimMode = TrimMode.length,
-    this.style,
-    this.textAlign,
-    this.textDirection,
-    this.locale,
-    this.textScaleFactor,
-    this.semanticsLabel,
-  }) : super(key: key);
+      this.data, {
+        Key? key,
+        this.trimExpandedText = ' read less',
+        this.trimCollapsedText = ' ...read more',
+        this.colorClickableText,
+        this.trimLength = 240,
+        this.trimLines = 2,
+        this.trimMode = TrimMode.length,
+        this.style,
+        this.textAlign,
+        this.textDirection,
+        this.locale,
+        this.textScaleFactor,
+        this.semanticsLabel,
+      }) : super(key: key);
 
   /// The text to be displayed.
   final String data;
@@ -86,7 +86,7 @@ class ReadMoreText extends StatefulWidget {
   final Locale? locale;
 
   /// The amount to scale the text.
-  final double? textScaleFactor;
+  final TextScaler? textScaleFactor ;
 
   /// A label for screen readers.
   final String? semanticsLabel;
@@ -119,7 +119,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
         widget.textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start;
     final textDirection = widget.textDirection ?? Directionality.of(context);
     final textScaleFactor =
-        widget.textScaleFactor ?? MediaQuery.textScaleFactorOf(context);
+        widget.textScaleFactor ?? MediaQuery.textScalerOf(context);
     final overflow = defaultTextStyle.overflow;
     final locale = widget.locale ?? Localizations.maybeLocaleOf(context);
 
@@ -150,7 +150,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
           text: link,
           textAlign: textAlign,
           textDirection: textDirection,
-          textScaleFactor: textScaleFactor,
+          textScaler: textScaleFactor,
           maxLines: widget.trimLines,
           ellipsis: overflow == TextOverflow.ellipsis ? _kEllipsis : null,
           locale: locale,

@@ -28,12 +28,11 @@ import 'package:flutter_helper_kit/flutter_helper_kit.dart';
   - [List Extensions](#list-extensions)
   - [num Extensions](#num-extensions)
   - [Widget Extensions](#widget-extensions)
+  - [Widget Extensions](#widget-extensions)
+  - [ScopeFunction Extensions](#scopefunction-extensions)
 - [System Methods](#systems-methods)
-- [System Methods](#systems-methods)
-- [Network Utils](#network-utils)
-- [JWT Decoder](#jwt-decoder)
-- [Dialog](#show-dialogs)
-- [Custom Dialogs](#custom-dialogs)
+- [Utils](#utils)
+- [Typedefs for Callback Functions](#typedefs-for-callback-functions)
 
 ## Useful methods or extensions you will ever need
 ```dart
@@ -152,8 +151,11 @@ DashDivider()
 
 ```dart
 DoublePressBackWidget(
-  child: AnyWidget(),
-  message: 'Your message' // Optional
+  message: 'Press back again to exit', // Optional
+  onWillPop: () {
+    print('Double press confirmed');
+  },
+  child: AnyWidget
 ),
 ```
 
@@ -538,45 +540,154 @@ List<num> randomList({int min = 0, int max = 100})
 String toNumeral({bool international = true, int digitAfterDecimal = 0})
 ```
 
-## Widget Extensions
+## ScopeFunction Extensions
 ```dart
-/// Make Image Circular with these extension
-ClipRRect cornerRadiusWithClipRRectOnly({int bottomLeft = 0, int bottomRight = 0, int topLeft = 0, int topRight = 0})
-ClipRRect cornerRadiusWithClipRRect(double radius)
+int number = 5;
+String result = number.let((it) => 'Number is $it');
+print(result); // Output: Number is 5
 
-Widget opacity({required double opacity, int durationInSecond = 1, Duration? duration})
-Widget rotate({required double angle, bool transformHitTests = true, Offset? origin})
-Widget scale({required double scale, Offset? origin, AlignmentGeometry? alignment, bool transformHitTests = true})
-Widget translate({required Offset offset, bool transformHitTests = true, Key? key})
+var person = Person('John').also((it) => it.name = 'Doe');
+print(person.name); // Output: Doe
 
-SizedBox withSize({double width = 0.0, double height = 0.0})
-SizedBox withWidth(double width) 
-SizedBox withHeight(double height)
-Padding paddingTop(double top)
-Padding paddingLeft(double left) 
-Padding paddingRight(double right)
-Padding paddingBottom(double bottom)
-Padding paddingAll(double padding) 
-Padding paddingSymmetric({double vertical = 0.0, double horizontal = 0.0})
+var result = 'Hello'.run(() => 'Hello World');
+print(result); // Output: Hello World
 
-Widget onTap(Function? function, {BorderRadius? borderRadius, Color? splashColor, Color? hoverColor, Color? highlightColor})
-Widget visible(bool visible, {Widget? defaultWidget})
-Widget center({double? heightFactor, double? widthFactor})
-Widget expand({flex = 1})
-Widget flexible({flex = 1, FlexFit? fit})
-Widget fit({BoxFit? fit, AlignmentGeometry? alignment})
-Widget validate({Widget value = const SizedBox()})
-Widget withTooltip({required String msg})
+var list = [1, 2, 3].apply(() => print('List has ${list.length} elements')); // Output: List has 3 elements
 
-Widget get makeRefreshable
+int? number = 5.takeIf((it) => it > 3);
+print(number); // Output: 5
+number = 5.takeIf((it) => it > 6);
+print(number); // Output: null
 
-Widget withShaderMask(List<Color> colors, {BlendMode blendMode = BlendMode.srcATop})
-Widget withShaderMaskGradient(Gradient gradient, {BlendMode blendMode = BlendMode.srcATop})
+int? number = 5.takeUnless((it) => it > 6);
+print(number); // Output: 5
+number = 5.takeUnless((it) => it > 3);
+print(number); // Output: null
 ```
+
+## Systems Methods
+```dart
+/// Change status bar Color and Brightness
+setStatusBarColor(Colors.blue);
+
+setDarkStatusBar();
+setLightStatusBar();
+
+/// Show Status Bar
+showStatusBar();
+
+/// Hide Status Bar
+hideStatusBar();
+
+/// Set orientation to portrait
+setOrientationPortrait();
+
+/// Set orientation to landscape
+setOrientationLandscape();
+```
+
+# Utils
+```dart
+DateTime pastDate = DateTime.now().subtract(Duration(hours: 2, minutes: 30));
+print('English: ${timeAgoCalculated(pastDate)}'), //output: 3 hours ago
+print('Hindi: ${timeAgoCalculated(pastDate, inHindi: true)}'),  //output: Hindi: 3 घंटे पूर्व
+```
+```dart
+hasMatch(testString, pattern)
+```
+```dart
+String randomString({int? length, bool includeNumeric = true})
+```
+## Decoration
+```dart
+BorderRadius radius([double? radius])
+Radius radiusCircular([double? radius])
+ShapeBorder dialogShape([double? borderRadius])
+BorderRadius radiusOnly({double? topRight, double? topLeft, double? bottomRight, double? bottomLeft})
+Decoration boxDecorationWithShadow({Color backgroundColor = whiteColor, Color? shadowColor, double? blurRadius, double? spreadRadius, Offset offset = const Offset(0.0, 0.0), LinearGradient? gradient, BoxBorder? border, List<BoxShadow>? boxShadow, DecorationImage? decorationImage, BoxShape boxShape = BoxShape.rectangle, BorderRadius? borderRadius,})
+Decoration boxDecorationDefault({BorderRadiusGeometry? borderRadius, Color? color, Gradient? gradient, BoxBorder? border, BoxShape? shape, BlendMode? backgroundBlendMode, List<BoxShadow>? boxShadow, DecorationImage? image})
+Decoration boxDecorationWithRoundedCorners({Color backgroundColor = whiteColor, BorderRadius? borderRadius, LinearGradient? gradient, BoxBorder? border, List<BoxShadow>? boxShadow, DecorationImage? decorationImage, BoxShape boxShape = BoxShape.rectangle})
+Decoration boxDecorationRoundedWithShadow(int radiusAll, {Color backgroundColor = whiteColor, Color? shadowColor, double? blurRadius, double? spreadRadius, Offset offset = const Offset(0.0, 0.0), LinearGradient? gradient})
+List<BoxShadow> defaultBoxShadow({Color? shadowColor, double? blurRadius, double? spreadRadius, Offset offset = const Offset(0.0, 0.0)})
+```
+## Numeral
+```dart
+//The Numeral class provides methods to format numbers based on the chosen numeral system.
+Numeral numeral = Numeral(1234567.89);
+String indianFormatted = numeral.indian; // Output: 12.34 L
+String internationalFormatted = numeral.international; // Output: 1.23 M
+```
+
+## Validator
+```dart
+Validator.hasMinimumLength(String password, int minLength)
+Validator.hasMinimumUppercase(String password, int uppercaseCount)
+Validator.hasMinimumLowercase(String password, int lowercaseCount)
+Validator.hasMinimumNumericCharacters(String password, int numericCount)
+Validator.hasMinimumSpecialCharacters(String password, int specialCharactersCount)
+```
+## Random Image
+```dart
+// Example: Get a random image URL with custom dimensions (300x400) from Picsum
+Image.network(RandomImage.picsumImage(300, 400)),
+
+// Example: Get a random image URL from Robohash with custom parameters
+Image.network(
+  RandomImage.randomImage(
+    slug: 'example-slug',
+    size: Size(400, 400),
+    set: ImageSet.set1,
+    bg: ImageBg.bg1,
+    imageType: ImageType.jpg,
+    color: ImageColor.blue)
+),
+
+// Example: Get a random image URL from DummyImage with custom parameters
+Image.network(
+  RandomImage.dummyImage(
+    text: 'Hello World',
+    size: Size(300, 300),
+    imageType: ImageType.png,
+    bgColor: Colors.red,
+    fgColor: Colors.white)
+),
+```
+
+```dart
+degreeToRadian(45); //// Output: 0.7853981633974483
+
+// Delay execution for 500 milliseconds and return a value.
+String result = await wait<String>(500, () => 'Delayed value');
+
+//This method loads bytes from the specified asset path.
+Future<Uint8List> getBytesFromAsset(String path, {int? width})
+
+//This method checks the network connection by attempting to lookup 'google.com'.
+bool isConnected = await checkConnection();
+```
+
+# Typedefs for Callback Functions
+```dart
+FutureVoidCallback      // Future<void> Function();
+FutureDynamicCallback   // Future<dynamic> Function();
+FutureIntCallback       // Future<int> Function();
+FutureStringCallback    // Future<String> Function();
+FutureDoubleCallback    // Future<double> Function();
+DynamicCallback         // dynamic Function();
+IntCallback             // int Function();
+StringCallback          // String Function();
+DoubleCallback          // double Function();
+StringArgVoidCallback   // void Function(String arg);
+IntArgVoidCallback      // void Function(int arg);
+DoubleArgVoidCallback   // void Function(double arg);
+```
+
+
+
 
 # Image Previews
 ## Flutter Toast
-<img src="/screenshots/flutetr_toast.gif?raw=true" height="400px">
+<img src="/screenshots/flutetr_toast.gif?raw=true" height="300px">
 
 ## Avatar Glow
 <img src="/screenshots/avatar_glow.gif?raw=true" width="200px">
