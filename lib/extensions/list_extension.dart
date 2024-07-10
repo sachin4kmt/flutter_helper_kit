@@ -223,6 +223,14 @@ extension ListExt<T> on List<T>? {
 
     return nestedLists;
   }
+
+  /// Returns the element at the specified [index], or `null` if the index is out of bounds.
+  T? tryGet(int index) {
+    if (isNullOrEmpty) {
+      return null;
+    }
+    return (index < 0 || index >= this!.length) ? null : this![index];
+  }
 }
 
 

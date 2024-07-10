@@ -57,6 +57,23 @@ GoogleLogoWidget()
 ```
 
 ```dart
+///without using Expanded or ListView, and ensuring compatibility with the code structure you provided, you can utilize SingleChildScrollView along with Column or Row based on the scrollDirection.
+/// This widget is designed to provide a customizable list view with optional item separators,
+/// allowing developers to build lists in both horizontal and vertical directions.
+FlutterListView(
+  items: myItems,
+  itemBuilder: (context, item) {
+    return ListTile(title: Text(item.title));
+  },
+  separatorBuilder: (context, index) {
+    return Divider();
+  },
+  padding: EdgeInsets.all(16.0),
+  scrollDirection: FlutterScrollDirection.vertical,
+)
+```
+
+```dart
 AvatarGlow(
   glowColor: Colors.cyan,
   glowCount: 5,
@@ -515,6 +532,7 @@ List<T> get removeFirstElement
 List<T> get removeLastElement
 int? get lastIndex
 
+T? tryGet(int index)
 T? firstWhereOrNull(bool Function(T element) test)
 T? lastWhereOrNull(bool Function(T element) test)
 int countWhere(bool Function(T element) predicate)

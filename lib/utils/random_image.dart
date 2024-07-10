@@ -30,7 +30,7 @@ enum ImageType{
 }
 enum ImageBg{
   bg1('bg1'),
-  bgt2('bgt2'),
+  bg2('bg2'),
   any('any');
 
   final String name;

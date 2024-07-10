@@ -132,52 +132,35 @@ extension IntExtensions on int {
     if (!(this >= 1 && this <= 12)) {
       throw Exception(status);
     }
-    if (this == DateTime.january)
-      return isHalfName ? 'Jan' : 'January';
-    else if (this == DateTime.february)
-      return isHalfName ? 'Feb' : 'February';
-    else if (this == DateTime.march)
-      return isHalfName ? 'Mar' : 'March';
-    else if (this == DateTime.april)
-      return isHalfName ? 'Apr' : 'April';
-    else if (this == DateTime.may)
-      return isHalfName ? 'May' : 'May';
-    else if (this == DateTime.june)
-      return isHalfName ? 'Jun' : 'June';
-    else if (this == DateTime.july)
-      return isHalfName ? 'Jul' : 'July';
-    else if (this == DateTime.august)
-      return isHalfName ? 'Aug' : 'August';
-    else if (this == DateTime.september)
-      return isHalfName ? 'Sept' : 'September';
-    else if (this == DateTime.october)
-      return isHalfName ? 'Oct' : 'October';
-    else if (this == DateTime.november)
-      return isHalfName ? 'Nov' : 'November';
-    else if (this == DateTime.december)
-      return isHalfName ? 'Dec' : 'December';
-    else
-      return '';
+    return switch(this){
+      (DateTime.january)=>isHalfName ? 'Jan' : 'January',
+      (DateTime.february)=>isHalfName ? 'Feb' : 'February',
+      (DateTime.march)=>isHalfName ? 'Mar' : 'March',
+      (DateTime.april)=>isHalfName ? 'Apr' : 'April',
+      (DateTime.may)=>isHalfName ? 'May' : 'May',
+      (DateTime.june)=>isHalfName ? 'Jun' : 'June',
+      (DateTime.july)=>isHalfName ? 'Jul' : 'July',
+      (DateTime.august)=>isHalfName ? 'Aug' : 'August',
+      (DateTime.september)=>isHalfName ? 'Sept' : 'September',
+      (DateTime.october)=>isHalfName ? 'Oct' : 'October',
+      (DateTime.november)=>isHalfName ? 'Nov' : 'November',
+      (DateTime.december)=>isHalfName ? 'Dec' : 'December',
+      (_)=>"",
+    };
   }
 
   /// returns WeekDay from the given int value [1-7]
   String toWeekDay({bool isHalfName = false}) {
     assert(this >= 1 && this <= 7);
-    if (this == DateTime.monday)
-      return (isHalfName ? "Mon" : "Monday");
-    else if (this == DateTime.tuesday)
-      return (isHalfName ? "Tue" : "Tuesday");
-    else if (this == DateTime.wednesday)
-      return (isHalfName ? "Wed" : "Wednesday");
-    else if (this == DateTime.thursday)
-      return (isHalfName ? "Thu" : "Thursday");
-    else if (this == DateTime.friday)
-      return (isHalfName ? "Fri" : "Friday");
-    else if (this == DateTime.saturday)
-      return (isHalfName ? "Sat" : "Saturday");
-    else if (this == DateTime.sunday)
-      return (isHalfName ? "Sun" : "Sunday");
-    else
-      return '';
+    return switch (this) {
+      (DateTime.monday) => isHalfName ? "Mon" : "Monday",
+      (DateTime.tuesday) => isHalfName ? "Tue" : "Tuesday",
+      (DateTime.wednesday) => isHalfName ? "Wed" : "Wednesday",
+      (DateTime.thursday) => isHalfName ? "Thu" : "Thursday",
+      (DateTime.friday) => isHalfName ? "Fri" : "Friday",
+      (DateTime.saturday) => isHalfName ? "Sat" : "Saturday",
+      (DateTime.sunday) => isHalfName ? "Sun" : "Sunday",
+      (_) => "",
+    };
   }
 }
