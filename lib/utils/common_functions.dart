@@ -1,14 +1,12 @@
 import 'dart:math' as math;
 import 'package:flutter_helper_kit/extensions/number_extension.dart';
 
-
-
 /// Checks if a string matches a specified pattern.
 ///
 /// This function returns `true` if the [s] string matches the specified regular expression pattern [p].
 /// If the [s] string is `null`, it returns `false`.
-bool hasMatch(String? s, String p) => (s == null) ? false : RegExp(p).hasMatch(s);
-
+bool hasMatch(String? s, String p) =>
+    (s == null) ? false : RegExp(p).hasMatch(s);
 
 /// Generates a random alphanumeric string with a random length between 1 and 64.
 ///
@@ -33,6 +31,3 @@ String randomString({int? length, bool includeNumeric = true}) {
   length ??= rand.nextInt(64) + 1;
   return String.fromCharCodes(List.generate(length, generator));
 }
-
-
-

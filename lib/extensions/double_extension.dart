@@ -2,10 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-
 /// Double Extensions
 extension DoubleExtensions on double? {
-
   /// Validates the double value and returns it if not null.
   ///
   /// If the value is null, returns 0.0.
@@ -43,7 +41,7 @@ extension DoubleExtensions on double? {
   /// Size squareSize = 50.0.squareSizeBox;
   /// print('Square Size: $squareSize'); // Output: Size(50.0, 50.0)
   /// ```
-  SizedBox get squareSizeBox => SizedBox(width: this!,height: this!);
+  SizedBox get squareSizeBox => SizedBox(width: this!, height: this!);
 
   /// Returns a square [Size] with the current value as both width and height.
   ///
@@ -53,5 +51,4 @@ extension DoubleExtensions on double? {
   /// Size squareSize = sideLength.squareSize; // Output: Size(100.0, 100.0)
   /// ```
   Size get squareSize => Size(this!, this!);
-
 }

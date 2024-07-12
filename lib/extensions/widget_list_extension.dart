@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/extensions/list_extension.dart';
 
@@ -11,7 +10,7 @@ extension ListWidgetExtension on List<Widget> {
 
   List<Widget> get spacerEvery {
     List<Widget> list = <Widget>[];
-    this.forEachIndexed((index,element) {
+    forEachIndexed((index, element) {
       index == (length - 1)
           ? list.add(this[index])
           : list.addAll([this[index], const Spacer()]);
@@ -20,9 +19,7 @@ extension ListWidgetExtension on List<Widget> {
   }
 }
 
-
 extension ExpandEqually on Iterable<Widget> {
   Iterable<Widget> expandEqually() =>
       map((widget) => Expanded(flex: 1, child: widget));
-
 }

@@ -1,12 +1,8 @@
-
 import 'package:flutter_helper_kit/extensions/list_extension.dart';
 import 'package:flutter_helper_kit/extensions/string_extension.dart';
 
 ///Map
 extension MapExtension<K, V> on Map<K, V>? {
-
-
-
   /// Returns `true` if this nullable iterable is either `null` or empty.
   bool get isNullOrEmpty => this == null || this!.keys.isNullOrEmpty;
 
@@ -53,8 +49,8 @@ extension MapExtension<K, V> on Map<K, V>? {
   ///Returns a new map with two map join
   ///if key already exist then passing map value override
   Map<K, V> updateAndJoin(Map<K, V>? map) {
-    if (isNullOrEmpty) return map??{};
-    if (map.isNullOrEmpty) return this??{};
+    if (isNullOrEmpty) return map ?? {};
+    if (map.isNullOrEmpty) return this ?? {};
     final newMap = this!;
     for (final key in map!.keys) {
       if (this!.containsKey(key)) {

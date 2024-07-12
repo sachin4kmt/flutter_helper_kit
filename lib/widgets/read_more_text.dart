@@ -36,21 +36,21 @@ class ReadMoreText extends StatefulWidget {
   ///
   /// The [semanticsLabel] parameter specifies a label for screen readers.
   const ReadMoreText(
-      this.data, {
-        Key? key,
-        this.trimExpandedText = ' read less',
-        this.trimCollapsedText = ' ...read more',
-        this.colorClickableText,
-        this.trimLength = 240,
-        this.trimLines = 2,
-        this.trimMode = TrimMode.length,
-        this.style,
-        this.textAlign,
-        this.textDirection,
-        this.locale,
-        this.textScaleFactor,
-        this.semanticsLabel,
-      }) : super(key: key);
+    this.data, {
+    super.key,
+    this.trimExpandedText = ' read less',
+    this.trimCollapsedText = ' ...read more',
+    this.colorClickableText,
+    this.trimLength = 240,
+    this.trimLines = 2,
+    this.trimMode = TrimMode.length,
+    this.style,
+    this.textAlign,
+    this.textDirection,
+    this.locale,
+    this.textScaleFactor,
+    this.semanticsLabel,
+  });
 
   /// The text to be displayed.
   final String data;
@@ -86,20 +86,20 @@ class ReadMoreText extends StatefulWidget {
   final Locale? locale;
 
   /// The amount to scale the text.
-  final TextScaler? textScaleFactor ;
+  final TextScaler? textScaleFactor;
 
   /// A label for screen readers.
   final String? semanticsLabel;
 
   @override
-  _ReadMoreTextState createState() => _ReadMoreTextState();
+  ReadMoreTextState createState() => ReadMoreTextState();
 }
 
 const String _kEllipsis = '\u2026';
 
 const String _kLineSeparator = '\u2028';
 
-class _ReadMoreTextState extends State<ReadMoreText> {
+class ReadMoreTextState extends State<ReadMoreText> {
   bool _readMore = true;
 
   void _onTapLink() {
@@ -205,7 +205,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
                 style: effectiveTextStyle,
                 text: _readMore
                     ? widget.data.substring(0, endIndex) +
-                    (linkLongerThanLine ? _kLineSeparator : '')
+                        (linkLongerThanLine ? _kLineSeparator : '')
                     : widget.data,
                 children: <TextSpan>[link],
               );

@@ -1,4 +1,3 @@
-
 /// A utility class for formatting numbers in either Indian or International numeral systems.
 ///
 /// This class provides methods to format numbers based on the chosen numeral system.
@@ -70,15 +69,11 @@ class Numeral {
   }
 
   String _getNumber(double input) {
-
-
     // return "${input.toString().split(".").first}.${input.toStringAsFixed(4).toString().split(".").last.substring(0, digitAfterDecimal == DigitAfterDecimal.one ? 1 : digitAfterDecimal == DigitAfterDecimal.two ? 2 : 3)}";
-    if(digitAfterDecimal==0) {
+    if (digitAfterDecimal == 0) {
       return input.toString().split(".").first;
     } else {
       return "${input.toString().split(".").first}.${input.toStringAsFixed(4).toString().split(".").last.substring(0, digitAfterDecimal)}";
     }
-
   }
 }
-

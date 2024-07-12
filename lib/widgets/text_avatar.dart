@@ -49,8 +49,8 @@ class TextAvatar extends StatelessWidget {
   ///   size: 48.0,
   /// )
   /// ```
-   TextAvatar({
-    Key? key,
+  TextAvatar({
+    super.key,
     required this.text,
     this.backgroundColor,
     this.radius = 10,
@@ -58,7 +58,7 @@ class TextAvatar extends StatelessWidget {
     this.style,
     this.includeColor,
     this.upperCase = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,8 @@ class TextAvatar extends StatelessWidget {
 
   double get _size => (size < 32.0) ? 48.0 : size;
 
-  String _text() => upperCase ? getLetters().toUpperCase() : getLetters().toLowerCase();
+  String _text() =>
+      upperCase ? getLetters().toUpperCase() : getLetters().toLowerCase();
 
   Map<String, Color> get colors => includeColor.updateAndJoin(colorData);
 
@@ -94,7 +95,8 @@ class TextAvatar extends StatelessWidget {
     final nameParts = text.trim().toUpperCase().split(RegExp("\\s+"));
     var num = math.min(nameParts.length, 2);
     for (var i = 0; i < num; i++) {
-      if (nameParts[i].isAlphabetOnly && !nameParts[i].isContainsAlphabetLetter) {
+      if (nameParts[i].isAlphabetOnly &&
+          !nameParts[i].isContainsAlphabetLetter) {
         initials += nameParts[i][0];
         break;
       }
@@ -110,6 +112,7 @@ class TextAvatar extends StatelessWidget {
     return initials;
   }
 }
+
 ///Colors
 var colorData = {
   "a": const Color.fromRGBO(226, 95, 81, 1),

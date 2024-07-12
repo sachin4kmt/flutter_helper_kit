@@ -1,5 +1,3 @@
-
-
 extension ScopeFunction<T> on T {
   /// Calls the specified function [op] with `this` value as its argument and returns its result.
   ///
@@ -68,4 +66,3 @@ extension ScopeFunction<T> on T {
   /// ```
   T? takeUnless(bool Function(T it) test) => !test(this) ? this : null;
 }
-

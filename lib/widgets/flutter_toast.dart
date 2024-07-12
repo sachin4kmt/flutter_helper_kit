@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-enum FlutterToastPosition{
+enum FlutterToastPosition {
   bottom(0),
   center(1),
   top(2);
+
   final int value;
 
   const FlutterToastPosition(this.value);
@@ -11,7 +12,6 @@ enum FlutterToastPosition{
 
 /// the package library class for calling from client end.
 class FlutterToast {
-
   static const Duration lengthShort = Duration(seconds: 1);
 
   /// a fixed length to show toast message
@@ -29,37 +29,35 @@ class FlutterToast {
   /// a fixed value for toast message position
   /// method to show the toast message
   static void show(
-      String msg,
-      BuildContext context, {
-        Duration? duration = const Duration(seconds: 1),
+    String msg,
+    BuildContext context, {
+    Duration? duration = const Duration(seconds: 1),
 
-        /// duration : how long do you want to show the message
-        FlutterToastPosition position = FlutterToastPosition.bottom,
+    /// duration : how long do you want to show the message
+    FlutterToastPosition position = FlutterToastPosition.bottom,
 
-        /// position : where do you want to show the toast message, you can pass bottom, center, top or any defined value
-        Color backgroundColor = const Color(0xAA000000),
+    /// position : where do you want to show the toast message, you can pass bottom, center, top or any defined value
+    Color backgroundColor = const Color(0xAA000000),
 
-        /// defines the background color of toast message
-        textStyle = const TextStyle(fontSize: 15, color: Colors.white),
+    /// defines the background color of toast message
+    textStyle = const TextStyle(fontSize: 15, color: Colors.white),
 
-        /// for toast message styling
-        double backgroundRadius = 20,
+    /// for toast message styling
+    double backgroundRadius = 20,
 
-        /// you can apply toast message background radius
-        bool? rootNavigator,
-        Border? border,
+    /// you can apply toast message background radius
+    bool? rootNavigator,
+    Border? border,
 
-        /// you can specify background border
-      }) {
-
+    /// you can specify background border
+  }) {
     _FlutterToastView.dismiss();
     _FlutterToastView.createView(msg, context, duration, position,
         backgroundColor, textStyle, backgroundRadius, border, rootNavigator);
   }
 
-/// a fixed value for toast message position
-/// method to show the toast message
-
+  /// a fixed value for toast message position
+  /// method to show the toast message
 }
 
 class _FlutterToastView {
@@ -81,7 +79,6 @@ class _FlutterToastView {
       /// the message you want to show as toast
       BuildContext context,
       Duration? duration,
-
 
       /// duration : how long do you want to show the message
       FlutterToastPosition? position,
@@ -120,7 +117,7 @@ class _FlutterToastView {
                   child: Text(msg, softWrap: true, style: textStyle),
                 )),
           ),
-          position: (position?.value??FlutterToastPosition.bottom.value)),
+          position: (position?.value ?? FlutterToastPosition.bottom.value)),
     );
     _isVisible = true;
     overlayState!.insert(_overlayEntry!);
@@ -141,10 +138,9 @@ class _FlutterToastView {
 /// the widget to implement the toast message
 class _FlutterToastWidget extends StatelessWidget {
   const _FlutterToastWidget({
-    Key? key,
     required this.widget,
     required this.position,
-  }) : super(key: key);
+  });
 
   final Widget widget;
   final int? position;

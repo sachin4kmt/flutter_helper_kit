@@ -1,4 +1,3 @@
-
 // Duration Extensions
 extension DurationExtension on Duration {
   /// Delays execution for the specified duration.

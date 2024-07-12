@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_helper_kit/extensions/integer_extension.dart';
@@ -101,7 +100,6 @@ extension BuildContextExension on BuildContext {
 
   /// The type of `result`, if provided, must match the type argument of the class of the popped route (`T`).
   void pop<T extends Object>([T? result]) => Navigator.pop(this, result);
-
 
   /// Returns the current platform.
   ///

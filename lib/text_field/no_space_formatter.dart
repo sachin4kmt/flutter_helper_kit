@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 class NoSpaceFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue,
-      TextEditingValue newValue,
-      ) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     if (newValue.text.contains(' ')) {
       final String trimedText = newValue.text.trimRight();
 

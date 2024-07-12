@@ -22,12 +22,11 @@ class Space extends StatelessWidget {
   /// The [crossAxisExtent] must be either null or positive.
   const Space(
     this.mainAxisExtent, {
-    Key? key,
+    super.key,
     this.crossAxisExtent,
     this.color,
   })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
-        assert(crossAxisExtent == null || crossAxisExtent >= 0),
-        super(key: key);
+        assert(crossAxisExtent == null || crossAxisExtent >= 0);
 
   /// Creates a widget that takes a fixed [mainAxisExtent] of space in the
   /// direction of its parent and expands in the cross axis direction.
@@ -103,10 +102,10 @@ class MaxSpace extends StatelessWidget {
   /// The [crossAxisExtent] must be either null or positive.
   const MaxSpace(
     this.mainAxisExtent, {
-    Key? key,
+    super.key,
     this.crossAxisExtent,
     this.color,
-  }) : super(key: key);
+  });
 
   /// Creates a widget that takes, at most, the specified [mainAxisExtent] of
   /// space in a [Row], [Column], or [Flex] widget and expands in the cross axis
@@ -162,13 +161,11 @@ class MaxSpace extends StatelessWidget {
 class _RawSpace extends LeafRenderObjectWidget {
   const _RawSpace(
     this.mainAxisExtent, {
-    Key? key,
     this.crossAxisExtent,
     this.color,
     this.fallbackDirection,
   })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
-        assert(crossAxisExtent == null || crossAxisExtent >= 0),
-        super(key: key);
+        assert(crossAxisExtent == null || crossAxisExtent >= 0);
 
   final double mainAxisExtent;
 
@@ -268,7 +265,7 @@ class _RenderSpace extends RenderBox {
   double computeMinIntrinsicWidth(double height) {
     return _computeIntrinsicExtent(
       Axis.horizontal,
-          () => super.computeMinIntrinsicWidth(height),
+      () => super.computeMinIntrinsicWidth(height),
     )!;
   }
 
@@ -276,7 +273,7 @@ class _RenderSpace extends RenderBox {
   double computeMaxIntrinsicWidth(double height) {
     return _computeIntrinsicExtent(
       Axis.horizontal,
-          () => super.computeMaxIntrinsicWidth(height),
+      () => super.computeMaxIntrinsicWidth(height),
     )!;
   }
 
@@ -284,7 +281,7 @@ class _RenderSpace extends RenderBox {
   double computeMinIntrinsicHeight(double width) {
     return _computeIntrinsicExtent(
       Axis.vertical,
-          () => super.computeMinIntrinsicHeight(width),
+      () => super.computeMinIntrinsicHeight(width),
     )!;
   }
 
@@ -292,7 +289,7 @@ class _RenderSpace extends RenderBox {
   double computeMaxIntrinsicHeight(double width) {
     return _computeIntrinsicExtent(
       Axis.vertical,
-          () => super.computeMaxIntrinsicHeight(width),
+      () => super.computeMaxIntrinsicHeight(width),
     )!;
   }
 
@@ -322,7 +319,7 @@ class _RenderSpace extends RenderBox {
     } else {
       throw FlutterError(
         'A Space widget must be placed directly inside a Flex widget '
-            'or its fallbackDirection must not be null',
+        'or its fallbackDirection must not be null',
       );
     }
   }

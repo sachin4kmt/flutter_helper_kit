@@ -8,14 +8,13 @@ class DashDivider extends StatelessWidget {
   /// The [dashSpace] parameter defines the space between each dash.
   /// The [color] parameter defines the color of the dashes.
   const DashDivider({
-    Key? key,
+    super.key,
     this.height = 1,
     this.dashWidth = 10,
     this.dashSpace = 2,
     this.color,
   })  : assert(dashWidth >= 1.0 && dashWidth <= 10.0),
-        assert(dashSpace >= 1.0 && dashSpace <= 10.0),
-        super(key: key);
+        assert(dashSpace >= 1.0 && dashSpace <= 10.0);
 
   /// The height of the divider.
   final double height;

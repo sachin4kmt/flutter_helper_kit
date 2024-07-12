@@ -2,13 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-
-
 /// A widget that adds a glowing effect around with multipale colors its child.
 class AvatarGlowMultiColor extends StatefulWidget {
   /// Creates an [AvatarGlowMultiColor] widget.
   const AvatarGlowMultiColor({
-    Key? key,
+    super.key,
     required this.child,
     this.glowColors = const [Colors.white],
     this.glowShape = BoxShape.circle,
@@ -19,11 +17,10 @@ class AvatarGlowMultiColor extends StatefulWidget {
     this.repeat = true,
     this.curve = Curves.fastOutSlowIn,
     this.glowRadiusFactor = 0.7,
-  })  : assert(
+  }) : assert(
           glowShape != BoxShape.circle || glowBorderRadius == null,
           'Cannot specify a border radius if the shape is a circle.',
-        ),
-        super(key: key);
+        );
 
   /// The child widget to display inside the glowing effect.
   final Widget child;

@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/extensions/integer_extension.dart';
 import 'package:flutter_helper_kit/extensions/string_extension.dart';
 import 'package:flutter_helper_kit/utils/ago_time.dart';
-
 
 extension DateTimeExtension on DateTime? {
   /// Returns `true` if the given date is `null`.
@@ -40,7 +38,6 @@ extension DateTimeExtension on DateTime? {
     return DateTime(this!.year, this!.month, this!.day) == yesterday;
   }
 
-
   /// Returns `true` if the given date is tomorrow.
   ///
   /// Example:
@@ -56,7 +53,6 @@ extension DateTimeExtension on DateTime? {
     final tomorrow = DateTime(now.year, now.month, now.day + 1);
     return DateTime(this!.year, this!.month, this!.day) == tomorrow;
   }
-
 
   /// Returns the name of the weekday for the given date.
   ///
@@ -115,7 +111,6 @@ extension DateTimeExtension on DateTime? {
   int get currentTimeStamp =>
       (DateTime.now().millisecondsSinceEpoch ~/ 1000).toInt();
 
-
   /// Returns the time difference from this [DateTime] to the current DateTime
   /// in Indian language.
   ///
@@ -152,8 +147,10 @@ extension DateTimeExtension on DateTime? {
     // Calculate the time difference in milliseconds
     int timeDifferenceMilliseconds = istOffsetMinutes * 60 * 1000;
     // Apply the time difference to the server time
-    DateTime istDateTime = currentTime.add(Duration(milliseconds: timeDifferenceMilliseconds));
-    final iSTDate= istDateTime.toIso8601String().replaceAll('Z', '').toDateTime;
+    DateTime istDateTime =
+        currentTime.add(Duration(milliseconds: timeDifferenceMilliseconds));
+    final iSTDate =
+        istDateTime.toIso8601String().replaceAll('Z', '').toDateTime;
     return iSTDate;
   }
 
@@ -162,7 +159,9 @@ extension DateTimeExtension on DateTime? {
   /// Returns the number of seconds between the current DateTime instance and [differenceDateTime].
   /// If [differenceDateTime] is not provided, the current system DateTime is used.
   int countSeconds(DateTime? differenceDateTime) {
-    int difference =  (differenceDateTime??DateTime.now()).millisecondsSinceEpoch- (this??DateTime.now()).millisecondsSinceEpoch;
+    int difference =
+        (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
+            (this ?? DateTime.now()).millisecondsSinceEpoch;
     int count = (difference / 1000).truncate();
     // return count > 1 ? count.toString() + ' seconds' : 'Just now';
     return count;
@@ -173,7 +172,9 @@ extension DateTimeExtension on DateTime? {
   /// Returns the number of minutes between the current DateTime instance and [differenceDateTime].
   /// If [differenceDateTime] is not provided, the current system DateTime is used.
   int countMinutes(DateTime? differenceDateTime) {
-    int difference =  (differenceDateTime??DateTime.now()).millisecondsSinceEpoch- (this??DateTime.now()).millisecondsSinceEpoch;
+    int difference =
+        (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
+            (this ?? DateTime.now()).millisecondsSinceEpoch;
     int count = (difference / 60000).truncate();
     // return count.toString() + (count > 1 ? ' minutes' : ' minute');
     return count;
@@ -194,7 +195,9 @@ extension DateTimeExtension on DateTime? {
   /// print('Difference in hours: $differenceInHours'); // Output: 24
   /// ```
   int countHours(DateTime? differenceDateTime) {
-    int difference =  (differenceDateTime??DateTime.now()).millisecondsSinceEpoch- (this??DateTime.now()).millisecondsSinceEpoch;
+    int difference =
+        (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
+            (this ?? DateTime.now()).millisecondsSinceEpoch;
     int count = (difference / 3600000).truncate();
     // return count.toString() + (count > 1 ? ' hours' : ' hour');
     return count;
@@ -206,9 +209,11 @@ extension DateTimeExtension on DateTime? {
   ///
   /// Returns the number of days as an integer value.
   int countDays(DateTime? differenceDateTime) {
-    int difference =  (differenceDateTime??DateTime.now()).millisecondsSinceEpoch- (this??DateTime.now()).millisecondsSinceEpoch;
+    int difference =
+        (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
+            (this ?? DateTime.now()).millisecondsSinceEpoch;
     int count = (difference / 86400000).truncate();
-   // return count.toString() + (count > 1 ? ' days' : ' day');
+    // return count.toString() + (count > 1 ? ' days' : ' day');
     return count;
   }
 
@@ -225,7 +230,9 @@ extension DateTimeExtension on DateTime? {
   /// print('Weeks difference: $weeksDifference'); // Output: Weeks difference: 41
   /// ```
   int countWeeks(DateTime? differenceDateTime) {
-    int difference =  (differenceDateTime??DateTime.now()).millisecondsSinceEpoch- (this??DateTime.now()).millisecondsSinceEpoch;
+    int difference =
+        (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
+            (this ?? DateTime.now()).millisecondsSinceEpoch;
     int count = (difference / 604800000).truncate();
 /*    if (count > 3) {
       // return '1 month';
@@ -249,7 +256,9 @@ extension DateTimeExtension on DateTime? {
   /// int monthsDifference = startDate.countMonths(endDate); // Output: 334
   /// ```
   int countMonths(DateTime? differenceDateTime) {
-    int difference =  (differenceDateTime??DateTime.now()).millisecondsSinceEpoch- (this??DateTime.now()).millisecondsSinceEpoch;
+    int difference =
+        (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
+            (this ?? DateTime.now()).millisecondsSinceEpoch;
     int count = (difference / 2628003000).round();
     return count;
   }
@@ -267,7 +276,9 @@ extension DateTimeExtension on DateTime? {
   /// print('Years Difference: $yearsDifference'); // Output: 27
   /// ```
   int countYears(DateTime? differenceDateTime) {
-    int difference =  (differenceDateTime??DateTime.now()).millisecondsSinceEpoch- (this??DateTime.now()).millisecondsSinceEpoch;
+    int difference =
+        (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
+            (this ?? DateTime.now()).millisecondsSinceEpoch;
     int count = (difference / 31536000000).truncate();
     // return count.toString() + (count > 1 ? ' years' : ' year');
     return count;
@@ -285,6 +296,14 @@ extension DateTimeExtension on DateTime? {
   /// DateTime? utcDateTime = dateTime.asUtc;
   /// print('UTC DateTime: $utcDateTime');
   /// ```
-  DateTime? get asUtc => isNull?null:DateTime.utc(this!.year,this!.month,this!.day,this!.hour,this!.minute,this!.second,);
-
+  DateTime? get asUtc => isNull
+      ? null
+      : DateTime.utc(
+          this!.year,
+          this!.month,
+          this!.day,
+          this!.hour,
+          this!.minute,
+          this!.second,
+        );
 }

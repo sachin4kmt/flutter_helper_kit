@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/extensions/color_extension.dart';
 
-enum ImageSet{
+enum ImageSet {
   any('any'),
   set1('set1'),
   set2('set2'),
@@ -13,9 +12,9 @@ enum ImageSet{
   final String name;
 
   const ImageSet(this.name);
-
 }
-enum ImageType{
+
+enum ImageType {
   png('png'),
   gif('gif'),
   jpg('jpg'),
@@ -26,9 +25,9 @@ enum ImageType{
   final String name;
 
   const ImageType(this.name);
-
 }
-enum ImageBg{
+
+enum ImageBg {
   bg1('bg1'),
   bg2('bg2'),
   any('any');
@@ -36,8 +35,8 @@ enum ImageBg{
   final String name;
 
   const ImageBg(this.name);
-
 }
+
 enum ImageColor {
   red('Red'),
   green('Green'),
@@ -56,10 +55,7 @@ enum ImageColor {
   const ImageColor(this.name);
 }
 
-
-
-class RandomImage{
-
+class RandomImage {
   /// Get a random image from Picsum with the specified dimensions.
   ///
   /// Returns a URL string pointing to a random image on Picsum with the given [width] and [height].
@@ -91,8 +87,10 @@ class RandomImage{
     String category = "photo",
     ImageColor? color,
   }) {
-    final imageColor= color!=null?'&color=${color.name.toLowerCase()}':'';
-    final data =  "https://robohash.org/${slug}.${imageType.name}?size=${size.width.toInt()}x${size.height.toInt()}&set=${set.name}&bgset=${bg.name}$imageColor";
+    final imageColor =
+        color != null ? '&color=${color.name.toLowerCase()}' : '';
+    final data =
+        "https://robohash.org/$slug.${imageType.name}?size=${size.width.toInt()}x${size.height.toInt()}&set=${set.name}&bgset=${bg.name}$imageColor";
     return data;
   }
 
@@ -107,12 +105,12 @@ class RandomImage{
     Color fgColor = Colors.black,
   }) {
     final imageSize = '${size.width.toInt()}x${size.height.toInt()}';
-    final imageText = text??imageSize;
-    final data =  "https://dummyimage.com/$imageSize.${imageType.name}/${bgColor.toHex(leadingHashSign: false,)}/${fgColor.toHex(leadingHashSign: false)}&text=$imageText";
+    final imageText = text ?? imageSize;
+    final data =
+        "https://dummyimage.com/$imageSize.${imageType.name}/${bgColor.toHex(
+      leadingHashSign: false,
+    )}/${fgColor.toHex(leadingHashSign: false)}&text=$imageText";
     // debugPrint(data);
     return data;
   }
-
-
-
 }

@@ -5,12 +5,12 @@ import 'package:flutter_helper_kit/extensions/color_extension.dart';
 
 /// Change status bar Color and Brightness
 Future<void> setStatusBarColor(
-    Color statusBarColor, {
-      Color? systemNavigationBarColor,
-      Brightness? statusBarBrightness,
-      Brightness? statusBarIconBrightness,
-      int delayInMilliSeconds = 200,
-    }) async {
+  Color statusBarColor, {
+  Color? systemNavigationBarColor,
+  Brightness? statusBarBrightness,
+  Brightness? statusBarIconBrightness,
+  int delayInMilliSeconds = 200,
+}) async {
   await Future.delayed(Duration(milliseconds: delayInMilliSeconds));
 
   SystemChrome.setSystemUIOverlayStyle(

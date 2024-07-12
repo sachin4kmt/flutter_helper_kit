@@ -20,6 +20,7 @@ extension MyIterable<T> on Iterable<T>? {
     final list = this!.where(test);
     return list.isEmpty ? null : list.first;
   }
+
   /// Returns the last element matching the given [predicate], or null if element was not found.
   ///  ["Flutter", "Dart", "Java", "IOS", "Android","web"].lastOrNullIf((it) => it.length == 9); // null
   ///  ["Flutter", "Dart", "Java", "IOS", "Android","web"].lastOrNullIf((it) => it.length == 3); // web
@@ -122,7 +123,8 @@ extension MyIterable<T> on Iterable<T>? {
 
 extension ListExt<T> on List<T>? {
   ///convert List to List of widget
-  List<Widget> toWidgetList(Widget Function(T value) mapFunc) => isNullOrEmpty?[]:[...this!.map(mapFunc).toList()];
+  List<Widget> toWidgetList(Widget Function(T value) mapFunc) =>
+      isNullOrEmpty ? [] : [...this!.map(mapFunc)];
 
   bool get isNullOrEmpty =>
       (this == null || (this?.isEmpty ?? true)) ? true : false;
@@ -141,39 +143,40 @@ extension ListExt<T> on List<T>? {
   ///
   /// See [where].
   int countWhere(bool Function(T) test) {
-    if(isNullOrEmpty) return 0;
+    if (isNullOrEmpty) return 0;
     return this!.where(test).length;
   }
 
   /// For each method with provides not only the element but the index as well.
   ///
   /// See [forEach].
-  void forEachIndexed(void Function( int index,T element) f) {
-    if(isNullOrEmpty) return;
+  void forEachIndexed(void Function(int index, T element) f) {
+    if (isNullOrEmpty) return;
     for (var i = 0; i < this!.length; i++) {
-      f( i,this![i]);
+      f(i, this![i]);
     }
   }
 
   /// Return a random element of the list.
   T? random({int? seed}) {
-    if(isNullOrEmpty) return null;
+    if (isNullOrEmpty) return null;
     return this![math.Random(seed).nextInt(this!.length)];
   }
 
-  List<T> separatorEvery(T separator,{bool start= false,bool end=false}){
+  List<T> separatorEvery(T separator, {bool start = false, bool end = false}) {
     List<T> list = <T>[];
-    if(isNullOrEmpty) return list;
+    if (isNullOrEmpty) return list;
+
     ///First item Top separator
-    if(start){
+    if (start) {
       list.add(separator);
     }
-    for (int n = 0;n<(this?.length??0);n++) {
-      if(end){
-        list.addAll([this![n],separator]);
+    for (int n = 0; n < (this?.length ?? 0); n++) {
+      if (end) {
+        list.addAll([this![n], separator]);
         continue;
       }
-      if(!end && (n==((this?.length??1)-1))){
+      if (!end && (n == ((this?.length ?? 1) - 1))) {
         list.add(this![n]);
       }
     }
@@ -183,10 +186,9 @@ extension ListExt<T> on List<T>? {
   List<List<T>> divideListByFunction(bool Function(T) condition) {
     List<List<T>> nestedLists = [];
     List<T> currentSublist = [];
-    if(isNullOrEmpty) return [];
+    if (isNullOrEmpty) return [];
 
-
-    for (T element in this??[]) {
+    for (T element in this ?? []) {
       if (condition(element)) {
         // Start a new sublist when the condition is met.
         if (currentSublist.isNotEmpty) {
@@ -206,6 +208,7 @@ extension ListExt<T> on List<T>? {
 
     return nestedLists;
   }
+
   List<List<T>>? divideListByRange(int rangeSize) {
     if (this == null) {
       return null;
@@ -217,7 +220,8 @@ extension ListExt<T> on List<T>? {
     List<List<T>> nestedLists = [];
 
     for (int i = 0; i < this!.length; i += rangeSize) {
-      final endIndex = (i + rangeSize < this!.length) ? i + rangeSize : this!.length;
+      final endIndex =
+          (i + rangeSize < this!.length) ? i + rangeSize : this!.length;
       nestedLists.add(this!.sublist(i, endIndex));
     }
 
@@ -232,7 +236,6 @@ extension ListExt<T> on List<T>? {
     return (index < 0 || index >= this!.length) ? null : this![index];
   }
 }
-
 
 /*
 ///On List Of String Extension

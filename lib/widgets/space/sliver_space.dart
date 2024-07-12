@@ -12,10 +12,9 @@ class SliverSpace extends LeafRenderObjectWidget {
   /// The [mainAxisExtent] must not be null and must be positive.
   const SliverSpace(
     this.mainAxisExtent, {
-    Key? key,
+    super.key,
     this.color,
-  })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
-        super(key: key);
+  }) : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity);
 
   /// The amount of space this widget takes in the direction of the parent.
   ///
@@ -27,14 +26,15 @@ class SliverSpace extends LeafRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return _RenderSliverSpace(
+    return RenderSliverSpace(
       mainAxisExtent: mainAxisExtent,
       color: color,
     );
   }
 
   @override
-  void updateRenderObject(BuildContext context, _RenderSliverSpace renderObject) {
+  void updateRenderObject(
+      BuildContext context, RenderSliverSpace renderObject) {
     renderObject
       ..mainAxisExtent = mainAxisExtent
       ..color = color;
@@ -48,8 +48,8 @@ class SliverSpace extends LeafRenderObjectWidget {
   }
 }
 
-class _RenderSliverSpace extends RenderSliver {
-  _RenderSliverSpace({
+class RenderSliverSpace extends RenderSliver {
+  RenderSliverSpace({
     required double mainAxisExtent,
     Color? color,
   })  : _mainAxisExtent = mainAxisExtent,
@@ -105,9 +105,9 @@ class _RenderSliverSpace extends RenderSliver {
       final Paint paint = Paint()..color = color!;
       final Size size = constraints
           .asBoxConstraints(
-        minExtent: geometry!.paintExtent,
-        maxExtent: geometry!.paintExtent,
-      )
+            minExtent: geometry!.paintExtent,
+            maxExtent: geometry!.paintExtent,
+          )
           .constrain(Size.zero);
       context.canvas.drawRect(offset & size, paint);
     }

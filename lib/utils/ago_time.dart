@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/foundation.dart';
 
 /// Formats provided [date] to a fuzzy time like 'a moment ago'
@@ -11,17 +9,16 @@ import 'package:flutter/foundation.dart';
 /// - If [allowFromNow] is passed, format will use the From prefix, ie. a date
 ///   5 minutes from now in 'en' locale will display as "5 minutes from now"
 
-String
-timeAgoCalculated(DateTime date,
-    {DateTime? clock, bool allowFromNow = false,bool inHindi=false}) {
+String timeAgoCalculated(DateTime date,
+    {DateTime? clock, bool allowFromNow = false, bool inHindi = false}) {
   if (kDebugMode) {
     print(date.toString());
   }
 
   final tempAllowFromNow = allowFromNow;
-  LookupMessages messages=_EnMessages() ;
-  if(inHindi){
-     messages = HiMessages();
+  LookupMessages messages = _EnMessages();
+  if (inHindi) {
+    messages = HiMessages();
   }
   final tempClock = clock ?? DateTime.now();
   var elapsed = tempClock.millisecondsSinceEpoch - date.millisecondsSinceEpoch;
@@ -74,7 +71,7 @@ timeAgoCalculated(DateTime date,
       .join(messages.wordSeparator());
 }
 
-class _EnMessages  implements LookupMessages {
+class _EnMessages implements LookupMessages {
   @override
   String prefixAgo() => '';
 

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 /// Color Extensions
@@ -13,10 +12,10 @@ extension Hex on Color {
   /// ```
   String toHex({bool leadingHashSign = true, bool includeAlpha = false}) =>
       '${leadingHashSign ? '#' : ''}'
-          '${includeAlpha ? alpha.toRadixString(16).padLeft(2, '0') : ''}'
-          '${red.toRadixString(16).padLeft(2, '0')}'
-          '${green.toRadixString(16).padLeft(2, '0')}'
-          '${blue.toRadixString(16).padLeft(2, '0')}';
+      '${includeAlpha ? alpha.toRadixString(16).padLeft(2, '0') : ''}'
+      '${red.toRadixString(16).padLeft(2, '0')}'
+      '${green.toRadixString(16).padLeft(2, '0')}'
+      '${blue.toRadixString(16).padLeft(2, '0')}';
 
   /// Returns `true` if the color is dark, otherwise `false`.
   ///
@@ -27,7 +26,6 @@ extension Hex on Color {
   /// print('Is Dark: $isDark'); // Output: false
   /// ```
   bool get isDark => getBrightness < 128.0;
-
 
   /// Returns `true` if the color is light, otherwise `false`.
   ///
@@ -47,8 +45,7 @@ extension Hex on Color {
   /// double brightness = color.getBrightness;
   /// print('Brightness: $brightness'); // Output: 110.622
   /// ```
-  double get getBrightness =>
-      (red * 299 + green * 587 + blue * 114) / 1000;
+  double get getBrightness => (red * 299 + green * 587 + blue * 114) / 1000;
 
   /// Returns the luminance of the color.
   ///
@@ -98,7 +95,8 @@ extension Hex on Color {
     assert(amount >= 0 && amount <= 1, 'Percentage must be between 0 and 1');
 
     final hsl = HSLColor.fromColor(this);
-    final hslLight = hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+    final hslLight =
+        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
 
     return hslLight.toColor();
   }

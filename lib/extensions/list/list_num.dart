@@ -1,5 +1,3 @@
-
-
 extension ListnumManipulation on List<num>? {
   /// check nullable and empty in nullable list return true
   bool get isNullAndEmpty => this == null && this!.isEmpty;
@@ -11,7 +9,7 @@ extension ListnumManipulation on List<num>? {
   num get total {
     num t = 0;
     if (isNotNullAndEmpty) {
-      for (var e in (this??[])) {
+      for (var e in (this ?? [])) {
         t += e;
       }
     }

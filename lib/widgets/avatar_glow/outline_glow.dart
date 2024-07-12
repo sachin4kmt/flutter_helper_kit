@@ -2,14 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-
-
 class OutlineAvatarGlow extends StatefulWidget {
   /// Creates a widget that displays a glowing outline around its child.
   ///
   /// The [child] parameter is required and must not be null.
   const OutlineAvatarGlow({
-    Key? key,
+    super.key,
     required this.child,
     this.glowCount = 2,
     this.glowColor = Colors.white,
@@ -21,7 +19,7 @@ class OutlineAvatarGlow extends StatefulWidget {
     this.repeat = true,
     this.curve = Curves.fastOutSlowIn,
     this.glowRadiusFactor = 0.7,
-  }) : super(key: key);
+  });
 
   /// The child widget to display inside the glow.
   final Widget child;
@@ -82,7 +80,8 @@ class OutlineAvatarGlow extends StatefulWidget {
   State<OutlineAvatarGlow> createState() => _OutlineAvatarGlowState();
 }
 
-class _OutlineAvatarGlowState extends State<OutlineAvatarGlow> with SingleTickerProviderStateMixin {
+class _OutlineAvatarGlowState extends State<OutlineAvatarGlow>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final _OutlineGlowPainter _painter;
   late final Tween<double> _opacityTween = Tween<double>(begin: 0.3, end: 0);
@@ -118,7 +117,8 @@ class _OutlineAvatarGlowState extends State<OutlineAvatarGlow> with SingleTicker
       duration: widget.duration,
     );
 
-    _painter = _OutlineGlowPainter(progress: _controller, glowColor: widget.glowColor);
+    _painter =
+        _OutlineGlowPainter(progress: _controller, glowColor: widget.glowColor);
 
     if (widget.animate) {
       _startAnimation();
@@ -236,7 +236,8 @@ class _OutlineGlowPainter extends ChangeNotifier implements CustomPainter {
     final paint = Paint()
       ..color = glowColor.withOpacity(opacity)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 4.0; // Adjust this value to change the thickness of the line
+      ..strokeWidth =
+          4.0; // Adjust this value to change the thickness of the line
 
     final glowSize = math.min(size.width, size.height);
     final glowRadius = glowSize / 2;
@@ -244,7 +245,8 @@ class _OutlineGlowPainter extends ChangeNotifier implements CustomPainter {
     final currentProgress = curve.transform(progress.value);
 
     for (int i = 1; i <= glowCount; i++) {
-      final currentRadius = glowRadius + glowRadius * glowRadiusFactor * i * currentProgress;
+      final currentRadius =
+          glowRadius + glowRadius * glowRadiusFactor * i * currentProgress;
 
       canvas.drawCircle(size.center(Offset.zero), currentRadius, paint);
     }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 // Widget Extensions
@@ -93,8 +92,6 @@ extension WidgetExtension on Widget? {
     );
   }
 
-
-
   /// add opacity to parent widget
   Widget opacity({
     required double opacity,
@@ -161,30 +158,25 @@ extension WidgetExtension on Widget? {
     );
   }
 
-
-
-
-
-
   /// add tap to parent widget
   Widget onTap(
-      Function? function, {
-        BorderRadius? borderRadius,
-        Color? splashColor,
-        Color? hoverColor,
-        Color? highlightColor,
-      }) {
+    Function? function, {
+    BorderRadius? borderRadius,
+    Color? splashColor,
+    Color? hoverColor,
+    Color? highlightColor,
+  }) {
     return InkWell(
       onTap: function as void Function()?,
       borderRadius: borderRadius,
-      splashColor: splashColor ,
-      hoverColor: hoverColor ,
-      highlightColor: highlightColor ,
+      splashColor: splashColor,
+      hoverColor: hoverColor,
+      highlightColor: highlightColor,
       child: this,
     );
   }
 
- /* /// Launch a new screen
+  /* /// Launch a new screen
   Future<T?> launch<T>(BuildContext context,
       {bool isNewTask = false,
         PageRouteAnimation? pageRouteAnimation,
@@ -206,9 +198,9 @@ extension WidgetExtension on Widget? {
 
   /// Wrap with ShaderMask widget
   Widget withShaderMask(
-      List<Color> colors, {
-        BlendMode blendMode = BlendMode.srcATop,
-      }) {
+    List<Color> colors, {
+    BlendMode blendMode = BlendMode.srcATop,
+  }) {
     return withShaderMaskGradient(
       LinearGradient(colors: colors),
       blendMode: blendMode,
@@ -217,17 +209,15 @@ extension WidgetExtension on Widget? {
 
   /// Wrap with ShaderMask widget Gradient
   Widget withShaderMaskGradient(
-      Gradient gradient, {
-        BlendMode blendMode = BlendMode.srcATop,
-      }) {
+    Gradient gradient, {
+    BlendMode blendMode = BlendMode.srcATop,
+  }) {
     return ShaderMask(
       shaderCallback: (rect) => gradient.createShader(rect),
       blendMode: blendMode,
       child: this,
     );
   }
-
-
 
   /// add Expanded to parent widget
   Widget expand({flex = 1}) => Expanded(flex: flex, child: this!);
@@ -248,8 +238,6 @@ extension WidgetExtension on Widget? {
 
   /// Validate given widget is not null and returns given value if null.
   Widget validate({Widget value = const SizedBox()}) => this ?? value;
-
-
 
   /// Validate given widget is not null and returns given value if null.
   Widget withTooltip({required String msg}) {

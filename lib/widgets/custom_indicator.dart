@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomIndicator extends StatelessWidget {
   final bool isActive;
   final Widget child;
@@ -9,13 +8,12 @@ class CustomIndicator extends StatelessWidget {
   final Color indicatorColor;
 
   const CustomIndicator(
-      {Key? key,
+      {super.key,
       this.indicatorColor = Colors.blue,
       this.isActive = false,
       required this.child,
       this.opacity = 0.6,
-      this.bgColor = Colors.grey})
-      : super(key: key);
+      this.bgColor = Colors.grey});
 
   @override
   Widget build(BuildContext context) {

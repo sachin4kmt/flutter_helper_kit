@@ -63,12 +63,12 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_helper_kit:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.2"
+    version: "0.0.7"
   flutter_lints:
     dependency: "direct dev"
     description:

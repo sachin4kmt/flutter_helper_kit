@@ -5,9 +5,7 @@ import 'package:flutter_helper_kit/extensions/number_extension.dart';
 import 'package:flutter_helper_kit/utils/common_functions.dart';
 import 'package:flutter_helper_kit/utils/password_validator.dart';
 
-
 extension NullStringExtension on String? {
-
   /// Check null string, return given value if null
   String validate([String value = ""]) =>
       this?.trim().isEmptyOrNull ?? true ? value : this!;
@@ -77,7 +75,6 @@ extension NullStringExtension on String? {
     return isLetterRegExp.hasMatch(this!);
   }
 
-
   /// Returns `true` if string contains only alphabet symbols
   bool get isAlphabetOnly =>
       !isEmptyOrNull ? RegExp(r'^[a-zA-Z]+$').hasMatch(this!) : false;
@@ -92,13 +89,12 @@ extension NullStringExtension on String? {
 
   ///Check characters is start with [String]
   ///Default All [String] convert in lower case
-  bool startsWithCharacters(String characters,{bool matchCase = false}) {
+  bool startsWithCharacters(String characters, {bool matchCase = false}) {
     if (characters.isEmpty || isEmptyOrNull) {
       return false;
     }
-    if(matchCase){
+    if (matchCase) {
       return this!.startsWith(characters);
-
     }
     return this!.toLowerCase().startsWith(characters.toLowerCase());
   }
@@ -126,8 +122,8 @@ extension NullStringExtension on String? {
   String lastChars(int n) {
     if (isEmptyOrNull) return '';
     int charCount = n;
-    if(this!.length<n){
-      charCount =this!.length;
+    if (this!.length < n) {
+      charCount = this!.length;
     }
     return this!.trim().substring(this!.length - charCount);
   }
@@ -153,7 +149,8 @@ extension NullStringExtension on String? {
       return '';
     }
     final nameParts = this!.trim().toUpperCase().split(RegExp(splitBy));
-    var num = math.min(nameParts.length, numberOfCharacters??nameParts.length);
+    var num =
+        math.min(nameParts.length, numberOfCharacters ?? nameParts.length);
     for (var i = 0; i < num; i++) {
       initials += nameParts[i][0];
     }
@@ -206,7 +203,5 @@ extension NullStringExtension on String? {
     return true;
   }
 
-
   String get generateRandomString => null.generateLoremIpsumWords;
 }
-

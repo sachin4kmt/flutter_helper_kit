@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/extensions/widget_extension.dart';
 
@@ -60,13 +58,14 @@ class TextIcon extends StatelessWidget {
     this.expandedText = false,
     this.useMarquee = false,
     this.boxDecoration,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: edgeInsets ?? const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding:
+          edgeInsets ?? const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: boxDecoration,
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -79,15 +78,15 @@ class TextIcon extends StatelessWidget {
           else if (useMarquee)
             Marquee(child: buildText())
           else if (expandedText)
-              buildText().expand()
-            else
-              buildText(),
+            buildText().expand()
+          else
+            buildText(),
           suffix != null
               ? Row(children: [SizedBox(width: spacing.toDouble()), suffix!])
               : const SizedBox(),
         ],
       ),
-    ) .onTap(onTap);
+    ).onTap(onTap);
   }
 
   /// Builds the text widget with specified properties.

@@ -1,5 +1,3 @@
-
-
 ///  Define a function that returns a Future<void> and takes no arguments
 typedef FutureVoidCallback = Future<void> Function();
 

@@ -2,13 +2,10 @@ import 'dart:math' as math;
 
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
-
 /// Num Extensions
 extension NumExt on num? {
   /// Returns `true` if this nullable iterable is either `null` or empty.
   bool get isNullOrEmpty => this == null;
-
-
 
   /// Validate given double is not null and returns given value if null.
   num validate({num value = 0}) => this ?? value;
@@ -55,8 +52,6 @@ extension NumExt on num? {
   /// [international] [false] for indian value => 1k,2k,1 L,2 L, 1 Cr
   String toNumeral({bool international = true, int digitAfterDecimal = 0}) {
     final value = Numeral(validateNum, digitAfterDecimal: digitAfterDecimal);
-    return international?value.international:value.indian;
+    return international ? value.international : value.indian;
   }
 }
-
-

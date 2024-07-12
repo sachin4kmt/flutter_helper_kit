@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-
-
 /// Used by TimerBuilder to determine the next DateTime to trigger a rebuild on
 typedef TimerGenerator = DateTime? Function(DateTime now);
 
@@ -16,7 +14,9 @@ class TimerBuilder extends StatefulWidget {
   /// For general cases, prefer to use [TimerBuilder.periodic] and [TimerBuilder..scheduled]
   /// This constructor accepts a custom generator function that returns the next time event
   /// to rebuild on.
-  const TimerBuilder({super.key,
+  const TimerBuilder({
+    super.key,
+
     /// Returns the next time event. If the returned time is in the past, it will be ignored and
     /// the generator will be called again to retrieve the next time event.
     /// If the generator returns [null], it indicates the end of time event sequence.
@@ -33,24 +33,26 @@ class TimerBuilder extends StatefulWidget {
 
   /// Rebuilds periodically
   TimerBuilder.periodic(
-      Duration interval, {super.key,
+    Duration interval, {
+    super.key,
 
-        /// Specifies the alignment unit for the generated time events. Specify Duration.zero
-        /// if you want no alignment. By default, the alignment unit is computed from the interval.
-        Duration? alignment,
+    /// Specifies the alignment unit for the generated time events. Specify Duration.zero
+    /// if you want no alignment. By default, the alignment unit is computed from the interval.
+    Duration? alignment,
 
-        /// Builds the widget. Called for every time event or when the widget needs to be built/rebuilt.
-        required this.builder,
-      }) : generator = periodicTimer(interval,
-      alignment: alignment ?? getAlignmentUnit(interval));
+    /// Builds the widget. Called for every time event or when the widget needs to be built/rebuilt.
+    required this.builder,
+  }) : generator = periodicTimer(interval,
+            alignment: alignment ?? getAlignmentUnit(interval));
 
   /// Rebuilds on a schedule
   TimerBuilder.scheduled(
-      Iterable<DateTime> schedule, {super.key,
+    Iterable<DateTime> schedule, {
+    super.key,
 
-        /// Builds the widget. Called for every time event or when the widget needs to be built/rebuilt.
-        required this.builder,
-      }) : generator = scheduledTimer(schedule);
+    /// Builds the widget. Called for every time event or when the widget needs to be built/rebuilt.
+    required this.builder,
+  }) : generator = scheduledTimer(schedule);
 }
 
 class _TimerBuilderState extends State<TimerBuilder> {
@@ -124,12 +126,12 @@ TimerGenerator fromIterable(Iterable<DateTime> iterable) {
 /// Creates a stream tha produces DateTime objects at the times specified by the [generator].
 /// Stops the stream when [stopSignal] is received.
 Stream<DateTime> createTimerStream(
-    TimerGenerator generator,
-    Future stopSignal,
-    ) async* {
+  TimerGenerator generator,
+  Future stopSignal,
+) async* {
   for (var now = DateTime.now(), next = generator(now);
-  next != null;
-  now = DateTime.now(), next = generator(now)) {
+      next != null;
+      now = DateTime.now(), next = generator(now)) {
     if (now.compareTo(next) > 0) continue;
     Duration waitTime = next.difference(now);
     try {
@@ -151,9 +153,9 @@ Duration getAlignmentUnit(Duration interval) {
     minutes: interval.inHours == 0 && interval.inMinutes > 0 ? 1 : 0,
     seconds: interval.inMinutes == 0 && interval.inSeconds > 0 ? 1 : 0,
     milliseconds:
-    interval.inSeconds == 0 && interval.inMilliseconds > 0 ? 1 : 0,
+        interval.inSeconds == 0 && interval.inMilliseconds > 0 ? 1 : 0,
     microseconds:
-    interval.inMilliseconds == 0 && interval.inMicroseconds > 0 ? 1 : 0,
+        interval.inMilliseconds == 0 && interval.inMicroseconds > 0 ? 1 : 0,
   );
 }
 
@@ -170,23 +172,23 @@ DateTime alignDateTime(DateTime dt, Duration alignment,
       hours: alignment.inDays > 0
           ? dt.hour
           : alignment.inHours > 0
-          ? dt.hour % alignment.inHours
-          : 0,
+              ? dt.hour % alignment.inHours
+              : 0,
       minutes: alignment.inHours > 0
           ? dt.minute
           : alignment.inMinutes > 0
-          ? dt.minute % alignment.inMinutes
-          : 0,
+              ? dt.minute % alignment.inMinutes
+              : 0,
       seconds: alignment.inMinutes > 0
           ? dt.second
           : alignment.inSeconds > 0
-          ? dt.second % alignment.inSeconds
-          : 0,
+              ? dt.second % alignment.inSeconds
+              : 0,
       milliseconds: alignment.inSeconds > 0
           ? dt.millisecond
           : alignment.inMilliseconds > 0
-          ? dt.millisecond % alignment.inMilliseconds
-          : 0,
+              ? dt.millisecond % alignment.inMilliseconds
+              : 0,
       microseconds: alignment.inMilliseconds > 0 ? dt.microsecond : 0);
   if (correction == Duration.zero) return dt;
   final corrected = dt.subtract(correction);

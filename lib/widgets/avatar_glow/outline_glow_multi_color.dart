@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-
 class OutlineAvatarGlowMultiColor extends StatefulWidget {
   /// Creates a widget that provides a glowing effect with multiple colors around a child widget's outline.
   ///
@@ -17,7 +16,7 @@ class OutlineAvatarGlowMultiColor extends StatefulWidget {
   /// The `curve` parameter specifies the animation curve.
   /// The `glowRadiusFactor` parameter specifies the factor to control the size of the glow effect.
   const OutlineAvatarGlowMultiColor({
-    Key? key,
+    super.key,
     required this.child,
     required this.glowColors,
     this.glowShape = BoxShape.circle,
@@ -28,7 +27,7 @@ class OutlineAvatarGlowMultiColor extends StatefulWidget {
     this.repeat = true,
     this.curve = Curves.fastOutSlowIn,
     this.glowRadiusFactor = 0.7,
-  }) : super(key: key);
+  });
 
   /// Whether to animate the glow effect.
   final bool animate;
@@ -61,10 +60,13 @@ class OutlineAvatarGlowMultiColor extends StatefulWidget {
   final Duration? startDelay;
 
   @override
-  State<OutlineAvatarGlowMultiColor> createState() => _OutlineAvatarGlowMultiColorState();
+  State<OutlineAvatarGlowMultiColor> createState() =>
+      _OutlineAvatarGlowMultiColorState();
 }
 
-class _OutlineAvatarGlowMultiColorState extends State<OutlineAvatarGlowMultiColor> with SingleTickerProviderStateMixin {
+class _OutlineAvatarGlowMultiColorState
+    extends State<OutlineAvatarGlowMultiColor>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Tween<double> _opacityTween = Tween<double>(begin: 0.3, end: 0);
   late final _OutlineMultiGlowPainter _painter;
@@ -139,7 +141,7 @@ class _OutlineAvatarGlowMultiColorState extends State<OutlineAvatarGlowMultiColo
 
   @override
   Widget build(BuildContext context) {
-    if(widget.glowColors.isEmpty){
+    if (widget.glowColors.isEmpty) {
       return widget.child;
     }
     return RepaintBoundary(
@@ -154,7 +156,8 @@ class _OutlineAvatarGlowMultiColorState extends State<OutlineAvatarGlowMultiColo
             borderRadius: widget.glowBorderRadius,
           )
           ..glowRadiusFactor = widget.glowRadiusFactor
-          ..glowColors = widget.glowColors, // Pass the glow colors to the painter
+          ..glowColors =
+              widget.glowColors, // Pass the glow colors to the painter
         child: widget.child,
       ),
     );
@@ -197,7 +200,8 @@ class _OutlineMultiGlowPainter extends ChangeNotifier implements CustomPainter {
     _glowPath.reset();
 
     for (int i = 1; i <= glowCount; i++) {
-      final currentRadius = glowRadius + glowRadius * glowRadiusFactor * i * currentProgress;
+      final currentRadius =
+          glowRadius + glowRadius * glowRadiusFactor * i * currentProgress;
 
       // final currentRect = Rect.fromCircle(
       //   center: size.center(Offset.zero),
@@ -205,9 +209,11 @@ class _OutlineMultiGlowPainter extends ChangeNotifier implements CustomPainter {
       // );
 
       final paint = Paint()
-        ..color = glowColors[i % glowColors.length] // Use modulo to cycle through colors
+        ..color = glowColors[
+            i % glowColors.length] // Use modulo to cycle through colors
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 4.0; // Adjust this value to change the thickness of the line
+        ..strokeWidth =
+            4.0; // Adjust this value to change the thickness of the line
 
       canvas.drawCircle(size.center(Offset.zero), currentRadius, paint);
     }

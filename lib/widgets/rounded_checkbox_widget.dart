@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import '../flutter_helper_kit.dart';
 
 ///Widget that draw a beautiful checkbox rounded. Provided with animation if wanted
 class RoundedCheckBox extends StatefulWidget {
   const RoundedCheckBox({
-    Key? key,
+    super.key,
     this.isChecked,
     this.checkedWidget,
     this.uncheckedWidget,
@@ -19,7 +18,7 @@ class RoundedCheckBox extends StatefulWidget {
     this.onTap,
     this.text = '',
     this.textStyle,
-  }) : super(key: key);
+  });
 
   ///Define weather the checkbox is marked or not
   final bool? isChecked;
@@ -59,10 +58,10 @@ class RoundedCheckBox extends StatefulWidget {
   final Duration? animationDuration;
 
   @override
-  _RoundedCheckBoxState createState() => _RoundedCheckBoxState();
+  RoundedCheckBoxState createState() => RoundedCheckBoxState();
 }
 
-class _RoundedCheckBoxState extends State<RoundedCheckBox> {
+class RoundedCheckBoxState extends State<RoundedCheckBox> {
   bool? isChecked;
   late Duration animationDuration;
   double? size;
@@ -76,7 +75,8 @@ class _RoundedCheckBoxState extends State<RoundedCheckBox> {
   @override
   void initState() {
     isChecked = widget.isChecked ?? false;
-    animationDuration = widget.animationDuration ?? const Duration(milliseconds: 500);
+    animationDuration =
+        widget.animationDuration ?? const Duration(milliseconds: 500);
     size = widget.size ?? 24.0;
     checkedColor = widget.checkedColor ?? Colors.green;
     uncheckedColor = widget.uncheckedColor;
@@ -92,9 +92,9 @@ class _RoundedCheckBoxState extends State<RoundedCheckBox> {
     return GestureDetector(
       onTap: widget.onTap != null
           ? () {
-        setState(() => isChecked = !isChecked!);
-        widget.onTap?.call(isChecked);
-      }
+              setState(() => isChecked = !isChecked!);
+              widget.onTap?.call(isChecked);
+            }
           : null,
       child: Row(
         mainAxisSize: MainAxisSize.min,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 typedef RatingChangeCallback = void Function(double rating);
 
 /// RatingBarWidget
@@ -34,20 +33,21 @@ class RatingBarWidget extends StatefulWidget {
     this.halfFilledIconData,
     this.allowHalfRating = false,
     this.disable = false,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  _RatingBarWidgetState createState() => _RatingBarWidgetState();
+  RatingBarWidgetState createState() => RatingBarWidgetState();
 }
 
-class _RatingBarWidgetState extends State<RatingBarWidget> {
+class RatingBarWidgetState extends State<RatingBarWidget> {
   /// Build rating bar widget
   Widget _buildItem(BuildContext context, int index) {
     Icon icon;
     if (index >= widget.rating) {
       icon = Icon(
-        widget.defaultIconData ?? (widget.halfFilledIconData ?? Icons.star_border),
+        widget.defaultIconData ??
+            (widget.halfFilledIconData ?? Icons.star_border),
         color: widget.inActiveColor ?? Colors.grey,
         size: widget.size,
       );
@@ -110,7 +110,7 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
         spacing: widget.spacing,
         children: List.generate(
           widget.itemCount,
-              (index) => _buildItem(context, index),
+          (index) => _buildItem(context, index),
         ),
       ),
     );

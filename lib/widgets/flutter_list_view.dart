@@ -68,7 +68,7 @@ class FlutterListView<T> extends StatelessWidget {
     this.controller,
     this.scrollDirection = FlutterScrollDirection.horizontal,
     this.physics,
-  }): separatorBuilder =null;
+  }) : separatorBuilder = null;
 
   const FlutterListView.separator({
     super.key,
@@ -109,4 +109,3 @@ class FlutterListView<T> extends StatelessWidget {
     );
   }
 }
-

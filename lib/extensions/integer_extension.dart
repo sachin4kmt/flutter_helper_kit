@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/extensions/string_extension.dart';
 import 'package:flutter_helper_kit/widgets/space/space.dart';
@@ -132,20 +131,20 @@ extension IntExtensions on int {
     if (!(this >= 1 && this <= 12)) {
       throw Exception(status);
     }
-    return switch(this){
-      (DateTime.january)=>isHalfName ? 'Jan' : 'January',
-      (DateTime.february)=>isHalfName ? 'Feb' : 'February',
-      (DateTime.march)=>isHalfName ? 'Mar' : 'March',
-      (DateTime.april)=>isHalfName ? 'Apr' : 'April',
-      (DateTime.may)=>isHalfName ? 'May' : 'May',
-      (DateTime.june)=>isHalfName ? 'Jun' : 'June',
-      (DateTime.july)=>isHalfName ? 'Jul' : 'July',
-      (DateTime.august)=>isHalfName ? 'Aug' : 'August',
-      (DateTime.september)=>isHalfName ? 'Sept' : 'September',
-      (DateTime.october)=>isHalfName ? 'Oct' : 'October',
-      (DateTime.november)=>isHalfName ? 'Nov' : 'November',
-      (DateTime.december)=>isHalfName ? 'Dec' : 'December',
-      (_)=>"",
+    return switch (this) {
+      (DateTime.january) => isHalfName ? 'Jan' : 'January',
+      (DateTime.february) => isHalfName ? 'Feb' : 'February',
+      (DateTime.march) => isHalfName ? 'Mar' : 'March',
+      (DateTime.april) => isHalfName ? 'Apr' : 'April',
+      (DateTime.may) => isHalfName ? 'May' : 'May',
+      (DateTime.june) => isHalfName ? 'Jun' : 'June',
+      (DateTime.july) => isHalfName ? 'Jul' : 'July',
+      (DateTime.august) => isHalfName ? 'Aug' : 'August',
+      (DateTime.september) => isHalfName ? 'Sept' : 'September',
+      (DateTime.october) => isHalfName ? 'Oct' : 'October',
+      (DateTime.november) => isHalfName ? 'Nov' : 'November',
+      (DateTime.december) => isHalfName ? 'Dec' : 'December',
+      (_) => "",
     };
   }
 

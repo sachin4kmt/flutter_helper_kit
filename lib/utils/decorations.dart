@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 /// returns default InputDecoration for AppTextField widget
@@ -26,9 +24,9 @@ TextStyle primaryTextStyle({
 }) {
   return TextStyle(
     fontSize: size?.toDouble(),
-    color: color ,
-    fontWeight: weight ,
-    fontFamily: fontFamily ,
+    color: color,
+    fontWeight: weight,
+    fontFamily: fontFamily,
     letterSpacing: letterSpacing,
     fontStyle: fontStyle,
     decoration: decoration,
@@ -46,8 +44,8 @@ InputDecoration defaultInputDecoration(
   return InputDecoration(
     labelText: label,
     hintText: hint,
-    hintStyle: textStyle ,
-    labelStyle: textStyle ,
+    hintStyle: textStyle,
+    labelStyle: textStyle,
     border: const OutlineInputBorder(),
     alignLabelWithHint: true,
   );
@@ -121,7 +119,7 @@ Decoration boxDecorationWithRoundedCorners({
   return BoxDecoration(
     color: backgroundColor,
     borderRadius:
-    boxShape == BoxShape.circle ? null : (borderRadius ?? radius()),
+        boxShape == BoxShape.circle ? null : (borderRadius ?? radius()),
     gradient: gradient,
     border: border,
     boxShadow: boxShadow,
@@ -163,14 +161,14 @@ Decoration boxDecorationWithShadow({
 
 /// rounded box decoration with shadow
 Decoration boxDecorationRoundedWithShadow(
-    int radiusAll, {
-      Color backgroundColor = whiteColor,
-      Color? shadowColor,
-      double? blurRadius,
-      double? spreadRadius,
-      Offset offset = const Offset(0.0, 0.0),
-      LinearGradient? gradient,
-    }) {
+  int radiusAll, {
+  Color backgroundColor = whiteColor,
+  Color? shadowColor,
+  double? blurRadius,
+  double? spreadRadius,
+  Offset offset = const Offset(0.0, 0.0),
+  LinearGradient? gradient,
+}) {
   return BoxDecoration(
     boxShadow: defaultBoxShadow(
       shadowColor: shadowColor,

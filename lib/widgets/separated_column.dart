@@ -208,7 +208,7 @@ class SeparatedColumn extends StatelessWidget {
   /// to be necessary to disambiguate `start` or `end` values for the
   /// [crossAxisAlignment], the [textDirection] must not be null.
   const SeparatedColumn({
-    Key? key,
+    super.key,
     this.textBaseline,
     this.textDirection,
     this.children = const <Widget>[],
@@ -219,8 +219,7 @@ class SeparatedColumn extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     required this.separatorBuilder,
-
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

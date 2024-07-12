@@ -18,10 +18,10 @@ class AvatarGlow extends StatefulWidget {
     this.repeat = true,
     this.curve = Curves.fastOutSlowIn,
     this.glowRadiusFactor = 0.7,
-  })  : assert(
-  glowShape != BoxShape.circle || glowBorderRadius == null,
-  'Cannot specify a border radius if the shape is a circle.',
-  );
+  }) : assert(
+          glowShape != BoxShape.circle || glowBorderRadius == null,
+          'Cannot specify a border radius if the shape is a circle.',
+        );
 
   /// The child widget to display inside the glowing effect.
   final Widget child;

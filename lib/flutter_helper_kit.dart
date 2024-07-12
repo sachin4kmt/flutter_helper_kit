@@ -1,6 +1,5 @@
 library flutter_helper_kit;
 
-
 // import 'dart:math' as math;
 // import 'dart:async';
 // import 'dart:io';
@@ -11,7 +10,6 @@ library flutter_helper_kit;
 // import 'package:flutter/foundation.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart';
-
 
 ///extensions
 export 'extensions/bool_extensions.dart';
@@ -31,8 +29,6 @@ export 'extensions/scope_functions_extension.dart';
 export 'extensions/string_extension.dart';
 export 'extensions/widget_extension.dart';
 export 'extensions/widget_list_extension.dart';
-
-
 
 ///Formatter
 export 'text_field/no_leading_space_formatter.dart';
@@ -80,8 +76,3 @@ export 'widgets/avatar_glow/avatar_glow.dart';
 export 'widgets/avatar_glow/avatar_glow_multi_color.dart';
 export 'widgets/avatar_glow/outline_glow.dart';
 export 'widgets/avatar_glow/outline_glow_multi_color.dart';
-
-
-
-
-

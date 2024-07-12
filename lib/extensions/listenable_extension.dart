@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +44,7 @@ extension BoolValueListenableExtension<bool> on ValueListenable<bool> {
       valueListenable: this,
       builder: (context, value, child) {
         if (value == true) return builder();
-        return onFalse ??  const SizedBox.shrink();
+        return onFalse ?? const SizedBox.shrink();
       },
     );
   }

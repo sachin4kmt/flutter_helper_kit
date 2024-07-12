@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 /// A widget that displays the Google logo using CustomPaint.
@@ -22,7 +21,7 @@ class GoogleLogoWidget extends StatelessWidget {
   ///
   /// The [size] parameter specifies the size of the Google logo. If not
   /// provided, it defaults to 24 logical pixels.
-  const GoogleLogoWidget({Key? key, this.size}) : super(key: key);
+  const GoogleLogoWidget({super.key, this.size});
 
   @override
   Widget build(BuildContext context) {
