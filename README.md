@@ -51,6 +51,33 @@ AppButton(
 ## Widgets
 
 ```dart
+///TapSafeGesture is a StatefulWidget that manages rapid, repeated taps on a widget, ensuring only a single tap is processed at a time with an optional cooldown period.
+///This is perfect for preventing multiple executions of asynchronous operations triggered by button presses.
+TapSafeGesture(
+  builder: (context, onTap) {
+    return ElevatedButton(
+      onPressed: onTap,
+      child: Text('Tap Me'),
+    );
+  },
+  waitBuilder: (context, child) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+      child,
+      CircularProgressIndicator(),
+     ],
+   );
+  },
+  onTap: () async {
+      // Perform your async operation here
+      await Future.delayed(Duration(seconds: 2));
+    },
+  cooldown: Duration(seconds: 2),
+)
+```
+
+```dart
 /// Add a Google Logo
 /// Add size parameter for custom size - Default is 24
 GoogleLogoWidget()

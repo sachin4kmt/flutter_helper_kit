@@ -1,4 +1,7 @@
-## 0.0.8
+## 0.0.9
+* TODO: Add TapSafeGesture Widget 
+
+* ## 0.0.8
 * TODO: dart format fix analyze issue
 
 * ## 0.0.7
