@@ -76,6 +76,7 @@ TapSafeGesture(
   cooldown: Duration(seconds: 2),
 )
 ```
+[GIF](#tap-safe-gesture)
 
 ```dart
 /// Add a Google Logo
@@ -733,6 +734,9 @@ DoubleArgVoidCallback   // void Function(double arg);
 # Image Previews
 ## Flutter Toast
 <img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutetr_toast.gif?raw=true" height="300px">
+
+## Tap Safe Gesture
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/tap_safe_gesture.gif?raw=true" height="300px">
 
 ## Avatar Glow
 <img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow.gif?raw=true" width="200px">
