@@ -1,7 +1,5 @@
 import 'dart:math' as math;
-
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
-import 'package:flutter_helper_kit/widgets/sharp_corners/sharp.dart';
 
 /// Num Extensions
 extension NumExt on num? {

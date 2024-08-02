@@ -860,7 +860,7 @@ DoubleArgVoidCallback   // void Function(double arg);
 <img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/text_icon.gif?raw=true" width="400px">
 
 ## showDialogWithCloseIcon
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/show_dialog_with_close_icon.jpg?raw=true" height="300px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/show_dialog_with_close_icon.jpg?raw=true" height="200px">
 
 ## Sharp Borders
 <img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/sharp_borders.jpg?raw=true" height="300px">
