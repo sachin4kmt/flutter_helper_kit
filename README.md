@@ -827,7 +827,7 @@ DoubleArgVoidCallback   // void Function(double arg);
 <img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutetr_toast.gif?raw=true" height="300px">
 
 ## Tap Safe Gesture
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/tap_safe_gesture.gif?raw=true" height="300px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/tap_safe_gesture.gif?raw=true" height="200px">
 
 ## Avatar Glow
 <img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow.gif?raw=true" width="200px">
@@ -860,10 +860,10 @@ DoubleArgVoidCallback   // void Function(double arg);
 <img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/text_icon.gif?raw=true" width="400px">
 
 ## showDialogWithCloseIcon
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/show_dialog_with_close_icon.jpg?raw=true" width="400px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/show_dialog_with_close_icon.jpg?raw=true" height="300px">
 
 ## Sharp Borders
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/sharp_borders.jpg?raw=true" width="400px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/sharp_borders.jpg?raw=true" height="300px">
 
 ## Flutter Tag
 <img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutter_tag.gif?raw=true" width="400px">

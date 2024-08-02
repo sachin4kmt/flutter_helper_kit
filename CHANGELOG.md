@@ -1,4 +1,10 @@
-## 0.0.10
+## 0.0.12
+* TODO: Update Readme File Documentation
+
+* ## 0.0.11
+* TODO: Update Readme File Documentation
+
+* ## 0.0.10
 * TODO: Add SharpBorder, FlutterTag, showDialogWithCloseIcon
 
 * ## 0.0.9
