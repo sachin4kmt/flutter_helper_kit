@@ -43,6 +43,7 @@ export 'utils/ago_time.dart';
 export 'utils/flutter_helper_utils.dart';
 export 'utils/numberal_utils.dart';
 export 'utils/random_image.dart';
+export 'utils/close_icon_show_dialog.dart';
 
 ///Widgets
 export 'widgets/hide_keyboard.dart';
@@ -65,6 +66,8 @@ export './widgets/space/sliver_space.dart';
 export './widgets/space/space.dart';
 export './widgets/flutter_list_view.dart';
 export './widgets/tap_safe_gesture.dart';
+export './widgets/sharp_corners/sharp.dart';
+export './widgets/flutter_tag/flutter_tag.dart';
 
 ///CustomPainter
 export 'custom_painter/google_logo_painter.dart';

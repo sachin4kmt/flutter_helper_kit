@@ -94,9 +94,9 @@ extension DateTimeExtension on DateTime? {
         .padLeft(2, '0');
     final minute = noonTime.minute.toString().padLeft(2, '0');
     if (noonTime.period == DayPeriod.am) {
-      return "$hour:$minute Am";
+      return '$hour:$minute Am';
     } else {
-      return "$hour:$minute Pm";
+      return '$hour:$minute Pm';
     }
   }
 

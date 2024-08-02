@@ -1,0 +1,10 @@
+export 'src/flutter_tag_widget.dart';
+export 'src/flutter_tag_animation.dart';
+export 'src/flutter_tag_animation_type.dart';
+export 'src/flutter_tag_border_gradient.dart';
+export 'src/flutter_tag_gradient.dart';
+export 'src/flutter_tag_gradient_type.dart';
+export 'src/flutter_tag_position.dart';
+export 'src/flutter_tag_positioned.dart';
+export 'src/flutter_tag_shape.dart';
+export 'src/flutter_tag_style.dart';

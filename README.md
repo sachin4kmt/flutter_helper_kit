@@ -51,6 +51,66 @@ AppButton(
 ## Widgets
 
 ```dart
+///FlutterTag is a highly customizable widget designed for tags, close icons, and notifications.
+///You can easily integrate it into your app with various options for styling, positioning, and animation.
+FlutterTag(
+  tagContent: Icon(Icons.ac_unit),
+  tagStyle: FlutterTagStyle(
+    tagColor: Colors.blue,
+    borderRadius: 0.circularSharpBorderRadius,
+    shape: FlutterTagShape.circle,
+  ),
+  tagAnimation: FlutterTagAnimation.fade(
+    animationDuration: Duration(milliseconds: 1500),
+    colorChangeAnimationCurve: Curves.decelerate,
+    curve: Curves.ease,
+    toAnimate: true,
+  ),
+  position: FlutterTagPosition.topEnd(),
+  showTag: true,
+  child: Icon(Icons.add_shopping_cart, size: 40),
+  onTap: () {},
+)
+```
+[GIF](#flutter-tag)
+
+```dart
+///SharpRectangleBorder provides a way to create sharp, defined corners on your Flutter widgets.
+///This is particularly useful for achieving a more modern or geometric design style where precise corner sharpness is desired.
+
+/// Example 1
+SharpClipRect(
+  radius: SharpBorderRadius(
+    cornerRadius: 10,
+    sharpRatio: 1,
+  ),
+  child: Container(
+    color: Colors.red,
+    width: 100,
+    height: 100,
+    alignment: Alignment.center,
+  ),
+)
+/// Example 2
+Container(
+  height: 100,
+  width: 100,
+  alignment: Alignment.center,
+  decoration: ShapeDecoration(
+    color: Colors.red,
+    shape: SharpRectangleBorder(
+      borderRadius: SharpBorderRadius(
+        cornerRadius: 10,
+        sharpRatio: 1,
+      ),
+    ),
+  ),
+)
+
+```
+[GIF](#sharp-borders)
+
+```dart
 ///TapSafeGesture is a StatefulWidget that manages rapid, repeated taps on a widget, ensuring only a single tap is processed at a time with an optional cooldown period.
 ///This is perfect for preventing multiple executions of asynchronous operations triggered by button presses.
 TapSafeGesture(
@@ -584,6 +644,14 @@ bool between(int min, int max)
 bool isInRange(num min, num max)
 List<num> randomList({int min = 0, int max = 100})
 String toNumeral({bool international = true, int digitAfterDecimal = 0})
+
+///SharpBorderRadius
+SharpBorderRadius get circularSharpBorderRadius
+SharpBorderRadius get topLeftSharpBorderRadius
+SharpBorderRadius get topRightSharpBorderRadius
+SharpBorderRadius get bottomLeftSharpBorderRadius
+SharpBorderRadius get bottomRightSharpRadius
+SharpRadius get sharpRadius
 ```
 
 ## ScopeFunction Extensions
@@ -633,6 +701,29 @@ setOrientationLandscape();
 ```
 
 # Utils
+```dart
+///Display a customizable dialog with a close icon in your Flutter app.
+///This example shows how to create an upload dialog with a slide animation for the close button, custom styling, and sharp rounded corners.
+
+showDialogWithCloseIcon(
+    context: context,
+    title: const Icon(Icons.image, size: 40),
+    content: Column(children: [
+      const Text('Upload your profile Picture.'),
+      20.height,
+      OutlinedButton(onPressed: () {}, child: const Text('Upload'))]),
+    closeButtonPosition: FlutterTagPosition.topEnd(),
+    closeButtonAnimation: const FlutterTagAnimation.slide(),
+    closeButtonStyle: FlutterTagStyle(borderRadius: 1000.circularSharpBorderRadius, shape: FlutterTagShape.circle),
+    shape: SharpRectangleBorder(borderRadius: 16.circularSharpBorderRadius),
+  closeIcon: const Icon(Icons.clear,color: Colors.white),
+  dialogColor: Colors.white,
+);
+```
+[Image](#showDialogWithCloseIcon)
+
+showDialogWithCloseIcon
+
 ```dart
 DateTime pastDate = DateTime.now().subtract(Duration(hours: 2, minutes: 30));
 print('English: ${timeAgoCalculated(pastDate)}'), //output: 3 hours ago
@@ -767,6 +858,15 @@ DoubleArgVoidCallback   // void Function(double arg);
 
 ## Text Icon
 <img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/text_icon.gif?raw=true" width="400px">
+
+## showDialogWithCloseIcon
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/show_dialog_with_close_icon.jpg?raw=true" width="400px">
+
+## Sharp Borders
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/sharp_borders.jpg?raw=true" width="400px">
+
+## Flutter Tag
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutter_tag.gif?raw=true" width="400px">
 
 
 ## Features and bugs

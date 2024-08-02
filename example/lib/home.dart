@@ -30,7 +30,29 @@ class HomeScreen extends StatelessWidget {
                 ),
                 // const MaxSpace(120),
                 // SizedBox(height: 120),
-                ElevatedButton(onPressed: () {}, child: const Text('hey'))
+                ElevatedButton(
+                    onPressed: () {
+                      showDialogWithCloseIcon(
+                        context: context,
+                        title: const Icon(Icons.image, size: 40),
+                        content: Column(children: [
+                          const Text('Upload your profile Picture.'),
+                          20.height,
+                          OutlinedButton(
+                              onPressed: () {}, child: const Text('Upload'))
+                        ]),
+                        closeButtonPosition: FlutterTagPosition.topEnd(),
+                        closeButtonAnimation: const FlutterTagAnimation.slide(),
+                        closeButtonStyle: FlutterTagStyle(
+                            borderRadius: 1000.circularSharpBorderRadius,
+                            shape: FlutterTagShape.circle),
+                        shape: SharpRectangleBorder(
+                            borderRadius: 16.circularSharpBorderRadius),
+                        closeIcon: const Icon(Icons.clear, color: Colors.white),
+                        dialogColor: Colors.white,
+                      );
+                    },
+                    child: const Text('hey'))
               ]),
         ),
       ),

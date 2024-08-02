@@ -144,7 +144,7 @@ extension IntExtensions on int {
       (DateTime.october) => isHalfName ? 'Oct' : 'October',
       (DateTime.november) => isHalfName ? 'Nov' : 'November',
       (DateTime.december) => isHalfName ? 'Dec' : 'December',
-      (_) => "",
+      (_) => '',
     };
   }
 
@@ -152,14 +152,14 @@ extension IntExtensions on int {
   String toWeekDay({bool isHalfName = false}) {
     assert(this >= 1 && this <= 7);
     return switch (this) {
-      (DateTime.monday) => isHalfName ? "Mon" : "Monday",
-      (DateTime.tuesday) => isHalfName ? "Tue" : "Tuesday",
-      (DateTime.wednesday) => isHalfName ? "Wed" : "Wednesday",
-      (DateTime.thursday) => isHalfName ? "Thu" : "Thursday",
-      (DateTime.friday) => isHalfName ? "Fri" : "Friday",
-      (DateTime.saturday) => isHalfName ? "Sat" : "Saturday",
-      (DateTime.sunday) => isHalfName ? "Sun" : "Sunday",
-      (_) => "",
+      (DateTime.monday) => isHalfName ? 'Mon' : 'Monday',
+      (DateTime.tuesday) => isHalfName ? 'Tue' : 'Tuesday',
+      (DateTime.wednesday) => isHalfName ? 'Wed' : 'Wednesday',
+      (DateTime.thursday) => isHalfName ? 'Thu' : 'Thursday',
+      (DateTime.friday) => isHalfName ? 'Fri' : 'Friday',
+      (DateTime.saturday) => isHalfName ? 'Sat' : 'Saturday',
+      (DateTime.sunday) => isHalfName ? 'Sun' : 'Sunday',
+      (_) => '',
     };
   }
 }

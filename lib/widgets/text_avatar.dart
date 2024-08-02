@@ -87,12 +87,12 @@ class TextAvatar extends StatelessWidget {
   Map<String, Color> get colors => includeColor.updateAndJoin(colorData);
 
   String getLetters() {
-    var initials = "";
+    var initials = '';
     if (text.validate().isEmptyOrNull) {
       return '';
     }
     if (text.countWords < 2) return text.take(2);
-    final nameParts = text.trim().toUpperCase().split(RegExp("\\s+"));
+    final nameParts = text.trim().toUpperCase().split(RegExp('\\s+'));
     var num = math.min(nameParts.length, 2);
     for (var i = 0; i < num; i++) {
       if (nameParts[i].isAlphabetOnly &&
@@ -115,30 +115,30 @@ class TextAvatar extends StatelessWidget {
 
 ///Colors
 var colorData = {
-  "a": const Color.fromRGBO(226, 95, 81, 1),
-  "b": const Color.fromRGBO(242, 96, 145, 1),
-  "c": const Color.fromRGBO(187, 101, 202, 1),
-  "d": const Color.fromRGBO(149, 114, 207, 1),
-  "e": const Color.fromRGBO(120, 132, 205, 1),
-  "f": const Color.fromRGBO(91, 149, 249, 1),
-  "g": const Color.fromRGBO(72, 194, 249, 1),
-  "h": const Color.fromRGBO(69, 208, 226, 1),
-  "i": const Color.fromRGBO(38, 166, 154, 1),
-  "j": const Color.fromRGBO(82, 188, 137, 1),
-  "k": const Color.fromRGBO(155, 206, 95, 1),
-  "l": const Color.fromRGBO(212, 227, 74, 1),
-  "m": const Color.fromRGBO(254, 218, 16, 1),
-  "n": const Color.fromRGBO(247, 192, 0, 1),
-  "o": const Color.fromRGBO(255, 168, 0, 1),
-  "p": const Color.fromRGBO(255, 138, 96, 1),
-  "q": const Color.fromRGBO(194, 194, 194, 1),
-  "r": const Color.fromRGBO(143, 164, 175, 1),
-  "s": const Color.fromRGBO(162, 136, 126, 1),
-  "t": const Color.fromRGBO(163, 163, 163, 1),
-  "u": const Color.fromRGBO(175, 181, 226, 1),
-  "v": const Color.fromRGBO(179, 155, 221, 1),
-  "w": const Color.fromRGBO(194, 194, 194, 1),
-  "x": const Color.fromRGBO(124, 222, 235, 1),
-  "y": const Color.fromRGBO(188, 170, 164, 1),
-  "z": const Color.fromRGBO(173, 214, 125, 1),
+  'a': const Color.fromRGBO(226, 95, 81, 1),
+  'b': const Color.fromRGBO(242, 96, 145, 1),
+  'c': const Color.fromRGBO(187, 101, 202, 1),
+  'd': const Color.fromRGBO(149, 114, 207, 1),
+  'e': const Color.fromRGBO(120, 132, 205, 1),
+  'f': const Color.fromRGBO(91, 149, 249, 1),
+  'g': const Color.fromRGBO(72, 194, 249, 1),
+  'h': const Color.fromRGBO(69, 208, 226, 1),
+  'i': const Color.fromRGBO(38, 166, 154, 1),
+  'j': const Color.fromRGBO(82, 188, 137, 1),
+  'k': const Color.fromRGBO(155, 206, 95, 1),
+  'l': const Color.fromRGBO(212, 227, 74, 1),
+  'm': const Color.fromRGBO(254, 218, 16, 1),
+  'n': const Color.fromRGBO(247, 192, 0, 1),
+  'o': const Color.fromRGBO(255, 168, 0, 1),
+  'p': const Color.fromRGBO(255, 138, 96, 1),
+  'q': const Color.fromRGBO(194, 194, 194, 1),
+  'r': const Color.fromRGBO(143, 164, 175, 1),
+  's': const Color.fromRGBO(162, 136, 126, 1),
+  't': const Color.fromRGBO(163, 163, 163, 1),
+  'u': const Color.fromRGBO(175, 181, 226, 1),
+  'v': const Color.fromRGBO(179, 155, 221, 1),
+  'w': const Color.fromRGBO(194, 194, 194, 1),
+  'x': const Color.fromRGBO(124, 222, 235, 1),
+  'y': const Color.fromRGBO(188, 170, 164, 1),
+  'z': const Color.fromRGBO(173, 214, 125, 1),
 };

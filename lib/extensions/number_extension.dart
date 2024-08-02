@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
+import 'package:flutter_helper_kit/widgets/sharp_corners/sharp.dart';
 
 /// Num Extensions
 extension NumExt on num? {
@@ -26,10 +27,10 @@ extension NumExt on num? {
 
   /// Get the lorem ipsum text of [this] words.
   String get generateLoremIpsumWords {
-    if (isNullOrEmpty) return "";
+    if (isNullOrEmpty) return '';
     var words =
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            .split(" ");
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+            .split(' ');
     var result = '';
     for (var i = 0; i < (this ?? words.length); i++) {
       result += '${words[i % words.length]} ';
@@ -54,4 +55,21 @@ extension NumExt on num? {
     final value = Numeral(validateNum, digitAfterDecimal: digitAfterDecimal);
     return international ? value.international : value.indian;
   }
+
+  SharpBorderRadius get circularSharpBorderRadius => SharpBorderRadius.all(
+      SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+  SharpBorderRadius get topLeftSharpBorderRadius => SharpBorderRadius.only(
+      topLeft:
+          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+  SharpBorderRadius get topRightSharpBorderRadius => SharpBorderRadius.only(
+      topRight:
+          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+  SharpBorderRadius get bottomLeftSharpBorderRadius => SharpBorderRadius.only(
+      bottomLeft:
+          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+  SharpBorderRadius get bottomRightSharpRadius => SharpBorderRadius.only(
+      bottomRight:
+          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+  SharpRadius get sharpRadius =>
+      SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1);
 }

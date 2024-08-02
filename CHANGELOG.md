@@ -1,5 +1,8 @@
-## 0.0.9
-* TODO: Add TapSafeGesture Widget 
+## 0.0.10
+* TODO: Add SharpBorder, FlutterTag, showDialogWithCloseIcon
+
+* ## 0.0.9
+* TODO: Add TapSafeGesture Widget
 
 * ## 0.0.8
 * TODO: dart format fix analyze issue

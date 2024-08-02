@@ -214,7 +214,7 @@ extension ListExt<T> on List<T>? {
       return null;
     }
     if (rangeSize <= 0) {
-      throw ArgumentError("Range size must be greater than zero.");
+      throw ArgumentError('Range size must be greater than zero.');
     }
 
     List<List<T>> nestedLists = [];

@@ -7,7 +7,7 @@ import 'package:flutter_helper_kit/utils/password_validator.dart';
 
 extension NullStringExtension on String? {
   /// Check null string, return given value if null
-  String validate([String value = ""]) =>
+  String validate([String value = '']) =>
       this?.trim().isEmptyOrNull ?? true ? value : this!;
 
   /// Checks if the given String [s] is not null or empty
@@ -20,7 +20,7 @@ extension NullStringExtension on String? {
       (this != null && this! == 'null');
 
   /// If Given String [s] is Null return blank String
-  String get defaultBlank => isEmptyOrNull ? "" : this!;
+  String get defaultBlank => isEmptyOrNull ? '' : this!;
 
   ///check value is integer or not and return true or false
   bool get isInt => isEmptyOrNull ? false : int.tryParse(this!) != null;
@@ -81,11 +81,11 @@ extension NullStringExtension on String? {
 
   /// Removes all whitespaces from string
   String get removeAllWhiteSpace =>
-      !isEmptyOrNull ? this!.replaceAll(RegExp(r'\s+\b|\b\s'), '') : "";
+      !isEmptyOrNull ? this!.replaceAll(RegExp(r'\s+\b|\b\s'), '') : '';
 
   /// Returns the reversed string
   String get reversed =>
-      !isEmptyOrNull ? String.fromCharCodes(this!.codeUnits.reversed) : "";
+      !isEmptyOrNull ? String.fromCharCodes(this!.codeUnits.reversed) : '';
 
   ///Check characters is start with [String]
   ///Default All [String] convert in lower case
@@ -106,7 +106,7 @@ extension NullStringExtension on String? {
   /// Returns string with capitalized first letter
   /// Example: assert('test'.capitalizeFirstCharacter(), 'Test');
   String get capitalizeFirstCharacter =>
-      !isEmptyOrNull ? '${this![0].toUpperCase()}${this!.substring(1)}' : "";
+      !isEmptyOrNull ? '${this![0].toUpperCase()}${this!.substring(1)}' : '';
 
   /// 'I like dart language'.capitalizeEachWordFirstCharacter() // I Like Dart Language
   /// 'I  like dart   language'.capitalizeEachWordFirstCharacter() // I  Like Dart   Language
@@ -143,8 +143,8 @@ extension NullStringExtension on String? {
 
   /// return words first letter of given string
   String toWordsFirstCharacters(
-      {int? numberOfCharacters, String splitBy = "\\s+"}) {
-    var initials = "";
+      {int? numberOfCharacters, String splitBy = '\\s+'}) {
+    var initials = '';
     if (validate().isEmptyOrNull) {
       return '';
     }
@@ -167,7 +167,7 @@ extension NullStringExtension on String? {
   /// Returns a string abbreviation.
   int get countWords {
     if (validate().isEmptyOrNull) return 0;
-    return this!.split(RegExp("\\s+")).length;
+    return this!.split(RegExp('\\s+')).length;
   }
 
   /// default minimum value 6
@@ -179,7 +179,7 @@ extension NullStringExtension on String? {
       int numericCharCount = 0,
       int specialCharCount = 0}) {
     if (isEmptyOrNull) return false;
-    if (this!.contains(" ")) return false;
+    if (this!.contains(' ')) return false;
     if (minLength != 0 &&
         !Validator.hasMinimumLength(this!, minLength == 0 ? 6 : minLength)) {
       return false;

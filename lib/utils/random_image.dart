@@ -69,7 +69,7 @@ class RandomImage {
   /// String customImageUrl = FlutterHelperUtils.picsumImage(300, 400);
   /// ```
   static String picsumImage([int width = 200, int height = 200]) {
-    return "https://picsum.photos/$width/$height";
+    return 'https://picsum.photos/$width/$height';
   }
 
   /// Generates a random image URL from robohash with the specified dimensions and category filter.
@@ -84,13 +84,13 @@ class RandomImage {
     ImageSet set = ImageSet.any,
     ImageBg bg = ImageBg.any,
     ImageType imageType = ImageType.png,
-    String category = "photo",
+    String category = 'photo',
     ImageColor? color,
   }) {
     final imageColor =
         color != null ? '&color=${color.name.toLowerCase()}' : '';
     final data =
-        "https://robohash.org/$slug.${imageType.name}?size=${size.width.toInt()}x${size.height.toInt()}&set=${set.name}&bgset=${bg.name}$imageColor";
+        'https://robohash.org/$slug.${imageType.name}?size=${size.width.toInt()}x${size.height.toInt()}&set=${set.name}&bgset=${bg.name}$imageColor';
     return data;
   }
 
@@ -107,9 +107,9 @@ class RandomImage {
     final imageSize = '${size.width.toInt()}x${size.height.toInt()}';
     final imageText = text ?? imageSize;
     final data =
-        "https://dummyimage.com/$imageSize.${imageType.name}/${bgColor.toHex(
+        'https://dummyimage.com/$imageSize.${imageType.name}/${bgColor.toHex(
       leadingHashSign: false,
-    )}/${fgColor.toHex(leadingHashSign: false)}&text=$imageText";
+    )}/${fgColor.toHex(leadingHashSign: false)}&text=$imageText';
     // debugPrint(data);
     return data;
   }

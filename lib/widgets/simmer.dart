@@ -236,7 +236,7 @@ class TextShimmerState extends State<TextShimmer>
                   _animation.value - 2,
                 ]).createShader(bounds),
             child: const Text(
-              "Testing Shimmer..................",
+              'Testing Shimmer..................',
               style: TextStyle(
                 fontSize: 40,
               ),
