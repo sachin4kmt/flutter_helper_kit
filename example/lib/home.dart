@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                         dialogColor: Colors.white,
                       );
                     },
-                    child: const Text('hey'))
+                    child: const Text('hey')),
               ]),
         ),
       ),

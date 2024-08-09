@@ -86,12 +86,12 @@ class _TimerBuilderState extends State<TimerBuilder> {
     _cancel();
   }
 
-  _init() {
+  void _init() {
     completer = Completer();
     stream = createTimerStream(widget.generator, completer.future);
   }
 
-  _cancel() {
+  void _cancel() {
     completer.complete();
   }
 }

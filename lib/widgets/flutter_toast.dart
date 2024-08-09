@@ -126,7 +126,7 @@ class _FlutterToastView {
   }
 
   /// dismisses the toast message after the duration provided
-  static dismiss() async {
+  static Future<void> dismiss() async {
     if (!_isVisible) {
       return;
     }

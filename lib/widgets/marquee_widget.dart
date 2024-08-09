@@ -59,7 +59,7 @@ class Marquee extends StatelessWidget {
 
   final ScrollController scrollController = ScrollController();
 
-  scroll() async {
+  void scroll() async {
     while (true) {
       if (scrollController.hasClients) {
         await Future.delayed(pauseDuration);

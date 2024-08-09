@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// A widget that handles double press back navigation.
 ///
@@ -32,10 +31,10 @@ class _DoublePressBackWidgetState extends State<DoublePressBackWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
+    return PopScope<bool>(
       // Allow pop only after 2 seconds since last press
       canPop: _currentBackPressTime != null,
-      onPopInvoked: (bool didPop) async {
+      onPopInvokedWithResult: (didPop, result) async {
         if (didPop) {
           // User confirmed with double press within 2 seconds
           widget.onWillPop?.call(); // Call the user-defined callback

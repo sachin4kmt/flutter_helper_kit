@@ -1,23 +1,55 @@
 extension MapExtensions on dynamic {
-  /// Safely retrieves a value from a Map using the specified [key].
+  /// Converts the value to a [num] if possible.
   ///
-  /// Returns the value associated with the [key] if it exists in the map,
-  /// otherwise returns null.
+  /// Returns the value as [num] if it's already a [num],
+  /// or attempts to parse it if it's a [String].
+  /// Returns `null` if conversion is not possible.
+  num? toNum() {
+    if (this is num) {
+      return this as num;
+    } else if (this is String) {
+      return num.tryParse(this as String);
+    }
+    return null;
+  }
+
+  /// Converts the value to a [double].
   ///
-  /// Example usage:
-  /// ```dart
-  /// Map<String, dynamic> data = {'name': 'John Doe', 'age': 30};
-  /// dynamic name = data.getIfExist('name'); // Output: 'John Doe'
-  /// dynamic profession = data.getIfExist('profession'); // Output: null
-  /// ```
-  // @Deprecated('Deprecated on dynamic')
-  // dynamic getIfExist(String key) {
-  //   if(this is Map){
-  //     final Map<String, dynamic> map = this;
-  //     if (map.containsKey(key)) {
-  //       return map[key];
-  //     }
-  //   }
-  //   return null;
-  // }
+  /// - Returns `0.0` if the value is `null`.
+  /// - Returns the value if it's already a [double].
+  /// - Converts and returns the value if it's an [int] or a [String].
+  /// - Throws a [FormatException] if conversion is not possible.
+  double toDouble() {
+    if (this == null) {
+      return 0.0;
+    } else if (this is double) {
+      return this as double;
+    } else if (this is int) {
+      return (this as int).toDouble();
+    } else if (this is String) {
+      return double.tryParse(this as String) ?? 0.0;
+    } else {
+      throw FormatException('Cannot convert $this to double');
+    }
+  }
+
+  /// Converts the value to an [int].
+  ///
+  /// - Returns `0` if the value is `null`.
+  /// - Returns the value if it's already an [int].
+  /// - Converts and returns the value if it's a [double] or a [String].
+  /// - Throws a [FormatException] if conversion is not possible.
+  int toInt() {
+    if (this == null) {
+      return 0;
+    } else if (this is int) {
+      return this as int;
+    } else if (this is double) {
+      return (this as double).toInt();
+    } else if (this is String) {
+      return int.tryParse(this as String) ?? 0;
+    } else {
+      throw FormatException('Cannot convert $this to int');
+    }
+  }
 }
