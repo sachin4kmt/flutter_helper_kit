@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_helper_kit/extensions/bool_extensions.dart';
-import 'package:flutter_helper_kit/extensions/string_extension.dart';
+import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// Default App Button
 class AppButton extends StatefulWidget {

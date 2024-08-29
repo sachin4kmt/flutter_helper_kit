@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_helper_kit/extensions/color_extension.dart';
+import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 enum ImageSet {
   any('any'),

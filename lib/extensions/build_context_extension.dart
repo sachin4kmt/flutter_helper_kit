@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_helper_kit/extensions/integer_extension.dart';
+import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 extension BuildContextExension on BuildContext {
   /// Returns the screen size.
@@ -234,9 +234,7 @@ extension BuildContextExension on BuildContext {
         ),
       );
     } catch (e) {
-      if (kDebugMode) {
-        print('SnackBar Error $e');
-      }
+      print('SnackBar Error $e');
     }
   }
 }

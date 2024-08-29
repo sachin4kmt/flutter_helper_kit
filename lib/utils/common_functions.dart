@@ -1,5 +1,5 @@
 import 'dart:math' as math;
-import 'package:flutter_helper_kit/extensions/number_extension.dart';
+import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// Checks if a string matches a specified pattern.
 ///

@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'dart:io';
+// import 'dart:html';
+// import 'dart:io' if (dart.library.html) 'dart:ui_web';
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
@@ -41,7 +42,7 @@ Future<T> wait<T>([
 ///
 /// Returns `true` if the device is connected to the internet,
 /// otherwise returns `false`.
-Future<bool> checkConnection() async {
+/*Future<bool> checkConnection() async {
   try {
     final result = await InternetAddress.lookup('google.com');
     if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
@@ -51,7 +52,7 @@ Future<bool> checkConnection() async {
   } catch (e) {
     return false;
   }
-}
+}*/
 
 /// Loads bytes from the specified asset path.
 ///

@@ -19,6 +19,10 @@ extension MapExtensions on dynamic {
   /// - Returns the value if it's already a [double].
   /// - Converts and returns the value if it's an [int] or a [String].
   /// - Throws a [FormatException] if conversion is not possible.
+  @Deprecated(
+    'This method is deprecated and will be removed in a future release. '
+    'Please use other type conversion methods or handle conversions manually.',
+  )
   double toDouble() {
     if (this == null) {
       return 0.0;
@@ -39,6 +43,10 @@ extension MapExtensions on dynamic {
   /// - Returns the value if it's already an [int].
   /// - Converts and returns the value if it's a [double] or a [String].
   /// - Throws a [FormatException] if conversion is not possible.
+  @Deprecated(
+    'This method is deprecated and will be removed in a future release. '
+    'Please use other type conversion methods or handle conversions manually.',
+  )
   int toInt() {
     if (this == null) {
       return 0;
