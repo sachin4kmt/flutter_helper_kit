@@ -32,7 +32,6 @@ class HomeScreen extends StatelessWidget {
                 // SizedBox(height: 120),
                 ElevatedButton(
                     onPressed: () {
-
                       showDialogWithCloseIcon(
                         context: context,
                         title: const Icon(Icons.image, size: 40),

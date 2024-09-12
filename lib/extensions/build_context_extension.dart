@@ -29,7 +29,8 @@ extension BuildContextExension on BuildContext {
   double get statusBarHeight => MediaQuery.maybeOf(this)?.padding.top ?? 0.0;
 
   /// Return the height of navigation bar
-  double get navigationBarHeight => MediaQuery.maybeOf(this)?.padding.bottom ?? 0.0;
+  double get navigationBarHeight =>
+      MediaQuery.maybeOf(this)?.padding.bottom ?? 0.0;
 
   /// Returns Theme.of(context)
   ThemeData get theme => Theme.of(this);
@@ -88,7 +89,8 @@ extension BuildContextExension on BuildContext {
 
   // bool isDesktop() => width >= desktopBreakpointGlobal;
 
-  Orientation get orientation => MediaQuery.maybeOf(this)?.orientation ?? Orientation.portrait;
+  Orientation get orientation =>
+      MediaQuery.maybeOf(this)?.orientation ?? Orientation.portrait;
 
   ///This will return Orientation object and you can check is the landscape
   bool get isLandscape => orientation == Orientation.landscape;
