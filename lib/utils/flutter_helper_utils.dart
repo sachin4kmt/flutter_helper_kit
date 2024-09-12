@@ -64,7 +64,7 @@ Future<T> wait<T>([
 ///
 /// Example usage:
 /// ```dart
-/// Future<Uint8List> bytes = FlutterHelperUtils.getBytesFromAsset('assets/marker.png', width: 100);
+/// Uint8List bytes = getBytesFromAsset('assets/marker.png', width: 100);
 Future<Uint8List> getBytesFromAsset(String path, {int? width}) async {
   ByteData data = await rootBundle.load(path);
   if (width == null) {

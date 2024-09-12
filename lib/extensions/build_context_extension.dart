@@ -1,40 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
+import 'package:flutter/foundation.dart'; // Required for kIsWeb
 
 extension BuildContextExension on BuildContext {
   /// Returns the screen size.
-  Size get size => MediaQuery.of(this).size;
+  Size get size => MediaQuery.maybeOf(this)?.size ?? const Size(0, 0);
 
   /// return screen width
-  double get width => MediaQuery.of(this).size.width;
+  double get width => size.width;
 
   /// return screen height
-  double get height => MediaQuery.of(this).size.height;
+  double get height => size.height;
 
   /// return screen devicePixelRatio
-  double get pixelRatio => MediaQuery.of(this).devicePixelRatio;
+  double get pixelRatio => MediaQuery.maybeOf(this)?.devicePixelRatio ?? 1.0;
 
   /// Returns the minimum screen size (width or height).
-  double get minScreenSize => MediaQuery.of(this).size.shortestSide;
+  double get minScreenSize => size.shortestSide;
 
   /// Returns the maximum screen size (width or height).
-  double get maxScreenSize => MediaQuery.of(this).size.longestSide;
+  double get maxScreenSize => size.longestSide;
 
   /// returns brightness
-  Brightness get platformBrightness => MediaQuery.of(this).platformBrightness;
+  Brightness get platformBrightness =>
+      MediaQuery.maybeOf(this)?.platformBrightness ?? Brightness.light;
 
   /// Return the height of status bar
-  double get statusBarHeight => MediaQuery.of(this).padding.top;
+  double get statusBarHeight => MediaQuery.maybeOf(this)?.padding.top ?? 0.0;
 
   /// Return the height of navigation bar
-  double get navigationBarHeight => MediaQuery.of(this).padding.bottom;
+  double get navigationBarHeight => MediaQuery.maybeOf(this)?.padding.bottom ?? 0.0;
 
   /// Returns Theme.of(context)
   ThemeData get theme => Theme.of(this);
 
   /// Returns Theme.of(context).textTheme
-  TextTheme get textTheme => Theme.of(this).textTheme;
+  TextTheme get textTheme => theme.textTheme;
 
   /// Returns DefaultTextStyle.of(context)
   DefaultTextStyle get defaultTextStyle => DefaultTextStyle.of(this);
@@ -43,10 +44,10 @@ extension BuildContextExension on BuildContext {
   FormState? get formState => Form.of(this);
 
   /// Returns Scaffold.of(context)
-  ScaffoldState get scaffoldState => Scaffold.of(this);
+  ScaffoldState? get scaffoldState => Scaffold.maybeOf(this);
 
   /// Returns Overlay.of(context)
-  OverlayState? get overlayState => Overlay.of(this);
+  OverlayState? get overlayState => Overlay.maybeOf(this);
 
   /// Returns primaryColor Color
   Color get primaryColor => theme.primaryColor;
@@ -81,13 +82,13 @@ extension BuildContextExension on BuildContext {
   ///Get  Named Route arguments
   dynamic get getArguments => ModalRoute.of(this)?.settings.arguments;
 
-  // bool isPhone() => MediaQuery.of(this).size.width < tabletBreakpointGlobal;
+  // bool isPhone() => width < tabletBreakpointGlobal;
 
-  // bool isTablet() => MediaQuery.of(this).size.width < desktopBreakpointGlobal && MediaQuery.of(this).size.width >= tabletBreakpointGlobal;
+  // bool isTablet() => width < desktopBreakpointGlobal && width >= tabletBreakpointGlobal;
 
-  // bool isDesktop() => MediaQuery.of(this).size.width >= desktopBreakpointGlobal;
+  // bool isDesktop() => width >= desktopBreakpointGlobal;
 
-  Orientation get orientation => MediaQuery.of(this).orientation;
+  Orientation get orientation => MediaQuery.maybeOf(this)?.orientation ?? Orientation.portrait;
 
   ///This will return Orientation object and you can check is the landscape
   bool get isLandscape => orientation == Orientation.landscape;
@@ -123,22 +124,25 @@ extension BuildContextExension on BuildContext {
   TargetPlatform get platform => Theme.of(this).platform;
 
   /// Returns `true` if the current platform is Android.
-  bool get isAndroid => Theme.of(this).platform == TargetPlatform.android;
+  bool get isAndroid => platform == TargetPlatform.android;
 
   /// Returns `true` if the current platform is iOS.
-  bool get isIOS => Theme.of(this).platform == TargetPlatform.iOS;
+  bool get isIOS => platform == TargetPlatform.iOS;
 
   /// Returns `true` if the current platform is macOS.
-  bool get isMacOS => Theme.of(this).platform == TargetPlatform.macOS;
+  bool get isMacOS => platform == TargetPlatform.macOS;
 
   /// Returns `true` if the current platform is Windows.
-  bool get isWindows => Theme.of(this).platform == TargetPlatform.windows;
+  bool get isWindows => platform == TargetPlatform.windows;
 
   /// Returns `true` if the current platform is Fuchsia.
-  bool get isFuchsia => Theme.of(this).platform == TargetPlatform.fuchsia;
+  bool get isFuchsia => platform == TargetPlatform.fuchsia;
 
   /// Returns `true` if the current platform is Linux.
-  bool get isLinux => Theme.of(this).platform == TargetPlatform.linux;
+  bool get isLinux => platform == TargetPlatform.linux;
+
+  /// Returns `true` if the current platform is Linux.
+  bool get isWeb => kIsWeb;
 
   ///To open the drawer, use either ScaffoldState.openDrawer
   void openDrawer() => Scaffold.of(this).openDrawer();

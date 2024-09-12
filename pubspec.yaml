@@ -1,6 +1,6 @@
 name: flutter_helper_kit
 description: flutter_helper_kit helps to improve less code extensions and widgets.
-version: 0.0.15
+version: 0.0.17
 homepage: https://github.com/sachin4kmt/flutter_helper_kit
 #repository: https://github.com/sachin4kmt/flutter_helper_kit
 #issue_tracker: https://github.com/sachin4kmt/flutter_helper_kit/issues
@@ -8,10 +8,10 @@ homepage: https://github.com/sachin4kmt/flutter_helper_kit
 platforms:
   android:
   ios:
-#  linux:
-#  macos:
-#  web:
-#  windows:
+  linux:
+  macos:
+  web:
+  windows:
 
 environment:
   sdk: '>=3.1.5 <4.0.0'
