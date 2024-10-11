@@ -121,6 +121,28 @@ extension MyIterable<T> on Iterable<T>? {
   }
 }
 
+extension MyIterableNotNull<T> on Iterable<T?>? {
+  /// Maps over the iterable and skips null values, returning null if the iterable itself is null
+  Iterable<E> mapNonNull<E>(E? Function(T element) f) {
+    // If the iterable is null, return null
+    if (this == null) return <E>[];
+    // Otherwise, apply the map function
+    return this!
+        .where((e) => e != null)
+
+        /// Filter out null values from the iterable
+        .map((e) => f(e!))
+
+        /// Apply the map function to non-null elements
+        .where((e) => e != null)
+
+        /// Filter out null results from the map function
+        .cast<E>();
+
+    /// Cast to non-nullable type
+  }
+}
+
 extension ListExt<T> on List<T>? {
   ///convert List to List of widget
   List<Widget> toWidgetList(Widget Function(T value) mapFunc) =>
@@ -234,6 +256,20 @@ extension ListExt<T> on List<T>? {
       return null;
     }
     return (index < 0 || index >= this!.length) ? null : this![index];
+  }
+}
+
+extension ListExtNotNoll<T> on List<T?>? {
+  /// Maps over the list and skips null values, returning an empty list if the list itself is null
+  List<R> mapNonNull<R>(R Function(T element) f) {
+    // If the list is null, return an empty list
+    if (this == null) return <R>[];
+
+    // Filter out null values and apply the map function
+    return this!
+        .where((e) => e != null) // Filter out null values from the list
+        .map((e) => f(e!)) // Apply the map function to non-null elements
+        .toList(); // Return the result as a list
   }
 }
 

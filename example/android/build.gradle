@@ -1,12 +1,13 @@
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '2.0.20'
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:8.7.0'
+//        classpath 'com.android.tools.build:gradle:7.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -17,15 +18,16 @@ allprojects {
         mavenCentral()
     }
 }
-
-rootProject.buildDir = '../build'
+rootProject.layout.buildDirectory = file('../build')
 subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    def directory = "${rootProject.layout.buildDirectory.get().asFile}/${project.name}"
+    logger.quiet("directory is: $directory") // debugging
+    project.layout.buildDirectory = file(directory)
 }
 subprojects {
-    project.evaluationDependsOn(':app')
+    project.evaluationDependsOn(":app")
 }
 
 tasks.register("clean", Delete) {
-    delete rootProject.buildDir
+    delete rootProject.layout.buildDirectory
 }

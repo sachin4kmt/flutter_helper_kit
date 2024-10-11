@@ -57,10 +57,14 @@ class HomeScreen extends StatelessWidget {
                     child: const Text('hey')),
                 ElevatedButton(
                     onPressed: () {
-                       DateTime date1 = DateTime.now();
-
+                      List<String?>? list;
+                      list = ['a', null, 'b'];
+                      final a = list.mapNonNull((e) => e);
+                      print(a);
+                      List<dynamic> b = [];
                     },
                     child: const Text('Check')),
+                // AppButton(text: 'Click',color: Colors.red,onTap: (){},),
               ]),
         ),
       ),

@@ -1,5 +1,3 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
@@ -44,9 +42,9 @@ Future<T?> showDialogWithCloseIcon<T>({
           tagAnimation: closeButtonAnimation ??
               const FlutterTagAnimation.rotation(toAnimate: false),
           onTap: () {
-            if(onTapCloseIcon!=null){
+            if (onTapCloseIcon != null) {
               onTapCloseIcon.call();
-            }else {
+            } else {
               Navigator.of(context).pop();
             }
           },
