@@ -1,7 +1,9 @@
+import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
-Future<void> showDialogWithCloseIcon({
+Future<T?> showDialogWithCloseIcon<T>({
   required BuildContext context,
 
   ///title Button
@@ -12,6 +14,7 @@ Future<void> showDialogWithCloseIcon({
 
   ///Close Button
   Widget? closeIcon,
+  VoidCallback? onTapCloseIcon,
   EdgeInsets? insetPadding,
   bool barrierDismissible = true,
   bool useRootNavigator = true,
@@ -22,7 +25,7 @@ Future<void> showDialogWithCloseIcon({
   Color? dialogColor,
   SharpRectangleBorder? shape,
 }) async {
-  return showDialog<void>(
+  return showDialog<T>(
     context: context,
     useRootNavigator: useRootNavigator,
     barrierDismissible: barrierDismissible,
@@ -41,7 +44,11 @@ Future<void> showDialogWithCloseIcon({
           tagAnimation: closeButtonAnimation ??
               const FlutterTagAnimation.rotation(toAnimate: false),
           onTap: () {
-            Navigator.of(context).pop();
+            if(onTapCloseIcon!=null){
+              onTapCloseIcon.call();
+            }else {
+              Navigator.of(context).pop();
+            }
           },
           tagContent: closeIcon ??
               const Icon(

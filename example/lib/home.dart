@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
@@ -53,6 +55,12 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                     child: const Text('hey')),
+                ElevatedButton(
+                    onPressed: () {
+                       DateTime date1 = DateTime.now();
+
+                    },
+                    child: const Text('Check')),
               ]),
         ),
       ),
