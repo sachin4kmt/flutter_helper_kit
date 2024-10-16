@@ -1,6 +1,9 @@
 ## 0.0.20
 * TODO: String Extension Update
 
+## 0.0.19
+* TODO: Dart Format Update
+
 ## 0.0.18
 * TODO: Example update Android Version
 
