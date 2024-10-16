@@ -15,9 +15,9 @@ extension NullStringExtension on String? {
 
   /// Checks if the given String [s] is null or empty
   bool get isEmptyOrNull =>
-      this == null ||
-      (this != null && this!.isEmpty) ||
-      (this != null && this! == 'null');
+      this?.trim() == null ||
+      (this?.trim() != null && this.validate().isEmpty) ||
+      (this?.trim() != null && this.validate() == 'null');
 
   /// If Given String [s] is Null return blank String
   String get defaultBlank => isEmptyOrNull ? '' : this!;

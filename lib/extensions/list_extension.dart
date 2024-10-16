@@ -123,20 +123,14 @@ extension MyIterable<T> on Iterable<T>? {
 
 extension MyIterableNotNull<T> on Iterable<T?>? {
   /// Maps over the iterable and skips null values, returning null if the iterable itself is null
-  Iterable<E> mapNonNull<E>(E? Function(T element) f) {
+  Iterable<E>? mapNonNull<E>(E? Function(T element) f) {
     // If the iterable is null, return null
     if (this == null) return <E>[];
     // Otherwise, apply the map function
-    return this!
+    return (this ?? <T?>[])
         .where((e) => e != null)
-
-        /// Filter out null values from the iterable
-        .map((e) => f(e!))
-
-        /// Apply the map function to non-null elements
+        .map((e) => f(e as T))
         .where((e) => e != null)
-
-        /// Filter out null results from the map function
         .cast<E>();
 
     /// Cast to non-nullable type
@@ -266,10 +260,12 @@ extension ListExtNotNoll<T> on List<T?>? {
     if (this == null) return <R>[];
 
     // Filter out null values and apply the map function
-    return this!
-        .where((e) => e != null) // Filter out null values from the list
-        .map((e) => f(e!)) // Apply the map function to non-null elements
-        .toList(); // Return the result as a list
+    return this
+            ?.where((e) => e != null) // Filter out null values from the list
+            .map(
+                (e) => f(e as T)) // Apply the map function to non-null elements
+            .toList() ??
+        <R>[]; // Return the result as a list
   }
 }
 
