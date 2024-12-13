@@ -48,7 +48,6 @@ export 'utils/random_image.dart';
 export 'utils/close_icon_show_dialog.dart';
 export 'utils/pattern.dart';
 
-
 ///Widgets
 export 'widgets/hide_keyboard.dart';
 export 'widgets/custom_indicator.dart';
@@ -90,4 +89,3 @@ export 'widgets/avatar_glow/outline_glow_multi_color.dart';
 
 ///Constants String
 export 'constants/constants.dart';
-

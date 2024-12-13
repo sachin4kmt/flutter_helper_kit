@@ -377,8 +377,10 @@ class AppTextFieldState extends State<AppTextField> {
       focusNode: widget.focus,
       style: widget.textStyle ?? primaryTextStyle(),
       textAlign: widget.textAlign,
-      maxLines: widget.maxLines.validate( widget.textFieldType == TextFieldType.multiline ? 10 : 1),
-      minLines: widget.minLines.validate( widget.textFieldType == TextFieldType.multiline ? 2 : 1),
+      maxLines: widget.maxLines
+          .validate(widget.textFieldType == TextFieldType.multiline ? 10 : 1),
+      minLines: widget.minLines
+          .validate(widget.textFieldType == TextFieldType.multiline ? 2 : 1),
       autofocus: widget.autoFocus,
       enabled: widget.enabled,
       onChanged: widget.onChanged,

@@ -36,7 +36,8 @@ extension NullableElementIterableExtension<T> on Iterable<T?> {
     T? maxElement;
     K? maxKey;
 
-    for (final element in this.whereType<T>()) { // Filters out nulls
+    for (final element in this.whereType<T>()) {
+      // Filters out nulls
       final key = selector(element);
       if (maxKey == null || key.compareTo(maxKey) > 0) {
         maxElement = element;
@@ -51,7 +52,6 @@ extension NullableElementIterableExtension<T> on Iterable<T?> {
 extension NullableIterableExtension<T> on Iterable<T?>? {
   /// Returns an empty iterable if this is null.
   Iterable<T> validate() => this?.whereType<T>() ?? const Iterable.empty();
-
 
   /// Maps each non-null element using [mapper].
   Iterable<R> mapNonNull<R>(R Function(T element) mapper) =>
@@ -71,20 +71,22 @@ extension NullableIterableExtension<T> on Iterable<T?>? {
   }
 
   /// Returns a new iterable with duplicates removed, preserving nulls.
-  Iterable<T?> distinct() => this == null ? Iterable.empty() : validate().toSet();
+  Iterable<T?> distinct() =>
+      this == null ? Iterable.empty() : validate().toSet();
 
   /// Groups non-null elements by the given [key] function.
   Map<K, List<T>> groupNonNullBy<K>(K Function(T element) key) =>
       validate().groupBy(key);
 
   /// Finds the maximum value based on a selector or returns null if empty or all null.
-  T? maxBy<K extends Comparable<K>>(K Function(T element) selector) => validate().maxBy(selector);
+  T? maxBy<K extends Comparable<K>>(K Function(T element) selector) =>
+      validate().maxBy(selector);
   // T? maxBy<K extends Comparable<K>>(K Function(T element) selector) => validate().reduceOrNull((a, b) => selector(a).compareTo(selector(b)) >= 0 ? a : b);
 
   /// Finds the minimum value based on a selector or returns null if empty or all null.
   T? minBy<K extends Comparable<K>>(K Function(T element) selector) =>
-      validate().reduceOrNull((a, b) =>
-      selector(a).compareTo(selector(b)) <= 0 ? a : b);
+      validate().reduceOrNull(
+          (a, b) => selector(a).compareTo(selector(b)) <= 0 ? a : b);
 
   /// Filters the elements based on [predicate], ignoring nulls.
   Iterable<T> whereNonNull(bool Function(T element) predicate) =>
@@ -111,8 +113,7 @@ extension NullableIterableExtension<T> on Iterable<T?>? {
   }
 
   /// Joins the non-null elements into a string with the given [separator].
-  String joinNonNull([String separator = '']) =>
-      validate().join(separator);
+  String joinNonNull([String separator = '']) => validate().join(separator);
 
   /// Returns a set of elements that are common between this iterable and [other].
   Iterable<T> intersectWith(Iterable<T> other) =>

@@ -9,7 +9,6 @@ extension NumExt on num? {
   /// Validate given double is not null and returns given value if null.
   num validate({num value = 0}) => this ?? value;
 
-
   /// Determines if [this] is between [a] and [b] whereas the bounds
   /// are inclusive.
   bool between(int min, int max) => validate() >= min && validate() <= max;
@@ -22,7 +21,7 @@ extension NumExt on num? {
   bool isInRange(num min, num max) => (this ?? 0) >= min && (this ?? 0) <= max;
 
   /// Get the lorem ipsum text of [this] words.
-  String  generateLoremIpsumWords() {
+  String generateLoremIpsumWords() {
     if (isNullOrEmpty) return '';
     var words =
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -53,21 +52,21 @@ extension NumExt on num? {
     int decimalPlaces = 0,
     String Function(num value)? customFormat,
   }) {
-
-    if(this.isNullOrEmpty){
+    if (this.isNullOrEmpty) {
       return '';
     }
     // Apply a custom format if provided
     if (customFormat != null) {
-      return customFormat(this??0);
+      return customFormat(this ?? 0);
     }
 
     // Round the number to the specified decimal places
-    final roundedValue =
-    decimalPlaces > 0 ? (this??0.0).toStringAsFixed(decimalPlaces) : toString();
+    final roundedValue = decimalPlaces > 0
+        ? (this ?? 0.0).toStringAsFixed(decimalPlaces)
+        : toString();
 
     // Add prefix and suffix if the number exceeds the threshold
-    if ((this??0) > max) {
+    if ((this ?? 0) > max) {
       return '${prefix ?? ''}$roundedValue${suffix ?? ''}';
     }
 
@@ -98,6 +97,4 @@ extension NumExt on num? {
           SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
   SharpRadius get sharpRadius =>
       SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1);
-
-
 }

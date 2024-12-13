@@ -28,7 +28,7 @@ extension MapExtension<K, V> on Map<K, V>? {
 
   /// Capitalize all keys First Character in the map.
   /// Returns a new map with capitalized keys.
-  Map<String, V>  capitalizeKeysFirstCharacter() {
+  Map<String, V> capitalizeKeysFirstCharacter() {
     if (isNullOrEmpty) return {};
     final map = <String, V>{};
     for (final key in this!.keys) {

@@ -23,9 +23,7 @@ class HomeScreen extends StatelessWidget {
           AppButton(
             text: 'DialogForm Example',
             // color: Colors.red,
-            onTap: () {
-
-            },
+            onTap: () {},
           ),
           4.height(),
         ],

@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 
 class GradientText extends StatelessWidget {
   const GradientText(
-      this.text, {
-        Key? key,
-        this.style,
-        this.strutStyle,
-        this.textAlign,
-        this.textDirection,
-        this.locale,
-        this.softWrap,
-        this.overflow,
-        this.textScaler,
-        this.maxLines,
-        this.textWidthBasis,
-        this.textHeightBehavior,
-        this.selectionColor,
-        this.gradient,
-        this.debug = false,
-      }) : super(key: key);
+    this.text, {
+    Key? key,
+    this.style,
+    this.strutStyle,
+    this.textAlign,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
+    this.overflow,
+    this.textScaler,
+    this.maxLines,
+    this.textWidthBasis,
+    this.textHeightBehavior,
+    this.selectionColor,
+    this.gradient,
+    this.debug = false,
+  }) : super(key: key);
 
   /// The text to display
   final String? text;
@@ -92,4 +92,3 @@ class GradientText extends StatelessWidget {
     );
   }
 }
-

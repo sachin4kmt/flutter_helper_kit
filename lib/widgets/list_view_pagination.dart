@@ -118,7 +118,7 @@ class _InfiniteListViewState extends State<ListViewPagination> {
           physics: widget.physics,
           shrinkWrap: widget.shrinkWrap,
           separatorBuilder:
-          widget._separatorBuilder ?? (_, __) => const Divider(),
+              widget._separatorBuilder ?? (_, __) => const Divider(),
           itemCount: widget.hasNext ? widget.itemCount + 1 : widget.itemCount,
         ),
       );

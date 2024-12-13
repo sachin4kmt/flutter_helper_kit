@@ -28,7 +28,7 @@ extension DateTimeExtension on DateTime {
   /// DateTime yesterday = DateTime.now().subtract(Duration(days: 1));
   /// print(yesterday.isYesterday); // Output: true
   /// ```
-  bool  isYesterday() {
+  bool isYesterday() {
     if (isNull) {
       return false;
     }
@@ -45,7 +45,7 @@ extension DateTimeExtension on DateTime {
   /// DateTime tomorrow = DateTime.now().add(Duration(days: 1));
   /// print(tomorrow.isTomorrow); // Output: true
   /// ```
-  bool  isTomorrow() {
+  bool isTomorrow() {
     if (isNull) {
       return false;
     }
@@ -67,7 +67,7 @@ extension DateTimeExtension on DateTime {
   /// The `dateOnly` extension provides a convenient way to obtain a new `DateTime` instance
   /// with the same date as the original but with the time set to midnight (00:00:00).
   /// This is useful when you want to work specifically with the date component and ignore the time.
-  DateTime  dateOnly() => DateTime(year, month, day);
+  DateTime dateOnly() => DateTime(year, month, day);
 
   /// Adds a certain amount of days to this date and returns a new [DateTime] instance.
   ///
@@ -126,7 +126,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `nextDay` extension provides a convenient way to obtain a new [DateTime] instance
   /// representing the day immediately following the original date.
-  DateTime  nextDay() => addDays(1);
+  DateTime nextDay() => addDays(1);
 
   /// Returns a [DateTime] representing the day before this [DateTime].
   ///
@@ -139,7 +139,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `previousDay` extension provides a convenient way to obtain a new [DateTime] instance
   /// representing the day immediately preceding the original date.
-  DateTime  previousDay() => addDays(-1);
+  DateTime previousDay() => addDays(-1);
 
   /// Checks whether two [DateTime] instances are on the same day.
   ///
@@ -170,7 +170,7 @@ extension DateTimeExtension on DateTime {
   /// The `isFirstDayOfMonth` extension returns [true] if the date is the first day of the month,
   /// and [false] otherwise. It compares the year, month, and day components of the [DateTime]
   /// instance with the date of the first day of the same month.
-  bool  isFirstDayOfMonth() => isSameDay(firstDayOfMonth());
+  bool isFirstDayOfMonth() => isSameDay(firstDayOfMonth());
 
   /// Checks if this [DateTime] instance represents the last day of the month.
   ///
@@ -186,7 +186,7 @@ extension DateTimeExtension on DateTime {
   /// The `isLastDayOfMonth` extension returns [true] if the date is the last day of the month,
   /// and [false] otherwise. It compares the year, month, and day components of the [DateTime]
   /// instance with the date of the last day of the same month.
-  bool  isLastDayOfMonth() => isSameDay(lastDayOfMonth());
+  bool isLastDayOfMonth() => isSameDay(lastDayOfMonth());
 
   /// Returns a [DateTime] instance representing the first day of the month of this [DateTime].
   ///
@@ -199,7 +199,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `firstDayOfMonth` extension returns a new [DateTime] instance with the same year and month
   /// as the original date but with the day set to 1 and the time set to midnight (00:00:00).
-  DateTime  firstDayOfMonth() => DateTime(year, month);
+  DateTime firstDayOfMonth() => DateTime(year, month);
 
   /// Returns a [DateTime] instance representing the first day of the week of this [DateTime].
   ///
@@ -214,7 +214,7 @@ extension DateTimeExtension on DateTime {
   /// and hour as the original date but adjusted to the first day of the week. Daylight Saving
   /// Time is handled by setting the hour to 12:00 Noon rather than the default of Midnight (00:00:00).
   /// The week in this context is considered to start from Monday.
-  DateTime  firstDayOfWeek() {
+  DateTime firstDayOfWeek() {
     /// Handle Daylight Savings by setting hour to 12:00 Noon
     /// rather than the default of Midnight
     final day = DateTime.utc(year, month, this.day, 12);

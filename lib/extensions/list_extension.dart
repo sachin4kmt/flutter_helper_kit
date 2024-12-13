@@ -41,7 +41,7 @@ extension MyIterable<T> on Iterable<T>? {
   }
 
   //remove Last element in [list]
-  List<T>  removeLastElement() {
+  List<T> removeLastElement() {
     List<T> list = [];
     if (isNullOrEmpty) return list;
     var thisList = this!.toList();
@@ -251,8 +251,6 @@ extension ListExt<T> on List<T>? {
     }
     return (index < 0 || index >= this!.length) ? null : this![index];
   }
-
-
 }
 
 extension ListExtNotNoll<T> on List<T?>? {

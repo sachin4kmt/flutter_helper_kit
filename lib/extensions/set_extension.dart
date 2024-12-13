@@ -128,7 +128,8 @@ extension SetExtension<E> on Set<E> {
   }
 
   /// Returns a new set with elements sorted in descending order by the given [key] function.
-  Set<E> sortedByDescending<K extends Comparable<K>>(K Function(E element) key) {
+  Set<E> sortedByDescending<K extends Comparable<K>>(
+      K Function(E element) key) {
     return sorted((a, b) => key(b).compareTo(key(a)));
   }
 }

@@ -14,5 +14,4 @@ class ConstantsString {
   static const MAIL_TO_PREFIX = 'mailto:';
   static const TEL_PREFIX = 'tel:';
   static const int passwordLengthGlobal = 6;
-
 }

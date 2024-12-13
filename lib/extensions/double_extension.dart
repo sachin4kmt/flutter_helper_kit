@@ -49,6 +49,7 @@ extension DoubleOrNullExtensions on double? {
   /// ```
   Size squareSize() => validate().squareSize();
 }
+
 extension DoubleExtensions on double {
   /// Returns a [BorderRadius] with circular radius.
   ///

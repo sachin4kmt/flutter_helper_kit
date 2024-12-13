@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
-
 class PaginationListViewExample extends StatefulWidget {
   const PaginationListViewExample({super.key});
 
   @override
-  State<PaginationListViewExample> createState() => _PaginationListViewExampleState();
+  State<PaginationListViewExample> createState() =>
+      _PaginationListViewExampleState();
 }
 
 class _PaginationListViewExampleState extends State<PaginationListViewExample> {
@@ -25,7 +25,8 @@ class _PaginationListViewExampleState extends State<PaginationListViewExample> {
 
     await Future.delayed(const Duration(seconds: 2));
 
-    final newItems = List.generate(10, (index) => 'Item ${items.length + index}');
+    final newItems =
+        List.generate(10, (index) => 'Item ${items.length + index}');
     setState(() {
       items.addAll(newItems);
       isLoading = false;

@@ -10,14 +10,14 @@ extension IntNullableExtensions on int? {
   bool isNull() => this == null;
 
   /// Leaves given height of space
-  Widget  height([int value = 0]) => validate(value).height();
+  Widget height([int value = 0]) => validate(value).height();
 
   /// Leaves given width of space
   Widget width([int value = 0]) => validate(value).width();
 
   /// This extension provides a method to convert a nullable int value to a Widget that
   /// takes a fixed amount of space in the direction of its parent.
-  Widget  space([int value = 0]) =>validate(value).space();
+  Widget space([int value = 0]) => validate(value).space();
 
   /// A widget that takes, at most, an amount of space in a [Row], [Column],or [Flex] widget.
   /// The `maxSpace` property converts the integer value to a [MaxSpace] widget,
@@ -94,8 +94,6 @@ extension IntNullableExtensions on int? {
   /// Returns true if the value is `1`
   /// otherwise false is returned.
   bool toBool([int value = 1]) => validate().toBool(value);
-
-
 
   /// Validate given int is not null and returns given value if null.
   String? addZeroPrefix() {
@@ -204,8 +202,7 @@ extension IntExtensions on int {
   /// ```dart
   /// 5.circularRadius
   /// ```
-  BorderRadius circularBorderRadius() =>
-      BorderRadius.circular(this.toDouble());
+  BorderRadius circularBorderRadius() => BorderRadius.circular(this.toDouble());
 
   /// Returns true if the value is `1`
   /// otherwise false is returned.
@@ -235,9 +232,10 @@ extension IntExtensions on int {
       charCount = toString().trim().length;
     }
     return (toString().trim().substring(toString().trim().length - charCount))
-        .toInt() ??
+            .toInt() ??
         0;
   }
+
   /// returns month name from the given int value between [1-12]
   String toMonthName({bool isHalfName = false}) {
     assert(this >= 1 && this <= 12);

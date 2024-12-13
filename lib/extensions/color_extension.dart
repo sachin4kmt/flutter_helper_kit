@@ -20,7 +20,8 @@ extension Hex on Color {
   /// replaced with the given `opacity` (which ranges from 0.0 to 1.0).
   Color withColorOpacity(double value) {
     assert(value >= 0.0 && value <= 1.0);
-    return this.withValues(alpha: value,red: r,blue: b,green: g,colorSpace: colorSpace);
+    return this.withValues(
+        alpha: value, red: r, blue: b, green: g, colorSpace: colorSpace);
   }
 
   /// Returns `true` if the color is dark, otherwise `false`.
@@ -79,7 +80,7 @@ extension Hex on Color {
   MaterialColor createMaterialColor() {
     List strengths = <double>[.05];
     Map<int, Color> swatch = <int, Color>{};
-    final int  red=r.toInt() ,  green=g.toInt() ,  blue=b.toInt() ;
+    final int red = r.toInt(), green = g.toInt(), blue = b.toInt();
 
     for (int i = 1; i < 10; i++) {
       strengths.add(0.1 * i);
@@ -117,6 +118,7 @@ extension Hex on Color {
     return hslDark.toColor();
   }
 }
+
 extension MaterialColorExtension on MaterialColor {
   /// Converts the Flutter color to a hex string.
   ///
@@ -136,7 +138,8 @@ extension MaterialColorExtension on MaterialColor {
   /// replaced with the given `opacity` (which ranges from 0.0 to 1.0).
   Color withColorOpacity(double value) {
     assert(value >= 0.0 && value <= 1.0);
-    return this.withValues(alpha: value,red: r,blue: b,green: g,colorSpace: colorSpace);
+    return this.withValues(
+        alpha: value, red: r, blue: b, green: g, colorSpace: colorSpace);
   }
 
   /// Returns `true` if the color is dark, otherwise `false`.
@@ -195,7 +198,7 @@ extension MaterialColorExtension on MaterialColor {
   MaterialColor createMaterialColor() {
     List strengths = <double>[.05];
     Map<int, Color> swatch = <int, Color>{};
-    final int  red=r.toInt() ,  green=g.toInt() ,  blue=b.toInt() ;
+    final int red = r.toInt(), green = g.toInt(), blue = b.toInt();
 
     for (int i = 1; i < 10; i++) {
       strengths.add(0.1 * i);

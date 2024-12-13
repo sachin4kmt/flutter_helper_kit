@@ -40,7 +40,8 @@ class _DottedBorderWidgetState extends State<DottedBorderWidget> {
         radius: widget.radius,
       ),
       child: SharpClipRect(
-        radius: SharpBorderRadius.all(SharpRadius(cornerRadius: widget.radius+1, sharpRatio: 1)),
+        radius: SharpBorderRadius.all(
+            SharpRadius(cornerRadius: widget.radius + 1, sharpRatio: 1)),
         child: Container(
           padding: widget.padding ?? EdgeInsets.zero,
           child: widget.child,

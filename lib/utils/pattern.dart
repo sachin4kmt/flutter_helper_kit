@@ -3,7 +3,6 @@ class RegExpPatterns {
   static String url =
       r'^((?:.|\n)*?)((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:,.;]*)?)';
 
-
   static String phone = r'(^(?:[+0]9)?[0-9]{10,12}$)';
 
   static String email =
