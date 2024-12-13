@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// returns default InputDecoration for AppTextField widget
 double defaultRadius = 16;
 const whiteColor = Colors.white;
-Color shadowColorGlobal = Colors.grey.withOpacity(0.2);
+Color shadowColorGlobal = Colors.grey.withColorOpacity(0.2);
 double defaultBlurRadius = 4.0;
 double defaultSpreadRadius = 1.0;
 // Primary Text Style

@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/extensions/list_extension.dart';
 
 extension ListWidgetExtension on List<Widget> {
-  List<Widget> get expandEvery =>
+
+  List<Widget>  expandEvery() =>
       map((Widget e) => Expanded(child: e)).toList();
 
-  List<Widget> get flexibleEvery =>
+
+  List<Widget>  flexibleEvery() =>
       map((Widget e) => Flexible(child: e)).toList();
 
-  List<Widget> get spacerEvery {
+  List<Widget>  spacerEvery() {
     List<Widget> list = <Widget>[];
     forEachIndexed((index, element) {
       index == (length - 1)

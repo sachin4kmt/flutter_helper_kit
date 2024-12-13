@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:flutter_helper_kit/flutter_helper_kit.dart';
+
 /// A widget that adds a glowing effect around with multipale colors its child.
 class AvatarGlowMultiColor extends StatefulWidget {
   /// Creates an [AvatarGlowMultiColor] widget.
@@ -227,7 +229,7 @@ class _GlowMultiPainter extends ChangeNotifier implements CustomPainter {
     // We need to draw the glows from the smallest to the largest.
     for (int i = 0; i < glowColors.length; i++) {
       final paint = Paint()
-        ..color = glowColors[i].withOpacity(opacityList[i])
+        ..color = glowColors[i].withColorOpacity(opacityList[i])
         ..style = PaintingStyle.fill;
 
       final currentRadius = glowRadius +

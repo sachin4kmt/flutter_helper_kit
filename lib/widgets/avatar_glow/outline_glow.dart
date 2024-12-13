@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:flutter_helper_kit/flutter_helper_kit.dart';
+
 class OutlineAvatarGlow extends StatefulWidget {
   /// Creates a widget that displays a glowing outline around its child.
   ///
@@ -234,7 +236,7 @@ class _OutlineGlowPainter extends ChangeNotifier implements CustomPainter {
     final opacity = _opacityTween!.evaluate(progress);
 
     final paint = Paint()
-      ..color = glowColor.withOpacity(opacity)
+      ..color = glowColor.withColorOpacity(opacity)
       ..style = PaintingStyle.stroke
       ..strokeWidth =
           4.0; // Adjust this value to change the thickness of the line

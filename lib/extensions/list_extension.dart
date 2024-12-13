@@ -33,7 +33,7 @@ extension MyIterable<T> on Iterable<T>? {
   }
 
 //remove first element in [list]
-  List<T> get removeFirstElement {
+  List<T> removeFirstElement() {
     List<T> list = [];
     if (isNullOrEmpty) return list;
     var thisList = this!.toList();
@@ -41,7 +41,7 @@ extension MyIterable<T> on Iterable<T>? {
   }
 
   //remove Last element in [list]
-  List<T> get removeLastElement {
+  List<T>  removeLastElement() {
     List<T> list = [];
     if (isNullOrEmpty) return list;
     var thisList = this!.toList();
@@ -121,7 +121,7 @@ extension MyIterable<T> on Iterable<T>? {
   }
 }
 
-extension MyIterableNotNull<T> on Iterable<T?>? {
+/*extension MyIterableNotNull<T> on Iterable<T?>? {
   /// Maps over the iterable and skips null values, returning null if the iterable itself is null
   Iterable<E>? mapNonNull<E>(E? Function(T element) f) {
     // If the iterable is null, return null
@@ -135,7 +135,7 @@ extension MyIterableNotNull<T> on Iterable<T?>? {
 
     /// Cast to non-nullable type
   }
-}
+}*/
 
 extension ListExt<T> on List<T>? {
   ///convert List to List of widget
@@ -251,6 +251,8 @@ extension ListExt<T> on List<T>? {
     }
     return (index < 0 || index >= this!.length) ? null : this![index];
   }
+
+
 }
 
 extension ListExtNotNoll<T> on List<T?>? {
@@ -268,33 +270,3 @@ extension ListExtNotNoll<T> on List<T?>? {
         <R>[]; // Return the result as a list
   }
 }
-
-/*
-///On List Of String Extension
-extension CollectionStringExtension<T extends String> on List<T> {
-  String joinToString(String separator,
-      {String prefix = "", String postfix = ""}) {
-    return prefix + this.join(separator) + postfix;
-  }
-}
-
-///On List Of num Extension
-extension CollectionNumExtension<T extends num> on List<T> {
-  T max() {
-    if (this.isNullOrEmpty()) throw Exception("Provide collection with items");
-    this.sort();
-    return this[this.length - 1];
-  }
-
-  T min() {
-    if (this.isNullOrEmpty()) throw Exception("Provide collection with items");
-    this.sort();
-    return this[0];
-  }
-
-  double avg() {
-    if (this.isNullOrEmpty()) throw Exception("Provide collection with items");
-    return this.reduce((value, element) => value + element) / this.length;
-  }
-}
- */

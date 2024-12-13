@@ -45,8 +45,8 @@ class FlutterGradientUtils {
           ),
           tagGradient.colors,
         );
-      default:
-        return null;
+      /*default:
+        return null;*/
     }
   }
 }

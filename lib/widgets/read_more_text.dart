@@ -216,9 +216,9 @@ class ReadMoreTextState extends State<ReadMoreText> {
               );
             }
             break;
-          default:
+          /*default:
             throw Exception(
-                'TrimMode type: ${widget.trimMode} is not supported');
+                'TrimMode type: ${widget.trimMode} is not supported');*/
         }
 
         return SelectableText.rich(textSpan,

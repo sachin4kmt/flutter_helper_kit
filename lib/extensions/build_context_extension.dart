@@ -202,7 +202,7 @@ extension BuildContextExension on BuildContext {
                   horizontal: horizontalPadding, vertical: verticalPadding),
           shape: RoundedRectangleBorder(
               borderRadius: borderRadius ?? BorderRadius.circular(8)),
-          backgroundColor: backgroundColor ?? primaryColor.withOpacity(.8),
+          backgroundColor: backgroundColor ?? primaryColor.withColorOpacity(.8),
           content: Row(
             children: [
               if (leading != null) leading,
@@ -213,7 +213,7 @@ extension BuildContextExension on BuildContext {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     if (title != null) title,
-                    if (title != null && description != null) 2.height,
+                    if (title != null && description != null) 2.height(),
                     if (description != null) description
                   ],
                 ),

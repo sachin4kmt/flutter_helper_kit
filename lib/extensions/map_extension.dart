@@ -5,6 +5,11 @@ extension MapExtension<K, V> on Map<K, V>? {
   /// Returns `true` if this nullable iterable is either `null` or empty.
   bool get isNullOrEmpty => this == null || this!.keys.isNullOrEmpty;
 
+  /// Checks if this nullable map is not `null` and contains at least one key-value pair.
+  ///
+  /// Returns `true` if the map is neither `null` nor empty; otherwise, returns `false`.
+  bool get isNotNullOrEmpty => !this.isNullOrEmpty;
+
   ///Add item into map if value isn't null
   ///Add item into map if key not exist
   Map<K, V>? addIfNotNull(K key, V value) {
@@ -23,11 +28,11 @@ extension MapExtension<K, V> on Map<K, V>? {
 
   /// Capitalize all keys First Character in the map.
   /// Returns a new map with capitalized keys.
-  Map<String, V> get capitalizeKeysFirstCharacter {
+  Map<String, V>  capitalizeKeysFirstCharacter() {
     if (isNullOrEmpty) return {};
     final map = <String, V>{};
     for (final key in this!.keys) {
-      map[key.toString().capitalizeFirstCharacter] = this?[key] as V;
+      map[key.toString().capitalizeFirstCharacter()] = this?[key] as V;
     }
     return map;
   }

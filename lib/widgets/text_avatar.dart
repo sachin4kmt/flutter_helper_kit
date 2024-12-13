@@ -91,18 +91,18 @@ class TextAvatar extends StatelessWidget {
     if (text.validate().isEmptyOrNull) {
       return '';
     }
-    if (text.countWords < 2) return text.take(2);
+    if (text.countWords() < 2) return text.take(2);
     final nameParts = text.trim().toUpperCase().split(RegExp('\\s+'));
     var num = math.min(nameParts.length, 2);
     for (var i = 0; i < num; i++) {
-      if (nameParts[i].isAlphabetOnly &&
-          !nameParts[i].isContainsAlphabetLetter) {
+      if (nameParts[i].isAlphabetOnly() &&
+          !nameParts[i].isContainsAlphabetLetter()) {
         initials += nameParts[i][0];
         break;
       }
-      if (nameParts[i].isContainsAlphabetLetter) {
+      if (nameParts[i].isContainsAlphabetLetter()) {
         for (var k = 0; k < nameParts[i].length; k++) {
-          if (nameParts[i][k].isAlphabetOnly) {
+          if (nameParts[i][k].isAlphabetOnly()) {
             initials += nameParts[i][k];
             break;
           }

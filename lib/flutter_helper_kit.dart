@@ -18,7 +18,6 @@ export 'extensions/color_extension.dart';
 export 'extensions/date_extension.dart';
 export 'extensions/double_extension.dart';
 export 'extensions/duration_extensions.dart';
-export 'extensions/dynamic_extension.dart';
 export 'extensions/integer_extension.dart';
 export 'extensions/list_extension.dart';
 export 'extensions/listenable_extension.dart';
@@ -29,6 +28,9 @@ export 'extensions/scope_functions_extension.dart';
 export 'extensions/string_extension.dart';
 export 'extensions/widget_extension.dart';
 export 'extensions/widget_list_extension.dart';
+export 'extensions/set_extension.dart';
+export 'extensions/list/iterable_extension.dart';
+export 'extensions/list/list_num.dart';
 
 ///Formatter
 export 'text_field/no_leading_space_formatter.dart';
@@ -44,6 +46,8 @@ export 'utils/flutter_helper_utils.dart';
 export 'utils/numberal_utils.dart';
 export 'utils/random_image.dart';
 export 'utils/close_icon_show_dialog.dart';
+export 'utils/pattern.dart';
+
 
 ///Widgets
 export 'widgets/hide_keyboard.dart';
@@ -68,6 +72,9 @@ export './widgets/flutter_list_view.dart';
 export './widgets/tap_safe_gesture.dart';
 export './widgets/sharp_corners/sharp.dart';
 export './widgets/flutter_tag/flutter_tag.dart';
+export './widgets/dotted_border_widget.dart';
+export './widgets/gradient_text.dart';
+export './widgets/list_view_pagination.dart';
 
 ///CustomPainter
 export 'custom_painter/google_logo_painter.dart';
@@ -80,3 +87,7 @@ export 'widgets/avatar_glow/avatar_glow.dart';
 export 'widgets/avatar_glow/avatar_glow_multi_color.dart';
 export 'widgets/avatar_glow/outline_glow.dart';
 export 'widgets/avatar_glow/outline_glow_multi_color.dart';
+
+///Constants String
+export 'constants/constants.dart';
+

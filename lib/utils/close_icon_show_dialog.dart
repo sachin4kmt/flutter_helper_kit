@@ -64,7 +64,7 @@ Future<T?> showDialogWithCloseIcon<T>({
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   title,
-                  20.maxSpace,
+                  20.maxSpace(),
                   content,
                 ],
               ),

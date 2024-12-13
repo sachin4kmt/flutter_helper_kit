@@ -1,3 +1,6 @@
+## 1.0.0
+* TODO: New Widgets DottedBorderWidget, Change get methods and code analyze 
+
 ## 0.0.20
 * TODO: String Extension Update
 

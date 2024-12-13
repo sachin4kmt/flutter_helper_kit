@@ -8,5 +8,5 @@ extension DurationExtension on Duration {
   /// ```dart
   /// await Duration(seconds: 1).delay();
   /// ```
-  Future<void> get delay => Future.delayed(this);
+  Future<void> delay() => Future.delayed(this);
 }

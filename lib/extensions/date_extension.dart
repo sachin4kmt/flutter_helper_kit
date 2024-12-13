@@ -13,7 +13,7 @@ extension DateTimeExtension on DateTime {
   /// Returns `true` if the given date is today.
   ///
   /// Returns `false` if the date is `null`.
-  bool get isToday {
+  bool isToday() {
     if (isNull) {
       return false;
     }
@@ -28,7 +28,7 @@ extension DateTimeExtension on DateTime {
   /// DateTime yesterday = DateTime.now().subtract(Duration(days: 1));
   /// print(yesterday.isYesterday); // Output: true
   /// ```
-  bool get isYesterday {
+  bool  isYesterday() {
     if (isNull) {
       return false;
     }
@@ -45,7 +45,7 @@ extension DateTimeExtension on DateTime {
   /// DateTime tomorrow = DateTime.now().add(Duration(days: 1));
   /// print(tomorrow.isTomorrow); // Output: true
   /// ```
-  bool get isTomorrow {
+  bool  isTomorrow() {
     if (isNull) {
       return false;
     }
@@ -67,7 +67,7 @@ extension DateTimeExtension on DateTime {
   /// The `dateOnly` extension provides a convenient way to obtain a new `DateTime` instance
   /// with the same date as the original but with the time set to midnight (00:00:00).
   /// This is useful when you want to work specifically with the date component and ignore the time.
-  DateTime get dateOnly => DateTime(year, month, day);
+  DateTime  dateOnly() => DateTime(year, month, day);
 
   /// Adds a certain amount of days to this date and returns a new [DateTime] instance.
   ///
@@ -126,7 +126,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `nextDay` extension provides a convenient way to obtain a new [DateTime] instance
   /// representing the day immediately following the original date.
-  DateTime get nextDay => addDays(1);
+  DateTime  nextDay() => addDays(1);
 
   /// Returns a [DateTime] representing the day before this [DateTime].
   ///
@@ -139,7 +139,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `previousDay` extension provides a convenient way to obtain a new [DateTime] instance
   /// representing the day immediately preceding the original date.
-  DateTime get previousDay => addDays(-1);
+  DateTime  previousDay() => addDays(-1);
 
   /// Checks whether two [DateTime] instances are on the same day.
   ///
@@ -170,7 +170,7 @@ extension DateTimeExtension on DateTime {
   /// The `isFirstDayOfMonth` extension returns [true] if the date is the first day of the month,
   /// and [false] otherwise. It compares the year, month, and day components of the [DateTime]
   /// instance with the date of the first day of the same month.
-  bool get isFirstDayOfMonth => isSameDay(firstDayOfMonth);
+  bool  isFirstDayOfMonth() => isSameDay(firstDayOfMonth());
 
   /// Checks if this [DateTime] instance represents the last day of the month.
   ///
@@ -186,7 +186,7 @@ extension DateTimeExtension on DateTime {
   /// The `isLastDayOfMonth` extension returns [true] if the date is the last day of the month,
   /// and [false] otherwise. It compares the year, month, and day components of the [DateTime]
   /// instance with the date of the last day of the same month.
-  bool get isLastDayOfMonth => isSameDay(lastDayOfMonth);
+  bool  isLastDayOfMonth() => isSameDay(lastDayOfMonth());
 
   /// Returns a [DateTime] instance representing the first day of the month of this [DateTime].
   ///
@@ -199,7 +199,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `firstDayOfMonth` extension returns a new [DateTime] instance with the same year and month
   /// as the original date but with the day set to 1 and the time set to midnight (00:00:00).
-  DateTime get firstDayOfMonth => DateTime(year, month);
+  DateTime  firstDayOfMonth() => DateTime(year, month);
 
   /// Returns a [DateTime] instance representing the first day of the week of this [DateTime].
   ///
@@ -214,7 +214,7 @@ extension DateTimeExtension on DateTime {
   /// and hour as the original date but adjusted to the first day of the week. Daylight Saving
   /// Time is handled by setting the hour to 12:00 Noon rather than the default of Midnight (00:00:00).
   /// The week in this context is considered to start from Monday.
-  DateTime get firstDayOfWeek {
+  DateTime  firstDayOfWeek() {
     /// Handle Daylight Savings by setting hour to 12:00 Noon
     /// rather than the default of Midnight
     final day = DateTime.utc(year, month, this.day, 12);
@@ -237,7 +237,7 @@ extension DateTimeExtension on DateTime {
   /// and hour as the original date but adjusted to the last day of the week. Daylight Saving
   /// Time is handled by setting the hour to 12:00 Noon rather than the default of Midnight (00:00:00).
   /// The week in this context is considered to end on Sunday.
-  DateTime get lastDayOfWeek {
+  DateTime lastDayOfWeek() {
     /// Handle Daylight Savings by setting hour to 12:00 Noon
     /// rather than the default of Midnight
     final day = DateTime.utc(year, month, this.day, 12);
@@ -258,7 +258,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `lastDayOfMonth` getter calculates and returns a new [DateTime] instance with the same
   /// year and month as the original date but adjusted to the last day of that month.
-  DateTime get lastDayOfMonth {
+  DateTime lastDayOfMonth() {
     var beginningNextMonth =
         (month < 12) ? DateTime(year, month + 1, 1) : DateTime(year + 1, 1, 1);
     return beginningNextMonth.subtract(const Duration(days: 1));
@@ -275,7 +275,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `previousMonth` extension calculates and returns a new [DateTime] instance
   /// with the same day and time as the original date but adjusted to the exact date of the previous month.
-  DateTime get previousMonth {
+  DateTime previousMonth() {
     var year = this.year;
     var month = this.month;
     if (month == 1) {
@@ -298,7 +298,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `nextMonth` extension calculates and returns a new [DateTime] instance
   /// with the same day and time as the original date but adjusted to the exact date of the next month.
-  DateTime get nextMonth {
+  DateTime nextMonth() {
     var year = this.year;
     var month = this.month;
 
@@ -322,7 +322,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `previousWeek` extension calculates and returns a new [DateTime] instance
   /// by subtracting seven days from the original date, representing the exact date of the previous week.
-  DateTime get previousWeek => subtract(const Duration(days: 7));
+  DateTime previousWeek() => subtract(const Duration(days: 7));
 
   /// Returns a [DateTime] instance representing the exact date of the coming week.
   ///
@@ -335,7 +335,7 @@ extension DateTimeExtension on DateTime {
   ///
   /// The `nextWeek` extension calculates and returns a new [DateTime] instance
   /// by adding seven days to the original date, representing the exact date of the coming week.
-  DateTime get nextWeek => add(const Duration(days: 7));
+  DateTime nextWeek() => add(const Duration(days: 7));
 
   /// Checks if two [DateTime] instances fall within the same week.
   ///
@@ -396,7 +396,7 @@ extension DateTimeExtension on DateTime {
   /// String? timeAmPm = dateTime.toTimeAmPm;
   /// print('Time (AM/PM): $timeAmPm');
   /// ```
-  String? get toTimeAmPm {
+  String? toTimeAmPm() {
     TimeOfDay noonTime = TimeOfDay.fromDateTime(this);
     final hour = (noonTime.hour > 12 ? noonTime.hour - 12 : noonTime.hour)
         .toString()
@@ -417,7 +417,7 @@ extension DateTimeExtension on DateTime {
   /// int currentTimeStamp = dateTime.currentTimeStamp;
   /// print('Current Timestamp: $currentTimeStamp');
   /// ```
-  int get currentTimeStamp =>
+  int currentTimeStamp() =>
       (DateTime.now().millisecondsSinceEpoch ~/ 1000).toInt();
 
   /// Returns the time difference from this [DateTime] to the current DateTime
@@ -429,7 +429,7 @@ extension DateTimeExtension on DateTime {
   /// String? timeAgo = dateTime.timeAgo;
   /// print('Time Ago: $timeAgo');
   /// ```
-  String? get timeAgo {
+  String? timeAgo() {
     return timeAgoCalculated(this);
   }
 
@@ -457,7 +457,7 @@ extension DateTimeExtension on DateTime {
     DateTime istDateTime =
         currentTime.add(Duration(milliseconds: timeDifferenceMilliseconds));
     final iSTDate =
-        istDateTime.toIso8601String().replaceAll('Z', '').toDateTime;
+        istDateTime.toIso8601String().replaceAll('Z', '').toDateTime();
     return iSTDate;
   }
 
@@ -603,7 +603,7 @@ extension DateTimeExtension on DateTime {
   /// DateTime? utcDateTime = dateTime.asUtc;
   /// print('UTC DateTime: $utcDateTime');
   /// ```
-  DateTime? get asUtc => isNull
+  DateTime? asUtc() => isNull
       ? null
       : DateTime.utc(
           year,

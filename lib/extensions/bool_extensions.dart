@@ -37,7 +37,7 @@
 ///   print(toggledValue); // Output: false
 /// }
 /// ```
-extension BooleanExtensions on bool? {
+extension BooleanOrNullExtensions on bool? {
   /// Validates the given boolean value.
   ///
   /// If the value is not null, it returns the value itself.
@@ -45,25 +45,50 @@ extension BooleanExtensions on bool? {
   bool validate({bool value = false}) => this ?? value;
 
   /// Checks if the boolean value is true.
-  bool get isTrue => this != null && this!;
+  bool isTrue() => validate().isTrue();
 
   /// Checks if the boolean value is false.
-  bool get isFalse => this != null && !this!;
+  bool isFalse() => validate().isFalse();
 
   /// Checks if the boolean value is not true.
-  bool get isNotTrue => this == null || !this!;
+  bool isNotTrue() => validate().isNotTrue();
 
   /// Checks if the boolean value is not false.
-  bool get isNotFalse => this == null || this!;
+  bool isNotFalse() => validate().isNotFalse();
 
   /// Converts the boolean value to an integer.
   ///
   /// Returns 1 if the value is true, otherwise returns 0.
-  int get toInt => this != null && this! ? 1 : 0;
+  int toInt() => validate().toInt();
 
   /// Toggles the boolean value.
   ///
   /// If the value is true, it returns false.
   /// If the value is false or null, it returns true.
-  bool get toggle => this != null ? !this! : false;
+  bool toggle() => validate().toggle();
+}
+
+extension BooleanExtensions on bool {
+  /// Checks if the boolean value is true.
+  bool isTrue() => this;
+
+  /// Checks if the boolean value is false.
+  bool isFalse() => !this;
+
+  /// Checks if the boolean value is not true.
+  bool isNotTrue() => !this;
+
+  /// Checks if the boolean value is not false.
+  bool isNotFalse() => this;
+
+  /// Converts the boolean value to an integer.
+  ///
+  /// Returns 1 if the value is true, otherwise returns 0.
+  int toInt() => this ? 1 : 0;
+
+  /// Toggles the boolean value.
+  ///
+  /// If the value is true, it returns false.
+  /// If the value is false or null, it returns true.
+  bool toggle() => !this;
 }

@@ -18,7 +18,7 @@ Future<void> setStatusBarColor(
       systemNavigationBarColor: systemNavigationBarColor,
       statusBarBrightness: statusBarBrightness,
       statusBarIconBrightness: statusBarIconBrightness ??
-          (statusBarColor.isDark ? Brightness.light : Brightness.dark),
+          (statusBarColor.isDark() ? Brightness.light : Brightness.dark),
     ),
   );
 }

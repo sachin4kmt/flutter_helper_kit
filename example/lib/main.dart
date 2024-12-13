@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color(0x0fffffff).createMaterialColor()),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home:  const HomeScreen(),
     );
   }
 }

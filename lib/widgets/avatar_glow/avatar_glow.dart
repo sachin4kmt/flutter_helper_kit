@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:flutter_helper_kit/flutter_helper_kit.dart';
+
 /// A widget that adds a glowing effect around its child.
 class AvatarGlow extends StatefulWidget {
   /// Creates an [AvatarGlow] widget.
@@ -224,7 +226,7 @@ class _GlowPainter extends ChangeNotifier implements CustomPainter {
     final opacity = opacityTween.evaluate(progress);
 
     final paint = Paint()
-      ..color = glowColor.withOpacity(opacity)
+      ..color = glowColor.withColorOpacity(opacity)
       ..style = PaintingStyle.fill;
 
     final glowSize = math.min(size.width, size.height);

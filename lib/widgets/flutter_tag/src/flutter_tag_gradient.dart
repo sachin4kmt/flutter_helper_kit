@@ -127,7 +127,7 @@ class FlutterTagGradient {
           tileMode: tileMode,
           transform: transform,
         );
-      default:
+     /* default:
         // Default to linear gradient if the type is not recognized.
         return LinearGradient(
           colors: colors,
@@ -136,7 +136,7 @@ class FlutterTagGradient {
           stops: stops,
           tileMode: tileMode,
           transform: transform,
-        );
+        );*/
     }
   }
 }

@@ -120,7 +120,7 @@ class RoundedCheckBoxState extends State<RoundedCheckBox> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                8.width,
+                8.width(),
                 Text(widget.text, style: widget.textStyle ?? primaryTextStyle())
                     .flexible(),
               ],
