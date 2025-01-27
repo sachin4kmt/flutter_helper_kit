@@ -1,3 +1,6 @@
+## 1.0.1
+* TODO: analysis issue, improve score  
+
 ## 1.0.0
 * TODO: New Widgets DottedBorderWidget, Change get methods and code analyze 
 

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// int Extensions
@@ -8,27 +7,6 @@ extension IntNullableExtensions on int? {
 
   /// Checks if the given String [s] is null or empty
   bool isNull() => this == null;
-
-  /// Leaves given height of space
-  Widget height([int value = 0]) => validate(value).height();
-
-  /// Leaves given width of space
-  Widget width([int value = 0]) => validate(value).width();
-
-  /// This extension provides a method to convert a nullable int value to a Widget that
-  /// takes a fixed amount of space in the direction of its parent.
-  Widget space([int value = 0]) => validate(value).space();
-
-  /// A widget that takes, at most, an amount of space in a [Row], [Column],or [Flex] widget.
-  /// The `maxSpace` property converts the integer value to a [MaxSpace] widget,
-  /// which is useful for creating flexible layouts where certain elements
-  /// need to occupy a specific amount of space.
-  Widget maxSpace([int value = 0]) => validate(value).maxSpace();
-
-  /// This extension provides a way to handle nullable integers and use them to create
-  /// a space widget. It validates the nullable integer, converting it to a non-nullable
-  /// double, and uses it to create a space widget that expands in the cross axis direction.
-  Widget spaceExpand([int value = 0]) => validate(value).spaceExpand();
 
   /// Returns microseconds duration
   /// 5.microseconds
@@ -82,15 +60,6 @@ extension IntNullableExtensions on int? {
   /// ```
   Duration years([int value = 0]) => validate(value).years();
 
-  /// Returns Size
-  Size size([int value = 0]) => validate(value).size();
-
-  /// Returns Radius
-  /// ```dart
-  /// 5.circularRadius
-  /// ```
-  BorderRadius circularBorderRadius() => validate().circularBorderRadius();
-
   /// Returns true if the value is `1`
   /// otherwise false is returned.
   bool toBool([int value = 1]) => validate().toBool(value);
@@ -122,27 +91,6 @@ extension IntNullableExtensions on int? {
 }
 
 extension IntExtensions on int {
-  /// Leaves given height of space
-  Widget height() => SizedBox(height: this.toDouble());
-
-  /// Leaves given width of space
-  Widget width() => SizedBox(width: this.toDouble());
-
-  /// This extension provides a method to convert a nullable int value to a Widget that
-  /// takes a fixed amount of space in the direction of its parent.
-  Widget space() => Space(this.toDouble());
-
-  /// A widget that takes, at most, an amount of space in a [Row], [Column],or [Flex] widget.
-  /// The `maxSpace` property converts the integer value to a [MaxSpace] widget,
-  /// which is useful for creating flexible layouts where certain elements
-  /// need to occupy a specific amount of space.
-  Widget maxSpace() => MaxSpace(this.toDouble());
-
-  /// This extension provides a way to handle nullable integers and use them to create
-  /// a space widget. It validates the nullable integer, converting it to a non-nullable
-  /// double, and uses it to create a space widget that expands in the cross axis direction.
-  Widget spaceExpand() => Space.expand(this.toDouble());
-
   /// Returns microseconds duration
   /// 5.microseconds
   Duration microseconds() => Duration(microseconds: this);
@@ -195,33 +143,12 @@ extension IntExtensions on int {
   /// ```
   Duration years() => Duration(days: (this * 365));
 
-  /// Returns Size
-  Size size() => Size(this.toDouble(), this.toDouble());
-
-  /// Returns Radius
-  /// ```dart
-  /// 5.circularRadius
-  /// ```
-  BorderRadius circularBorderRadius() => BorderRadius.circular(this.toDouble());
-
   /// Returns true if the value is `1`
   /// otherwise false is returned.
   bool toBool([int value = 1]) => this == value ? true : false;
 
   /// Validate given int is not null and returns given value if null.
   int validate({int value = 0}) => this;
-
-  /// Validate given int is not null and returns given value if null.
-  String? addZeroPrefix() {
-    if (isNull()) {
-      return null;
-    }
-    if ((this) < 10) {
-      return '0$this';
-    } else {
-      return toString();
-    }
-  }
 
   /// get last charts of give value
   /// 'I  like dart language'.lastChars(13) // dart language

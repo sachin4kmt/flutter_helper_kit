@@ -58,8 +58,8 @@ extension NullableIterableExtension<T> on Iterable<T?>? {
       validate().map(mapper);
 
   /// Returns the first non-null element or null if none exists.
-  ///   Iterable<int?>? numbers = [null, null, 5, 10, null];
-  ///   Iterable<int?>? emptyList = null;
+  ///   final numbers = [null, null, 5, 10, null];
+  ///   final emptyList = null;
   ///
   ///   print(numbers.firstNonNull()); // Output: 5
   ///   print(emptyList.firstNonNull()); // Output: null

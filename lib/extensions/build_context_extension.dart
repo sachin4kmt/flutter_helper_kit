@@ -240,7 +240,9 @@ extension BuildContextExension on BuildContext {
         ),
       );
     } catch (e) {
-      print('SnackBar Error $e');
+      if (kDebugMode) {
+        print('SnackBar Error $e');
+      }
     }
   }
 }

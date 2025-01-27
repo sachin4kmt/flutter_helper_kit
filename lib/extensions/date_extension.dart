@@ -396,7 +396,7 @@ extension DateTimeExtension on DateTime {
   /// String? timeAmPm = dateTime.toTimeAmPm;
   /// print('Time (AM/PM): $timeAmPm');
   /// ```
-  String? toTimeAmPm() {
+  String toTimeAmPm() {
     TimeOfDay noonTime = TimeOfDay.fromDateTime(this);
     final hour = (noonTime.hour > 12 ? noonTime.hour - 12 : noonTime.hour)
         .toString()
@@ -429,7 +429,7 @@ extension DateTimeExtension on DateTime {
   /// String? timeAgo = dateTime.timeAgo;
   /// print('Time Ago: $timeAgo');
   /// ```
-  String? timeAgo() {
+  String timeAgo() {
     return timeAgoCalculated(this);
   }
 

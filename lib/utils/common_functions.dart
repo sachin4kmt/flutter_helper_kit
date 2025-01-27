@@ -20,9 +20,9 @@ String randomString({int? length, bool includeNumeric = true}) {
     var charCount = includeNumeric ? 62 : 52;
     var start = includeNumeric ? 48 : 58;
     var charCode = rand.nextInt(charCount) + start;
-    if (charCode.between(58, 64)) {
+    if (charCode.isBetween(58, 64)) {
       charCode += 52;
-    } else if (charCode.between(91, 96)) {
+    } else if (charCode.isBetween(91, 96)) {
       charCode += 26;
     }
     return charCode;

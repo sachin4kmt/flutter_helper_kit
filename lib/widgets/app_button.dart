@@ -3,7 +3,7 @@ import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// Default App Button
 class AppButton extends StatefulWidget {
-  final Function? onTap;
+  final void Function()? onTap;
   final String? text;
   final double? width;
   final Color? color;
@@ -109,11 +109,7 @@ class AppButtonState extends State<AppButton>
         minWidth: widget.width,
         padding: widget.padding ??
             const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
-        onPressed: widget.enabled
-            ? widget.onTap != null
-                ? widget.onTap as void Function()?
-                : null
-            : null,
+        onPressed: widget.enabled ? widget.onTap : null,
         color: widget.color ?? Colors.white,
         shape: widget.shapeBorder,
         elevation: widget.elevation,

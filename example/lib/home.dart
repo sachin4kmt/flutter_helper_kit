@@ -1,32 +1,73 @@
-import 'package:example/pagination_list_view_example.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final formKey = GlobalKey<FormState>();
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          AppButton(
-            text: 'List View Pagination Example',
-            color: Colors.red,
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const PaginationListViewExample()));
-            },
-          ),
-          AppButton(
-            text: 'DialogForm Example',
-            // color: Colors.red,
-            onTap: () {},
-          ),
-          4.height(),
-        ],
+      body: Form(
+        key: formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            /*  MyCustomTextField(
+              hintText: 'Hello Enter',
+              // labelText: 'Hello Enter',
+              // label: const GoogleLogoWidget(),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              floatingLabelAlignment: FloatingLabelAlignment.center,
+              prefixText: 'asd',
+              suffixText: 'asd',
+              keyboardAppearance: Brightness.light,
+
+              // cursorColor: Colors.red,
+
+              onFieldSubmitted: (value) {
+                // print(value);
+              },
+              onSaved: (newValue) {
+                print(newValue);
+              },
+              textAlignVertical: TextAlignVertical.bottom,
+              borderSide: const BorderSide(width: 1, color: Colors.black),
+              // errorBorderColor: Colors.green,
+              isCollapsed: true,
+              isDense: true,
+              errorStyle: const TextStyle(color: Colors.red),
+              controller: controller,
+              validator: (value) {
+                if (value.isEmptyOrNull) {
+                  return 'please enter value';
+                }
+                return null;
+              },
+            ),
+           */
+            20.height(),
+            AppButton(
+              onTap: () {
+                if (!(formKey.currentState?.validate() ?? false)) {
+                  print('Not Validate = ${formKey.currentState?.validate()}');
+                  return;
+                }
+                formKey.currentState?.save();
+                print('Validate => ${formKey.currentState?.validate()}');
+              },
+              text: 'Submit',
+            )
+          ],
+        ),
       ),
     );
   }

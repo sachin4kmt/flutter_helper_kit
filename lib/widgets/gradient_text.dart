@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class GradientText extends StatelessWidget {
@@ -48,7 +49,9 @@ class GradientText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (debug) {
-      print('GradientText: Rendering with text: $text');
+      if (kDebugMode) {
+        print('GradientText: Rendering with text: $text');
+      }
     }
 
     final textWidget = Text(
@@ -80,8 +83,10 @@ class GradientText extends StatelessWidget {
         blendMode: BlendMode.srcIn,
         shaderCallback: (Rect bounds) {
           if (debug) {
-            print(
-                'GradientText: Creating shader with bounds: $bounds and gradient: $gradient');
+            if (kDebugMode) {
+              print(
+                  'GradientText: Creating shader with bounds: $bounds and gradient: $gradient');
+            }
           }
           return gradient!.createShader(
             Rect.fromLTWH(0, 0, bounds.width, bounds.height),
