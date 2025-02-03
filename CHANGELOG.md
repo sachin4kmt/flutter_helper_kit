@@ -1,3 +1,6 @@
+## 1.0.2
+* TODO: analysis issue, improve score
+
 ## 1.0.1
 * TODO: analysis issue, improve score  
 

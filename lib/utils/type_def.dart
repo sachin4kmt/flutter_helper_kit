@@ -1,16 +1,16 @@
-///  Define a function that returns a Future<void> and takes no arguments
+///  Define a function that returns a void and takes no arguments
 typedef FutureVoidCallback = Future<void> Function();
 
-///  Define a function that returns a Future<dynamic> and takes no arguments
+///  Define a function that returns a dynamic and takes no arguments
 typedef FutureDynamicCallback = Future<dynamic> Function();
 
-/// Define a function that returns a Future<int> and takes no arguments
+/// Define a function that returns a int and takes no arguments
 typedef FutureIntCallback = Future<int> Function();
 
-/// Define a function that returns a Future<String> and takes no arguments
+/// Define a function that returns a String and takes no arguments
 typedef FutureStringCallback = Future<String> Function();
 
-/// Define a function that returns a Future<double> and takes no arguments
+/// Define a function that returns a double and takes no arguments
 typedef FutureDoubleCallback = Future<double> Function();
 
 /// Define a function that returns a dynamic and takes no arguments
