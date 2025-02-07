@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_helper_kit/extensions/widget_extension.dart';
+import 'package:flutter_helper_kit/extensions/widget/widget_extension.dart';
 
-import '../extensions/string_extension.dart';
+import '../extensions/string/string_extension.dart';
 import '../utils/decorations.dart';
 import 'marquee_widget.dart';
 

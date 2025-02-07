@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_helper_kit/extensions/list_extension.dart';
+import 'package:flutter_helper_kit/extensions/list/list_extension.dart';
 
 class WidgetHelper {
   /// Intersperses a divider widget between a list of widgets.

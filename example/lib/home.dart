@@ -1,3 +1,4 @@
+import 'package:example/widgets_example/my_custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            /*  MyCustomTextField(
+            MyCustomTextField(
               hintText: 'Hello Enter',
               // labelText: 'Hello Enter',
               // label: const GoogleLogoWidget(),
@@ -29,17 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
               floatingLabelAlignment: FloatingLabelAlignment.center,
               prefixText: 'asd',
               suffixText: 'asd',
+              prefixIcon: Text('data'),
               keyboardAppearance: Brightness.light,
 
               // cursorColor: Colors.red,
-
               onFieldSubmitted: (value) {
                 // print(value);
               },
               onSaved: (newValue) {
                 print(newValue);
               },
-              textAlignVertical: TextAlignVertical.bottom,
               borderSide: const BorderSide(width: 1, color: Colors.black),
               // errorBorderColor: Colors.green,
               isCollapsed: true,
@@ -53,7 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 return null;
               },
             ),
-           */
             20.height(),
             AppButton(
               onTap: () {
@@ -65,6 +64,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 print('Validate => ${formKey.currentState?.validate()}');
               },
               text: 'Submit',
+            ),
+            AppButton(
+              onTap: () {
+                context.showSnackBar();
+                final a = '9799408400'.extractPhoneNumber();
+                print(a);
+              },
+              text: 'Show dialog',
             )
           ],
         ),

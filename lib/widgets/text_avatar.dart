@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:flutter_helper_kit/extensions/map_extension.dart';
-import 'package:flutter_helper_kit/extensions/string_extension.dart';
+import 'package:flutter_helper_kit/extensions/map/map_extension.dart';
+import 'package:flutter_helper_kit/extensions/string/string_extension.dart';
 
 /// A widget to display a text avatar with a background color.
 ///

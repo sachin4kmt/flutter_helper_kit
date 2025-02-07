@@ -2,69 +2,44 @@ import 'package:flutter/material.dart';
 
 // Widget Extensions
 extension WidgetExtension on Widget? {
-  /// With custom height and width
-  SizedBox withSize({double width = 0.0, double height = 0.0}) {
-    return SizedBox(height: height, width: width, child: this);
-  }
+  /// Wraps the widget inside a `SizedBox` with a custom height and width.
+  ///
+  /// ```dart
+  /// Container().withSize(width: 100, height: 50);
+  /// ```
+  SizedBox withSize({double width = 0.0, double height = 0.0}) =>
+      SizedBox(height: height, width: width, child: this);
 
-  /// With custom width
+  /// Wraps the widget inside a `SizedBox` with a custom width.
+  ///
+  /// ```dart
+  /// Text("Hello").withWidth(200);
+  /// ```
   SizedBox withWidth(double width) => SizedBox(width: width, child: this);
 
-  /// With custom height
+  /// Wraps the widget inside a `SizedBox` with a custom height.
+  ///
+  /// ```dart
+  /// Text("Hello").withHeight(50);
+  /// ```
   SizedBox withHeight(double height) => SizedBox(height: height, child: this);
 
-  /// return padding top
-  Padding paddingTop(double top) {
-    return Padding(padding: EdgeInsets.only(top: top), child: this);
-  }
-
-  /// return padding left
-  Padding paddingLeft(double left) {
-    return Padding(padding: EdgeInsets.only(left: left), child: this);
-  }
-
-  /// return padding right
-  Padding paddingRight(double right) {
-    return Padding(padding: EdgeInsets.only(right: right), child: this);
-  }
-
-  /// return padding bottom
-  Padding paddingBottom(double bottom) {
-    return Padding(padding: EdgeInsets.only(bottom: bottom), child: this);
-  }
-
-  /// return padding all
-  Padding paddingAll(double padding) {
-    return Padding(padding: EdgeInsets.all(padding), child: this);
-  }
-
-  /// return custom padding from each side
-  Padding paddingOnly({
-    double top = 0.0,
-    double left = 0.0,
-    double bottom = 0.0,
-    double right = 0.0,
-  }) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(left, top, right, bottom),
-      child: this,
-    );
-  }
-
-  /// return padding symmetric
-  Padding paddingSymmetric({double vertical = 0.0, double horizontal = 0.0}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal),
-      child: this,
-    );
-  }
-
-  /// set visibility
+  /// Controls the visibility of the widget.
+  ///
+  /// If `visible` is `false`, it returns a `SizedBox` or a custom default widget.
+  ///
+  /// ```dart
+  /// Text("Visible").visible(true);
+  /// ```
   Widget visible(bool visible, {Widget? defaultWidget}) {
     return visible ? this! : (defaultWidget ?? const SizedBox());
   }
 
-  /// add custom corner radius each side
+  /// Adds rounded corners to the widget using `ClipRRect` with custom radii.
+  ///
+  /// ```dart
+  /// Container().cornerRadiusWithClipRRectOnly(topLeft: 10, bottomRight: 20);
+  /// ```
   ClipRRect cornerRadiusWithClipRRectOnly({
     int bottomLeft = 0,
     int bottomRight = 0,
@@ -83,7 +58,11 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// add corner radius
+  /// Adds a uniform corner radius to the widget using `ClipRRect`.
+  ///
+  /// ```dart
+  /// Container().cornerRadiusWithClipRRect(10);
+  /// ```
   ClipRRect cornerRadiusWithClipRRect(double radius) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(radius)),
@@ -92,7 +71,11 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// add opacity to parent widget
+  /// Adds animated opacity to the widget.
+  ///
+  /// ```dart
+  /// Text("Fade").opacity(opacity: 0.5);
+  /// ```
   Widget opacity({
     required double opacity,
     int durationInSecond = 1,
@@ -105,7 +88,11 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// add rotation to parent widget
+  /// Rotates the widget using `Transform.rotate`.
+  ///
+  /// ```dart
+  /// Icon(Icons.refresh).rotate(angle: 0.5);
+  /// ```
   Widget rotate({
     required double angle,
     bool transformHitTests = true,
@@ -119,7 +106,11 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// add scaling to parent widget
+  /// Scales the widget using `Transform.scale`.
+  ///
+  /// ```dart
+  /// Icon(Icons.zoom_in).scale(scale: 1.5);
+  /// ```
   Widget scale({
     required double scale,
     Offset? origin,
@@ -135,7 +126,11 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// add translate to parent widget
+  /// Translates (moves) the widget using `Transform.translate`.
+  ///
+  /// ```dart
+  /// Icon(Icons.arrow_forward).translate(offset: Offset(10, 0));
+  /// ```
   Widget translate({
     required Offset offset,
     bool transformHitTests = true,
@@ -149,7 +144,11 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// set parent widget in center
+  /// Centers the widget within a `Center` widget.
+  ///
+  /// ```dart
+  /// Text("Centered").center();
+  /// ```
   Widget center({double? heightFactor, double? widthFactor}) {
     return Center(
       heightFactor: heightFactor,
@@ -158,7 +157,11 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// add tap to parent widget
+  /// Wraps the widget with an `InkWell` for tap functionality.
+  ///
+  /// ```dart
+  /// Text("Tap me").onTap(() => print("Tapped!"));
+  /// ```
   Widget onTap(
     Function? function, {
     BorderRadius? borderRadius,
@@ -196,7 +199,12 @@ extension WidgetExtension on Widget? {
   }
 */
 
-  /// Wrap with ShaderMask widget
+  /// Wraps the widget with a `ShaderMask` using a list of colors.
+  ///
+  /// Example:
+  /// ```dart
+  /// Text('Gradient Text').withShaderMask([Colors.red, Colors.blue]);
+  /// ```
   Widget withShaderMask(
     List<Color> colors, {
     BlendMode blendMode = BlendMode.srcATop,
@@ -207,7 +215,14 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// Wrap with ShaderMask widget Gradient
+  /// Wraps the widget with a `ShaderMask` using a custom `Gradient`.
+  ///
+  /// Example:
+  /// ```dart
+  /// Text('Gradient Text').withShaderMaskGradient(
+  ///   LinearGradient(colors: [Colors.red, Colors.blue])
+  /// );
+  /// ```
   Widget withShaderMaskGradient(
     Gradient gradient, {
     BlendMode blendMode = BlendMode.srcATop,
@@ -219,15 +234,30 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// add Expanded to parent widget
+  /// Wraps the widget with `Expanded`.
+  ///
+  /// Example:
+  /// ```dart
+  /// Container().expand();
+  /// ```
   Widget expand({flex = 1}) => Expanded(flex: flex, child: this!);
 
-  /// add Flexible to parent widget
+  /// Wraps the widget with `Flexible`.
+  ///
+  /// Example:
+  /// ```dart
+  /// Container().flexible();
+  /// ```
   Widget flexible({flex = 1, FlexFit? fit}) {
     return Flexible(flex: flex, fit: fit ?? FlexFit.loose, child: this!);
   }
 
-  /// add FittedBox to parent widget
+  /// Wraps the widget with `FittedBox`.
+  ///
+  /// Example:
+  /// ```dart
+  /// Image.asset('image.png').fit();
+  /// ```
   Widget fit({BoxFit? fit, AlignmentGeometry? alignment}) {
     return FittedBox(
       fit: fit ?? BoxFit.contain,
@@ -236,16 +266,33 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// Validate given widget is not null and returns given value if null.
+  /// Returns the widget if it is not null, otherwise returns a default value.
+  ///
+  /// Example:
+  /// ```dart
+  /// Widget? myWidget;
+  /// myWidget.validate(value: Text('Default'));
+  /// ```
   Widget validate({Widget value = const SizedBox()}) => this ?? value;
 
-  /// Validate given widget is not null and returns given value if null.
+  /// Wraps the widget with a `Tooltip`.
+  ///
+  /// Example:
+  /// ```dart
+  /// Icon(Icons.info).withTooltip(msg: 'Information Icon');
+  /// ```
   Widget withTooltip({required String msg}) {
     return Tooltip(message: msg, child: this);
   }
 
-  /// Make your any widget refreshable with RefreshIndicator on top
-  Widget get makeRefreshable {
+  /// Wraps the widget with a `RefreshIndicator` to make it refreshable.
+  /// This assumes that the widget is inside a `Stack` with a `ListView`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ListView().makeRefreshable();
+  /// ```
+  Widget makeRefreshable() {
     return Stack(children: [ListView(), this!]);
   }
 }

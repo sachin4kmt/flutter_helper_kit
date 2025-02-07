@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
+/// Extension for nullable `DateTime` to provide null check functionality.
 extension DateTimeNullExtension on DateTime? {
-  /// Returns `true` if the given date is `null`.
+  /// Returns `true` if the given `DateTime?` instance is `null`.
+  ///
+  /// This extension allows easy null checking on a nullable `DateTime`
+  /// without needing to directly compare it to `null`.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// DateTime? date = null;
+  /// print(date.isNull); // Output: true
+  ///
+  /// DateTime? anotherDate = DateTime.now();
+  /// print(anotherDate.isNull); // Output: false
+  /// ```
   bool get isNull => this == null;
 }
 
@@ -54,6 +67,12 @@ extension DateTimeExtension on DateTime {
         month == nowDate.month &&
         day == nowDate.day + 1;
   }
+
+  /// Checks if the current date is in the past
+  bool get isInPast => isBefore(DateTime.now());
+
+  /// Checks if the current date is in the future
+  bool get isInFuture => isAfter(DateTime.now());
 
   /// Returns a [DateTime] with the date of the original, but time set to midnight.
   ///
@@ -374,18 +393,38 @@ extension DateTimeExtension on DateTime {
   /// DateTime date = DateTime.now();
   /// print(date.weekdayName()); // Output: Monday
   /// ```
-  String? weekdayName({bool isHalfName = false}) {
-    if (isNull) return null;
-
-    return weekday.toWeekDay(isHalfName: isHalfName);
+  String weekdayName({bool isHalfName = false}) {
+    return switch (this.day) {
+      (DateTime.monday) => isHalfName ? 'Mon' : 'Monday',
+      (DateTime.tuesday) => isHalfName ? 'Tue' : 'Tuesday',
+      (DateTime.wednesday) => isHalfName ? 'Wed' : 'Wednesday',
+      (DateTime.thursday) => isHalfName ? 'Thu' : 'Thursday',
+      (DateTime.friday) => isHalfName ? 'Fri' : 'Friday',
+      (DateTime.saturday) => isHalfName ? 'Sat' : 'Saturday',
+      (DateTime.sunday) => isHalfName ? 'Sun' : 'Sunday',
+      (_) => '',
+    };
   }
 
   /// Returns Month name of give this [DateTime]
   /// Example: final date = DateTime.now();    //output: 2023-05-24 13:14:23.593304
   /// print(date.monthName()??"");            //output: May
-  String? monthName({bool isHalfName = false}) {
-    if (isNull) return null;
-    return month.toMonthName(isHalfName: isHalfName);
+  String monthName({bool isHalfName = false}) {
+    return switch (this.month) {
+      (DateTime.january) => isHalfName ? 'Jan' : 'January',
+      (DateTime.february) => isHalfName ? 'Feb' : 'February',
+      (DateTime.march) => isHalfName ? 'Mar' : 'March',
+      (DateTime.april) => isHalfName ? 'Apr' : 'April',
+      (DateTime.may) => isHalfName ? 'May' : 'May',
+      (DateTime.june) => isHalfName ? 'Jun' : 'June',
+      (DateTime.july) => isHalfName ? 'Jul' : 'July',
+      (DateTime.august) => isHalfName ? 'Aug' : 'August',
+      (DateTime.september) => isHalfName ? 'Sept' : 'September',
+      (DateTime.october) => isHalfName ? 'Oct' : 'October',
+      (DateTime.november) => isHalfName ? 'Nov' : 'November',
+      (DateTime.december) => isHalfName ? 'Dec' : 'December',
+      (_) => '',
+    };
   }
 
   /// Returns the time in AM/PM format for this [DateTime].

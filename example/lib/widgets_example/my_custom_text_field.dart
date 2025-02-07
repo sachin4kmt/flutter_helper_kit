@@ -1,4 +1,3 @@
-/*
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
@@ -13,7 +12,6 @@ class MyCustomTextField extends StatelessWidget {
   final TextStyle? style;
   final TextDirection? textDirection;
   final TextAlign textAlign;
-  final TextAlignVertical? textAlignVertical;
   final bool readOnly;
   final bool? showCursor;
   final String obscuringCharacter;
@@ -37,7 +35,6 @@ class MyCustomTextField extends StatelessWidget {
   final Brightness? keyboardAppearance;
 
   ///Decoration
-
   final String? labelText;
   final Widget? label;
   final TextStyle? labelStyle;
@@ -96,7 +93,6 @@ class MyCustomTextField extends StatelessWidget {
     this.style,
     this.textDirection,
     this.textAlign = TextAlign.start,
-    this.textAlignVertical,
     this.textCapitalization = TextCapitalization.none,
     this.readOnly = false,
     this.showCursor,
@@ -251,7 +247,6 @@ class MyCustomTextField extends StatelessWidget {
       textInputAction: textInputAction,
       style: style,
       textAlign: textAlign,
-      textAlignVertical: textAlignVertical,
       textDirection: textDirection,
       readOnly: readOnly,
       showCursor: showCursor,
@@ -277,4 +272,3 @@ class MyCustomTextField extends StatelessWidget {
     );
   }
 }
-*/

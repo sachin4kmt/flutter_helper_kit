@@ -27,8 +27,6 @@ import 'package:flutter_helper_kit/flutter_helper_kit.dart';
   - [int Extensions](#int-extensions)
   - [List Extensions](#list-extensions)
   - [num Extensions](#num-extensions)
-  - [Widget Extensions](#widget-extensions)
-  - [Widget Extensions](#widget-extensions)
   - [ScopeFunction Extensions](#scopefunction-extensions)
 - [System Methods](#systems-methods)
 - [Utils](#utils)
@@ -566,6 +564,32 @@ String? weekdayName({bool isHalfName = false})
 String? monthName({bool isHalfName = false})
 ```
 
+```dart
+/// 📅 DateTime Format Extension
+/// Format `DateTime` easily using custom patterns.
+void printTest() {
+  DateTime now = DateTime.now();
+  print(now.format(pattern: 'd MMMM, yyyy at h:mm a')); // Output: "7 February, 2025 at 5:54 PM"
+  print(now.format('yyyy-MM-dd')); // Output: 2024-02-07
+  print(now.format('dd MMM yyyy')); // Output: 07 Feb 2024
+  print(now.format('EEEE, MMM d, y')); // Output: Wednesday, Feb 7, 2024
+  print(now.format('hh:mm a')); // Output: 10:30 AM
+  print(now.format('HH:mm:ss')); // Output: 10:30:45
+  print(now.format('hh:mm:ss a')); // Output: 10:30:45 AM
+  print(now.format('yyyy-MM-dd HH:mm:ss')); // Output: 2024-02-07 10:30:45
+  print(now.format('EEE, d MMM yyyy hh:mm a')); // Output: Wed, 7 Feb 2024 10:30 AM
+  print(now.format('MMMM d, y')); // Output: February 7, 2024
+  print(now.format('MM/dd/yyyy')); // Output: 02/07/2024
+  print(now.format('dd-MM-yyyy HH:mm')); // Output: 07-02-2024 10:30
+  
+  DateTime pastDate = now.subtract(Duration(days: 3));
+  print(pastDate.format('EEE, d MMM y')); // Output: Sun, 4 Feb 2024
+
+  DateTime futureDate = now.add(Duration(days: 7));
+  print(futureDate.format('EEE, d MMM y')); // Output: Wed, 14 Feb 2024
+}
+```
+
 ## Double Extensions
 ```dart
 double validate({double value = 0.0})
@@ -704,7 +728,6 @@ setOrientationLandscape();
 ```dart
 ///Display a customizable dialog with a close icon in your Flutter app.
 ///This example shows how to create an upload dialog with a slide animation for the close button, custom styling, and sharp rounded corners.
-
 showDialogWithCloseIcon(
     context: context,
     title: const Icon(Icons.image, size: 40),
@@ -725,9 +748,11 @@ showDialogWithCloseIcon(
 showDialogWithCloseIcon
 
 ```dart
-DateTime pastDate = DateTime.now().subtract(Duration(hours: 2, minutes: 30));
-print('English: ${timeAgoCalculated(pastDate)}'), //output: 3 hours ago
-print('Hindi: ${timeAgoCalculated(pastDate, inHindi: true)}'),  //output: Hindi: 3 घंटे पूर्व
+void printTest(){
+  DateTime pastDate = DateTime.now().subtract(Duration(hours: 2, minutes: 30));
+  print('English: ${timeAgoCalculated(pastDate)}'); //output: 3 hours ago
+  print('Hindi: ${timeAgoCalculated(pastDate, inHindi: true)}'); //output: Hindi: 3 घंटे पूर्व
+}
 ```
 ```dart
 hasMatch(testString, pattern)
@@ -735,18 +760,7 @@ hasMatch(testString, pattern)
 ```dart
 String randomString({int? length, bool includeNumeric = true})
 ```
-## Decoration
-```dart
-BorderRadius radius([double? radius])
-Radius radiusCircular([double? radius])
-ShapeBorder dialogShape([double? borderRadius])
-BorderRadius radiusOnly({double? topRight, double? topLeft, double? bottomRight, double? bottomLeft})
-Decoration boxDecorationWithShadow({Color backgroundColor = whiteColor, Color? shadowColor, double? blurRadius, double? spreadRadius, Offset offset = const Offset(0.0, 0.0), LinearGradient? gradient, BoxBorder? border, List<BoxShadow>? boxShadow, DecorationImage? decorationImage, BoxShape boxShape = BoxShape.rectangle, BorderRadius? borderRadius,})
-Decoration boxDecorationDefault({BorderRadiusGeometry? borderRadius, Color? color, Gradient? gradient, BoxBorder? border, BoxShape? shape, BlendMode? backgroundBlendMode, List<BoxShadow>? boxShadow, DecorationImage? image})
-Decoration boxDecorationWithRoundedCorners({Color backgroundColor = whiteColor, BorderRadius? borderRadius, LinearGradient? gradient, BoxBorder? border, List<BoxShadow>? boxShadow, DecorationImage? decorationImage, BoxShape boxShape = BoxShape.rectangle})
-Decoration boxDecorationRoundedWithShadow(int radiusAll, {Color backgroundColor = whiteColor, Color? shadowColor, double? blurRadius, double? spreadRadius, Offset offset = const Offset(0.0, 0.0), LinearGradient? gradient})
-List<BoxShadow> defaultBoxShadow({Color? shadowColor, double? blurRadius, double? spreadRadius, Offset offset = const Offset(0.0, 0.0)})
-```
+
 ## Numeral
 ```dart
 //The Numeral class provides methods to format numbers based on the chosen numeral system.
@@ -824,49 +838,49 @@ DoubleArgVoidCallback   // void Function(double arg);
 
 # Image Previews
 ## Flutter Toast
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutetr_toast.gif?raw=true" height="300px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutetr_toast.gif?raw=true" height="300px" alt='Flutter Toast'>
 
 ## Tap Safe Gesture
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/tap_safe_gesture.gif?raw=true" height="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/tap_safe_gesture.gif?raw=true" height="200px" alt='Tap Safe Gesture'>
 
 ## Avatar Glow
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow.gif?raw=true" width="200px" alt='Avatar Glow'>
 
 ## Outline Avatar Glow
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow.gif?raw=true" width="200px" alt='Outline Avatar Glow'>
 
 ## Avatar Glow MultiColor
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow_multi_color.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/avatar_glow_multi_color.gif?raw=true" width="200px" alt='Avatar Glow MultiColor'>
 
 ## Outline Avatar Glow MultiColor
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow_multi_color.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/outline_avatar_glow_multi_color.gif?raw=true" width="200px" alt='Outline Avatar Glow MultiColor'>
 
 ## App Button
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/app_button.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/app_button.gif?raw=true" width="200px" alt='App Button'>
 
 ## Marquee
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/marquee.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/marquee.gif?raw=true" width="200px" alt='Marquee'>
 
 ## RatingBar
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/rating_bar.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/rating_bar.gif?raw=true" width="200px" alt='RatingBar'>
 
 ## Read More Text
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/read_more.gif?raw=true" width="400px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/read_more.gif?raw=true" width="400px" alt='Read More Text'>
 
 ## Rounded Check Box
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/roundedcheckbox.gif?raw=true" width="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/roundedcheckbox.gif?raw=true" width="200px" alt='Rounded Check Box'>
 
 ## Text Icon
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/text_icon.gif?raw=true" width="400px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/text_icon.gif?raw=true" width="400px" alt='Text Icon'>
 
 ## showDialogWithCloseIcon
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/show_dialog_with_close_icon.jpg?raw=true" height="200px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/show_dialog_with_close_icon.jpg?raw=true" height="200px" alt='showDialogWithCloseIcon'>
 
 ## Sharp Borders
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/sharp_borders.jpg?raw=true" height="300px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/sharp_borders.jpg?raw=true" height="300px" alt='Sharp Borders'>
 
 ## Flutter Tag
-<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutter_tag.gif?raw=true" width="400px">
+<img src="https://github.com/sachin4kmt/flutter_helper_kit/blob/master/screenshots/flutter_tag.gif?raw=true" width="400px" alt='Flutter Tag'>
 
 
 ## Features and bugs

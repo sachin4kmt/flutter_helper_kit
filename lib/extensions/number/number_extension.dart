@@ -10,18 +10,8 @@ extension NumExt on num? {
   /// Validate given double is not null and returns given value if null.
   num validate({num value = 0}) => this ?? value;
 
-  /// Returns a [BorderRadius] with circular radius.
-  ///
-  /// Example:
-  /// ```dart
-  /// double radius = 5.0;
-  /// BorderRadius borderRadius = radius.circularRadius;
-  /// ```
-  BorderRadius circularRadius() => BorderRadius.circular(validate().toDouble());
-
   /// Returns Size
-  Size squareSize() =>
-      Size(this.validate().toDouble(), this.validate().toDouble());
+  Size squareSize() => Size(validate().toDouble(), validate().toDouble());
 
   /// Returns a square [Size] object with the current value as both width and height.
   ///
@@ -30,31 +20,49 @@ extension NumExt on num? {
   /// Size squareSize = 50.0.squareSizeBox;
   /// print('Square Size: $squareSize'); // Output: Size(50.0, 50.0)
   /// ```
-  SizedBox squareSizeBox() => SizedBox(
-      width: this.validate().toDouble(), height: this.validate().toDouble());
+  SizedBox squareSizeBox() =>
+      SizedBox(width: validate().toDouble(), height: validate().toDouble());
 
   /// Leaves given height of space
-  Widget height() => SizedBox(height: this.validate().toDouble());
+  Widget height() => SizedBox(height: validate().toDouble());
 
   /// Leaves given width of space
-  Widget width() => SizedBox(width: this.validate().toDouble());
+  Widget width() => SizedBox(width: validate().toDouble());
 
   /// This extension provides a method to convert a nullable int value to a Widget that
   /// takes a fixed amount of space in the direction of its parent.
-  Widget space() => Space(this.validate().toDouble());
+  Widget space() => Space(validate().toDouble());
 
   /// A widget that takes, at most, an amount of space in a [Row], [Column],or [Flex] widget.
   /// The `maxSpace` property converts the integer value to a [MaxSpace] widget,
   /// which is useful for creating flexible layouts where certain elements
   /// need to occupy a specific amount of space.
-  Widget maxSpace() => MaxSpace(this.validate().toDouble());
+  Widget maxSpace() => MaxSpace(validate().toDouble());
 
   /// This extension provides a way to handle nullable integers and use them to create
   /// a space widget. It validates the nullable integer, converting it to a non-nullable
   /// double, and uses it to create a space widget that expands in the cross axis direction.
-  Widget spaceExpand() => Space.expand(this.validate().toDouble());
+  Widget spaceExpand() => Space.expand(validate().toDouble());
 
-  /// Validate given int is not null and returns given value if null.
+  /// Adds a zero prefix to the given integer if it is less than 10.
+  ///
+  /// Returns a string representation of the integer with a leading '0' if
+  /// the integer is a single-digit number (less than 10).
+  /// If the integer is `null`, it returns `null`.
+  ///
+  /// Example:
+  /// ```dart
+  /// int? value = 5;
+  /// print(value.addZeroPrefix()); // Output: '05'
+  /// ```
+  /// ```dart
+  /// int? value = 15;
+  /// print(value.addZeroPrefix()); // Output: '15'
+  /// ```
+  /// ```dart
+  /// int? value = null;
+  /// print(value.addZeroPrefix()); // Output: null
+  /// ```
   String? addZeroPrefix() {
     if (isNull()) {
       return null;
@@ -64,6 +72,53 @@ extension NumExt on num? {
     } else {
       return toString();
     }
+  }
+
+  /// Increases the number by the given percentage.
+  ///
+  /// If the number is `null`, returns `null`.
+  /// Otherwise, it returns the number increased by the specified percentage.
+  ///
+  /// Example:
+  /// ```dart
+  /// num value = 100;
+  /// print(value.increaseByPercentage(20)); // Output: 120.0 (20% increase)
+  /// ```
+  num? increaseByPercentage(double percentage) {
+    if (isNull()) return null;
+    return (this ?? 0) + ((this ?? 0) * (percentage / 100));
+  }
+
+  /// Decreases the number by the given percentage.
+  ///
+  /// If the number is `null`, returns `null`.
+  /// Otherwise, it returns the number decreased by the specified percentage.
+  ///
+  /// Example:
+  /// ```dart
+  /// num value = 100;
+  /// print(value.decreaseByPercentage(20)); // Output: 80.0 (20% decrease)
+  /// ```
+  num? decreaseByPercentage(double percentage) {
+    if (isNull()) return null;
+    return (this ?? 0) - ((this ?? 0) * (percentage / 100));
+  }
+
+  /// Calculates the absolute percentage difference between the current number
+  /// and another number.
+  ///
+  /// If the current number or the other number is `null`, returns `null`.
+  /// Otherwise, returns the absolute percentage difference.
+  ///
+  /// Example:
+  /// ```dart
+  /// num value1 = 100;
+  /// num value2 = 120;
+  /// print(value1.percentageDifference(value2)); // Output: 20.0 (percentage difference between 100 and 120)
+  /// ```
+  num? percentageDifference(double other) {
+    if (isNull()) return null;
+    return (((this ?? 0) - other).abs() / (this ?? 0)) * 100;
   }
 
   /// Checks if the current value falls between the specified range.
@@ -86,7 +141,12 @@ extension NumExt on num? {
   /// Returns `true` if the number is in the range, `false` otherwise.
   bool isInRange(num min, num max) => (this ?? 0) >= min && (this ?? 0) <= max;
 
-  /// Get the lorem ipsum text of [this] words.
+  /// Generates lorem ipsum text with the given number of words.
+  ///
+  /// Example:
+  /// ```dart
+  /// print(10.generateLoremIpsumWords()); // Output: "Lorem ipsum dolor sit amet consectetur adipiscing elit"
+  /// ```
   String generateLoremIpsumWords() {
     if (isNull()) return '';
     var words =
@@ -99,7 +159,12 @@ extension NumExt on num? {
     return result.trim();
   }
 
-  /// Get list of random numbers.
+  /// Generates a list of random numbers with a given length.
+  ///
+  /// Example:
+  /// ```dart
+  /// print(5.randomList(min: 10, max: 50));
+  /// ```
   List<num> randomList({int min = 0, int max = 100}) {
     if (isNull()) return [];
     var result = <num>[];
@@ -118,7 +183,7 @@ extension NumExt on num? {
     int decimalPlaces = 0,
     String Function(num value)? customFormat,
   }) {
-    if (this.isNull()) {
+    if (isNull()) {
       return '';
     }
     // Apply a custom format if provided
@@ -139,9 +204,12 @@ extension NumExt on num? {
     return roundedValue; // Return the formatted number as a string
   }
 
-  /// Num value convert into numeral String Like 1K, 10K, 1M, 10M
-  /// [international] is default [true] for international value =>  1k,2k,1m,2m
-  /// [international] [false] for indian value => 1k,2k,1 L,2 L, 1 Cr
+  /// Converts the number to a numeral format (e.g., 1K, 1M, etc.).
+  ///
+  /// Example:
+  /// ```dart
+  /// print(1000.toNumeral()); // Output: "1K"
+  /// ```
   String toNumeral({bool international = true, int digitAfterDecimal = 0}) {
     final value = Numeral(validate(), digitAfterDecimal: digitAfterDecimal);
     return international ? value.international : value.indian;

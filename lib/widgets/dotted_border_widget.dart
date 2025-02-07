@@ -25,10 +25,10 @@ class DottedBorderWidget extends StatefulWidget {
   });
 
   @override
-  _DottedBorderWidgetState createState() => _DottedBorderWidgetState();
+  DottedBorderWidgetState createState() => DottedBorderWidgetState();
 }
 
-class _DottedBorderWidgetState extends State<DottedBorderWidget> {
+class DottedBorderWidgetState extends State<DottedBorderWidget> {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(

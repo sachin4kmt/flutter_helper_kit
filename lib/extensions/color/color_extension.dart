@@ -17,9 +17,17 @@ extension Hex on Color {
       '${g.toInt().toRadixString(16).padLeft(2, '0')}'
       '${b.toInt().toRadixString(16).padLeft(2, '0')}';
 
-  /// replaced with the given `opacity` (which ranges from 0.0 to 1.0).
+  /// Returns a color with the given opacity (which ranges from 0.0 to 1.0).
+  ///
+  /// Example:
+  /// ```dart
+  /// Color color = Colors.blue;
+  /// Color newColor = color.withColorOpacity(0.5);
+  /// print(newColor); // Output: Color(0x800000ff)
+  /// ```
   Color withColorOpacity(double value) {
     assert(value >= 0.0 && value <= 1.0);
+    // ignore: unnecessary_this
     return this.withValues(
         alpha: value, red: r, blue: b, green: g, colorSpace: colorSpace);
   }
@@ -98,6 +106,13 @@ extension Hex on Color {
   }
 
   /// Lighten the color by [percentage] (0.0 to 1.0).
+  ///
+  /// Example:
+  /// ```dart
+  /// Color color = Colors.blue;
+  /// Color lightenedColor = color.lighten(0.2);
+  /// print(lightenedColor); // Output: Color(0xff64b5f6)
+  /// ```
   Color lighten([double amount = .1]) {
     assert(amount >= 0 && amount <= 1, 'Percentage must be between 0 and 1');
 
@@ -109,6 +124,13 @@ extension Hex on Color {
   }
 
   /// Darken the color by [percentage] (0.0 to 1.0).
+  ///
+  /// Example:
+  /// ```dart
+  /// Color color = Colors.blue;
+  /// Color darkenedColor = color.darken(0.2);
+  /// print(darkenedColor); // Output: Color(0xff1976d2)
+  /// ```
   Color darken([double amount = .1]) {
     assert(amount >= 0 && amount <= 1, 'Percentage must be between 0 and 1');
 
@@ -138,7 +160,7 @@ extension MaterialColorExtension on MaterialColor {
   /// replaced with the given `opacity` (which ranges from 0.0 to 1.0).
   Color withColorOpacity(double value) {
     assert(value >= 0.0 && value <= 1.0);
-    return this.withValues(
+    return withValues(
         alpha: value, red: r, blue: b, green: g, colorSpace: colorSpace);
   }
 
@@ -215,7 +237,19 @@ extension MaterialColorExtension on MaterialColor {
     return MaterialColor(red, swatch);
   }
 
-  /// Lighten the color by [percentage] (0.0 to 1.0).
+  /// Lightens the color by the given [amount] (0.0 to 1.0).
+  ///
+  /// This method adjusts the lightness of the color by the specified amount,
+  /// making it lighter. The [amount] should be between 0.0 (no change) and 1.0
+  /// (maximum lightening). The lightness is clamped between 0.0 and 1.0 to
+  /// ensure valid color values.
+  ///
+  /// Example:
+  /// ```dart
+  /// Color color = Colors.blue;
+  /// Color lightenedColor = color.lighten(0.2);
+  /// print(lightenedColor); // Output: Color(0xff64b5f6) (lighter shade of blue)
+  /// ```
   Color lighten([double amount = .1]) {
     assert(amount >= 0 && amount <= 1, 'Percentage must be between 0 and 1');
 
@@ -226,7 +260,19 @@ extension MaterialColorExtension on MaterialColor {
     return hslLight.toColor();
   }
 
-  /// Darken the color by [percentage] (0.0 to 1.0).
+  /// Darkens the color by the given [amount] (0.0 to 1.0).
+  ///
+  /// This method adjusts the lightness of the color by the specified amount,
+  /// making it darker. The [amount] should be between 0.0 (no change) and 1.0
+  /// (maximum darkening). The lightness is clamped between 0.0 and 1.0 to
+  /// ensure valid color values.
+  ///
+  /// Example:
+  /// ```dart
+  /// Color color = Colors.blue;
+  /// Color darkenedColor = color.darken(0.2);
+  /// print(darkenedColor); // Output: Color(0xff1976d2) (darker shade of blue)
+  /// ```
   Color darken([double amount = .1]) {
     assert(amount >= 0 && amount <= 1, 'Percentage must be between 0 and 1');
 

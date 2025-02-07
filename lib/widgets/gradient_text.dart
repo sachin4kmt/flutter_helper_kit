@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class GradientText extends StatelessWidget {
   const GradientText(
     this.text, {
-    Key? key,
+    super.key,
     this.style,
     this.strutStyle,
     this.textAlign,
@@ -19,7 +19,7 @@ class GradientText extends StatelessWidget {
     this.selectionColor,
     this.gradient,
     this.debug = false,
-  }) : super(key: key);
+  });
 
   /// The text to display
   final String? text;

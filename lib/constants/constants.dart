@@ -1,3 +1,4 @@
+/*
 class ConstantsString {
   static const errorMessage = 'Please try again';
   static const errorSomethingWentWrong = 'Something Went Wrong';
@@ -15,3 +16,4 @@ class ConstantsString {
   static const TEL_PREFIX = 'tel:';
   static const int passwordLengthGlobal = 6;
 }
+*/
