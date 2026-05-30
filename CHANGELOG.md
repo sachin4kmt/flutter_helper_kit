@@ -1,3 +1,8 @@
+## 1.0.5
+* Optimizations and fixes across core extensions.
+* Standardized `SharpBorderRadius` parameter handling.
+* Removed layout static analysis warnings.
+
 ## 1.0.4
 * TODO: DateTimeFormatExtension implement
 

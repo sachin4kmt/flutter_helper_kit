@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class ListViewPagination extends StatefulWidget {
   const ListViewPagination({
@@ -12,7 +13,7 @@ class ListViewPagination extends StatefulWidget {
     this.addAutomaticKeepAlives = true,
     this.addRepaintBoundaries = true,
     this.addSemanticIndexes = true,
-    this.cacheExtent,
+    this.scrollCacheExtent,
     this.controller,
     this.primary,
     this.physics,
@@ -39,7 +40,7 @@ class ListViewPagination extends StatefulWidget {
     this.addAutomaticKeepAlives = true,
     this.addRepaintBoundaries = true,
     this.addSemanticIndexes = true,
-    this.cacheExtent,
+    this.scrollCacheExtent,
     this.controller,
     this.primary,
     this.physics,
@@ -67,7 +68,7 @@ class ListViewPagination extends StatefulWidget {
   final bool addAutomaticKeepAlives;
   final bool addRepaintBoundaries;
   final bool addSemanticIndexes;
-  final double? cacheExtent;
+  final ScrollCacheExtent? scrollCacheExtent;
   final int? semanticChildCount;
   final double? itemExtent;
 
@@ -113,7 +114,7 @@ class _InfiniteListViewState extends State<ListViewPagination> {
           addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
           addRepaintBoundaries: widget.addRepaintBoundaries,
           addSemanticIndexes: widget.addSemanticIndexes,
-          cacheExtent: widget.cacheExtent,
+          scrollCacheExtent: widget.scrollCacheExtent,
           primary: widget.primary,
           physics: widget.physics,
           shrinkWrap: widget.shrinkWrap,
@@ -137,7 +138,7 @@ class _InfiniteListViewState extends State<ListViewPagination> {
         addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
         addRepaintBoundaries: widget.addRepaintBoundaries,
         addSemanticIndexes: widget.addSemanticIndexes,
-        cacheExtent: widget.cacheExtent,
+        scrollCacheExtent: widget.scrollCacheExtent,
         primary: widget.primary,
         physics: widget.physics,
         shrinkWrap: widget.shrinkWrap,

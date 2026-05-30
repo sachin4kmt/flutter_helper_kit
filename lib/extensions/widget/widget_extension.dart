@@ -240,7 +240,7 @@ extension WidgetExtension on Widget? {
   /// ```dart
   /// Container().expand();
   /// ```
-  Widget expand({flex = 1}) => Expanded(flex: flex, child: this!);
+  Widget expand({int flex = 1}) => Expanded(flex: flex, child: this!);
 
   /// Wraps the widget with `Flexible`.
   ///
@@ -248,7 +248,7 @@ extension WidgetExtension on Widget? {
   /// ```dart
   /// Container().flexible();
   /// ```
-  Widget flexible({flex = 1, FlexFit? fit}) {
+  Widget flexible({int flex = 1, FlexFit? fit}) {
     return Flexible(flex: flex, fit: fit ?? FlexFit.loose, child: this!);
   }
 

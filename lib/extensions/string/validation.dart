@@ -18,7 +18,7 @@ extension EmailValidation on String {
   /// ```
   bool isValidateEmail() {
     if (isEmptyOrNull) return false;
-    return hasMatch(this.toLowerCase().trim(), RegExpPatterns.email);
+    return hasMatch(toLowerCase().trim(), RegExpPatterns.email);
   }
 
   /// Validates whether the given string is a properly formatted email address
@@ -158,7 +158,7 @@ extension PasswordValidation on String {
       int numericCharCount = 0,
       int specialCharCount = 0}) {
     if (isEmptyOrNull) return false;
-    if (this.contains(' ')) return false;
+    if (contains(' ')) return false;
     if (minLength != 0 &&
         !Validator.hasMinimumLength(this, minLength == 0 ? 6 : minLength)) {
       return false;

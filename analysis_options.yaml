@@ -3,8 +3,8 @@ include: package:flutter_lints/flutter.yaml
 linter:
   rules:
     always_declare_return_types: true
-    always-specify-types: true
-    avoid_print: ture  # Uncomment to disable the `avoid_print` rule
+#    always-specify-types: true
+#    avoid_print: ture  # Uncomment to disable the `avoid_print` rule
     avoid_unnecessary_containers: true
     avoid_web_libraries_in_flutter: true
     no_logic_in_create_state: true

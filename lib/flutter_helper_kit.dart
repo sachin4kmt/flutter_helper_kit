@@ -1,17 +1,8 @@
-library flutter_helper_kit;
+/// A comprehensive utility kit containing high-performance extensions,
+/// production-ready pagination widgets, geometric squircle paths, and advanced formatters.
+library;
 
-// import 'dart:math' as math;
-// import 'dart:async';
-// import 'dart:io';
-// import 'dart:ui' as ui;
-// import 'package:flutter_helper_kit/flutter_helper_kit.dart';
-// import 'package:flutter/gestures.dart';
-// import 'package:flutter/services.dart';
-// import 'package:flutter/foundation.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/rendering.dart';
-
-///extensions
+/// Extensions
 export 'extensions/bool/bool_extensions.dart';
 export 'extensions/context/build_context_extension.dart';
 export 'extensions/color/color_extension.dart';
@@ -36,11 +27,11 @@ export 'extensions/list/list_num.dart';
 export 'extensions/widget/border.dart';
 export 'extensions/widget/padding.dart';
 
-///Formatter
+/// Formatter
 export 'text_field/no_leading_space_formatter.dart';
 export 'text_field/no_space_formatter.dart';
 
-///Utils
+/// Utils
 export 'utils/system_chrome_utils.dart';
 export 'utils/common_functions.dart';
 export 'utils/decorations.dart';
@@ -52,44 +43,41 @@ export 'utils/random_image.dart';
 export 'utils/close_icon_show_dialog.dart';
 export 'utils/pattern.dart';
 
-///Widgets
+/// Widgets
 export 'widgets/hide_keyboard.dart';
 export 'widgets/custom_indicator.dart';
 export 'widgets/flutter_toast.dart';
-export './widgets/simmer.dart';
-export './widgets/widget_helper.dart';
-export './widgets/text_avatar.dart';
-export './widgets/dash_divider.dart';
-export './widgets/read_more_text.dart';
-export './widgets/app_button.dart';
-export './widgets/marquee_widget.dart';
-export './widgets/text_icon_widget.dart';
-export './widgets/rounded_checkbox_widget.dart';
-export './widgets/rating_bar_widget.dart';
-export './widgets/double_press_back_widget.dart';
-export './widgets/timer_builder.dart';
-export './widgets/separated_column.dart';
-export './widgets/space/sliver_space.dart';
-export './widgets/space/space.dart';
-export './widgets/flutter_list_view.dart';
-export './widgets/tap_safe_gesture.dart';
-export './widgets/sharp_corners/sharp.dart';
-export './widgets/flutter_tag/flutter_tag.dart';
-export './widgets/dotted_border_widget.dart';
-export './widgets/gradient_text.dart';
-export './widgets/list_view_pagination.dart';
+export 'widgets/simmer.dart';
+export 'widgets/widget_helper.dart';
+export 'widgets/text_avatar.dart';
+export 'widgets/dash_divider.dart';
+export 'widgets/read_more_text.dart';
+export 'widgets/app_button.dart';
+export 'widgets/marquee_widget.dart';
+export 'widgets/text_icon_widget.dart';
+export 'widgets/rounded_checkbox_widget.dart';
+export 'widgets/rating_bar_widget.dart';
+export 'widgets/double_press_back_widget.dart';
+export 'widgets/timer_builder.dart';
+export 'widgets/separated_column.dart';
+export 'widgets/space/sliver_space.dart';
+export 'widgets/space/space.dart';
+export 'widgets/flutter_list_view.dart';
+export 'widgets/tap_safe_gesture.dart';
+export 'widgets/sharp_corners/sharp.dart';
+export 'widgets/flutter_tag/flutter_tag.dart';
+export 'widgets/dotted_border_widget.dart';
+export 'widgets/gradient_text.dart';
+export 'widgets/list_view_pagination.dart';
 
-///CustomPainter
+/// CustomPainter
 export 'custom_painter/google_logo_painter.dart';
 
-///CallBack Custom Type
+/// CallBack Custom Type
 export 'utils/type_def.dart';
 
-///Avatar
+/// Avatar & Glow UI Components
 export 'widgets/avatar_glow/avatar_glow.dart';
 export 'widgets/avatar_glow/avatar_glow_multi_color.dart';
 export 'widgets/avatar_glow/outline_glow.dart';
 export 'widgets/avatar_glow/outline_glow_multi_color.dart';
-
-///Constants String
-// export 'constants/constants.dart';

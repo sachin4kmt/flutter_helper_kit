@@ -394,7 +394,7 @@ extension DateTimeExtension on DateTime {
   /// print(date.weekdayName()); // Output: Monday
   /// ```
   String weekdayName({bool isHalfName = false}) {
-    return switch (this.day) {
+    return switch (day) {
       (DateTime.monday) => isHalfName ? 'Mon' : 'Monday',
       (DateTime.tuesday) => isHalfName ? 'Tue' : 'Tuesday',
       (DateTime.wednesday) => isHalfName ? 'Wed' : 'Wednesday',
@@ -410,7 +410,7 @@ extension DateTimeExtension on DateTime {
   /// Example: final date = DateTime.now();    //output: 2023-05-24 13:14:23.593304
   /// print(date.monthName()??"");            //output: May
   String monthName({bool isHalfName = false}) {
-    return switch (this.month) {
+    return switch (month) {
       (DateTime.january) => isHalfName ? 'Jan' : 'January',
       (DateTime.february) => isHalfName ? 'Feb' : 'February',
       (DateTime.march) => isHalfName ? 'Mar' : 'March',

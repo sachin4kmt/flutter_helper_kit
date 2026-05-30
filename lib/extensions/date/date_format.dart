@@ -192,7 +192,7 @@ extension DateTimeFormatExtension on DateTime {
   /// - Week 1 is the week containing the first Thursday of the year.
   int isoWeekOfYear() {
     // Adjust to the nearest Thursday (ISO weeks are based on Thursdays)
-    final thursdayOfCurrentWeek = this.subtract(Duration(days: weekday - 4));
+    final thursdayOfCurrentWeek = subtract(Duration(days: weekday - 4));
 
     // Get the first day of the year
     final startOfYear = DateTime(thursdayOfCurrentWeek.year, 1, 1);
@@ -226,7 +226,7 @@ extension DateTimeFormatExtension on DateTime {
   /// - This method assumes `addZeroPrefix()` is an extension on `int` that ensures
   ///   numbers are at least two digits (e.g., `5` → `"05"`).
   String timeZoneOffSet() {
-    final offset = this.timeZoneOffset;
+    final offset = timeZoneOffset;
     final hours = offset.inHours.addZeroPrefix();
     final minutes = (offset.inMinutes % 60).addZeroPrefix();
     return "${offset.isNegative ? '-' : '+'}$hours:$minutes";

@@ -1,154 +1,155 @@
+/// Utility extensions for working with nullable and non-nullable boolean values.
+///
+/// These extensions provide a consistent API for:
+/// - Null-safe boolean validation.
+/// - Boolean state checks.
+/// - Integer conversion.
+/// - Boolean toggling.
+///
+/// The nullable extension delegates most operations to the non-nullable
+/// extension after resolving a null value through [validate()], ensuring
+/// consistent behavior across both implementations.
+library;
+
+/// Extensions for nullable [bool] values.
 extension BooleanOrNullExtensions on bool? {
-  /// Validates the given boolean value.
+  /// Returns the current value if it is not null; otherwise returns [value].
   ///
-  /// If the value is not null, it returns the value itself.
-  /// If the value is null, it returns the provided [value].
+  /// This method acts as the foundation for all nullable boolean operations.
   ///
   /// Example:
-  /// ```dart
-  /// bool? value = null;
-  /// print(value.validate(value: true)); // true
-  /// print(value.validate()); // false
-  /// ```
+  /// `dart
+  /// bool? flag = null;
+  ///
+  /// flag.validate(); // false
+  /// flag.validate(value: true); // true
+  /// `
   bool validate({bool value = false}) => this ?? value;
 
-  /// Checks if the boolean value is true.
+  /// Returns `true` when the value is `true`.
   ///
-  /// Returns `true` if the value is true, otherwise returns `false`.
+  /// A `null` value is treated as `false`.
   ///
   /// Example:
-  /// ```dart
-  /// bool? value = true;
-  /// print(value.isTrue()); // true
-  /// ```
+  /// `dart
+  /// bool? flag = true;
+  /// flag.isTrue(); // true
+  /// `
   bool isTrue() => validate().isTrue();
 
-  /// Checks if the boolean value is false.
+  /// Returns `true` when the value is `false`.
   ///
-  /// Returns `true` if the value is false, otherwise returns `false`.
+  /// A `null` value is treated as `false`.
   ///
   /// Example:
-  /// ```dart
-  /// bool? value = false;
-  /// print(value.isFalse()); // true
-  /// ```
+  /// `dart
+  /// bool? flag = false;
+  /// flag.isFalse(); // true
+  /// `
   bool isFalse() => validate().isFalse();
 
-  /// Checks if the boolean value is not true.
+  /// Returns `true` when the value is not `true`.
   ///
-  /// Returns `true` if the value is not true, otherwise returns `false`.
+  /// A `null` value is treated as `false`.
   ///
   /// Example:
-  /// ```dart
-  /// bool? value = false;
-  /// print(value.isNotTrue()); // true
-  /// ```
+  /// `dart
+  /// bool? flag = null;
+  /// flag.isNotTrue(); // true
+  /// `
   bool isNotTrue() => validate().isNotTrue();
 
-  /// Checks if the boolean value is not false.
+  /// Returns `true` when the value is not `false`.
   ///
-  /// Returns `true` if the value is not false, otherwise returns `false`.
+  /// A `null` value is treated as `false`.
   ///
   /// Example:
-  /// ```dart
-  /// bool? value = true;
-  /// print(value.isNotFalse()); // true
-  /// ```
+  /// `dart
+  /// bool? flag = true;
+  /// flag.isNotFalse(); // true
+  /// `
   bool isNotFalse() => validate().isNotFalse();
 
   /// Converts the boolean value to an integer.
   ///
-  /// Returns 1 if the value is true, otherwise returns 0.
+  /// Returns:
+  /// - `1` for `true`
+  /// - `0` for `false` or `null`
   ///
   /// Example:
-  /// ```dart
-  /// bool? value = true;
-  /// print(value.toInt()); // 1
-  /// ```
+  /// `dart
+  /// bool? flag = true;
+  /// flag.toInt(); // 1
+  /// `
   int toInt() => validate().toInt();
 
-  /// Toggles the boolean value.
+  /// Returns the opposite boolean value.
   ///
-  /// If the value is true, it returns false.
-  /// If the value is false or null, it returns true.
+  /// Behavior:
+  /// - `true` → `false`
+  /// - `false` → `true`
+  /// - `null` → `true`
   ///
   /// Example:
-  /// ```dart
-  /// bool? value = true;
-  /// print(value.toggle()); // false
-  /// value = null;
-  /// print(value.toggle()); // true
-  /// ```
+  /// `dart
+  /// bool? flag = null;
+  /// flag.toggle(); // true
+  /// `
   bool toggle() => validate().toggle();
 }
 
+/// Extensions for non-nullable [bool] values.
 extension BooleanExtensions on bool {
-  /// Checks if the boolean value is true.
-  ///
-  /// Returns `true` if the value is true.
+  /// Returns whether this value is `true`.
   ///
   /// Example:
-  /// ```dart
-  /// bool value = true;
-  /// print(value.isTrue()); // true
-  /// ```
+  /// `dart
+  /// true.isTrue(); // true
+  /// `
   bool isTrue() => this;
 
-  /// Checks if the boolean value is false.
-  ///
-  /// Returns `true` if the value is false, otherwise returns `false`.
+  /// Returns whether this value is `false`.
   ///
   /// Example:
-  /// ```dart
-  /// bool value = false;
-  /// print(value.isFalse()); // true
-  /// ```
+  /// `dart
+  /// false.isFalse(); // true
+  /// `
   bool isFalse() => !this;
 
-  /// Checks if the boolean value is not true.
-  ///
-  /// Returns `true` if the value is not true, otherwise returns `false`.
+  /// Returns whether this value is not `true`.
   ///
   /// Example:
-  /// ```dart
-  /// bool value = false;
-  /// print(value.isNotTrue()); // true
-  /// ```
+  /// `dart
+  /// false.isNotTrue(); // true
+  /// `
   bool isNotTrue() => !this;
 
-  /// Checks if the boolean value is not false.
-  ///
-  /// Returns `true` if the value is not false, otherwise returns `false`.
+  /// Returns whether this value is not `false`.
   ///
   /// Example:
-  /// ```dart
-  /// bool value = true;
-  /// print(value.isNotFalse()); // true
-  /// ```
+  /// `dart
+  /// true.isNotFalse(); // true
+  /// `
   bool isNotFalse() => this;
 
   /// Converts the boolean value to an integer.
   ///
-  /// Returns 1 if the value is true, otherwise returns 0.
+  /// Returns:
+  /// - `1` for `true`
+  /// - `0` for `false`
   ///
   /// Example:
-  /// ```dart
-  /// bool value = true;
-  /// print(value.toInt()); // 1
-  /// ```
+  /// `dart
+  /// true.toInt(); // 1
+  /// `
   int toInt() => this ? 1 : 0;
 
-  /// Toggles the boolean value.
-  ///
-  /// If the value is true, it returns false.
-  /// If the value is false, it returns true.
+  /// Returns the opposite boolean value.
   ///
   /// Example:
-  /// ```dart
-  /// bool value = true;
-  /// print(value.toggle()); // false
-  /// value = false;
-  /// print(value.toggle()); // true
-  /// ```
+  /// `dart
+  /// true.toggle(); // false
+  /// false.toggle(); // true
+  /// `
   bool toggle() => !this;
 }

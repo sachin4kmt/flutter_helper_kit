@@ -30,7 +30,7 @@ extension MapExtension<K, V> on Map<K, V>? {
   /// Map<String, int>? nullMap = null;
   /// print(nullMap.isNotNullOrEmpty); // false
   /// ```
-  bool get isNotNullOrEmpty => !(this.isNullOrEmpty);
+  bool get isNotNullOrEmpty => !(isNullOrEmpty);
 
   /// Adds an item into the map if the value is not `null` and the key does not exist.
   ///

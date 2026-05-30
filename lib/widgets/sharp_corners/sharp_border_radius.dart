@@ -61,16 +61,13 @@ class SharpBorderRadius extends BorderRadius {
   /// Creates a border radius with only the given non-zero values. The other
   /// corners will be right angles.
   const SharpBorderRadius.only({
-    this.topLeft = SharpRadius.zero,
-    this.topRight = SharpRadius.zero,
-    this.bottomLeft = SharpRadius.zero,
-    this.bottomRight = SharpRadius.zero,
-  }) : super.only(
-          topLeft: topLeft,
-          bottomRight: topRight,
-          topRight: topRight,
-          bottomLeft: bottomLeft,
-        );
+    super.topLeft = SharpRadius.zero,
+    super.topRight = SharpRadius.zero,
+    super.bottomLeft = SharpRadius.zero,
+    super.bottomRight = SharpRadius.zero,
+  }) : super.only();
+
+
 
   /// Returns a copy of this BorderRadius with the given fields replaced with
   /// the new values.
@@ -94,19 +91,19 @@ class SharpBorderRadius extends BorderRadius {
 
   /// The top-left [SharpRadius].
   @override
-  final SharpRadius topLeft;
+  SharpRadius get topLeft => super.topLeft as SharpRadius;
 
   /// The top-right [SharpRadius].
   @override
-  final SharpRadius topRight;
+  SharpRadius get topRight => super.topRight as SharpRadius;
 
   /// The bottom-left [SharpRadius].
   @override
-  final SharpRadius bottomLeft;
+  SharpRadius get bottomLeft => super.bottomLeft as SharpRadius;
 
   /// The bottom-right [SharpRadius].
   @override
-  final SharpRadius bottomRight;
+  SharpRadius get bottomRight => super.bottomRight as SharpRadius;
 
   /// Creates a [Path] inside the given [Rect].
   Path toPath(Rect rect) {
