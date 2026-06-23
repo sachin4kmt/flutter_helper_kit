@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 ///   double radian = FlutterHelperUtils.degreeToRadian(degree);
 ///   print('45 degrees in radians: $radian'); // Output: 0.7853981633974483
 double degreeToRadian(double degree) {
-  return degree * (-math.pi / 180);
+  return degree * (math.pi / 180);
 }
 
 /// Short for [Future.delayed].
@@ -30,12 +30,12 @@ double degreeToRadian(double degree) {
 ///   return 'Delayed value';
 /// });
 /// ```
-Future<T> wait<T>([
+Future<T?> wait<T>([
   int millisecond = 1500,
   FutureOr<T> Function()? value,
 ]) async {
   await Future.delayed(Duration(milliseconds: millisecond));
-  return value == null ? null as T : value.call();
+  return value == null ? null : await value.call();
 }
 
 /// Checks the network connection by attempting to lookup 'google.com'.
