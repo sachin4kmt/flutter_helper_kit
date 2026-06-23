@@ -219,7 +219,7 @@ extension UsernameValidation on String {
   }
 }
 
-extension PasswordStrength on String {
+extension PasswordStrengthExtension on String {
   /// Determines the **strength of a password**.
   ///
   /// ### Strength Levels:

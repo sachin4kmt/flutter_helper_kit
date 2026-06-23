@@ -1,3 +1,11 @@
+## 1.0.6
+* Consolidated custom_helper modules (animation, responsive, widgets, extensions, utils).
+* Added modular entry points: `flutter_helper_kit_extensions.dart`, `_widgets.dart`, `_animation.dart`, `_responsive.dart`, `_utils.dart`.
+* Added `CallbackMapInfoWindowAdapter` for map info windows without extra dependencies.
+* Renamed `PasswordStrength` string extension to `PasswordStrengthExtension` (enum conflict fix).
+* Example catalog expanded to 44 demos with source-file mapping.
+* Expanded test coverage and analyze warning fixes.
+
 ## 1.0.5
 * Optimizations and fixes across core extensions.
 * Standardized `SharpBorderRadius` parameter handling.

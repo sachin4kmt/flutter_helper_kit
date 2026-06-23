@@ -1,0 +1,1266 @@
+
+import 'dart:math';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+/// The smallest possible value of an int within 64 bits.
+const int intMinValue = -9007199254740991;
+
+/// The biggest possible value of an int within 64 bits.
+const int inMaxValue = 9007199254740991;
+
+class NP {
+  static bool _boundaryCheckingState = true;
+
+  /// 字符串转为[num]类型
+  /// [number] 数据
+  static num parseNum(dynamic number) {
+    if (number is num) {
+      return number;
+    } else if (number is String) {
+      return num.parse(number);
+    } else {
+      throw FormatException('$number is not of type num and String');
+    }
+  }
+
+  /// 把错误的数据转正
+  /// strip(0.09999999999999998)=0.1
+  /// [number] 数据 [precision] 截取小数位™
+  static num strip(dynamic number, {int precision = 14}) {
+    return num.parse(parseNum(number).toStringAsFixed(precision));
+  }
+
+  /// 返回小数的位数
+  /// [number] 数据
+  static num digitLength(dynamic number) {
+    final eSplit = parseNum(number).toString().toLowerCase().split('e');
+    final digit = eSplit[0].split('.');
+    final len = (digit.length == 2 ? digit[1].length : 0) - (eSplit.length == 2 ? int.parse(eSplit[1]) : 0);
+    return len > 0 ? len : 0;
+  }
+
+  /// 把小数转成整数，支持科学计数法。如果是小数则放大成整数
+  /// [number] 数据
+  static num float2Fixed(dynamic number) {
+    final dLen = digitLength(number);
+    if (dLen <= 20) {
+      if (number is String) {
+        if (!number.toLowerCase().contains('e')) {
+          return num.parse(number.replaceAll('.', ''));
+        }
+        return num.parse(num.parse(number).toStringAsFixed(dLen as int).replaceAll(dLen == 0 ? '' : '.', ''));
+      } else if (number is num) {
+        return num.parse(number.toStringAsFixed(dLen as int).replaceAll(dLen == 0 ? '' : '.', ''));
+      }
+
+      throw FormatException('$number is not of type num and String');
+    }
+    throw Exception('$number is beyond boundary when transfer to integer, the results may not be accurate');
+  }
+
+  /// 检测数字是否越界，如果越界给出提示
+  /// [number] 数据
+  static void checkBoundary(dynamic number) {
+    if (_boundaryCheckingState) {
+      if (number > inMaxValue || number < intMinValue) {
+        throw Exception('$number is beyond boundary when transfer to integer, the results may not be accurate');
+      }
+    }
+  }
+
+  /// 精确乘法
+  /// [num1] 左操作数 [num2]右操作数
+  /// [others] 更多操作数使用数组传递
+  ///
+  /// 譬如 times(1, 2, [22,33])
+  static num times(dynamic num1, dynamic num2, [List<dynamic>? others]) {
+    if (others != null) {
+      return times(times(num1, num2), others[0], others.length >= 2 ? others.sublist(1) : null);
+    }
+    num num1Changed = float2Fixed(num1);
+    num num2Changed = float2Fixed(num2);
+    num baseNum = digitLength(num1) + digitLength(num2);
+    dynamic leftValue = num1Changed * num2Changed;
+
+    checkBoundary(leftValue);
+
+    return NP.strip(leftValue / pow(10, baseNum));
+  }
+
+  /// 精确加法
+  static num plus(dynamic num1, dynamic num2, [List<dynamic>? others]) {
+    if (others != null) {
+      return plus(plus(num1, num2), others[0], others.length >= 2 ? others.sublist(1) : null);
+    }
+    num baseNum = pow(10, max(digitLength(num1), digitLength(num2)));
+    return (times(num1, baseNum) + times(num2, baseNum)) / baseNum;
+  }
+
+  /// 精确减法
+  static num minus(dynamic num1, dynamic num2, [List<dynamic>? others]) {
+    if (others != null) {
+      return minus(minus(num1, num2), others[0], others.length >= 2 ? others.sublist(1) : null);
+    }
+    num baseNum = pow(10, max(digitLength(num1), digitLength(num2)));
+
+    return (times(num1, baseNum) - times(num2, baseNum)) / baseNum;
+  }
+
+  /// 精确除法
+  static num divide(dynamic num1, dynamic num2, [List<dynamic>? others]) {
+    if (others != null) {
+      return divide(divide(num1, num2), others[0], others.length >= 2 ? others.sublist(1) : null);
+    }
+    num num1Changed = float2Fixed(num1);
+    num num2Changed = float2Fixed(num2);
+    checkBoundary(num1Changed);
+    checkBoundary(num2Changed);
+    return times(num1Changed / num2Changed, (pow(10, digitLength(num2) - digitLength(num1))));
+  }
+
+  /// 四舍五入
+  static num round(dynamic number, int ratio) {
+    num base = pow(10, ratio);
+    return divide((times(number, base).round()), base);
+  }
+
+  /// 是否进行边界检查，默认开启
+  /// [flag] 标记开关，true 为开启，false 为关闭，默认为 true
+  static void enableBoundaryChecking([bool flag = true]) {
+    _boundaryCheckingState = flag;
+  }
+}
+
+const TextStyle _$defaultTextStyle = TextStyle(color: Colors.black, fontSize: 25);
+
+/// 为了适配flutter 2 中的 `WidgetsBinding.instance` 可能为 `null`
+///
+/// Adapter `WidgetsBinding.instance` in Flutter 2 may be `null`
+class WidgetsBindingx {
+  static WidgetsBinding? get instance => WidgetsBinding.instance;
+}
+
+/// #### 格式化最终显示的值
+///
+/// [value] 是默认要显示的结果
+///
+/// [value] is default display result
+///
+typedef FormatValue = String Function(String value);
+
+/// #### 自定义每一个 Widget
+typedef AnimatedSingleWidgetBuilder = Widget Function(Size size, String value, bool isNumber, Widget child);
+
+/// #### 当值符合条件时，改变颜色
+typedef ValueChangeTextStyle = TextStyle Function(TextStyle style);
+
+/// #### 当值符合条件时，改变颜色
+typedef ValueColorCondition = bool Function();
+
+/// #### 用来描述符合条件的 value 字体颜色
+///
+/// #### the value text color
+class ValueColor {
+  /// 颜色条件
+  ///
+  /// the color condition
+  ValueColorCondition condition;
+
+  /// text color
+  Color color;
+
+  /// #### 用来描述符合条件的 value 字体颜色
+  ///
+  /// #### the value text color
+  ValueColor({required this.condition, required this.color});
+}
+
+/// 单个包装的字符/数字依赖配置数据源
+class SingleDigitData {
+  /// 单个字符容器尺寸大小。
+  /// 如果为 null，则以数字 `0` 为字体宽高标准计算得到。
+  ///
+  /// The single container size.
+  /// If it is null, it will be calculated with the number `0` as the font width and height standard.
+  ///
+  Size? size;
+
+  /// 根据值变化颜色的集合
+  List<ValueColor>? valueColors;
+
+  /// 前缀和后缀跟随颜色变化，默认跟随
+  bool prefixAndSuffixFollowValueColor;
+
+  /// 自定义内容 builder
+  /// 每一个数字，每一个字符。
+  /// 整个 `AnimatedDigitWidget` 由 `value.length` 个 `Single-Widget` 组成，
+  /// 所以 `singleBuilder` 就不言而喻了。
+  ///
+  /// - @size [Size] 其尺寸大小受回调参数中的 `size` 约束，可以通过 [SingleDigitData] 来自定义 `size` 约束。
+  /// - @value [String] 参数为当前的 `Single-Widget` 中原本显示的值。
+  /// - @isNumber [bool] 用来判断当前的 `Single-Widget` 中的值是否是数字。
+  /// - @child [Widget] 默认的 `Single-Widget` 的 build child。
+  AnimatedSingleWidgetBuilder? builder;
+
+  /// 是否使用文字本身的 Size 做为包装 Size
+  bool useTextSize;
+
+  /// 单个包装的字符/数字依赖配置数据源
+  SingleDigitData({this.size, this.useTextSize = false, this.valueColors, this.prefixAndSuffixFollowValueColor = true, this.builder});
+
+  Widget? _buildChangeTextColorWidget(BuildContext context, String val, TextStyle textStyle, [Key? key, Duration? duration, Curve? curve]) {
+    final vc = _getLastValidValueColor();
+    if (vc == null) return null;
+
+    final d = duration ?? const Duration(milliseconds: 300);
+    final c = curve ?? Curves.easeInOut;
+
+    WidgetsBindingx.instance?.addPostFrameCallback((_) {
+      textStyle = textStyle.copyWith(color: vc.color);
+    });
+    // 使用颜色动画
+    return _AnimatedDigitColorWidget(key: key, text: val, baseStyle: textStyle, targetColor: vc.color, duration: d, curve: c);
+  }
+
+  ValueColor? _getLastValidValueColor() {
+    ValueColor? result;
+    if (valueColors == null) return null;
+    for (var vc in valueColors!) {
+      if (vc.condition()) {
+        result = vc;
+      }
+    }
+    return result;
+  }
+}
+
+/// The [SingleDigitData] `DI` provider widget
+class SingleDigitProvider extends InheritedWidget {
+  /// The [SingleDigitData] `DI` provider widget
+  const SingleDigitProvider({super.key, required this.data, required super.child});
+
+  final SingleDigitData data;
+
+  static SingleDigitData of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<SingleDigitProvider>()!.data;
+  }
+
+  static SingleDigitData? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<SingleDigitProvider>()?.data;
+  }
+
+  @override
+  bool updateShouldNotify(SingleDigitProvider oldWidget) {
+    return true;
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<SingleDigitData>('data', data, showName: false));
+  }
+}
+
+/// #### 动画数字控制器
+///
+/// **code:example:**
+/// ```
+/// AnimatedDigitController controller = AnimatedDigitController(99.99);
+/// // 累加一个数值
+/// controller.addValue(100);
+/// // 重置数值
+/// controller.resetValue(99.99);
+/// ```
+class AnimatedDigitController extends ValueNotifier<num> {
+  /// #### 动画数字控制器
+  ///
+  /// **@initialValue** initial display value
+  /// ```
+  /// AnimatedDigitController(99.99)
+  /// ```
+  AnimatedDigitController(super.initialValue);
+
+  bool _dispose = false;
+
+  // @override
+  // set value(num value) {
+  //   super.value = value;
+  //   print(value);
+  // }
+
+  @override
+  void dispose() {
+    _dispose = true;
+    super.dispose();
+  }
+
+  /// ### 累加数字 | plus value
+  ///
+  /// **能在不丢失精度计算数值**
+  ///
+  /// - 为什么需要不丢失精度计算？
+  ///
+  /// - 因为
+  /// ```dart
+  /// print(0.1 + 0.2); // => 0.30000000000000004
+  /// ```
+  /// - 所以 [addValue] 内使用了 [NP.plus]
+  /// ```dart
+  /// AnimatedDigitController controller = AnimatedDigitController(0.1);
+  /// controller.addValue(0.2);
+  /// print(controller.value) // => 0.3
+  /// ```
+  void addValue(num newValue) {
+    if (!_dispose) {
+      value = NP.plus(value, newValue);
+    }
+  }
+
+  /// 减 | minus value
+  void minusValue(num newValue) {
+    if (!_dispose) {
+      value = NP.minus(value, newValue);
+    }
+  }
+
+  /// 乘 | times value
+  void timesValue(num newValue) {
+    if (!_dispose) {
+      value = NP.times(value, newValue);
+    }
+  }
+
+  /// 除 | divide value
+  void divideValue(num newValue) {
+    if (!_dispose) {
+      value = NP.divide(value, newValue);
+    }
+  }
+
+  /// #### 重置数字 | reset value
+  ///
+  /// ```
+  /// AnimatedDigitController controller = AnimatedDigitController(99.99);
+  ///
+  /// controller.addValue(0.01);
+  /// print(controller.value) // 100
+  ///
+  /// controller.resetValue(99.99);
+  /// print(controller.value) // 99.99
+  /// ```
+  void resetValue(num newValue) {
+    if (!_dispose) {
+      value = newValue;
+    }
+  }
+}
+
+/// 动画数字 Widget
+///
+///
+/// ```
+/// 1.
+/// - - - - - - - - - - - - - - - - -
+/// // easy
+/// AnimatedDigitWidget(value: 1314)
+/// // easy 2
+/// AnimatedDigitWidget(
+///   value: 1314,
+///   loop: true,
+///   autoSize: true,
+/// )
+/// - - - - - - - - - - - - - - - - -
+///
+/// 2.
+/// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+/// // 声明控制器
+/// AnimatedDigitController _controller = AnimatedDigitController(99.99);
+///
+/// // build widget
+/// AnimatedDigitWidget(
+///   controller: _controller,
+///   textStyle: TextStyle(color: Color(0xff009668)),
+///   fractionDigits: 2, // 带两位小数
+///   enableSeparator: true, // 启用千位数字分隔符
+/// )
+/// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+/// ```
+///
+class AnimatedDigitWidget extends StatefulWidget {
+  /// 数字控制器 | digit controller
+  ///
+  /// when the [controller] exists, the [value] will not take effect
+  final AnimatedDigitController? controller;
+
+  /// 动画的数字，当没有 [controller] 时生效，用于不需要额外控制数字时，同时存在时，[controller] 具有更高的优先级
+  ///
+  /// Effective when there is no [controller], used when no additional control digits are needed
+  /// [controller] has higher priority
+  final num? value;
+
+  /// 数字字体样式 | digit text style
+  ///
+  /// see [TextStyle]
+  late final TextStyle _textStyle;
+
+  /// 动画时间 | animate duration
+  ///
+  /// see [Duration]
+  final Duration duration;
+
+  /// 动画曲线 | animate curve
+  ///
+  /// see [Curve]
+  final Curve curve;
+
+  /// 等同于 Container BoxDecoration 的用法
+  /// 是对每一个字符生效
+  ///
+  /// see [BoxDecoration]
+  final BoxDecoration? boxDecoration;
+
+  /// 小数位(1000520.987)
+  ///
+  /// `0` => 1000520;
+  ///
+  /// `1` => 1000520.9;
+  ///
+  /// `2` => 1000520.98;
+  ///
+  /// `3` => 1000520.987;
+  ///
+  /// `...` => 1000520.[...];
+  final int fractionDigits;
+
+  /// ### orgin params => **`enableDigitSplit`** [ `>=v3.1.0` not available]
+  ///
+  /// 启用数字分隔符 `1000520.99` | `1,000,520.99`
+  ///
+  /// see [separateLength] and [separateSymbol]
+  ///
+  /// enable number separator
+  final bool enableSeparator;
+
+  /// ### orgin params => **`digitSplitSymbol`** [ `>=v3.1.0` not available]
+  ///
+  /// Default thousands separator [`enableSeparator` = `false`] invalid,
+  /// Other digits can be used `separateLength`,
+  ///
+  /// assert [separateLength] at least greater than or equal to 1
+  ///
+  /// 数字千分位分隔符号, [`enableSeparator` = `false`]时无效,
+  /// 其他位数可以使用 `separateLength`，
+  ///
+  /// 断言 [separateLength] 最小不能低于 1，可以等于
+  ///
+  /// `,` => `1,000,520.99`
+  ///
+  /// `'` => `1'000'520.99`
+  ///
+  /// `-` => `1-000-520.99`
+  ///
+  final String? separateSymbol;
+
+  /// ### orgin params => **`separatorDigits`** [ `>=v3.1.0` not available]
+  ///
+  /// Separate length, the default is thousands separator and at least greater than or equal to 1
+  ///
+  /// 数字分隔位数, 默认为千分位(3)
+  ///
+  final int separateLength;
+
+  /// Insert a symbol between the integer part and the fractional part.
+  final String decimalSeparator;
+
+  /// The text to display in front of the counter.
+  final String? prefix;
+
+  /// The text to display after the counter.
+  final String? suffix;
+
+  /// 数字采用循环滚动。
+  ///
+  /// - 假设每个数字的 `Box` 高度为 `30`.
+  ///
+  /// - `false` 时, 从 9 滚动到 => 1 时，中间间隔为 `[0, 1,..., 9]`.
+  /// 则是向 **`↑`** 滚动 `9 ~ 1` 之间的距离 `(9 - 1) * 30`,
+  ///
+  /// - `true` 时, 从 9 滚动到 => 1 时，中间间隔为 `{...9, 0, 1...}`.
+  /// 则是向 **`↓`** 滚动 `9 ~ 1` 之间的距离 `(10 - 9 + 1) * 30`
+  final bool loop;
+
+  /// 自适应调整 digit/symbol 文本的大小，
+  /// 只在未自定义 Size 的情况下有效 `SingleDigitData.size == null`
+  ///
+  /// digit/symbol adaptive resizing,
+  /// Only valid without custom Size `SingleDigitData.size == null`
+  final bool autoSize;
+
+  /// 在自适应调整 digit/symbol 文本的大小的时候是否是动画的
+  ///
+  /// Use animate when digit/symbol text adaptively resizing.
+  final bool animateAutoSize;
+
+  /// 根据值变化颜色的集合
+  ///
+  /// ```dart
+  /// int value = 9999; // or use Controller.value
+  /// AnimatedDigitWidget(
+  ///   value: value,
+  ///   textStyle: TextStyle(color: Colors.orange, fontSize: 30),
+  ///   valueColors: [
+  ///     ValueColor(
+  ///       //When value <= 0 , the color changes to red
+  ///       condition: () => value <= 0,
+  ///       color: Colors.red,
+  ///     ),
+  ///     // you can add more ...，but always take the last eligible.
+  ///   ],
+  /// ),
+  /// ```
+  final List<ValueColor>? valueColors;
+
+  /// 初始时是否执行动画
+  ///
+  /// [firstScrollAnimate] 为 true 时，初始渲染时会执行动画，动画始终从 0 起始滚动至 [value]
+  final bool firstScrollAnimate;
+
+  /// 最小整数位数，不足时向左补 '0'，但是 [fractionDigits] 必须是 0
+  ///
+  /// e.g. value = 1, [enableMinIntegerDigits] = true -> "01"
+  ///
+  /// 🍓！🍓！🍓！🍓
+  ///
+  /// [fractionDigits] it must be 0
+  ///
+  /// 🍓🍓🍓🍓🍓🍓
+  final bool enableMinIntegerDigits;
+
+  /// see [AnimatedDigitWidget]
+  AnimatedDigitWidget({
+    super.key,
+    TextStyle? textStyle,
+    this.controller,
+    this.value,
+    this.duration = const Duration(milliseconds: 300),
+    this.curve = Curves.easeInOut,
+    this.boxDecoration,
+    this.fractionDigits = 0,
+    this.enableSeparator = false,
+    this.separateSymbol = ',',
+    this.separateLength = 3,
+    this.decimalSeparator = '.',
+    this.prefix,
+    this.suffix,
+    this.loop = true,
+    this.autoSize = true,
+    this.animateAutoSize = true,
+    this.valueColors,
+    this.firstScrollAnimate = true,
+    this.enableMinIntegerDigits = false,
+  }) : assert(separateLength >= 1, '@separateLength at least greater than or equal to 1'),
+       assert(!(value == null && controller == null), 'the @value & @controller cannot be null at the same time') {
+    if (textStyle != null) {
+      if (textStyle.color == null) {
+        _textStyle = textStyle.copyWith(color: Colors.black);
+      } else {
+        _textStyle = textStyle;
+      }
+    } else {
+      _textStyle = _$defaultTextStyle;
+    }
+  }
+
+  @override
+  AnimatedDigitWidgetState createState() {
+    return AnimatedDigitWidgetState();
+  }
+}
+
+class AnimatedDigitWidgetState extends State<AnimatedDigitWidget> with WidgetsBindingObserver {
+  /// see [MediaQueryData]
+  MediaQueryData? _mediaQueryData;
+
+  /// see [SingleDigitData]
+  SingleDigitData? _singleDigitData;
+
+  // text style
+  late TextStyle style;
+
+  // Keep track of the DefaultTextStyle InheritedWidget value
+  TextStyle? _defaultTextStyle;
+
+  /// mark dirty, rebuild widget
+  ///
+  /// 当触发以下回调时
+  /// [reassemble],
+  /// [didChangeDependencies],
+  /// [didChangeTextScaleFactor]
+  /// [didChangeAccessibilityFeatures],
+  /// 将需要被重建，
+  /// 会通过 [_markNeedRebuild] 变更成 `true`，
+  ///
+  /// 在 [build] 完成时，恢复为 `false', 以待下次重建
+  bool _dirty = false;
+
+  /// the controller value or widget value
+  num get currentValue => widget.controller?.value ?? widget.value!;
+
+  final List<_AnimatedSingleWidget> _widgets = [];
+
+  num _value = 0.0;
+
+  /// value get,
+  num get value => _value;
+
+  /// value set
+  set value(num newValue) {
+    _value = newValue;
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  /// is negative number
+  bool get isNegative => _value.isNegative;
+
+  /// is first initial
+  late bool _firstScrollAnimate = widget.firstScrollAnimate;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBindingx.instance?.addObserver(this);
+    widget.controller?.addListener(_updateValue);
+    value = currentValue;
+  }
+
+  String _getFormatValueAsString() {
+    return _formatNum(_value.toString(), fractionDigits: widget.fractionDigits);
+  }
+
+  void _updateValue() {
+    value = currentValue;
+  }
+
+  void _markNeedRebuild() {
+    _widgets.clear();
+    _dirty = true;
+    _updateValue();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final mq = MediaQuery.maybeOf(context);
+    final sdp = SingleDigitProvider.maybeOf(context);
+
+    final dts = DefaultTextStyle.of(context).style;
+    if (dts != _defaultTextStyle) {
+      style = dts.merge(widget._textStyle);
+    }
+
+    if (_mediaQueryData?.textScaler != mq?.textScaler || _singleDigitData != sdp || dts != _defaultTextStyle) {
+      _markNeedRebuild();
+    }
+    _mediaQueryData = mq;
+    _singleDigitData = sdp;
+    _defaultTextStyle = dts;
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    _markNeedRebuild();
+  }
+
+  @override
+  void didChangeAccessibilityFeatures() {
+    super.didChangeAccessibilityFeatures();
+    _markNeedRebuild();
+  }
+
+  @override
+  void didChangeTextScaleFactor() {
+    super.didChangeTextScaleFactor();
+    _markNeedRebuild();
+  }
+
+  String _formatNum(String numstr, {int fractionDigits = 2}) {
+    String result;
+    final String numStr0 = isNegative ? numstr.replaceFirst('-', '') : numstr;
+    final List<String> numSplitArr = num.parse(numStr0).toString().split('.');
+    if (numSplitArr.length < 2) {
+      numSplitArr.add(''.padRight(fractionDigits, '0'));
+    }
+    if (!widget.enableSeparator && fractionDigits < 1) {
+      result = numSplitArr.first;
+    }
+    final List<String> digitList = List.from(numSplitArr.first.characters, growable: false);
+    if (widget.enableSeparator) {
+      int len = digitList.length - 1;
+      final separateSymbol = widget.separateSymbol ?? '';
+      if (separateSymbol.isNotEmpty) {
+        for (int index = 0, i = len; i >= 0; index++, i--) {
+          if (index % widget.separateLength == 0 && i != len) digitList[i] += separateSymbol;
+        }
+      }
+    }
+    // handle fraction digits
+    if (fractionDigits > 0) {
+      List<String> fractionList = List.from(numSplitArr.last.characters);
+      if (fractionList.length > fractionDigits) {
+        fractionList = fractionList.take(fractionDigits).toList(growable: false);
+      } else {
+        final padRightLen = fractionDigits - fractionList.length;
+        //Equivalent to `padRight(padRightLen, "0")`
+        fractionList.addAll(List.generate(padRightLen, (index) => '0'));
+      }
+      final strbuff = StringBuffer()
+        ..writeAll(digitList)
+        ..write(widget.decimalSeparator)
+        ..writeAll(fractionList);
+      result = strbuff.toString();
+    } else {
+      result = digitList.join('');
+    }
+
+    return result;
+  }
+
+  @override
+  void didUpdateWidget(AnimatedDigitWidget oldWidget) {
+    widget.controller?.removeListener(_updateValue);
+    super.didUpdateWidget(oldWidget);
+    widget.controller?.addListener(_updateValue);
+    if (widget.controller == null) {
+      _updateValue();
+    }
+
+    if (widget._textStyle != oldWidget._textStyle) {
+      style = _defaultTextStyle!.merge(widget._textStyle);
+      _markNeedRebuild();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBindingx.instance?.removeObserver(this);
+    widget.controller?.removeListener(_updateValue);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    WidgetsBindingx.instance?.addPostFrameCallback((_) {
+      _firstScrollAnimate = true;
+    });
+
+    if (widget.valueColors != null) {
+      _singleDigitData = SingleDigitData(useTextSize: true, valueColors: widget.valueColors);
+    }
+
+    if (_dirty) {
+      _rebuild();
+    } else {
+      _update();
+    }
+    _dirty = false;
+
+    // Wrap the rendered Row with AnimatedSize so that when children count/size changes
+    // the overall width/height will animate smoothly instead of jump.
+    final Widget animated = AnimatedSize(duration: widget.duration, curve: widget.curve, child: _build());
+
+    if (_singleDigitData != null) {
+      return SingleDigitProvider(data: _singleDigitData!, child: animated);
+    }
+
+    return animated;
+  }
+
+  Widget _build() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (widget.prefix != null) _buildChangeTextColorWidget(widget.prefix!),
+        _buildNegativeSymbol(),
+        AnimatedSize(
+          duration: widget.duration,
+          curve: widget.curve,
+          child: Row(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: _widgets),
+        ),
+        if (widget.suffix != null) _buildChangeTextColorWidget(widget.suffix!),
+      ],
+    );
+  }
+
+  Widget _buildChangeTextColorWidget(String val) {
+    Widget result = Text(val, style: style);
+    final sdd = _singleDigitData;
+    if (sdd == null || !sdd.prefixAndSuffixFollowValueColor) return result;
+    return sdd._buildChangeTextColorWidget(context, val, style, null, widget.duration, widget.curve) ?? result;
+  }
+
+  void _rebuild([String? value]) {
+    _widgets.clear();
+    String newValue = value ?? _getFormatValueAsString();
+    // 检查最小整数位数
+    if (widget.enableMinIntegerDigits && widget.fractionDigits == 0 && newValue.length < 2) {
+      newValue = newValue.padLeft(2, '0');
+    }
+    for (var i = 0; i < newValue.length; i++) {
+      _addAnimatedSingleWidget(newValue[i]);
+    }
+  }
+
+  void _update() {
+    String newValue = _getFormatValueAsString();
+    final int lenNew = newValue.length;
+    final int lenOld = _widgets.length;
+    if (value == 0 || lenNew == lenOld) {
+      if (lenNew < lenOld) {
+        _widgets.removeRange(lenNew - 1, (lenOld - lenNew) + widget.fractionDigits + (widget.fractionDigits > 0 ? 1 : 0));
+      }
+      // 检查最小整数位数
+      if (widget.enableMinIntegerDigits && widget.fractionDigits == 0 && _widgets.length < 2) {
+        _addAnimatedSingleWidget('0');
+      }
+      for (var i = 0; i < (lenNew == 0 ? 1 : lenNew); i++) {
+        final String curr = newValue[i];
+        _setValue(_widgets[i].key, curr);
+      }
+    } else {
+      _rebuild(newValue);
+    }
+  }
+
+  Widget _buildNegativeSymbol() {
+    final String symbolKey = '_AdwChildSymbol';
+    Widget secondChild =
+        _singleDigitData?._buildChangeTextColorWidget(context, '-', style, ValueKey(symbolKey), widget.duration, widget.curve) ??
+        Text('-', key: ValueKey(symbolKey), style: style);
+    return AnimatedCrossFade(
+      key: const ValueKey('_AdwAnimaNegativeSymbol'),
+      firstChild: Text('', key: ValueKey(symbolKey), style: style),
+      secondChild: secondChild,
+      sizeCurve: widget.curve,
+      firstCurve: widget.curve,
+      secondCurve: widget.curve,
+      duration: widget.duration,
+      reverseDuration: widget.duration,
+      crossFadeState: isNegative ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+    );
+  }
+
+  void _setValue(Key? aswKey, String value) {
+    assert(aswKey != null);
+    if (aswKey is GlobalKey<_AnimatedSingleWidgetState>) {
+      aswKey.currentState?.setValue(value);
+    }
+  }
+
+  void _addAnimatedSingleWidget(String value) {
+    _widgets.add(_buildSingleWidget(value));
+  }
+
+  _AnimatedSingleWidget _buildSingleWidget(String value) {
+    return _AnimatedSingleWidget(
+      initialValue: value,
+      textStyle: style,
+      boxDecoration: widget.boxDecoration,
+      duration: widget.duration,
+      curve: widget.curve,
+      textScaler: _mediaQueryData?.textScaler,
+      singleDigitData: _singleDigitData,
+      loop: widget.loop,
+      autoSize: widget.autoSize,
+      animateAutoSize: widget.animateAutoSize,
+      firstScrollAnimate: _firstScrollAnimate,
+      controller: widget.controller,
+    );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DoubleProperty('value', currentValue.toDouble()));
+  }
+}
+
+/// single
+class _AnimatedSingleWidget extends StatefulWidget {
+  /// textStyle
+  final TextStyle textStyle;
+
+  /// duration
+  final Duration duration;
+
+  /// curve
+  final Curve curve;
+
+  /// boxDecoration
+  final BoxDecoration? boxDecoration;
+
+  /// initialValue
+  final String initialValue;
+
+  /// The [MediaQueryData] in textScaler
+  final TextScaler? textScaler;
+
+  final SingleDigitData? singleDigitData;
+
+  /// loop scroll
+  final bool loop;
+
+  /// auto scale text size
+  final bool autoSize;
+
+  /// use animate scale text size scale
+  final bool animateAutoSize;
+
+  /// 初始时是否执行动画
+  ///
+  /// [firstScrollAnimate] 为 true 时，初始渲染时会执行动画，动画始终从 0 起始滚动至 [initialValue]
+  final bool firstScrollAnimate;
+
+  final AnimatedDigitController? controller;
+
+  _AnimatedSingleWidget({
+    required this.initialValue,
+    required this.textStyle,
+    required this.duration,
+    required this.curve,
+    required this.controller,
+    this.boxDecoration,
+    this.textScaler,
+    this.singleDigitData,
+    this.loop = false,
+    this.autoSize = false,
+    this.animateAutoSize = false,
+    this.firstScrollAnimate = true,
+  }) : super(key: GlobalKey<_AnimatedSingleWidgetState>());
+
+  @override
+  State<StatefulWidget> createState() {
+    return _AnimatedSingleWidgetState();
+  }
+}
+
+class _AnimatedSingleWidgetState extends State<_AnimatedSingleWidget> {
+  @override
+  void initState() {
+    super.initState();
+    data = widget.singleDigitData;
+    currentValue = widget.initialValue;
+    _initSize();
+    // print("--- $currentValue ${widget.firstScrollAnimate} ---");
+    // 当不需要初始滚动动画时
+    if (!widget.firstScrollAnimate) {
+      _jumpTo();
+    } else {
+      _animateTo();
+    }
+  }
+
+  SingleDigitData? data;
+
+  bool get canAutoSize => data?.size == null;
+
+  /// see [AnimatedDigitWidget.loop]
+  bool get loop => widget.loop;
+
+  /// text style
+  TextStyle get _textStyle => widget.textStyle;
+
+  /// box decoration
+  BoxDecoration? get _boxDecoration => widget.boxDecoration;
+
+  /// scroll duration
+  Duration get _duration => widget.duration;
+
+  /// animate curve
+  Curve get _curve => widget.curve;
+
+  /// 数字滚动控制
+  late final ScrollController scrollController = ScrollController();
+
+  /// 当前值(数字、符号、给定 [SingleDigitData.size])的尺寸大小
+  Size valueSize = Size.zero;
+
+  /// 每次需要滚动的距离，由 [_computeScrollOffset] 计算得到
+  double scrollOffset = 0.0;
+
+  /// private old value
+  String oldValue = '0';
+
+  /// private currentValue
+  String _currentValue = '0';
+
+  /// currentValue get
+  String get currentValue => _currentValue;
+
+  /// currentValue set
+  set currentValue(String val) {
+    oldValue = _currentValue;
+    _currentValue = val;
+    _checkValue();
+    if (canAutoSize && widget.autoSize) {
+      _initSize();
+      setState(() {});
+    }
+  }
+
+  /// 设置一个新的值
+  void setValue(String newValue) {
+    currentValue = newValue;
+    _animateTo();
+  }
+
+  /// 是否为非数字的符号
+  bool get isNumber => _isNumber;
+  bool _isNumber = true;
+
+  /// 检查当前的值是否为数字, 使用十进制转换
+  ///
+  /// check value is number type，decimal number convert
+  ///
+  /// **[radix]**:`null`
+  /// ```dart
+  /// int.tryParse('0xff') == 255; // true
+  /// ```
+  void _checkValue() {
+    _isNumber = int.tryParse(_currentValue, radix: 10) != null;
+  }
+
+  /// 初始化当前值的 Size | 指定的 Size
+  Size _initSize() {
+    if (widget.singleDigitData != null) {
+      if (widget.singleDigitData!.size != null && !data!.useTextSize) {
+        return valueSize = widget.singleDigitData!.size!;
+      }
+    }
+    return valueSize = _getTextSize(currentValue);
+  }
+
+  /// ## 获取 [text] 的 Size
+  Size _getTextSize(String text) {
+    final platformDispatcher = WidgetsBindingx.instance?.platformDispatcher;
+    final fontWeight = platformDispatcher?.accessibilityFeatures.boldText ?? false ? FontWeight.bold : _textStyle.fontWeight;
+
+    final TextScaler textScaler;
+    if (widget.textScaler != null) {
+      textScaler = widget.textScaler!;
+    } else {
+      textScaler = TextScaler.linear(platformDispatcher?.textScaleFactor ?? 1.0);
+    }
+
+    TextPainter painter = TextPainter(
+      textDirection: TextDirection.ltr,
+      text: TextSpan(
+        text: widget.autoSize ? text : (isNumber ? '0' : text),
+        style: _textStyle.copyWith(fontWeight: fontWeight),
+      ),
+      textScaler: textScaler,
+    );
+    painter.layout();
+    return painter.size;
+  }
+
+  /// 动画滚动到当前的数字
+  void _animateTo() {
+    if (isNumber && oldValue != currentValue) {
+      WidgetsBindingx.instance?.addPostFrameCallback((_) {
+        if (scrollController.hasClients) {
+          _scrollTo();
+        }
+      });
+    }
+  }
+
+  /// 跳的距离 [scrollOffset]
+  void _jumpTo() {
+    if (isNumber && oldValue != currentValue) {
+      WidgetsBindingx.instance?.addPostFrameCallback((_) {
+        if (scrollController.hasClients) {
+          _computeScrollOffset();
+          scrollController.jumpTo(scrollOffset);
+        }
+      });
+    }
+  }
+
+  /// 滚动到距离 [scrollOffset]
+  Future<void> _scrollTo() async {
+    _computeScrollOffset();
+    await scrollController.animateTo(scrollOffset, duration: _duration, curve: _curve);
+  }
+
+  /// 计算需要滚动的距离 [scrollOffset]
+  void _computeScrollOffset() {
+    final int? n = int.tryParse(currentValue);
+    if (n == null) return;
+    if (loop) {
+      final int? c = int.tryParse(oldValue);
+      if (c != null) {
+        final value = c > n ? 10 - c + n : n - c;
+        scrollOffset += value * valueSize.height;
+      }
+    } else {
+      scrollOffset = n * valueSize.height;
+    }
+  }
+
+  @override
+  void dispose() {
+    if (loop || isNumber) scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    late Widget child = Center(widthFactor: 1.0, child: _build());
+    if (widget.autoSize && widget.animateAutoSize) {
+      child = AnimatedContainer(
+        width: valueSize.width,
+        height: valueSize.height,
+        decoration: _boxDecoration,
+        duration: _duration,
+        child: child,
+      );
+    } else {
+      child = Container(width: valueSize.width, height: valueSize.height, decoration: _boxDecoration, child: child);
+    }
+    return AbsorbPointer(absorbing: true, child: child);
+  }
+
+  /// 创建单个滚动 Widget
+  ///
+  /// [isNumber] 为 `true` 时才创建数字滚动容器
+  Widget _build() {
+    if (isNumber) {
+      return ScrollConfiguration(
+        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+        child: _buildDigitScrollContainer(),
+      );
+    }
+    return _buildSingleWidget(currentValue);
+  }
+
+  /// Bulid 数字滚动容器
+  ///
+  /// 根据 [loop] 构建出对应的滚动容器
+  Widget _buildDigitScrollContainer() {
+    return ListView.builder(
+      padding: EdgeInsets.zero,
+      controller: scrollController,
+      itemCount: loop ? null : 10,
+      itemExtent: valueSize.height,
+      itemBuilder: (_, i) {
+        final val = loop ? i % 10 : i;
+        return _buildSingleWidget(val.toString());
+      },
+    );
+  }
+
+  /// 默认的构建单个 Widget 的内容
+  Widget defaultBuildSingleWidget(String val) {
+    return Text(val, style: _textStyle);
+  }
+
+  /// 根据配置构建单个 Widget 的内容
+  Widget _buildSingleWidget(String val) {
+    Widget child = defaultBuildSingleWidget(val);
+    if (data == null) return child;
+    final SingleDigitData sdd = data!;
+    child = sdd._buildChangeTextColorWidget(context, val, _textStyle, null, widget.duration, widget.curve) ?? child;
+    if (sdd.builder != null) {
+      child = sdd.builder!(valueSize, val, isNumber, child);
+    }
+    if (!sdd.useTextSize && sdd.size != null) {
+      child = SizedBox.fromSize(size: valueSize, child: child);
+    }
+    return child;
+  }
+}
+
+///
+/// ### 数字文本颜色渐变动画 widget
+///
+class _AnimatedDigitColorWidget extends StatefulWidget {
+  final String text;
+  final TextStyle baseStyle;
+  final Color targetColor;
+  final Duration duration;
+  final Curve curve;
+
+  const _AnimatedDigitColorWidget({
+    super.key,
+    required this.text,
+    required this.baseStyle,
+    required this.targetColor,
+    required this.duration,
+    required this.curve,
+  });
+
+  @override
+  _AnimatedDigitColorWidgetState createState() => _AnimatedDigitColorWidgetState();
+}
+
+class _AnimatedDigitColorWidgetState extends State<_AnimatedDigitColorWidget> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Color?> _colorAnim;
+  Color? _currentShownColor;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentShownColor = widget.baseStyle.color ?? Colors.black87;
+    _controller = AnimationController(vsync: this, duration: widget.duration);
+
+    _colorAnim = ColorTween(
+      begin: _currentShownColor,
+      end: widget.targetColor,
+    ).animate(CurvedAnimation(parent: _controller, curve: widget.curve));
+
+    if (_currentShownColor != widget.targetColor) {
+      _controller.forward(from: 0.0);
+    } else {
+      _controller.value = 1.0;
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant _AnimatedDigitColorWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final Color? animValue = _colorAnim.value ?? _currentShownColor;
+    if (oldWidget.targetColor != widget.targetColor) {
+      _controller.duration = widget.duration;
+      _colorAnim = ColorTween(begin: animValue, end: widget.targetColor).animate(CurvedAnimation(parent: _controller, curve: widget.curve));
+      _controller.forward(from: 0.0);
+    } else if (oldWidget.baseStyle.color != widget.baseStyle.color) {
+      final Color? from = _colorAnim.value ?? widget.baseStyle.color;
+      _colorAnim = ColorTween(begin: from, end: widget.targetColor).animate(CurvedAnimation(parent: _controller, curve: widget.curve));
+      _controller.forward(from: 0.0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _colorAnim,
+      builder: (context, child) {
+        final color = _colorAnim.value ?? widget.baseStyle.color;
+        return Text(widget.text, style: widget.baseStyle.copyWith(color: color));
+      },
+    );
+  }
+}

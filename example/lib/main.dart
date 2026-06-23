@@ -1,26 +1,28 @@
-import 'package:flutter/foundation.dart';
+import 'package:example/catalog/catalog_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
-import 'home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ExampleApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ExampleApp extends StatelessWidget {
+  const ExampleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    defaultTargetPlatform;
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0x0fffffff).createMaterialColor()),
-        useMaterial3: true,
+    return ScreenUtilInit(
+      designSize: ScreenUtil.defaultSize,
+      builder: (_, child) => MaterialApp(
+        title: 'flutter_helper_kit Examples',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+          useMaterial3: true,
+        ),
+        home: child,
       ),
-      home: const HomeScreen(),
+      child: const CatalogHome(),
     );
   }
 }
