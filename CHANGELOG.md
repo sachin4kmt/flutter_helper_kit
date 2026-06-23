@@ -1,3 +1,6 @@
+## 1.0.7
+* fix : fix: core utils bugs
+
 ## 1.0.6
 * Consolidated custom_helper modules (animation, responsive, widgets, extensions, utils).
 * Added modular entry points: `flutter_helper_kit_extensions.dart`, `_widgets.dart`, `_animation.dart`, `_responsive.dart`, `_utils.dart`.
