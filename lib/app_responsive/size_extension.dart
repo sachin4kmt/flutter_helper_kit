@@ -1,7 +1,5 @@
 part of 'app_responsive.dart';
 
-
-
 extension SizeExtension on num {
   ///[ScreenUtil.setWidth]
   double get w => ScreenUtil().setWidth(this);

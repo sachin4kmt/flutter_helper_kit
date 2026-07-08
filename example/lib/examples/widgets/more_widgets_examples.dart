@@ -38,7 +38,9 @@ Widget unFocusableDemo(BuildContext context) {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          const TextField(decoration: InputDecoration(labelText: 'Tap outside to dismiss keyboard')),
+          const TextField(
+              decoration: InputDecoration(
+                  labelText: 'Tap outside to dismiss keyboard')),
           const SizedBox(height: 8),
           const Text('Wrapped with UnFocusable'),
         ],
@@ -120,7 +122,8 @@ Widget animatedListWrapperDemo(BuildContext context) {
   return AnimatedListWrapper(
     itemCount: 6,
     animationType: ListAnimationType.slideY,
-    itemBuilder: (_, i) => Card(child: ListTile(title: Text('Animated item $i'))),
+    itemBuilder: (_, i) =>
+        Card(child: ListTile(title: Text('Animated item $i'))),
   );
 }
 

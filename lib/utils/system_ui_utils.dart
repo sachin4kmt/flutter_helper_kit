@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -29,8 +28,8 @@ class SystemUiUtils {
   static void setStatusBarColor(Color color, {bool isTransparent = false}) {
     final Brightness iconBrightness =
         ThemeData.estimateBrightnessForColor(color) == Brightness.dark
-        ? Brightness.light
-        : Brightness.dark;
+            ? Brightness.light
+            : Brightness.dark;
 
     final SystemUiOverlayStyle style = SystemUiOverlayStyle(
       statusBarColor: isTransparent ? Colors.transparent : color,
@@ -59,8 +58,8 @@ class SystemUiUtils {
   static void setSystemUI(Color color, {bool isTransparent = false}) {
     final Brightness iconBrightness =
         ThemeData.estimateBrightnessForColor(color) == Brightness.dark
-        ? Brightness.light
-        : Brightness.dark;
+            ? Brightness.light
+            : Brightness.dark;
 
     final SystemUiOverlayStyle style = SystemUiOverlayStyle(
       statusBarColor: isTransparent ? Colors.transparent : color,
@@ -92,8 +91,7 @@ class SystemUiUtils {
     Color colorBehindStatusBar, {
     Brightness? forceBrightness,
   }) {
-    final Brightness iconBrightness =
-        forceBrightness ??
+    final Brightness iconBrightness = forceBrightness ??
         (ThemeData.estimateBrightnessForColor(colorBehindStatusBar) ==
                 Brightness.dark
             ? Brightness.light
@@ -122,8 +120,7 @@ class SystemUiUtils {
     ).platformBrightness;
 
     final SystemUiOverlayStyle style = platformBrightness == Brightness.dark
-        ? SystemUiOverlayStyle
-              .light // white icons
+        ? SystemUiOverlayStyle.light // white icons
         : SystemUiOverlayStyle.dark; // black icons
 
     SystemChrome.setSystemUIOverlayStyle(style);

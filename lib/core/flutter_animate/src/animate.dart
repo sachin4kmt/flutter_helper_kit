@@ -131,7 +131,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
       'Animate.onInit is not called when used with Animate.controller',
     );
     if (this.delay != Duration.zero) {
-      String s = "Animate.delay has no effect when used with";
+      String s = 'Animate.delay has no effect when used with';
       warn(autoPlay != false, '$s Animate.autoPlay=false');
       warn(adapter == null, '$s Animate.adapter');
       warn(target == null, '$s Animate.target');
@@ -366,7 +366,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  void _handleAnimationStatus(status) {
+  void _handleAnimationStatus(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
       widget.onComplete?.call(_controller);
     }

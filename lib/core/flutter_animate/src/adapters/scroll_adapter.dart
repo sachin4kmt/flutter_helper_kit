@@ -35,9 +35,9 @@ class ScrollAdapter extends Adapter {
     this.scrollController, {
     this.begin,
     this.end,
-    bool? animated,
-    Direction? direction,
-  }) : super(animated: animated, direction: direction);
+    super.animated,
+    super.direction,
+  });
 
   final ScrollController scrollController;
   final double? begin;

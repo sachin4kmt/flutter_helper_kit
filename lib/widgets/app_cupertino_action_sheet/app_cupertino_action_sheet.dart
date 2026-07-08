@@ -34,13 +34,16 @@ class AppCupertinoActionSheet {
       builder: (ctx) {
         return CupertinoActionSheet(
           title: title != null
-              ? Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500))
+              ? Text(title,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w500))
               : null,
           message: message != null
               ? Text(message, style: const TextStyle(fontSize: 13))
               : null,
           actions: actions.map((action) {
-            final displayColor = action.color ?? (action.isDestructive ? Colors.red : Colors.blue);
+            final displayColor = action.color ??
+                (action.isDestructive ? Colors.red : Colors.blue);
 
             return CupertinoActionSheetAction(
               isDestructiveAction: action.isDestructive,
@@ -56,7 +59,8 @@ class AppCupertinoActionSheet {
                     Icon(action.icon, color: displayColor, size: 22.sp),
                     const RSizedBox(width: 12),
                   ],
-                  Text(action.label, style: TextStyle(color: displayColor, fontSize: 16)),
+                  Text(action.label,
+                      style: TextStyle(color: displayColor, fontSize: 16)),
                 ],
               ),
             );
@@ -65,7 +69,10 @@ class AppCupertinoActionSheet {
             onPressed: () => Navigator.pop(ctx),
             child: Text(
               cancelButtonText,
-              style: const TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500),
             ),
           ),
         );

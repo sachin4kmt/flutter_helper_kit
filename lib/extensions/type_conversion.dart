@@ -1,5 +1,3 @@
-
-
 extension ConversionExtension on Object? {
   /// Convert to num (int or double) safely
   num? toNum({num? defaultValue}) {
@@ -34,7 +32,7 @@ extension ConversionExtension on Object? {
   /// Convert to String safely
 
   String? toStr({String? defaultValue}) {
-    if(this == null) return defaultValue;
+    if (this == null) return defaultValue;
     return this?.toString().trim() ?? defaultValue;
   }
 

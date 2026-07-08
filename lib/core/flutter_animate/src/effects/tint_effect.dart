@@ -58,12 +58,12 @@ class TintEffect extends Effect<double> {
   }
 
   static List<double> getTintMatrix(double strength, Color color) {
-    double v = 1 - strength * color.alpha / 255;
+    double v = 1 - strength * color.a;
 
     return <double>[
-      v, 0, 0, 0, color.red * (1 - v), // r
-      0, v, 0, 0, color.green * (1 - v), // g
-      0, 0, v, 0, color.blue * (1 - v), // b
+      v, 0, 0, 0, (color.r * 255.0).round().clamp(0, 255) * (1 - v), // r
+      0, v, 0, 0, (color.g * 255.0).round().clamp(0, 255) * (1 - v), // g
+      0, 0, v, 0, (color.b * 255.0).round().clamp(0, 255) * (1 - v), // b
       0, 0, 0, 1, 0, // a
     ];
   }

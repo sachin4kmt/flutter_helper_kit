@@ -1,7 +1,5 @@
 part of 'app_responsive.dart';
 
-
-
 class RSizedBox extends SizedBox {
   const RSizedBox({
     super.key,
@@ -53,7 +51,8 @@ class RSizedBox extends SizedBox {
   final bool _square;
 
   BoxConstraints get _additionalConstraints {
-    final boxConstraints = BoxConstraints.tightFor(width: width, height: height);
+    final boxConstraints =
+        BoxConstraints.tightFor(width: width, height: height);
     return _square ? boxConstraints.r : boxConstraints.hw;
   }
 

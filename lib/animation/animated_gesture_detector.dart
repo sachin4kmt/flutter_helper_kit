@@ -1,40 +1,35 @@
 part of 'animation.dart';
 
-
-
 enum TapEffect {
-  scale,         // simple shrink
-  fade,          // opacity fade
-  scaleFade,     // combo
-  bounce,        // bounce out
-  elastic,       // bouncy spring
-  pushDown,      // slight slide down
-  tilt,          // tilt on Y axis
-  shake,         // shake via move
-  flip,          // 180 rotate
-  pulse,         // zoom in-out
-  zoomOut,       // zoom out
-  swing,         // rotate left-right
-  jelly,         // squash/stretch
-  hoverLift,     // upward lift
-  pop,           // fast scale sequence
-  wiggle,        // tiny rotate jitter
-  blur,          // fade + zoom
-  glow,          // brief opacity boost
-  swirl,         // rotate + zoom
-  rubberBand,    // horizontal stretch
-  dropBounce,    // fall then bounce
-  wobble,        // left-right position + rotation
-  breathe,       // slow in-out scale
-  flipX,         // flip horizontally
-  flipY,         // flip vertically
-  rotateIn,      // small rotate entry
-  shakeY,        // up/down shake
+  scale, // simple shrink
+  fade, // opacity fade
+  scaleFade, // combo
+  bounce, // bounce out
+  elastic, // bouncy spring
+  pushDown, // slight slide down
+  tilt, // tilt on Y axis
+  shake, // shake via move
+  flip, // 180 rotate
+  pulse, // zoom in-out
+  zoomOut, // zoom out
+  swing, // rotate left-right
+  jelly, // squash/stretch
+  hoverLift, // upward lift
+  pop, // fast scale sequence
+  wiggle, // tiny rotate jitter
+  blur, // fade + zoom
+  glow, // brief opacity boost
+  swirl, // rotate + zoom
+  rubberBand, // horizontal stretch
+  dropBounce, // fall then bounce
+  wobble, // left-right position + rotation
+  breathe, // slow in-out scale
+  flipX, // flip horizontally
+  flipY, // flip vertically
+  rotateIn, // small rotate entry
+  shakeY, // up/down shake
   none,
 }
-
-
-
 
 extension TapEffectExt on TapEffect {
   List<Effect> get effects {
@@ -470,12 +465,10 @@ extension TapEffectExt on TapEffect {
         ];
 
       case TapEffect.none:
-      return [];
+        return [];
     }
   }
 }
-
-
 
 class AnimatedGestureDetector extends StatefulWidget {
   final Widget child;
@@ -490,17 +483,17 @@ class AnimatedGestureDetector extends StatefulWidget {
   });
 
   @override
-  State<AnimatedGestureDetector> createState() => _AnimatedGestureDetectorState();
+  State<AnimatedGestureDetector> createState() =>
+      _AnimatedGestureDetectorState();
 }
 
 class _AnimatedGestureDetectorState extends State<AnimatedGestureDetector> {
   bool _tapped = false;
 
   void _handleTapDown(TapDownDetails _) {
-    if(widget.onTap == null) return;
+    if (widget.onTap == null) return;
 
-   setState(() => _tapped = true);
-
+    setState(() => _tapped = true);
 
     // Optional: trigger haptic for bounce
     if (widget.effectPreset == TapEffect.bounce) {
@@ -509,15 +502,15 @@ class _AnimatedGestureDetectorState extends State<AnimatedGestureDetector> {
   }
 
   void _handleTapUp(TapUpDetails _) {
-    if(widget.onTap == null) return;
+    if (widget.onTap == null) return;
 
- setState(() => _tapped = false); // 💡 this resets
+    setState(() => _tapped = false); // 💡 this resets
     widget.onTap?.call();
   }
 
   void _handleTapCancel() {
-    if(widget.onTap == null) return;
-   setState(() => _tapped = false); // 💡 this also resets
+    if (widget.onTap == null) return;
+    setState(() => _tapped = false); // 💡 this also resets
   }
 
   @override
@@ -529,7 +522,7 @@ class _AnimatedGestureDetectorState extends State<AnimatedGestureDetector> {
       onTapCancel: _handleTapCancel,
       child: Animate(
         target: _tapped ? 1 : 0,
-        effects: widget.effectPreset?.effects??TapEffect.scale.effects,
+        effects: widget.effectPreset?.effects ?? TapEffect.scale.effects,
         child: widget.child,
       ),
     );

@@ -1,7 +1,5 @@
 part of 'animation.dart';
 
-
-
 /*extension AnimateTapExtension on Widget {
   Widget animateTap({
     VoidCallback? onTap,

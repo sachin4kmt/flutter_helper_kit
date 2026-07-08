@@ -1,5 +1,3 @@
-
-
 enum PasswordRule {
   length,
   capital,
@@ -7,7 +5,6 @@ enum PasswordRule {
   number,
   symbol;
 }
-
 
 /*extension PasswordRuleColor on PasswordRule {
   Color get color {
@@ -25,4 +22,3 @@ enum PasswordRule {
     }
   }
 }*/
-

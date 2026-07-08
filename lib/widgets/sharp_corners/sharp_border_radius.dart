@@ -67,8 +67,6 @@ class SharpBorderRadius extends BorderRadius {
     super.bottomRight = SharpRadius.zero,
   }) : super.only();
 
-
-
   /// Returns a copy of this BorderRadius with the given fields replaced with
   /// the new values.
   @override

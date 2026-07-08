@@ -1,7 +1,5 @@
 part of 'animation.dart';
 
-
-
 // 1. Enum update: Saare naye constants yahan add kiye hain
 enum ListAnimationType {
   slideY,
@@ -118,7 +116,8 @@ class AnimatedListWrapper extends StatelessWidget {
 
         return loadingWidget!
             .animate(onPlay: (controller) => controller.repeat())
-            .shimmer(duration: 1200.ms, color: Colors.grey.withColorOpacity(0.3));
+            .shimmer(
+                duration: 1200.ms, color: Colors.grey.withColorOpacity(0.3));
       },
     );
   }
@@ -134,19 +133,20 @@ class AnimatedListWrapper extends StatelessWidget {
 
     switch (animationType) {
       case ListAnimationType.morph:
-        return child
-            .animate(delay: delay)
-            .fadeIn(duration: 500.ms)
-            .scale(
-          begin: const Offset(0.5, 1.5),
-          end: const Offset(1, 1),
-          curve: Curves.elasticOut,
-          duration: 1000.ms,
-        );
+        return child.animate(delay: delay).fadeIn(duration: 500.ms).scale(
+              begin: const Offset(0.5, 1.5),
+              end: const Offset(1, 1),
+              curve: Curves.elasticOut,
+              duration: 1000.ms,
+            );
       case ListAnimationType.bounceIn:
         return child
             .animate(delay: delay)
-            .scale(begin: const Offset(0.3, 0.3), end: const Offset(1, 1), duration: 600.ms, curve: Curves.bounceOut)
+            .scale(
+                begin: const Offset(0.3, 0.3),
+                end: const Offset(1, 1),
+                duration: 600.ms,
+                curve: Curves.bounceOut)
             .fadeIn(duration: 400.ms);
 
       case ListAnimationType.slideSkew:
@@ -155,16 +155,20 @@ class AnimatedListWrapper extends StatelessWidget {
             .fadeIn(duration: durationMs.ms)
             .slideX(begin: 0.3, end: 0, curve: Curves.easeOutCubic)
             .custom(
-          begin: 0.2,
-          end: 0,
-          builder: (_, v, c) => Transform(transform: Matrix4.skewX(v), child: c),
-        );
+              begin: 0.2,
+              end: 0,
+              builder: (_, v, c) =>
+                  Transform(transform: Matrix4.skewX(v), child: c),
+            );
 
       case ListAnimationType.spiral:
         return child
             .animate(delay: delay)
             .fadeIn(duration: 500.ms)
-            .scale(begin: const Offset(0, 0), end: const Offset(1, 1), curve: Curves.easeOutBack)
+            .scale(
+                begin: const Offset(0, 0),
+                end: const Offset(1, 1),
+                curve: Curves.easeOutBack)
             .rotate(begin: 0.5, end: 0);
 
       case ListAnimationType.reveal:
@@ -182,54 +186,67 @@ class AnimatedListWrapper extends StatelessWidget {
             .fadeIn();
 
       case ListAnimationType.elastic:
-        return child.animate(delay: delay).fadeIn().slideX(begin: 0.5, end: 0, curve: Curves.elasticOut, duration: 800.ms);
+        return child.animate(delay: delay).fadeIn().slideX(
+            begin: 0.5, end: 0, curve: Curves.elasticOut, duration: 800.ms);
 
       case ListAnimationType.rotate3D:
-        return child
-            .animate(delay: delay)
-            .fadeIn()
-            .custom(
-          begin: -0.5,
-          end: 0,
-          builder: (_, v, c) => Transform(
-            transform: Matrix4.identity()
-              ..setEntry(3, 2, 0.001)
-              ..rotateY(v),
-            alignment: Alignment.centerLeft,
-            child: c,
-          ),
-        );
+        return child.animate(delay: delay).fadeIn().custom(
+              begin: -0.5,
+              end: 0,
+              builder: (_, v, c) => Transform(
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.001)
+                  ..rotateY(v),
+                alignment: Alignment.centerLeft,
+                child: c,
+              ),
+            );
 
       case ListAnimationType.shimmerReveal:
-        return child.animate(delay: delay).fadeIn().shimmer(delay: 200.ms, color: Colors.white24).moveX(begin: -20);
-
-      case ListAnimationType.wheel:
-        return child.animate(delay: delay).fadeIn().scale(begin: const Offset(0.8, 0.8), curve: Curves.easeOutBack).rotate(begin: 0.1);
-
-      case ListAnimationType.zoomOut:
-        return child.animate(delay: delay).fadeIn().scale(begin: const Offset(1.5, 1.5), curve: Curves.easeOutExpo);
-
-      case ListAnimationType.perspective:
         return child
             .animate(delay: delay)
             .fadeIn()
-            .custom(
-          begin: 0.5,
-          end: 0,
-          builder: (_, v, c) => Transform(
-            transform: Matrix4.identity()
-              ..setEntry(3, 2, 0.001)
-              ..rotateX(v),
-            alignment: Alignment.center,
-            child: c,
-          ),
-        );
+            .shimmer(delay: 200.ms, color: Colors.white24)
+            .moveX(begin: -20);
+
+      case ListAnimationType.wheel:
+        return child
+            .animate(delay: delay)
+            .fadeIn()
+            .scale(begin: const Offset(0.8, 0.8), curve: Curves.easeOutBack)
+            .rotate(begin: 0.1);
+
+      case ListAnimationType.zoomOut:
+        return child
+            .animate(delay: delay)
+            .fadeIn()
+            .scale(begin: const Offset(1.5, 1.5), curve: Curves.easeOutExpo);
+
+      case ListAnimationType.perspective:
+        return child.animate(delay: delay).fadeIn().custom(
+              begin: 0.5,
+              end: 0,
+              builder: (_, v, c) => Transform(
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.001)
+                  ..rotateX(v),
+                alignment: Alignment.center,
+                child: c,
+              ),
+            );
 
       case ListAnimationType.glass:
-        return child.animate(delay: delay).fadeIn().blurXY(begin: 15, end: 0).scale(begin: const Offset(0.9, 0.9));
+        return child
+            .animate(delay: delay)
+            .fadeIn()
+            .blurXY(begin: 15, end: 0)
+            .scale(begin: const Offset(0.9, 0.9));
 
       case ListAnimationType.entrance:
-        return child.animate(delay: delay).moveY(begin: 100, curve: Curves.easeOutBack).fadeIn();
+        return child
+            .animate(delay: delay)
+            .moveY(begin: 100, curve: Curves.easeOutBack)
+            .fadeIn();
 
       case ListAnimationType.slideY:
         return child.animate(delay: delay).fadeIn().slideY(begin: 0.2);
@@ -238,7 +255,10 @@ class AnimatedListWrapper extends StatelessWidget {
         return child.animate(delay: delay).fadeIn().slideX(begin: 0.2);
 
       case ListAnimationType.scale:
-        return child.animate(delay: delay).fadeIn().scale(begin: const Offset(0.8, 0.8), curve: Curves.easeOutBack);
+        return child
+            .animate(delay: delay)
+            .fadeIn()
+            .scale(begin: const Offset(0.8, 0.8), curve: Curves.easeOutBack);
 
       case ListAnimationType.blur:
         return child.animate(delay: delay).fadeIn().blurXY(begin: 10);

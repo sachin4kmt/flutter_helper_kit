@@ -36,7 +36,8 @@ class CenterTextDivider extends CustomPainter {
         content: TextSpan(
           text: label,
           style: textStyle ??
-              TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: textColor),
+              TextStyle(
+                  fontSize: 14, fontWeight: FontWeight.w400, color: textColor),
         ),
         lineColor: effectiveLineColor,
         thickness: thickness,
@@ -57,7 +58,8 @@ class CenterTextDivider extends CustomPainter {
     return CustomPaint(
       size: Size(double.infinity, height.h),
       painter: CenterTextDivider(
-        content: WidgetSpan(alignment: PlaceholderAlignment.middle, child: child),
+        content:
+            WidgetSpan(alignment: PlaceholderAlignment.middle, child: child),
         lineColor: lineColor ?? Colors.white.withColorOpacity(0.5),
         thickness: thickness,
         spacing: spacing.w,
@@ -75,7 +77,8 @@ class CenterTextDivider extends CustomPainter {
       ..isAntiAlias = true
       ..style = PaintingStyle.stroke;
 
-    final textPainter = TextPainter(text: content, textDirection: TextDirection.ltr)..layout();
+    final textPainter =
+        TextPainter(text: content, textDirection: TextDirection.ltr)..layout();
 
     final contentWidth = textPainter.width;
     final centerX = size.width / 2;
@@ -87,11 +90,16 @@ class CenterTextDivider extends CustomPainter {
     final rightLineEnd = rightLineStart + lineWidth;
 
     if (lineWidth > 0) {
-      canvas.drawLine(Offset(leftLineStart, centerY), Offset(leftLineEnd, centerY), paint);
-      canvas.drawLine(Offset(rightLineStart, centerY), Offset(rightLineEnd, centerY), paint);
+      canvas.drawLine(
+          Offset(leftLineStart, centerY), Offset(leftLineEnd, centerY), paint);
+      canvas.drawLine(Offset(rightLineStart, centerY),
+          Offset(rightLineEnd, centerY), paint);
     }
 
-    textPainter.paint(canvas, Offset(centerX - (contentWidth / 2), centerY - (textPainter.height / 2)));
+    textPainter.paint(
+        canvas,
+        Offset(
+            centerX - (contentWidth / 2), centerY - (textPainter.height / 2)));
   }
 
   @override

@@ -81,7 +81,7 @@ class ShaderEffect extends Effect<double> {
             Rect rect = Rect.fromLTWH(0, 0, size.width, size.height);
             rect = insets?.inflateRect(rect) ?? rect;
 
-            drawImage() {
+            void drawImage() {
               canvas.save();
               canvas.scale(ratio, ratio);
               canvas.drawImage(image, Offset.zero, Paint());

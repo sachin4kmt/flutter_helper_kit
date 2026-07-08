@@ -80,7 +80,9 @@ class _SliderButtonState extends State<SliderButton> {
     // 2. Standard height 60.h agar user ne nahi di
     final double finalHeight = widget.height?.h ?? 60.h;
 
-    return flag == true ? _control(finalWidth, finalHeight) : const SizedBox.shrink();
+    return flag == true
+        ? _control(finalWidth, finalHeight)
+        : const SizedBox.shrink();
   }
 
   Widget _buildTrackContent(double w, double h) {
@@ -103,7 +105,9 @@ class _SliderButtonState extends State<SliderButton> {
         ),
 
         // Slider Section
-        widget.disable ? _buildDisabledButton(w, h, bSize) : _buildDismissibleButton(w, h, bSize),
+        widget.disable
+            ? _buildDisabledButton(w, h, bSize)
+            : _buildDismissibleButton(w, h, bSize),
       ],
     );
   }
@@ -125,8 +129,14 @@ class _SliderButtonState extends State<SliderButton> {
   Widget _buildDismissibleButton(double w, double h, double bSize) {
     return Dismissible(
       key: widget.buttonKey ?? UniqueKey(),
-      direction: widget.rightToLeftLocale ? DismissDirection.endToStart : DismissDirection.startToEnd,
-      dismissThresholds: {widget.rightToLeftLocale ? DismissDirection.endToStart : DismissDirection.startToEnd: widget.dismissThresholds},
+      direction: widget.rightToLeftLocale
+          ? DismissDirection.endToStart
+          : DismissDirection.startToEnd,
+      dismissThresholds: {
+        widget.rightToLeftLocale
+            ? DismissDirection.endToStart
+            : DismissDirection.startToEnd: widget.dismissThresholds
+      },
       confirmDismiss: (_) async {
         bool result = (await widget.action()) ?? true;
         if (result && mounted) {
@@ -152,7 +162,8 @@ class _SliderButtonState extends State<SliderButton> {
       decoration: BoxDecoration(
         boxShadow: widget.boxShadow != null ? [widget.boxShadow!] : null,
         color: color,
-        borderRadius: SharpBorderRadius(cornerRadius: widget.radius.r, sharpRatio: 1),
+        borderRadius:
+            SharpBorderRadius(cornerRadius: widget.radius.r, sharpRatio: 1),
       ),
       child: Center(child: widget.icon),
     );
@@ -163,19 +174,28 @@ class _SliderButtonState extends State<SliderButton> {
 
     final decoration = BoxDecoration(
       color: widget.disable ? Colors.grey.shade700 : widget.backgroundColor,
-      borderRadius: SharpBorderRadius(cornerRadius: widget.radius.r, sharpRatio: 1),
+      borderRadius:
+          SharpBorderRadius(cornerRadius: widget.radius.r, sharpRatio: 1),
       border: (widget.useGlassEffect && widget.glassBorderColor != null)
-          ? Border.all(color: widget.glassBorderColor!, width: widget.glassBorderWidth.w)
+          ? Border.all(
+              color: widget.glassBorderColor!, width: widget.glassBorderWidth.w)
           : null,
     );
 
-    Widget track = Container(height: h, width: w, decoration: decoration, alignment: Alignment.centerLeft, child: content);
+    Widget track = Container(
+        height: h,
+        width: w,
+        decoration: decoration,
+        alignment: Alignment.centerLeft,
+        child: content);
 
     if (widget.useGlassEffect) {
       return ClipRRect(
-        borderRadius: SharpBorderRadius(cornerRadius: widget.radius.r, sharpRatio: 1),
+        borderRadius:
+            SharpBorderRadius(cornerRadius: widget.radius.r, sharpRatio: 1),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: widget.glassBlurSigma.r, sigmaY: widget.glassBlurSigma.r),
+          filter: ImageFilter.blur(
+              sigmaX: widget.glassBlurSigma.r, sigmaY: widget.glassBlurSigma.r),
           child: track,
         ),
       );

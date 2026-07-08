@@ -1,5 +1,3 @@
-
-
 /// ---------------------------
 /// Double Extensions
 /// ---------------------------
@@ -20,17 +18,16 @@ extension DoubleSmartRoundExtension on double {
 /// Double? Extensions
 /// ---------------------------
 extension DoubleNullSmartRoundExtension on double? {
-
   /// Converts to a rounded string, trimming unnecessary trailing zeros.
   /// Defaults to "0" if null.
   String? toStringAsSmartRounded({int maxPrecision = 2}) {
-    if(this==null)return null;
+    if (this == null) return null;
     return _toSmartString(this!, maxPrecision);
   }
 
   num? toNumAsSmartRound({int maxPrecision = 2}) {
-    if(this==null)return null;
-    return  this!.toNumAsSmartRound(maxPrecision: maxPrecision);
+    if (this == null) return null;
+    return this!.toNumAsSmartRound(maxPrecision: maxPrecision);
   }
 }
 
@@ -38,8 +35,6 @@ extension DoubleNullSmartRoundExtension on double? {
 /// Num Extensions
 /// ---------------------------
 extension NumSmartRoundExtension on num {
-
-
   /// Converts to a rounded string, trimming unnecessary trailing zeros.
   String toStringAsSmartRounded({int maxPrecision = 2}) {
     return _toSmartString(toDouble(), maxPrecision);
@@ -54,9 +49,8 @@ extension NumSmartRoundExtension on num {
 /// Num? Extensions
 /// ---------------------------
 extension NumNullSmartRoundExtension on num? {
-
   String? toStringAsSmartRounded({int maxPrecision = 2}) {
-    if(this==null)return null;
+    if (this == null) return null;
     return _toSmartString(this!.toDouble(), maxPrecision);
   }
 

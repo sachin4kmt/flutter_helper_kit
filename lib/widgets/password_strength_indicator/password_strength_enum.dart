@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 enum PasswordStrength {
@@ -15,7 +14,7 @@ extension PasswordStrengthLable on PasswordStrength {
     switch (this) {
       case PasswordStrength.none:
         return '';
-        case PasswordStrength.weak:
+      case PasswordStrength.weak:
         return 'Weak';
       case PasswordStrength.fair:
         return 'Fair';
@@ -29,14 +28,12 @@ extension PasswordStrengthLable on PasswordStrength {
   }
 }
 
-
-
 extension PasswordStrengthColor on PasswordStrength {
   Color get color {
     switch (this) {
       case PasswordStrength.none:
         return Colors.blue;
-        case PasswordStrength.weak:
+      case PasswordStrength.weak:
         return Colors.red;
       case PasswordStrength.fair:
         return Colors.orange;

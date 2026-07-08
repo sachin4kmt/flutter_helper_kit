@@ -1,7 +1,5 @@
 part of 'app_responsive.dart';
 
-
-
 typedef FontSizeResolver = double Function(num fontSize);
 
 class ScreenUtil {
@@ -30,7 +28,8 @@ class ScreenUtil {
   Set<Element>? _elementsToRebuild;
 
   /// Enable scale
-  static void enableScale({bool Function()? enableWH, bool Function()? enableText}) {
+  static void enableScale(
+      {bool Function()? enableWH, bool Function()? enableText}) {
     _enableScaleWH = enableWH ?? () => true;
     _enableScaleText = enableText ?? () => true;
   }
@@ -55,7 +54,8 @@ class ScreenUtil {
   }
 
   /// Register elements to rebuild
-  static void registerToBuild(BuildContext context, [bool withDescendants = false]) {
+  static void registerToBuild(BuildContext context,
+      [bool withDescendants = false]) {
     (_instance._elementsToRebuild ??= {}).add(context as Element);
 
     if (withDescendants) {
@@ -77,14 +77,17 @@ class ScreenUtil {
       if (data != null) _instance._data = data;
       if (designSize != null) _instance._uiSize = designSize;
     } catch (_) {
-      throw Exception('You must either use ScreenUtil.init or ScreenUtilInit first');
+      throw Exception(
+          'You must either use ScreenUtil.init or ScreenUtilInit first');
     }
 
     final MediaQueryData? deviceData = _instance._data.nonEmptySizeOrNull();
     final Size deviceSize = deviceData?.size ?? _instance._uiSize;
 
     final orientation = deviceData?.orientation ??
-        (deviceSize.width > deviceSize.height ? Orientation.landscape : Orientation.portrait);
+        (deviceSize.width > deviceSize.height
+            ? Orientation.landscape
+            : Orientation.portrait);
 
     _instance
       ..fontSizeResolver = fontSizeResolver ?? _instance.fontSizeResolver
@@ -97,12 +100,12 @@ class ScreenUtil {
 
   /// Initialize ScreenUtil
   static void init(
-      BuildContext context, {
-        Size designSize = defaultSize,
-        bool splitScreenMode = false,
-        bool minTextAdapt = false,
-        FontSizeResolver? fontSizeResolver,
-      }) {
+    BuildContext context, {
+    Size designSize = defaultSize,
+    bool splitScreenMode = false,
+    bool minTextAdapt = false,
+    FontSizeResolver? fontSizeResolver,
+  }) {
     final view = View.maybeOf(context);
     return configure(
       data: view != null ? MediaQueryData.fromView(view) : null,
@@ -115,12 +118,12 @@ class ScreenUtil {
 
   /// Ensure screen size and init
   static Future<void> ensureScreenSizeAndInit(
-      BuildContext context, {
-        Size designSize = defaultSize,
-        bool splitScreenMode = false,
-        bool minTextAdapt = false,
-        FontSizeResolver? fontSizeResolver,
-      }) async {
+    BuildContext context, {
+    Size designSize = defaultSize,
+    bool splitScreenMode = false,
+    bool minTextAdapt = false,
+    FontSizeResolver? fontSizeResolver,
+  }) async {
     await ensureScreenSize();
     if (!context.mounted) return;
     init(
@@ -133,35 +136,41 @@ class ScreenUtil {
   }
 
   /// Accessors
-   Orientation get orientation => _instance._orientation;
-   TextScaler get textScaleFactor => _instance._data.textScaler;
-   double? get pixelRatio => _instance._data.devicePixelRatio;
-   double get screenWidth => _instance._data.size.width;
-   double get screenHeight => _instance._data.size.height;
-   double get statusBarHeight => _instance._data.padding.top;
-   double get bottomBarHeight => _instance._data.padding.bottom;
-   double get scaleWidth => !_enableScaleWH() ? 1 : screenWidth / _instance._uiSize.width;
-   double get scaleHeight =>
-      !_enableScaleWH() ? 1 : (_instance._splitScreenMode ? max(screenHeight, 700) : screenHeight) / _instance._uiSize.height;
-  static double get scaleText =>
-      !_enableScaleText() ? 1 : (_instance._minTextAdapt ? min(instance.scaleWidth, instance.scaleHeight) : instance.scaleWidth);
+  Orientation get orientation => _instance._orientation;
+  TextScaler get textScaleFactor => _instance._data.textScaler;
+  double? get pixelRatio => _instance._data.devicePixelRatio;
+  double get screenWidth => _instance._data.size.width;
+  double get screenHeight => _instance._data.size.height;
+  double get statusBarHeight => _instance._data.padding.top;
+  double get bottomBarHeight => _instance._data.padding.bottom;
+  double get scaleWidth =>
+      !_enableScaleWH() ? 1 : screenWidth / _instance._uiSize.width;
+  double get scaleHeight => !_enableScaleWH()
+      ? 1
+      : (_instance._splitScreenMode ? max(screenHeight, 700) : screenHeight) /
+          _instance._uiSize.height;
+  static double get scaleText => !_enableScaleText()
+      ? 1
+      : (_instance._minTextAdapt
+          ? min(instance.scaleWidth, instance.scaleHeight)
+          : instance.scaleWidth);
 
   /// Adaptation methods
-   double setWidth(num width) => width * scaleWidth;
-   double setHeight(num height) => height * scaleHeight;
-   double radius(num r) => r * min(scaleWidth, scaleHeight);
-   double diagonal(num d) => d * scaleHeight * scaleWidth;
+  double setWidth(num width) => width * scaleWidth;
+  double setHeight(num height) => height * scaleHeight;
+  double radius(num r) => r * min(scaleWidth, scaleHeight);
+  double diagonal(num d) => d * scaleHeight * scaleWidth;
 /* <<<<<<<<<<<<<<  ✨ Windsurf Command ⭐ >>>>>>>>>>>>>>>> */
-   /// The adaptation pixel is according to the larger of the current device's width and height,
-   /// based on the design draft.
-   ///
-   /// The width or height of the design draft is divided by the width or height of the device to
-   /// get the scale, and then the scale is multiplied by the size to be adapted to get the
-   /// adapted size.
-   ///
-   /// [d] is the size of the design draft.
+  /// The adaptation pixel is according to the larger of the current device's width and height,
+  /// based on the design draft.
+  ///
+  /// The width or height of the design draft is divided by the width or height of the device to
+  /// get the scale, and then the scale is multiplied by the size to be adapted to get the
+  /// adapted size.
+  ///
+  /// [d] is the size of the design draft.
 /* <<<<<<<<<<  739240f2-01c8-4911-865a-ae20d1e68393  >>>>>>>>>>> */
-   double diameter(num d) => d * max(scaleWidth, scaleHeight);
+  double diameter(num d) => d * max(scaleWidth, scaleHeight);
   static double setSp(num fontSize) =>
       _instance.fontSizeResolver?.call(fontSize) ?? fontSize * scaleText;
 
@@ -207,15 +216,24 @@ class ScreenUtil {
   }
 
   /// Spacing helpers
-  static SizedBox setVerticalSpacing(num height) => SizedBox(height: instance.setHeight(height));
-  static SizedBox setVerticalSpacingFromWidth(num height) => SizedBox(height: instance.setWidth(height));
-  static SizedBox setHorizontalSpacing(num width) => SizedBox(width: instance.setWidth(width));
-  static SizedBox setHorizontalSpacingRadius(num width) => SizedBox(width: instance.radius(width));
-  static SizedBox setVerticalSpacingRadius(num height) => SizedBox(height: instance.radius(height));
-  static SizedBox setHorizontalSpacingDiameter(num width) => SizedBox(width: instance.diameter(width));
-  static SizedBox setVerticalSpacingDiameter(num height) => SizedBox(height: instance.diameter(height));
-  static SizedBox setHorizontalSpacingDiagonal(num width) => SizedBox(width: instance.diagonal(width));
-  static SizedBox setVerticalSpacingDiagonal(num height) => SizedBox(height: instance.diagonal(height));
+  static SizedBox setVerticalSpacing(num height) =>
+      SizedBox(height: instance.setHeight(height));
+  static SizedBox setVerticalSpacingFromWidth(num height) =>
+      SizedBox(height: instance.setWidth(height));
+  static SizedBox setHorizontalSpacing(num width) =>
+      SizedBox(width: instance.setWidth(width));
+  static SizedBox setHorizontalSpacingRadius(num width) =>
+      SizedBox(width: instance.radius(width));
+  static SizedBox setVerticalSpacingRadius(num height) =>
+      SizedBox(height: instance.radius(height));
+  static SizedBox setHorizontalSpacingDiameter(num width) =>
+      SizedBox(width: instance.diameter(width));
+  static SizedBox setVerticalSpacingDiameter(num height) =>
+      SizedBox(height: instance.diameter(height));
+  static SizedBox setHorizontalSpacingDiagonal(num width) =>
+      SizedBox(width: instance.diagonal(width));
+  static SizedBox setVerticalSpacingDiagonal(num height) =>
+      SizedBox(height: instance.diagonal(height));
 }
 
 extension on MediaQueryData? {

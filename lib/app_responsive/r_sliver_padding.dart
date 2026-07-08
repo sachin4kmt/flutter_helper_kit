@@ -1,7 +1,5 @@
 part of 'app_responsive.dart';
 
-
-
 class RSliverPadding extends SingleChildRenderObjectWidget {
   /// Creates an adapt sliver padding widget.
   ///
@@ -25,12 +23,11 @@ class RSliverPadding extends SingleChildRenderObjectWidget {
 
   @override
   void updateRenderObject(
-      BuildContext context,
-      RenderSliverPadding renderObject,
-      ) {
+    BuildContext context,
+    RenderSliverPadding renderObject,
+  ) {
     renderObject
       ..padding = padding is REdgeInsets ? padding : padding.r
       ..textDirection = Directionality.maybeOf(context);
   }
 }
-

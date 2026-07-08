@@ -1,7 +1,5 @@
 part of 'animation.dart';
 
-
-
 /// PAYDROP ULTIMATE ANIMATION ENGINE (UPDATED WITH REPEAT LOGIC)
 /// Rules:
 /// 1. All names start with 'animateWidget'.
@@ -9,7 +7,8 @@ part of 'animation.dart';
 /// 3. Standardized parameters: durationMs, delayMs, repeat, animate.
 extension AnimateOnWidget on Widget {
   // Helper internal function to handle repetition logic
-  Animate _baseAnimate({int delayMs = 0, bool repeat = false, bool reverse = false}) {
+  Animate _baseAnimate(
+      {int delayMs = 0, bool repeat = false, bool reverse = false}) {
     return animate(
       delay: delayMs.ms,
       onPlay: (controller) {
@@ -23,16 +22,29 @@ extension AnimateOnWidget on Widget {
   // ===========================================================================
 
   /// 1. Elastic Entrance
-  Widget animateWidgetElasticEntry({int delayMs = 0, int durationMs = 800, double begin = 0.5, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetElasticEntry(
+      {int delayMs = 0,
+      int durationMs = 800,
+      double begin = 0.5,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).fadeIn(duration: 400.ms).slideX(begin: begin, end: 0, duration: durationMs.ms, curve: Curves.elasticOut);
+    ).fadeIn(duration: 400.ms).slideX(
+        begin: begin,
+        end: 0,
+        duration: durationMs.ms,
+        curve: Curves.elasticOut);
   }
 
   /// 2. 3D Perspective Flip (Horizontal)
-  Widget animateWidgetPerspectiveFlip({int delayMs = 0, int durationMs = 600, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetPerspectiveFlip(
+      {int delayMs = 0,
+      int durationMs = 600,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: durationMs.ms)
@@ -51,34 +63,61 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 3. Glass Reveal (Blur & Scale)
-  Widget animateWidgetGlassReveal({int delayMs = 0, int durationMs = 500, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetGlassReveal(
+      {int delayMs = 0,
+      int durationMs = 500,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: durationMs.ms)
         .blurXY(begin: 15, end: 0, duration: durationMs.ms)
-        .scale(begin: const Offset(0.9, 0.9), end: const Offset(1, 1), curve: Curves.easeOutCubic);
+        .scale(
+            begin: const Offset(0.9, 0.9),
+            end: const Offset(1, 1),
+            curve: Curves.easeOutCubic);
   }
 
   /// 4. Spiral Entry
-  Widget animateWidgetSpiralIn({int delayMs = 0, int durationMs = 600, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetSpiralIn(
+      {int delayMs = 0,
+      int durationMs = 600,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: durationMs.ms)
-        .rotate(begin: 0.5, end: 0, duration: durationMs.ms, curve: Curves.easeOutBack)
+        .rotate(
+            begin: 0.5,
+            end: 0,
+            duration: durationMs.ms,
+            curve: Curves.easeOutBack)
         .scale(begin: const Offset(0.5, 0.5), end: const Offset(1, 1));
   }
 
   /// 5. Focus Zoom
-  Widget animateWidgetZoomFocus({int delayMs = 0, int durationMs = 500, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetZoomFocus(
+      {int delayMs = 0,
+      int durationMs = 500,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).fadeIn(duration: durationMs.ms).scale(begin: const Offset(1.8, 1.8), end: const Offset(1, 1), curve: Curves.easeOutExpo);
+    ).fadeIn(duration: durationMs.ms).scale(
+        begin: const Offset(1.8, 1.8),
+        end: const Offset(1, 1),
+        curve: Curves.easeOutExpo);
   }
 
   /// 6. Skew Entry
-  Widget animateWidgetSkewIn({int delayMs = 0, double beginSkew = 0.2, int durationMs = 500, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetSkewIn(
+      {int delayMs = 0,
+      double beginSkew = 0.2,
+      int durationMs = 500,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 400.ms)
@@ -88,52 +127,84 @@ extension AnimateOnWidget on Widget {
           end: 0,
           duration: durationMs.ms,
           curve: Curves.easeOut,
-          builder: (_, v, c) => Transform(transform: Matrix4.skewX(v), child: c),
+          builder: (_, v, c) =>
+              Transform(transform: Matrix4.skewX(v), child: c),
         );
   }
 
   /// 7. Magazine Slide
-  Widget animateWidgetMagazineSlide({int delayMs = 0, int durationMs = 700, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetMagazineSlide(
+      {int delayMs = 0,
+      int durationMs = 700,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 300.ms)
-        .slideX(begin: 1.5, end: 0, duration: durationMs.ms, curve: Curves.decelerate)
-        .scale(begin: const Offset(1.1, 1.1), end: const Offset(1, 1), duration: durationMs.ms);
+        .slideX(
+            begin: 1.5,
+            end: 0,
+            duration: durationMs.ms,
+            curve: Curves.decelerate)
+        .scale(
+            begin: const Offset(1.1, 1.1),
+            end: const Offset(1, 1),
+            duration: durationMs.ms);
   }
 
   /// 8. Wing Entry
-  Widget animateWidgetWingEntry({int delayMs = 0, int durationMs = 600, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetWingEntry(
+      {int delayMs = 0,
+      int durationMs = 600,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat).fadeIn().custom(
-      begin: 1.5,
-      end: 0,
-      duration: durationMs.ms,
-      builder: (_, v, c) => Transform(
-        transform: Matrix4.identity()
-          ..setEntry(3, 2, 0.001)
-          ..rotateY(v),
-        alignment: Alignment.centerLeft,
-        child: c,
-      ),
-    );
+          begin: 1.5,
+          end: 0,
+          duration: durationMs.ms,
+          builder: (_, v, c) => Transform(
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.001)
+              ..rotateY(v),
+            alignment: Alignment.centerLeft,
+            child: c,
+          ),
+        );
   }
 
   /// 9. Slide Fade Entrance
-  Widget animateWidgetSlideFade({int delayMs = 0, int durationMs = 400, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetSlideFade(
+      {int delayMs = 0,
+      int durationMs = 400,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).fadeIn(duration: durationMs.ms).slideY(begin: 0.2, end: 0.0, duration: durationMs.ms);
+    )
+        .fadeIn(duration: durationMs.ms)
+        .slideY(begin: 0.2, end: 0.0, duration: durationMs.ms);
   }
 
   /// 10. Drop Bounce
-  Widget animateWidgetDropBounce({int delayMs = 0, int durationMs = 600, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetDropBounce(
+      {int delayMs = 0,
+      int durationMs = 600,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).slideY(begin: -1.0, end: 0.0, duration: durationMs.ms, curve: Curves.bounceOut).fadeIn();
+    )
+        .slideY(
+            begin: -1.0,
+            end: 0.0,
+            duration: durationMs.ms,
+            curve: Curves.bounceOut)
+        .fadeIn();
   }
 
   // ===========================================================================
@@ -141,92 +212,164 @@ extension AnimateOnWidget on Widget {
   // ===========================================================================
 
   /// 11. Success Pop
-  Widget animateWidgetSuccessPop({int delayMs = 0, int durationMs = 400, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetSuccessPop(
+      {int delayMs = 0,
+      int durationMs = 400,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
-        .scale(begin: const Offset(0.7, 0.7), end: const Offset(1.1, 1.1), duration: durationMs.ms, curve: Curves.easeOut)
+        .scale(
+            begin: const Offset(0.7, 0.7),
+            end: const Offset(1.1, 1.1),
+            duration: durationMs.ms,
+            curve: Curves.easeOut)
         .then()
-        .scale(begin: const Offset(1.1, 1.1), end: const Offset(1.0, 1.0), duration: 200.ms, curve: Curves.bounceOut);
+        .scale(
+            begin: const Offset(1.1, 1.1),
+            end: const Offset(1.0, 1.0),
+            duration: 200.ms,
+            curve: Curves.bounceOut);
   }
 
   /// 12. Reward Bloom
-  Widget animateWidgetRewardBloom({int delayMs = 0, int durationMs = 600, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetRewardBloom(
+      {int delayMs = 0,
+      int durationMs = 600,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
-        .scale(begin: Offset.zero, end: const Offset(1, 1), duration: durationMs.ms, curve: Curves.elasticOut)
+        .scale(
+            begin: Offset.zero,
+            end: const Offset(1, 1),
+            duration: durationMs.ms,
+            curve: Curves.elasticOut)
         .rotate(begin: -0.2, end: 0, duration: durationMs.ms);
   }
 
   /// 13. Error Shake
-  Widget animateWidgetErrorShake({required bool trigger, Color color = Colors.red, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetErrorShake(
+      {required bool trigger,
+      Color color = Colors.red,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate || !trigger) return this;
-    return _baseAnimate(repeat: repeat)
-        .shakeX(hz: 10, duration: 500.ms)
-        .custom(
+    return _baseAnimate(repeat: repeat).shakeX(hz: 10, duration: 500.ms).custom(
           duration: 500.ms,
           builder: (_, v, c) => Container(
-            decoration: BoxDecoration(boxShadow: [BoxShadow(color: color.withColorOpacity(0.2 * (1 - v)), blurRadius: 10)]),
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                  color: color.withColorOpacity(0.2 * (1 - v)), blurRadius: 10)
+            ]),
             child: c,
           ),
         );
   }
 
   /// 14. Jelly Effect
-  Widget animateWidgetJelly({int durationMs = 300, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetJelly(
+      {int durationMs = 300, bool repeat = false, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat)
-        .scale(begin: const Offset(1, 1), end: const Offset(1.1, 0.9), duration: (durationMs / 2).ms)
+        .scale(
+            begin: const Offset(1, 1),
+            end: const Offset(1.1, 0.9),
+            duration: (durationMs / 2).ms)
         .then()
-        .scale(begin: const Offset(1.1, 0.9), end: const Offset(1, 1), duration: (durationMs / 2).ms, curve: Curves.elasticOut);
+        .scale(
+            begin: const Offset(1.1, 0.9),
+            end: const Offset(1, 1),
+            duration: (durationMs / 2).ms,
+            curve: Curves.elasticOut);
   }
 
   /// 15. Wiggle
-  Widget animateWidgetWiggle({int delayMs = 0, int durationMs = 200, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetWiggle(
+      {int delayMs = 0,
+      int durationMs = 200,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
       reverse: true,
-    ).rotate(begin: -0.05, end: 0.05, curve: Curves.easeInOut, duration: durationMs.ms);
+    ).rotate(
+        begin: -0.05,
+        end: 0.05,
+        curve: Curves.easeInOut,
+        duration: durationMs.ms);
   }
 
   /// 16. Shake X
-  Widget animateWidgetShakeX({int delayMs = 0, int durationMs = 500, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetShakeX(
+      {int delayMs = 0,
+      int durationMs = 500,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
-    return _baseAnimate(delayMs: delayMs, repeat: repeat).shake(hz: 4, curve: Curves.easeInOut, duration: durationMs.ms);
+    return _baseAnimate(delayMs: delayMs, repeat: repeat)
+        .shake(hz: 4, curve: Curves.easeInOut, duration: durationMs.ms);
   }
 
   /// 17. Magnetic Pull
-  Widget animateWidgetMagnetic({int durationMs = 550, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetMagnetic(
+      {int durationMs = 550, bool repeat = false, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat)
-        .scale(begin: const Offset(1, 1), end: const Offset(0.92, 0.92), duration: 150.ms, curve: Curves.easeOut)
+        .scale(
+            begin: const Offset(1, 1),
+            end: const Offset(0.92, 0.92),
+            duration: 150.ms,
+            curve: Curves.easeOut)
         .then()
-        .scale(begin: const Offset(0.92, 0.92), end: const Offset(1, 1), duration: 400.ms, curve: Curves.elasticOut);
+        .scale(
+            begin: const Offset(0.92, 0.92),
+            end: const Offset(1, 1),
+            duration: 400.ms,
+            curve: Curves.elasticOut);
   }
 
   /// 18. Hover Scale
-  Widget animateWidgetHoverScale({int durationMs = 300, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetHoverScale(
+      {int durationMs = 300, bool repeat = true, bool animate = true}) {
     if (!animate) return this;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      child: _baseAnimate(repeat: repeat, reverse: true).scaleXY(begin: 1.0, end: 1.03, duration: durationMs.ms, curve: Curves.easeInOut),
+      child: _baseAnimate(repeat: repeat, reverse: true).scaleXY(
+          begin: 1.0,
+          end: 1.03,
+          duration: durationMs.ms,
+          curve: Curves.easeInOut),
     );
   }
 
   /// 19. Toast Entry
-  Widget animateWidgetToastEntry({int delayMs = 0, int durationMs = 400, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetToastEntry(
+      {int delayMs = 0,
+      int durationMs = 400,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).slideY(begin: 0.5, end: 0, duration: durationMs.ms, curve: Curves.easeOutBack).fadeIn();
+    )
+        .slideY(
+            begin: 0.5,
+            end: 0,
+            duration: durationMs.ms,
+            curve: Curves.easeOutBack)
+        .fadeIn();
   }
 
   /// 20. Tap Feedback Detector
-  Widget animateWidgetTapFeedback({required VoidCallback? onTap, TapEffect? effects, bool animate = true}) {
+  Widget animateWidgetTapFeedback(
+      {required VoidCallback? onTap, TapEffect? effects, bool animate = true}) {
     if (!animate) return InkWell(onTap: onTap, child: this);
-    return AnimatedGestureDetector(onTap: onTap, effectPreset: effects, child: this);
+    return AnimatedGestureDetector(
+        onTap: onTap, effectPreset: effects, child: this);
   }
 
   // ===========================================================================
@@ -234,13 +377,22 @@ extension AnimateOnWidget on Widget {
   // ===========================================================================
 
   /// 21. Neon Pulse (Breathe)
-  Widget animateWidgetNeonPulse({Color color = Colors.blue, int durationMs = 1500, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetNeonPulse(
+      {Color color = Colors.blue,
+      int durationMs = 1500,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat, reverse: true).custom(
       duration: durationMs.ms,
       builder: (_, v, c) => Container(
         decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: color.withColorOpacity(0.3 * v), blurRadius: 20 * v, spreadRadius: 2 * v)],
+          boxShadow: [
+            BoxShadow(
+                color: color.withColorOpacity(0.3 * v),
+                blurRadius: 20 * v,
+                spreadRadius: 2 * v)
+          ],
         ),
         child: c,
       ),
@@ -248,65 +400,110 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 22. Shimmer Glow
-  Widget animateWidgetShimmerGlow({Color color = Colors.white24, int durationMs = 1800, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetShimmerGlow(
+      {Color color = Colors.white24,
+      int durationMs = 1800,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
-    return _baseAnimate(repeat: repeat).shimmer(duration: durationMs.ms, color: color, curve: Curves.easeInOutSine);
+    return _baseAnimate(repeat: repeat).shimmer(
+        duration: durationMs.ms, color: color, curve: Curves.easeInOutSine);
   }
 
   /// 23. Attention Magnet
-  Widget animateWidgetAttention({int durationMs = 1000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetAttention(
+      {int durationMs = 1000, bool repeat = true, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat, reverse: true)
-        .scale(begin: const Offset(1, 1), end: const Offset(1.05, 1.05), duration: durationMs.ms)
+        .scale(
+            begin: const Offset(1, 1),
+            end: const Offset(1.05, 1.05),
+            duration: durationMs.ms)
         .shimmer(delay: 2000.ms, duration: durationMs.ms);
   }
 
   /// 24. Breathe (Scale Cycle)
-  Widget animateWidgetBreathe({int durationMs = 1500, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetBreathe(
+      {int durationMs = 1500, bool repeat = true, bool animate = true}) {
     if (!animate) return this;
-    return _baseAnimate(repeat: repeat, reverse: true).scaleXY(begin: 1.0, end: 1.03, duration: durationMs.ms, curve: Curves.easeInOutSine);
+    return _baseAnimate(repeat: repeat, reverse: true).scaleXY(
+        begin: 1.0,
+        end: 1.03,
+        duration: durationMs.ms,
+        curve: Curves.easeInOutSine);
   }
 
   /// 25. Pulse (Heartbeat)
-  Widget animateWidgetPulse({int delayMs = 0, int durationMs = 600, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetPulse(
+      {int delayMs = 0,
+      int durationMs = 600,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
       reverse: true,
-    ).scaleXY(begin: 1.0, end: 1.05, duration: durationMs.ms, curve: Curves.easeInOut);
+    ).scaleXY(
+        begin: 1.0,
+        end: 1.05,
+        duration: durationMs.ms,
+        curve: Curves.easeInOut);
   }
 
   /// 26. Float Up/Down
-  Widget animateWidgetFloatUp({int delayMs = 0, int durationMs = 2000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetFloatUp(
+      {int delayMs = 0,
+      int durationMs = 2000,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
       reverse: true,
-    ).slideY(begin: 0, end: -0.03, duration: durationMs.ms, curve: Curves.easeInOut);
+    ).slideY(
+        begin: 0, end: -0.03, duration: durationMs.ms, curve: Curves.easeInOut);
   }
 
   /// 27. Typing Dots Animation
-  Widget animateWidgetTypingDots({int delayMs = 0, int durationMs = 300, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetTypingDots(
+      {int delayMs = 0,
+      int durationMs = 300,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
       reverse: true,
-    ).scaleXY(begin: 0.8, end: 1.2, duration: durationMs.ms, curve: Curves.easeInOut);
+    ).scaleXY(
+        begin: 0.8, end: 1.2, duration: durationMs.ms, curve: Curves.easeInOut);
   }
 
   /// 28. Float with Shadow
-  Widget animateWidgetFloatWithShadow({int durationMs = 1500, Color shadowColor = Colors.black, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetFloatWithShadow(
+      {int durationMs = 1500,
+      Color shadowColor = Colors.black,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat, reverse: true)
-        .moveY(begin: 0, end: -10, duration: durationMs.ms, curve: Curves.easeInOut)
+        .moveY(
+            begin: 0,
+            end: -10,
+            duration: durationMs.ms,
+            curve: Curves.easeInOut)
         .custom(
           duration: durationMs.ms,
           builder: (_, v, c) => Container(
             decoration: BoxDecoration(
-              boxShadow: [BoxShadow(color: shadowColor.withColorOpacity(0.1 * (1 - v)), blurRadius: 10 * v, offset: Offset(0, 15 * v))],
+              boxShadow: [
+                BoxShadow(
+                    color: shadowColor.withColorOpacity(0.1 * (1 - v)),
+                    blurRadius: 10 * v,
+                    offset: Offset(0, 15 * v))
+              ],
             ),
             child: c,
           ),
@@ -314,14 +511,23 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 29. Notification Ripple
-  Widget animateWidgetNotifyRipple({Color color = Colors.redAccent, int durationMs = 1500, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetNotifyRipple(
+      {Color color = Colors.redAccent,
+      int durationMs = 1500,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat).custom(
       duration: durationMs.ms,
       builder: (_, v, c) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          boxShadow: [BoxShadow(color: color.withColorOpacity(0.4 * (1 - v)), blurRadius: 20 * v, spreadRadius: 10 * v)],
+          boxShadow: [
+            BoxShadow(
+                color: color.withColorOpacity(0.4 * (1 - v)),
+                blurRadius: 20 * v,
+                spreadRadius: 10 * v)
+          ],
         ),
         child: c,
       ),
@@ -329,12 +535,19 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 30. Ghost Float (Slow)
-  Widget animateWidgetGhostFloat({int durationMs = 3000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetGhostFloat(
+      {int durationMs = 3000, bool repeat = true, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       repeat: repeat,
       reverse: true,
-    ).moveY(begin: 0, end: -15, duration: durationMs.ms, curve: Curves.easeInOutQuad).blurXY(begin: 0, end: 2, duration: durationMs.ms);
+    )
+        .moveY(
+            begin: 0,
+            end: -15,
+            duration: durationMs.ms,
+            curve: Curves.easeInOutQuad)
+        .blurXY(begin: 0, end: 2, duration: durationMs.ms);
   }
 
   // ===========================================================================
@@ -342,22 +555,40 @@ extension AnimateOnWidget on Widget {
   // ===========================================================================
 
   /// 31. Gold Shimmer
-  Widget animateWidgetGoldShimmer({Color color = const Color(0xFFFFD700), int durationMs = 2000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetGoldShimmer(
+      {Color color = const Color(0xFFFFD700),
+      int durationMs = 2000,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
-    return _baseAnimate(repeat: repeat).shimmer(duration: durationMs.ms, color: color.withColorOpacity(0.3), stops: [0, 0.5, 1]);
+    return _baseAnimate(repeat: repeat).shimmer(
+        duration: durationMs.ms,
+        color: color.withColorOpacity(0.3),
+        stops: [0, 0.5, 1]);
   }
 
   /// 32. Cyber Jitter Reveal
-  Widget animateWidgetCyberJitter({int delayMs = 0, int durationMs = 500, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetCyberJitter(
+      {int delayMs = 0,
+      int durationMs = 500,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).fadeIn(duration: 200.ms).shakeX(amount: 5, hz: 10, duration: durationMs.ms).moveX(begin: 20, end: 0);
+    )
+        .fadeIn(duration: 200.ms)
+        .shakeX(amount: 5, hz: 10, duration: durationMs.ms)
+        .moveX(begin: 20, end: 0);
   }
 
   /// 33. Origami Vertical Fold
-  Widget animateWidgetOrigamiFold({int delayMs = 0, int durationMs = 800, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetOrigamiFold(
+      {int delayMs = 0,
+      int durationMs = 800,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 400.ms)
@@ -377,7 +608,11 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 34. Liquid Slide (Modern Perspective)
-  Widget animateWidgetLiquidSlide({int delayMs = 0, int durationMs = 600, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetLiquidSlide(
+      {int delayMs = 0,
+      int durationMs = 600,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 400.ms)
@@ -397,17 +632,26 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 35. Stamp Impact
-  Widget animateWidgetStamp({int delayMs = 0, int durationMs = 500, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetStamp(
+      {int delayMs = 0,
+      int durationMs = 500,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 200.ms)
-        .scale(begin: const Offset(2.0, 2.0), end: const Offset(1, 1), curve: Curves.easeInCirc, duration: durationMs.ms)
+        .scale(
+            begin: const Offset(2.0, 2.0),
+            end: const Offset(1, 1),
+            curve: Curves.easeInCirc,
+            duration: durationMs.ms)
         .then()
         .shake(hz: 2, duration: 200.ms);
   }
 
   /// 36. Digital Glitch Flicker
-  Widget animateWidgetDigitalGlitch({int durationMs = 200, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetDigitalGlitch(
+      {int durationMs = 200, bool repeat = true, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat, reverse: true)
         .custom(
@@ -421,15 +665,27 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 37. Morph Entrance
-  Widget animateWidgetMorphIn({int delayMs = 0, int durationMs = 1000, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetMorphIn(
+      {int delayMs = 0,
+      int durationMs = 1000,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 500.ms)
-        .scale(begin: const Offset(0.5, 1.5), end: const Offset(1, 1), curve: Curves.elasticOut, duration: durationMs.ms);
+        .scale(
+            begin: const Offset(0.5, 1.5),
+            end: const Offset(1, 1),
+            curve: Curves.elasticOut,
+            duration: durationMs.ms);
   }
 
   /// 38. Scanner Beam (QR Style)
-  Widget animateWidgetScannerBeam({Color beamColor = Colors.blueAccent, int durationMs = 2000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetScannerBeam(
+      {Color beamColor = Colors.blueAccent,
+      int durationMs = 2000,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat).custom(
       duration: durationMs.ms,
@@ -442,7 +698,9 @@ extension AnimateOnWidget on Widget {
             right: 0,
             child: Container(
               height: 2,
-              decoration: BoxDecoration(boxShadow: [BoxShadow(color: beamColor, blurRadius: 10, spreadRadius: 2)]),
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(color: beamColor, blurRadius: 10, spreadRadius: 2)
+              ]),
             ),
           ),
         ],
@@ -451,38 +709,75 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 39. Coin Spin (Y-Axis)
-  Widget animateWidgetCoinSpin({int delayMs = 0, int durationMs = 1000, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetCoinSpin(
+      {int delayMs = 0,
+      int durationMs = 1000,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
-    return _baseAnimate(delayMs: delayMs, repeat: repeat).flipH(begin: 0, end: 2, duration: durationMs.ms, curve: Curves.easeInOutQuart);
+    return _baseAnimate(delayMs: delayMs, repeat: repeat).flipH(
+        begin: 0,
+        end: 2,
+        duration: durationMs.ms,
+        curve: Curves.easeInOutQuart);
   }
 
   /// 40. Reveal Door (Vertical)
-  Widget animateWidgetRevealDoor({int delayMs = 0, int durationMs = 600, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetRevealDoor(
+      {int delayMs = 0,
+      int durationMs = 600,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).scaleY(begin: 0, end: 1, alignment: Alignment.topCenter, duration: durationMs.ms, curve: Curves.easeOutQuart).fadeIn();
+    )
+        .scaleY(
+            begin: 0,
+            end: 1,
+            alignment: Alignment.topCenter,
+            duration: durationMs.ms,
+            curve: Curves.easeOutQuart)
+        .fadeIn();
   }
 
   /// 41. Credit Card Deal (Staggered)
-  Widget animateWidgetCardDeal({int index = 0, int durationMs = 600, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetCardDeal(
+      {int index = 0,
+      int durationMs = 600,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: index * 100, repeat: repeat)
-        .moveY(begin: 300, end: 0, curve: Curves.easeOutQuart, duration: durationMs.ms)
+        .moveY(
+            begin: 300,
+            end: 0,
+            curve: Curves.easeOutQuart,
+            duration: durationMs.ms)
         .rotate(begin: 0.1, end: 0, duration: durationMs.ms)
         .fadeIn();
   }
 
   /// 42. Glass Morph Glow
-  Widget animateWidgetGlassGlow({Color glowColor = Colors.amberAccent, int durationMs = 3000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetGlassGlow(
+      {Color glowColor = Colors.amberAccent,
+      int durationMs = 3000,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat, reverse: true).custom(
       duration: durationMs.ms,
       builder: (_, v, c) => Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          boxShadow: [BoxShadow(color: glowColor.withColorOpacity(0.2 * (1 - (v - 0.5).abs() * 2)), blurRadius: 20, spreadRadius: 2)],
+          boxShadow: [
+            BoxShadow(
+                color:
+                    glowColor.withColorOpacity(0.2 * (1 - (v - 0.5).abs() * 2)),
+                blurRadius: 20,
+                spreadRadius: 2)
+          ],
         ),
         child: c,
       ),
@@ -490,7 +785,11 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 43. Page Flip (3D)
-  Widget animateWidgetPageFlip({int delayMs = 0, int durationMs = 800, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetPageFlip(
+      {int delayMs = 0,
+      int durationMs = 800,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .custom(
@@ -510,7 +809,11 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 44. Cyber Scanner Sweep
-  Widget animateWidgetCyberScanner({Color color = Colors.cyanAccent, int durationMs = 1500, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetCyberScanner(
+      {Color color = Colors.cyanAccent,
+      int durationMs = 1500,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat).custom(
       duration: durationMs.ms,
@@ -530,7 +833,10 @@ extension AnimateOnWidget on Widget {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(color: color, blurRadius: 15, spreadRadius: 4),
-                      BoxShadow(color: color.withColorOpacity(0.5), blurRadius: 30, spreadRadius: 8),
+                      BoxShadow(
+                          color: color.withColorOpacity(0.5),
+                          blurRadius: 30,
+                          spreadRadius: 8),
                     ],
                   ),
                 ),
@@ -543,12 +849,24 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 45. Coin Jump & Spin
-  Widget animateWidgetCoinJump({int delayMs = 0, int durationMs = 800, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetCoinJump(
+      {int delayMs = 0,
+      int durationMs = 800,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
-        .moveY(begin: 0, end: -50, duration: (durationMs / 2).ms, curve: Curves.easeOut)
+        .moveY(
+            begin: 0,
+            end: -50,
+            duration: (durationMs / 2).ms,
+            curve: Curves.easeOut)
         .then()
-        .moveY(begin: -50, end: 0, duration: (durationMs / 2).ms, curve: Curves.bounceOut)
+        .moveY(
+            begin: -50,
+            end: 0,
+            duration: (durationMs / 2).ms,
+            curve: Curves.bounceOut)
         .flipH(begin: 0, end: 1, duration: durationMs.ms);
   }
 
@@ -557,15 +875,28 @@ extension AnimateOnWidget on Widget {
   // ===========================================================================
 
   /// 46. Bar Grow
-  Widget animateWidgetBarGrow({int delayMs = 0, int durationMs = 800, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetBarGrow(
+      {int delayMs = 0,
+      int durationMs = 800,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 400.ms)
-        .scaleY(begin: 0, end: 1, duration: durationMs.ms, curve: Curves.easeOutBack, alignment: Alignment.bottomCenter);
+        .scaleY(
+            begin: 0,
+            end: 1,
+            duration: durationMs.ms,
+            curve: Curves.easeOutBack,
+            alignment: Alignment.bottomCenter);
   }
 
   /// 47. Line Trace
-  Widget animateWidgetLineTrace({int delayMs = 0, int durationMs = 1500, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetLineTrace(
+      {int delayMs = 0,
+      int durationMs = 1500,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 300.ms)
@@ -573,80 +904,149 @@ extension AnimateOnWidget on Widget {
           duration: durationMs.ms,
           curve: Curves.easeInOutQuart,
           builder: (_, v, c) => ClipRect(
-            child: Align(alignment: Alignment.centerLeft, widthFactor: v, child: c),
+            child: Align(
+                alignment: Alignment.centerLeft, widthFactor: v, child: c),
           ),
         );
   }
 
   /// 48. Data Point Pop
-  Widget animateWidgetPointPop({int delayMs = 0, int durationMs = 500, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetPointPop(
+      {int delayMs = 0,
+      int durationMs = 500,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).scale(begin: Offset.zero, end: const Offset(1, 1), duration: durationMs.ms, curve: Curves.elasticOut);
+    ).scale(
+        begin: Offset.zero,
+        end: const Offset(1, 1),
+        duration: durationMs.ms,
+        curve: Curves.elasticOut);
   }
 
   /// 49. Wave Flow (Loop)
-  Widget animateWidgetWaveFlow({int durationMs = 2000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetWaveFlow(
+      {int durationMs = 2000, bool repeat = true, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat, reverse: true)
-        .moveY(begin: 0, end: -5, duration: durationMs.ms, curve: Curves.easeInOutSine)
-        .moveX(begin: -2, end: 2, duration: (durationMs * 0.75).toInt().ms, curve: Curves.easeInOutSine);
+        .moveY(
+            begin: 0,
+            end: -5,
+            duration: durationMs.ms,
+            curve: Curves.easeInOutSine)
+        .moveX(
+            begin: -2,
+            end: 2,
+            duration: (durationMs * 0.75).toInt().ms,
+            curve: Curves.easeInOutSine);
   }
 
   /// 50. Chart Label Overlay
-  Widget animateWidgetChartLabel({int delayMs = 0, int durationMs = 400, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetChartLabel(
+      {int delayMs = 0,
+      int durationMs = 400,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).fadeIn(duration: durationMs.ms).slideY(begin: 0.5, end: 0, curve: Curves.easeOutBack);
+    )
+        .fadeIn(duration: durationMs.ms)
+        .slideY(begin: 0.5, end: 0, curve: Curves.easeOutBack);
   }
 
   /// 51. Pie Slice Rotate
-  Widget animateWidgetPieSlice({int delayMs = 0, int durationMs = 1000, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetPieSlice(
+      {int delayMs = 0,
+      int durationMs = 1000,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
-        .rotate(begin: -0.2, end: 0, duration: durationMs.ms, curve: Curves.easeOutQuart)
-        .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1), curve: Curves.easeOutCubic)
+        .rotate(
+            begin: -0.2,
+            end: 0,
+            duration: durationMs.ms,
+            curve: Curves.easeOutQuart)
+        .scale(
+            begin: const Offset(0.8, 0.8),
+            end: const Offset(1, 1),
+            curve: Curves.easeOutCubic)
         .fadeIn();
   }
 
   /// 52. Liquid Wave Reveal
-  Widget animateWidgetLiquidWave({int delayMs = 0, int durationMs = 1000, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetLiquidWave(
+      {int delayMs = 0,
+      int durationMs = 1000,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 400.ms)
-        .scale(begin: const Offset(0.7, 1.3), end: const Offset(1, 1), curve: Curves.elasticOut, duration: durationMs.ms)
+        .scale(
+            begin: const Offset(0.7, 1.3),
+            end: const Offset(1, 1),
+            curve: Curves.elasticOut,
+            duration: durationMs.ms)
         .slideY(begin: 0.3, end: 0, curve: Curves.easeOutBack);
   }
 
   /// 53. Progress Infill
-  Widget animateWidgetProgressFill({int delayMs = 0, int durationMs = 1000, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetProgressFill(
+      {int delayMs = 0,
+      int durationMs = 1000,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).fadeIn(duration: 400.ms).scaleX(begin: 0, end: 1, alignment: Alignment.centerLeft, duration: durationMs.ms, curve: Curves.easeInOut);
+    ).fadeIn(duration: 400.ms).scaleX(
+        begin: 0,
+        end: 1,
+        alignment: Alignment.centerLeft,
+        duration: durationMs.ms,
+        curve: Curves.easeInOut);
   }
 
   /// 54. Counter Flip
-  Widget animateWidgetCounterFlip({int delayMs = 0, int durationMs = 600, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetCounterFlip(
+      {int delayMs = 0,
+      int durationMs = 600,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).flipV(begin: 0.5, end: 0, duration: durationMs.ms, curve: Curves.easeOutBack).fadeIn();
+    )
+        .flipV(
+            begin: 0.5,
+            end: 0,
+            duration: durationMs.ms,
+            curve: Curves.easeOutBack)
+        .fadeIn();
   }
 
   /// 55. Insight Reveal
-  Widget animateWidgetInsightReveal({int delayMs = 0, int durationMs = 500, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetInsightReveal(
+      {int delayMs = 0,
+      int durationMs = 500,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).fadeIn(duration: durationMs.ms).blurXY(begin: 10, end: 0).slideX(begin: 0.1, end: 0);
+    )
+        .fadeIn(duration: durationMs.ms)
+        .blurXY(begin: 10, end: 0)
+        .slideX(begin: 0.1, end: 0);
   }
 
   // ===========================================================================
@@ -654,33 +1054,43 @@ extension AnimateOnWidget on Widget {
   // ===========================================================================
 
   /// 56. 3D Tilt Entrance
-  Widget animateWidget3DTilt({int delayMs = 0, int durationMs = 600, bool repeat = false, bool animate = true}) {
+  Widget animateWidget3DTilt(
+      {int delayMs = 0,
+      int durationMs = 600,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat).fadeIn().custom(
-      begin: 0.1,
-      end: 0,
-      duration: durationMs.ms,
-      curve: Curves.easeOutBack,
-      builder: (_, v, c) => Transform(
-        transform: Matrix4.identity()
-          ..setEntry(3, 2, 0.001)
-          ..rotateY(v)
-          ..rotateX(v),
-        alignment: Alignment.center,
-        child: c,
-      ),
-    );
+          begin: 0.1,
+          end: 0,
+          duration: durationMs.ms,
+          curve: Curves.easeOutBack,
+          builder: (_, v, c) => Transform(
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.001)
+              ..rotateY(v)
+              ..rotateX(v),
+            alignment: Alignment.center,
+            child: c,
+          ),
+        );
   }
 
   /// 57. Border Glow Breathe
-  Widget animateWidgetBorderGlow({Color color = Colors.greenAccent, int durationMs = 2000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetBorderGlow(
+      {Color color = Colors.greenAccent,
+      int durationMs = 2000,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat, reverse: true).custom(
       duration: durationMs.ms,
       builder: (_, v, child) => Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color.withColorOpacity(0.1 + (0.5 * v)), width: 1 + (2 * v)),
+          border: Border.all(
+              color: color.withColorOpacity(0.1 + (0.5 * v)),
+              width: 1 + (2 * v)),
         ),
         child: child,
       ),
@@ -688,17 +1098,24 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 58. Color Reveal (B&W to Color)
-  Widget animateWidgetColorReveal({int durationMs = 800, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetColorReveal(
+      {int durationMs = 800, bool repeat = false, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat).custom(
       duration: durationMs.ms,
-      builder: (_, v, child) =>
-          ColorFiltered(colorFilter: ColorFilter.matrix([v, 0, 0, 0, 0, 0, v, 0, 0, 0, 0, 0, v, 0, 0, 0, 0, 0, 1, 0]), child: child),
+      builder: (_, v, child) => ColorFiltered(
+          colorFilter: ColorFilter.matrix(
+              [v, 0, 0, 0, 0, 0, v, 0, 0, 0, 0, 0, v, 0, 0, 0, 0, 0, 1, 0]),
+          child: child),
     );
   }
 
   /// 59. Sepia Nostalgia
-  Widget animateWidgetSepia({int delayMs = 0, int durationMs = 700, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetSepia(
+      {int delayMs = 0,
+      int durationMs = 700,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 400.ms)
@@ -735,23 +1152,41 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 60. Glass Shine Sweep
-  Widget animateWidgetGlassShine({int delayMs = 0, int durationMs = 1200, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetGlassShine(
+      {int delayMs = 0,
+      int durationMs = 1200,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 400.ms)
-        .shimmer(delay: 200.ms, duration: durationMs.ms, color: Colors.white.withColorOpacity(0.4), stops: const [0, 0.5, 1], angle: 45);
+        .shimmer(
+            delay: 200.ms,
+            duration: durationMs.ms,
+            color: Colors.white.withColorOpacity(0.4),
+            stops: const [0, 0.5, 1],
+            angle: 45);
   }
 
   /// 61. Gold Metallic Sweep (Loop)
-  Widget animateWidgetGoldSweep({int durationMs = 2500, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetGoldSweep(
+      {int durationMs = 2500, bool repeat = true, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       repeat: repeat,
-    ).shimmer(duration: durationMs.ms, color: const Color(0xFFFFD700).withColorOpacity(0.3), stops: const [0, 0.5, 1], angle: 45);
+    ).shimmer(
+        duration: durationMs.ms,
+        color: const Color(0xFFFFD700).withColorOpacity(0.3),
+        stops: const [0, 0.5, 1],
+        angle: 45);
   }
 
   /// 62. Helix Spin Entrance
-  Widget animateWidgetHelixEntry({int delayMs = 0, int durationMs = 700, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetHelixEntry(
+      {int delayMs = 0,
+      int durationMs = 700,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 400.ms)
@@ -772,42 +1207,80 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 63. 3D Swing Hook
-  Widget animateWidgetSwingHook({int delayMs = 0, int durationMs = 1200, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetSwingHook(
+      {int delayMs = 0,
+      int durationMs = 1200,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 300.ms)
-        .slideY(begin: -0.2, end: 0, curve: Curves.easeOut, duration: (durationMs * 0.4).toInt().ms)
-        .rotate(begin: 0.08, end: 0, curve: Curves.elasticOut, duration: durationMs.ms, alignment: Alignment.topCenter);
+        .slideY(
+            begin: -0.2,
+            end: 0,
+            curve: Curves.easeOut,
+            duration: (durationMs * 0.4).toInt().ms)
+        .rotate(
+            begin: 0.08,
+            end: 0,
+            curve: Curves.elasticOut,
+            duration: durationMs.ms,
+            alignment: Alignment.topCenter);
   }
 
   /// 64. Depth Zoom Tunnel
-  Widget animateWidgetTunnelIn({int delayMs = 0, int durationMs = 800, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetTunnelIn(
+      {int delayMs = 0,
+      int durationMs = 800,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 400.ms)
-        .scale(begin: const Offset(0.0, 0.0), end: const Offset(1, 1), curve: Curves.fastOutSlowIn, duration: durationMs.ms)
+        .scale(
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(1, 1),
+            curve: Curves.fastOutSlowIn,
+            duration: durationMs.ms)
         .blurXY(begin: 25, end: 0, duration: durationMs.ms);
   }
 
   /// 65. Aurora Sweep (Loop)
-  Widget animateWidgetAurora({int durationMs = 4000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetAurora(
+      {int durationMs = 4000, bool repeat = true, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat, reverse: true)
-        .shimmer(duration: durationMs.ms, color: Colors.purpleAccent.withColorOpacity(0.1))
-        .shimmer(duration: (durationMs * 0.75).toInt().ms, color: Colors.blueAccent.withColorOpacity(0.1));
+        .shimmer(
+            duration: durationMs.ms,
+            color: Colors.purpleAccent.withColorOpacity(0.1))
+        .shimmer(
+            duration: (durationMs * 0.75).toInt().ms,
+            color: Colors.blueAccent.withColorOpacity(0.1));
   }
 
   /// 66. Ghost Bloom
-  Widget animateWidgetGhostBloom({int delayMs = 0, int durationMs = 800, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetGhostBloom(
+      {int delayMs = 0,
+      int durationMs = 800,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: durationMs.ms)
-        .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1), curve: Curves.easeOutCirc, duration: durationMs.ms)
+        .scale(
+            begin: const Offset(0.8, 0.8),
+            end: const Offset(1, 1),
+            curve: Curves.easeOutCirc,
+            duration: durationMs.ms)
         .saturate(begin: 0, end: 1, duration: durationMs.ms);
   }
 
   /// 67. 3D Skew Slide
-  Widget animateWidget3DSkew({int delayMs = 0, int durationMs = 700, bool repeat = false, bool animate = true}) {
+  Widget animateWidget3DSkew(
+      {int delayMs = 0,
+      int durationMs = 700,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 400.ms)
@@ -826,16 +1299,24 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 68. Star Particle Shine (Loop)
-  Widget animateWidgetStarShine({int durationMs = 2000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetStarShine(
+      {int durationMs = 2000, bool repeat = true, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat)
-        .shimmer(duration: durationMs.ms, color: Colors.white.withColorOpacity(0.4), blendMode: BlendMode.overlay)
+        .shimmer(
+            duration: durationMs.ms,
+            color: Colors.white.withColorOpacity(0.4),
+            blendMode: BlendMode.overlay)
         .shake(hz: 0.5, curve: Curves.easeInOut)
-        .scale(begin: const Offset(1, 1), end: const Offset(1.02, 1.02), duration: (durationMs / 2).ms);
+        .scale(
+            begin: const Offset(1, 1),
+            end: const Offset(1.02, 1.02),
+            duration: (durationMs / 2).ms);
   }
 
   /// 69. Inset Shadow Pulse (Loop)
-  Widget animateWidgetInsetPulse({int durationMs = 1200, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetInsetPulse(
+      {int durationMs = 1200, bool repeat = true, bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat, reverse: true).custom(
       duration: durationMs.ms,
@@ -857,12 +1338,22 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 70. Final Luxury Spotlight
-  Widget animateWidgetSpotlightReveal({int delayMs = 0, int durationMs = 1000, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetSpotlightReveal(
+      {int delayMs = 0,
+      int durationMs = 1000,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(delayMs: delayMs, repeat: repeat)
         .fadeIn(duration: 500.ms)
-        .shimmer(duration: durationMs.ms, color: Colors.white.withColorOpacity(0.2), angle: 45)
-        .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1), duration: durationMs.ms);
+        .shimmer(
+            duration: durationMs.ms,
+            color: Colors.white.withColorOpacity(0.2),
+            angle: 45)
+        .scale(
+            begin: const Offset(0.95, 0.95),
+            end: const Offset(1, 1),
+            duration: durationMs.ms);
   }
 
   /// 71. Circle Radial Shimmer (Loop)
@@ -882,7 +1373,11 @@ extension AnimateOnWidget on Widget {
           shaderCallback: (rect) => RadialGradient(
             center: alignment,
             radius: smoothV * 3.0,
-            colors: [color.withColorOpacity(0.0), color.withColorOpacity(0.4 * (1 - smoothV.clamp(0.7, 1.0))), color.withColorOpacity(0.0)],
+            colors: [
+              color.withColorOpacity(0.0),
+              color.withColorOpacity(0.4 * (1 - smoothV.clamp(0.7, 1.0))),
+              color.withColorOpacity(0.0)
+            ],
             stops: const [0.0, 0.5, 1.0],
           ).createShader(rect),
           blendMode: BlendMode.srcATop,
@@ -893,16 +1388,30 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 72. Slide Up Fade
-  Widget animateWidgetSlideUpFade({int delayMs = 0, int durationMs = 500, bool repeat = false, bool animate = true}) {
+  Widget animateWidgetSlideUpFade(
+      {int delayMs = 0,
+      int durationMs = 500,
+      bool repeat = false,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(
       delayMs: delayMs,
       repeat: repeat,
-    ).slideY(begin: 1.0, end: 0.0, duration: durationMs.ms, curve: Curves.easeOut).fadeIn(duration: durationMs.ms);
+    )
+        .slideY(
+            begin: 1.0,
+            end: 0.0,
+            duration: durationMs.ms,
+            curve: Curves.easeOut)
+        .fadeIn(duration: durationMs.ms);
   }
 
   /// 73. Radar Scan (Radar Loop)
-  Widget animateWidgetRadarScan({Color color = Colors.blueAccent, int durationMs = 2000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetRadarScan(
+      {Color color = Colors.blueAccent,
+      int durationMs = 2000,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat).custom(
       duration: durationMs.ms,
@@ -912,7 +1421,8 @@ extension AnimateOnWidget on Widget {
           Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: color.withColorOpacity(1 - v), width: v * 20),
+              border: Border.all(
+                  color: color.withColorOpacity(1 - v), width: v * 20),
             ),
             width: v * 200,
             height: v * 200,
@@ -924,15 +1434,29 @@ extension AnimateOnWidget on Widget {
   }
 
   /// 74. Neon Flow Sweep (Loop)
-  Widget animateWidgetNeonFlow({Color color = Colors.cyanAccent, int durationMs = 1500, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetNeonFlow(
+      {Color color = Colors.cyanAccent,
+      int durationMs = 1500,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat)
-        .shimmer(duration: durationMs.ms, color: color.withColorOpacity(0.4), angle: 0)
-        .shimmer(duration: durationMs.ms, color: color.withColorOpacity(0.2), angle: 90);
+        .shimmer(
+            duration: durationMs.ms,
+            color: color.withColorOpacity(0.4),
+            angle: 0)
+        .shimmer(
+            duration: durationMs.ms,
+            color: color.withColorOpacity(0.2),
+            angle: 90);
   }
 
   /// 75. Liquid Fill Breathe (Loop)
-  Widget animateWidgetLiquidFill({Color color = Colors.greenAccent, int durationMs = 3000, bool repeat = true, bool animate = true}) {
+  Widget animateWidgetLiquidFill(
+      {Color color = Colors.greenAccent,
+      int durationMs = 3000,
+      bool repeat = true,
+      bool animate = true}) {
     if (!animate) return this;
     return _baseAnimate(repeat: repeat, reverse: true).custom(
       duration: durationMs.ms,

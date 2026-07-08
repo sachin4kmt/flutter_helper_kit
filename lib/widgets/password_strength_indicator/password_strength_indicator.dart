@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'password_rules_enum.dart';
@@ -36,11 +35,18 @@ class PasswordStrengthIndicator extends StatefulWidget {
     this.unSuccessWidget,
     this.textSize = 14,
     this.hideRules = false,
-    this.rules = const [PasswordRule.length, PasswordRule.capital, PasswordRule.lowercase, PasswordRule.number, PasswordRule.symbol],
+    this.rules = const [
+      PasswordRule.length,
+      PasswordRule.capital,
+      PasswordRule.lowercase,
+      PasswordRule.number,
+      PasswordRule.symbol
+    ],
   });
 
   @override
-  State<PasswordStrengthIndicator> createState() => PasswordStrengthIndicatorState();
+  State<PasswordStrengthIndicator> createState() =>
+      PasswordStrengthIndicatorState();
 }
 
 class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
@@ -55,7 +61,6 @@ class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
   RegExp symbolsReg = RegExp(r'.*[!@#\$&*~].*');
   double get progress => passedCount / widget.rules.length;
 
-
   @override
   void initState() {
     super.initState();
@@ -65,26 +70,28 @@ class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
   }
 
   Map<PasswordRule, _PasswordRuleConfig> get _ruleConfig => {
-    PasswordRule.length: _PasswordRuleConfig(
-      text: () => widget.maxLength != null
-          ? 'Contain between ${widget.minLength}-${widget.maxLength} Characters'
-          : 'Contain at least ${widget.minLength} Characters',
-      isValid: checkLength,
-    ),
-    PasswordRule.capital: _PasswordRuleConfig(
-      text: () => 'At least one CAPITAL letter',
-      isValid: () => capitalReg.hasMatch(widget.textController.text),
-    ),
-    PasswordRule.lowercase: _PasswordRuleConfig(
-      text: () => 'At least one simple letter',
-      isValid: () => simpleReg.hasMatch(widget.textController.text),
-    ),
-    PasswordRule.number: _PasswordRuleConfig(text: () => 'At least one number', isValid: () => numReg.hasMatch(widget.textController.text)),
-    PasswordRule.symbol: _PasswordRuleConfig(
-      text: () => 'At least one special character',
-      isValid: () => symbolsReg.hasMatch(widget.textController.text),
-    ),
-  };
+        PasswordRule.length: _PasswordRuleConfig(
+          text: () => widget.maxLength != null
+              ? 'Contain between ${widget.minLength}-${widget.maxLength} Characters'
+              : 'Contain at least ${widget.minLength} Characters',
+          isValid: checkLength,
+        ),
+        PasswordRule.capital: _PasswordRuleConfig(
+          text: () => 'At least one CAPITAL letter',
+          isValid: () => capitalReg.hasMatch(widget.textController.text),
+        ),
+        PasswordRule.lowercase: _PasswordRuleConfig(
+          text: () => 'At least one simple letter',
+          isValid: () => simpleReg.hasMatch(widget.textController.text),
+        ),
+        PasswordRule.number: _PasswordRuleConfig(
+            text: () => 'At least one number',
+            isValid: () => numReg.hasMatch(widget.textController.text)),
+        PasswordRule.symbol: _PasswordRuleConfig(
+          text: () => 'At least one special character',
+          isValid: () => symbolsReg.hasMatch(widget.textController.text),
+        ),
+      };
 
 /*  void calculateStrength() {
     double total = 0;
@@ -145,26 +152,28 @@ class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
         return Colors.green;
     }
   }
+
   Color _boxColor(int index) {
     if (index < passedCount) {
       return allBoxColor;
     }
     return Colors.grey.shade300; // inactive boxes
   }
+
   int get passedCount => widget.rules.where((rule) {
-    switch (rule) {
-      case PasswordRule.length:
-        return checkLength();
-      case PasswordRule.capital:
-        return capitalReg.hasMatch(widget.textController.text);
-      case PasswordRule.lowercase:
-        return simpleReg.hasMatch(widget.textController.text);
-      case PasswordRule.number:
-        return numReg.hasMatch(widget.textController.text);
-      case PasswordRule.symbol:
-        return symbolsReg.hasMatch(widget.textController.text);
-    }
-  }).length;
+        switch (rule) {
+          case PasswordRule.length:
+            return checkLength();
+          case PasswordRule.capital:
+            return capitalReg.hasMatch(widget.textController.text);
+          case PasswordRule.lowercase:
+            return simpleReg.hasMatch(widget.textController.text);
+          case PasswordRule.number:
+            return numReg.hasMatch(widget.textController.text);
+          case PasswordRule.symbol:
+            return symbolsReg.hasMatch(widget.textController.text);
+        }
+      }).length;
 
   @override
   Widget build(BuildContext context) {
@@ -175,23 +184,23 @@ class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
         children: [
           SizedBox(height: size.height * 0.005),
           // REPLACE LinearProgressIndicator WITH THIS
-        Row(
-          children: List.generate(widget.rules.length, (index) {
-            return Expanded(
-              child: Container(
-                height: 5,
-                margin: const EdgeInsets.symmetric(horizontal: 2),
-                decoration: BoxDecoration(
-                  color: _boxColor(index),
-                  borderRadius: BorderRadius.circular(2.5),
+          Row(
+            children: List.generate(widget.rules.length, (index) {
+              return Expanded(
+                child: Container(
+                  height: 5,
+                  margin: const EdgeInsets.symmetric(horizontal: 2),
+                  decoration: BoxDecoration(
+                    color: _boxColor(index),
+                    borderRadius: BorderRadius.circular(2.5),
+                  ),
                 ),
-              ),
-            );
-          }),
-        ),
+              );
+            }),
+          ),
           SizedBox(height: size.height * 0.015),
 
-       /*   LinearProgressIndicator(
+          /*   LinearProgressIndicator(
             value: progress,
             backgroundColor: Colors.grey[300],
             color: strength.color,
@@ -223,15 +232,22 @@ class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
         Container(
           alignment: Alignment.centerLeft,
           child: condition
-              ? widget.successWidget ?? Icon(widget.successIcon ?? Icons.check, color: Colors.green, size: 14)
-              : widget.unSuccessWidget ?? Icon(widget.unSuccessIcon ?? Icons.clear, color: Colors.red, size: 14),
+              ? widget.successWidget ??
+                  Icon(widget.successIcon ?? Icons.check,
+                      color: Colors.green, size: 14)
+              : widget.unSuccessWidget ??
+                  Icon(widget.unSuccessIcon ?? Icons.clear,
+                      color: Colors.red, size: 14),
         ),
         const SizedBox(width: 12),
         SizedBox(
           child: Text(
             text,
             textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 14, color: condition ? Colors.green : Colors.red, height: 1.5),
+            style: TextStyle(
+                fontSize: 14,
+                color: condition ? Colors.green : Colors.red,
+                height: 1.5),
           ),
         ),
       ],
@@ -240,7 +256,8 @@ class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
 
   bool checkLength() {
     if (widget.maxLength != null) {
-      return widget.textController.text.length >= widget.minLength && widget.textController.text.length <= widget.maxLength!;
+      return widget.textController.text.length >= widget.minLength &&
+          widget.textController.text.length <= widget.maxLength!;
     } else {
       return widget.textController.text.length >= widget.minLength;
     }

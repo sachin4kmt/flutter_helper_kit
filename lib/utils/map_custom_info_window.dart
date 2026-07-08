@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// Simple latitude/longitude pair for map overlays.
@@ -45,7 +44,8 @@ class MapCustomInfoWindowController {
 
 class MapCustomInfoWindow extends StatefulWidget {
   final MapCustomInfoWindowController controller;
-  final void Function(double top, double left, double width, double height) onChange;
+  final void Function(double top, double left, double width, double height)
+      onChange;
 
   const MapCustomInfoWindow(
     this.onChange, {
@@ -87,12 +87,15 @@ class _MapCustomInfoWindowState extends State<MapCustomInfoWindow> {
       return;
     }
 
-    final devicePixelRatio = Platform.isAndroid
-        ? adapter.devicePixelRatio(context)
-        : 1.0;
+    final devicePixelRatio =
+        !kIsWeb && defaultTargetPlatform == TargetPlatform.android
+            ? adapter.devicePixelRatio(context)
+            : 1.0;
     final screenCoordinate = await adapter.getScreenCoordinate(_latLng!);
-    final left = (screenCoordinate.x.toDouble() / devicePixelRatio) - (_width! / 2);
-    final top = (screenCoordinate.y.toDouble() / devicePixelRatio) - (_offset! + _height!);
+    final left =
+        (screenCoordinate.x.toDouble() / devicePixelRatio) - (_width! / 2);
+    final top = (screenCoordinate.y.toDouble() / devicePixelRatio) -
+        (_offset! + _height!);
 
     if (!mounted) return;
     setState(() {

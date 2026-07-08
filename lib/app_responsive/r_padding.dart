@@ -1,7 +1,5 @@
 part of 'app_responsive.dart';
 
-
-
 class RPadding extends SingleChildRenderObjectWidget {
   /// Creates an adapt widget that insets its child.
   ///
@@ -22,7 +20,6 @@ class RPadding extends SingleChildRenderObjectWidget {
       textDirection: Directionality.maybeOf(context),
     );
   }
-
 }
 
 class REdgeInsets extends EdgeInsets {
@@ -80,7 +77,8 @@ class REdgeInsets extends EdgeInsets {
         );
 
   @override
-  EdgeInsets copyWith({double? left, double? top, double? right, double? bottom}) {
+  EdgeInsets copyWith(
+      {double? left, double? top, double? right, double? bottom}) {
     return REdgeInsets.only(
       left: left ?? this.left,
       top: top ?? this.top,
@@ -93,10 +91,11 @@ class REdgeInsets extends EdgeInsets {
     return REdgeInsets.only(
       left: horizontal ?? left,
       right: horizontal ?? right,
-      top:  top,
+      top: top,
       bottom: bottom,
     );
   }
+
   EdgeInsets copyWithVertical(double? vertical) {
     return REdgeInsets.only(
       left: left,
@@ -108,14 +107,11 @@ class REdgeInsets extends EdgeInsets {
 
   static REdgeInsets get zero => REdgeInsets.all(0);
 
-
   ///APpDefaultPadding
   static REdgeInsets get defaultAll => REdgeInsets.all(20);
-  static REdgeInsets get defaultHorizontal => REdgeInsets.symmetric(horizontal: 20);
+  static REdgeInsets get defaultHorizontal =>
+      REdgeInsets.symmetric(horizontal: 20);
   static REdgeInsets get defaultVertical => REdgeInsets.symmetric(vertical: 20);
-
-
-
 }
 
 class REdgeInsetsDirectional extends EdgeInsetsDirectional {
@@ -167,9 +163,7 @@ class REdgeInsetsDirectional extends EdgeInsetsDirectional {
         );
 
   static REdgeInsetsDirectional get zero => REdgeInsetsDirectional.all(0);
-
 }
-
 
 extension WidgetPaddingX on Widget {
   Widget rPaddingAll(double padding) =>
@@ -178,7 +172,7 @@ extension WidgetPaddingX on Widget {
   Widget rPaddingSymmetric({double horizontal = 0.0, double vertical = 0.0}) =>
       RPadding(
           padding:
-          REdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
+              REdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
           child: this);
 
   Widget rPaddingOnly({

@@ -44,7 +44,8 @@ Widget gestureAnimationDemo(BuildContext context) {
       child: Container(
         width: 120,
         height: 120,
-        decoration: BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(16)),
+        decoration: BoxDecoration(
+            color: Colors.teal, borderRadius: BorderRadius.circular(16)),
         alignment: Alignment.center,
         child: const Text('Tap me', style: TextStyle(color: Colors.white)),
       ),
@@ -85,7 +86,8 @@ class _AnimatedCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(label, style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
+            Text(label,
+                style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
             const SizedBox(height: 12),
             child,
           ],

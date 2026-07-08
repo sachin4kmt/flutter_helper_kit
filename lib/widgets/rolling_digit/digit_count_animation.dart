@@ -1,5 +1,3 @@
-
-
 // Note: Agar aap 'AnimatedDigitWidget' external package use kar rahe hain
 // toh uska import yahan aayega.
 import 'dart:math';
@@ -69,7 +67,9 @@ class UniversalDigitCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle defaultStyle = style ?? const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black);
+    final TextStyle defaultStyle = style ??
+        const TextStyle(
+            fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black);
 
     // 1. Formatting Logic
     String formattedValue = _getFormattedValue();
@@ -77,13 +77,15 @@ class UniversalDigitCounter extends StatelessWidget {
     // 2. Handle Continuous Type
     if (type == DigitAnimationType.continuous) {
       // Yahan aapka external AnimatedDigitWidget call hoga agar project me hai
-      return Text('${prefix ?? ''}$formattedValue${suffix ?? ''}', style: defaultStyle);
+      return Text('${prefix ?? ''}$formattedValue${suffix ?? ''}',
+          style: defaultStyle);
     }
 
     // 3. Main UI Build
     Widget content = Container(
       decoration: boxDecoration,
-      padding: padding ?? (boxDecoration != null ? REdgeInsets.symmetric(horizontal: 4) : null),
+      padding: padding ??
+          (boxDecoration != null ? REdgeInsets.symmetric(horizontal: 4) : null),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -101,23 +103,30 @@ class UniversalDigitCounter extends StatelessWidget {
       ),
     );
 
-    return autoScale ? FittedBox(fit: BoxFit.scaleDown, child: content) : content;
+    return autoScale
+        ? FittedBox(fit: BoxFit.scaleDown, child: content)
+        : content;
   }
 
   String _getFormattedValue() {
     String valStr = value.toStringAsFixed(fractionDigits);
 
     // Padding (e.g. 05)
-    if (enableMinIntegerDigits && value < 10 && value >= 0 && fractionDigits == 0) {
+    if (enableMinIntegerDigits &&
+        value < 10 &&
+        value >= 0 &&
+        fractionDigits == 0) {
       valStr = valStr.padLeft(2, '0');
     }
 
     // Thousands Separator
     if (enableSeparator) {
       List<String> parts = valStr.split('.');
-      RegExp reg = RegExp(r'\B(?=(\d{' + separateLength.toString() + r'})+(?!\d))');
+      RegExp reg =
+          RegExp(r'\B(?=(\d{' + separateLength.toString() + r'})+(?!\d))');
       parts[0] = parts[0].replaceAll(reg, separateSymbol);
-      valStr = parts.length > 1 ? parts[0] + decimalSeparator + parts[1] : parts[0];
+      valStr =
+          parts.length > 1 ? parts[0] + decimalSeparator + parts[1] : parts[0];
     }
     return valStr;
   }
@@ -138,17 +147,22 @@ class UniversalDigitCounter extends StatelessWidget {
         switchInCurve: curve,
         switchOutCurve: curve,
         layoutBuilder: (Widget? currentChild, List<Widget> previousChildren) {
-          return Stack(alignment: Alignment.center, children: <Widget>[...previousChildren, if (currentChild != null) currentChild]);
+          return Stack(alignment: Alignment.center, children: <Widget>[
+            ...previousChildren,
+            if (currentChild != null) currentChild
+          ]);
         },
         transitionBuilder: (Widget child, Animation<double> animation) {
           return ClipRect(
-            child: _getTransition(child, animation, char, currentType: type, currentStyle: textStyle),
+            child: _getTransition(child, animation, char,
+                currentType: type, currentStyle: textStyle),
           );
         },
         child: Text(
           char,
           key: ValueKey(char),
-          style: textStyle.copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
+          style: textStyle
+              .copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
         ),
       ),
     );
@@ -222,12 +236,14 @@ class UniversalDigitCounter extends StatelessWidget {
     );
   }
 
-  Widget _wheelTransition(Widget child, Animation<double> animation, String char) {
+  Widget _wheelTransition(
+      Widget child, Animation<double> animation, String char) {
     final isCurrent = (child.key == ValueKey(char));
     return AnimatedBuilder(
       animation: animation,
       builder: (context, _) {
-        final double offset = isCurrent ? (1 - animation.value) : -animation.value;
+        final double offset =
+            isCurrent ? (1 - animation.value) : -animation.value;
         return Transform(
           transform: Matrix4.identity()
             ..setEntry(3, 2, 0.003)
@@ -240,18 +256,21 @@ class UniversalDigitCounter extends StatelessWidget {
     );
   }
 
-  Widget _perspectiveTransition(Widget child, Animation<double> animation, String char) {
+  Widget _perspectiveTransition(
+      Widget child, Animation<double> animation, String char) {
     final isCurrent = (child.key == ValueKey(char));
     return AnimatedBuilder(
       animation: animation,
       builder: (context, _) {
-        final double scale = isCurrent ? 0.5 + (animation.value * 0.5) : 1.0 + (animation.value);
+        final double scale =
+            isCurrent ? 0.5 + (animation.value * 0.5) : 1.0 + (animation.value);
         return Transform(
           transform: Matrix4.identity()
             ..setEntry(3, 2, 0.001)
             ..scaleByDouble(scale, scale, 1.0, 1.0),
           alignment: Alignment.center,
-          child: Opacity(opacity: animation.value.clamp(0.0, 1.0), child: child),
+          child:
+              Opacity(opacity: animation.value.clamp(0.0, 1.0), child: child),
         );
       },
     );
@@ -261,27 +280,36 @@ class UniversalDigitCounter extends StatelessWidget {
     return FadeTransition(
       opacity: animation,
       child: ImageFiltered(
-        imageFilter: ImageFilter.blur(sigmaX: (1 - animation.value).abs() * 5, sigmaY: (1 - animation.value).abs() * 5),
+        imageFilter: ImageFilter.blur(
+            sigmaX: (1 - animation.value).abs() * 5,
+            sigmaY: (1 - animation.value).abs() * 5),
         child: child,
       ),
     );
   }
 
-  Widget _ribbonTransition(Widget child, Animation<double> animation, String char) {
+  Widget _ribbonTransition(
+      Widget child, Animation<double> animation, String char) {
     final isCurrent = (child.key == ValueKey(char));
     return SlideTransition(
       position: Tween<Offset>(
         begin: isCurrent ? const Offset(0, 1.0) : const Offset(0, -1.0),
         end: Offset.zero,
-      ).animate(CurvedAnimation(parent: animation, curve: isCurrent ? Curves.elasticOut : Curves.easeInOut)),
+      ).animate(CurvedAnimation(
+          parent: animation,
+          curve: isCurrent ? Curves.elasticOut : Curves.easeInOut)),
       child: child,
     );
   }
 
-  Widget _iosTransition(Widget child, Animation<double> animation, String char) {
+  Widget _iosTransition(
+      Widget child, Animation<double> animation, String char) {
     final isCurrent = (child.key == ValueKey(char));
     return SlideTransition(
-      position: Tween<Offset>(begin: isCurrent ? const Offset(0, 1) : const Offset(0, -1), end: Offset.zero).animate(animation),
+      position: Tween<Offset>(
+              begin: isCurrent ? const Offset(0, 1) : const Offset(0, -1),
+              end: Offset.zero)
+          .animate(animation),
       child: child,
     );
   }
@@ -304,17 +332,21 @@ class UniversalDigitCounter extends StatelessWidget {
 
   Widget _popTransition(Widget child, Animation<double> animation) {
     return ScaleTransition(
-      scale: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: animation, curve: Curves.elasticOut)),
+      scale: Tween<double>(begin: 0.0, end: 1.0).animate(
+          CurvedAnimation(parent: animation, curve: Curves.elasticOut)),
       child: FadeTransition(opacity: animation, child: child),
     );
   }
 
-  Widget _cubeTransition(Widget child, Animation<double> animation, String char) {
+  Widget _cubeTransition(
+      Widget child, Animation<double> animation, String char) {
     final isCurrent = (child.key == ValueKey(char));
     return AnimatedBuilder(
       animation: animation,
       builder: (context, _) {
-        final double rotate = isCurrent ? (1 - animation.value) * (pi / 2) : -animation.value * (pi / 2);
+        final double rotate = isCurrent
+            ? (1 - animation.value) * (pi / 2)
+            : -animation.value * (pi / 2);
         return Transform(
           transform: Matrix4.identity()
             ..setEntry(3, 2, 0.002)
@@ -333,13 +365,16 @@ class UniversalDigitCounter extends StatelessWidget {
     );
   }
 
-  Widget _bounceDownTransition(Widget child, Animation<double> animation, String char) {
+  Widget _bounceDownTransition(
+      Widget child, Animation<double> animation, String char) {
     final isCurrent = (child.key == ValueKey(char));
     return SlideTransition(
       position: Tween<Offset>(
         begin: isCurrent ? const Offset(0, -1.5) : const Offset(0, 1.5),
         end: Offset.zero,
-      ).animate(CurvedAnimation(parent: animation, curve: isCurrent ? Curves.elasticOut : Curves.easeIn)),
+      ).animate(CurvedAnimation(
+          parent: animation,
+          curve: isCurrent ? Curves.elasticOut : Curves.easeIn)),
       child: child,
     );
   }
@@ -365,13 +400,15 @@ class UniversalDigitCounter extends StatelessWidget {
     );
   }
 
-  Widget _waveTransition(Widget child, Animation<double> animation, String char) {
+  Widget _waveTransition(
+      Widget child, Animation<double> animation, String char) {
     final isCurrent = (child.key == ValueKey(char));
     return SlideTransition(
       position: Tween<Offset>(
         begin: isCurrent ? const Offset(0, 0.5) : const Offset(0, -0.5),
         end: Offset.zero,
-      ).animate(CurvedAnimation(parent: animation, curve: Curves.easeInOutBack)),
+      ).animate(
+          CurvedAnimation(parent: animation, curve: Curves.easeInOutBack)),
       child: FadeTransition(opacity: animation, child: child),
     );
   }

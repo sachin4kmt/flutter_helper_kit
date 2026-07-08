@@ -22,7 +22,8 @@ class CallbackMapInfoWindowAdapter implements MapInfoWindowAdapter {
     this.onDevicePixelRatio,
   });
 
-  final Future<MapScreenCoordinate> Function(MapLatLng latLng) onGetScreenCoordinate;
+  final Future<MapScreenCoordinate> Function(MapLatLng latLng)
+      onGetScreenCoordinate;
   final double Function(BuildContext context)? onDevicePixelRatio;
 
   @override
@@ -31,5 +32,6 @@ class CallbackMapInfoWindowAdapter implements MapInfoWindowAdapter {
 
   @override
   double devicePixelRatio(BuildContext context) =>
-      onDevicePixelRatio?.call(context) ?? MediaQuery.of(context).devicePixelRatio;
+      onDevicePixelRatio?.call(context) ??
+      MediaQuery.of(context).devicePixelRatio;
 }

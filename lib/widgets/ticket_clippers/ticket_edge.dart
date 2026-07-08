@@ -12,8 +12,10 @@ class TicketRoundedEdgeClipper extends CustomClipper<Path> {
 
   /// Position of rounded clipper
   double position;
+
   /// Radius of rounded edge
   final double radius;
+
   /// Clipper sides: Edge.horizontal, Edge.vertical, Edge.top, Edge.bottom, Edge.left, Edge.right, Edge.all
   final Edge edge;
 

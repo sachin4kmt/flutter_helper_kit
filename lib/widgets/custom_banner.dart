@@ -1,4 +1,3 @@
-
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -6,7 +5,8 @@ import 'package:flutter/material.dart';
 const double _kBannerDefaultOffset = 40.0;
 const double _kBannerDefaultHeight = 12.0;
 const Color _kBannerDefaultColor = Color(0xA0B71C1C);
-const BoxShadow _kBannerDefaultShadow = BoxShadow(color: Color(0x7F000000), blurRadius: 6.0);
+const BoxShadow _kBannerDefaultShadow =
+    BoxShadow(color: Color(0x7F000000), blurRadius: 6.0);
 
 /// Where to show a [Banner].
 ///
@@ -63,7 +63,8 @@ class _CustomBannerPainter extends CustomPainter {
   double get _totalBottomOffset => offset + (math.sqrt1_2 * height);
 
   // Banner drawing area
-  Rect get _bannerRect => Rect.fromLTWH(-offset, offset - height, offset * 2.0, height);
+  Rect get _bannerRect =>
+      Rect.fromLTWH(-offset, offset - height, offset * 2.0, height);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -87,7 +88,8 @@ class _CustomBannerPainter extends CustomPainter {
     canvas.drawRect(_bannerRect, paintBanner);
 
     // Draw Text (Logically centered within height)
-    final double textTop = _bannerRect.top + (_bannerRect.height - textPainter.height) / 2.0;
+    final double textTop =
+        _bannerRect.top + (_bannerRect.height - textPainter.height) / 2.0;
     textPainter.paint(canvas, Offset(_bannerRect.left, textTop));
 
     canvas.restore();
@@ -99,16 +101,21 @@ class _CustomBannerPainter extends CustomPainter {
       (TextDirection.ltr, CustomBannerLocation.topStart) => 0.0,
       (TextDirection.rtl, CustomBannerLocation.topEnd) => 0.0,
       (TextDirection.ltr, CustomBannerLocation.topEnd) => width,
-      (TextDirection.rtl, CustomBannerLocation.bottomStart) => width - _totalBottomOffset,
-      (TextDirection.ltr, CustomBannerLocation.bottomStart) => _totalBottomOffset,
+      (TextDirection.rtl, CustomBannerLocation.bottomStart) =>
+        width - _totalBottomOffset,
+      (TextDirection.ltr, CustomBannerLocation.bottomStart) =>
+        _totalBottomOffset,
       (TextDirection.rtl, CustomBannerLocation.bottomEnd) => _totalBottomOffset,
-      (TextDirection.ltr, CustomBannerLocation.bottomEnd) => width - _totalBottomOffset,
+      (TextDirection.ltr, CustomBannerLocation.bottomEnd) =>
+        width - _totalBottomOffset,
     };
   }
 
   double _translationY(double height) {
     return switch (location) {
-      CustomBannerLocation.bottomStart || CustomBannerLocation.bottomEnd => height - _totalBottomOffset,
+      CustomBannerLocation.bottomStart ||
+      CustomBannerLocation.bottomEnd =>
+        height - _totalBottomOffset,
       CustomBannerLocation.topStart || CustomBannerLocation.topEnd => 0.0,
     };
   }
@@ -116,16 +123,35 @@ class _CustomBannerPainter extends CustomPainter {
   double get _rotation {
     return (math.pi / 4.0) *
         switch ((layoutDirection, location)) {
-          (TextDirection.rtl, CustomBannerLocation.topStart || CustomBannerLocation.bottomEnd) => 1,
-          (TextDirection.ltr, CustomBannerLocation.topStart || CustomBannerLocation.bottomEnd) => -1,
-          (TextDirection.rtl, CustomBannerLocation.bottomStart || CustomBannerLocation.topEnd) => -1,
-          (TextDirection.ltr, CustomBannerLocation.bottomStart || CustomBannerLocation.topEnd) => 1,
+          (
+            TextDirection.rtl,
+            CustomBannerLocation.topStart || CustomBannerLocation.bottomEnd
+          ) =>
+            1,
+          (
+            TextDirection.ltr,
+            CustomBannerLocation.topStart || CustomBannerLocation.bottomEnd
+          ) =>
+            -1,
+          (
+            TextDirection.rtl,
+            CustomBannerLocation.bottomStart || CustomBannerLocation.topEnd
+          ) =>
+            -1,
+          (
+            TextDirection.ltr,
+            CustomBannerLocation.bottomStart || CustomBannerLocation.topEnd
+          ) =>
+            1,
         };
   }
 
   @override
   bool shouldRepaint(_CustomBannerPainter oldDelegate) =>
-      message != oldDelegate.message || location != oldDelegate.location || offset != oldDelegate.offset || height != oldDelegate.height;
+      message != oldDelegate.message ||
+      location != oldDelegate.location ||
+      offset != oldDelegate.offset ||
+      height != oldDelegate.height;
 }
 
 class CustomBanner extends StatelessWidget {
@@ -157,12 +183,18 @@ class CustomBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Layout and Text directions default handling
-    final TextDirection effectiveTextDirection = textDirection ?? Directionality.of(context);
-    final TextDirection effectiveLayoutDirection = layoutDirection ?? Directionality.of(context);
+    final TextDirection effectiveTextDirection =
+        textDirection ?? Directionality.of(context);
+    final TextDirection effectiveLayoutDirection =
+        layoutDirection ?? Directionality.of(context);
 
     // Default text style based on banner height
-    final TextStyle effectiveTextStyle =
-        textStyle ?? TextStyle(color: _kBannerDefaultColor, fontSize: bannerHeight * 0.85, fontWeight: FontWeight.w900, height: 1.0);
+    final TextStyle effectiveTextStyle = textStyle ??
+        TextStyle(
+            color: _kBannerDefaultColor,
+            fontSize: bannerHeight * 0.85,
+            fontWeight: FontWeight.w900,
+            height: 1.0);
 
     return ClipRect(
       // Ensure banner doesn't draw outside the child boundaries

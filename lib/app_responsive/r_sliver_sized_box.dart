@@ -1,7 +1,5 @@
 part of 'app_responsive.dart';
 
-
-
 class RSliverSizedBox extends StatelessWidget {
   final double? height;
   final double? width;
@@ -16,24 +14,24 @@ class RSliverSizedBox extends StatelessWidget {
 
   /// vertical space
   const RSliverSizedBox.vertical(
-      double this.height, {
-        super.key,
-        this.child,
-      })  : width = null;
+    double this.height, {
+    super.key,
+    this.child,
+  }) : width = null;
 
   /// horizontal space (rare in slivers but kept for parity)
   const RSliverSizedBox.horizontal(
-      double this.width, {
-        super.key,
-        this.child,
-      })  : height = null;
+    double this.width, {
+    super.key,
+    this.child,
+  }) : height = null;
 
   /// square space
   const RSliverSizedBox.square(
-      double dimension, {
-        super.key,
-        this.child,
-      })  : height = dimension,
+    double dimension, {
+    super.key,
+    this.child,
+  })  : height = dimension,
         width = dimension;
 
   /// shrink

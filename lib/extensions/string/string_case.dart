@@ -1,4 +1,3 @@
-
 /// Extension to convert strings into different cases.
 /// Supports snake_case, camelCase, PascalCase, kebab-case,
 /// SCREAMING_SNAKE_CASE, Title Case, and Sentence case.
@@ -8,7 +7,7 @@ extension StringCaseExtensions on String {
   String toSnakeCase() {
     return replaceAllMapped(
       RegExp(r'([a-z0-9])([A-Z])'),
-          (m) => '${m[1]}_${m[2]}',
+      (m) => '${m[1]}_${m[2]}',
     ).replaceAll(RegExp(r'\s+'), '_').toLowerCase();
   }
 
@@ -62,8 +61,9 @@ extension StringCaseExtensions on String {
   List<String> _splitWords() {
     return replaceAllMapped(
       RegExp(r'([a-z0-9])([A-Z])'),
-          (m) => '${m[1]} ${m[2]}',
-    ).replaceAll(RegExp(r'[_\-\s]+'), ' ')
+      (m) => '${m[1]} ${m[2]}',
+    )
+        .replaceAll(RegExp(r'[_\-\s]+'), ' ')
         .trim()
         .split(' ')
         .where((w) => w.isNotEmpty)
@@ -71,6 +71,7 @@ extension StringCaseExtensions on String {
   }
 
   /// Capitalizes the first letter of a word.
-  String _capitalize(String word) =>
-      word.isEmpty ? word : word[0].toUpperCase() + word.substring(1).toLowerCase();
+  String _capitalize(String word) => word.isEmpty
+      ? word
+      : word[0].toUpperCase() + word.substring(1).toLowerCase();
 }

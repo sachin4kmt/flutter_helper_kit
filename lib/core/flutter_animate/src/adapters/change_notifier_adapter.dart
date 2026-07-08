@@ -25,9 +25,9 @@ class ChangeNotifierAdapter extends Adapter {
   ChangeNotifierAdapter(
     this.notifier,
     this.valueGetter, {
-    bool? animated,
-    Direction? direction,
-  }) : super(animated: animated, direction: direction);
+    super.animated,
+    super.direction,
+  });
 
   final ChangeNotifier notifier;
   final ValueGetter<double> valueGetter;

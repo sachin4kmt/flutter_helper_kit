@@ -86,7 +86,7 @@ class FollowPathEffect extends Effect<double> {
 
   static Matrix4 getMatrix(double x, double y, double rotation) {
     return Matrix4.identity()
-      ..translate(x, y)
+      ..translateByDouble(x, y, 0, 1)
       ..rotateZ(rotation);
   }
 }

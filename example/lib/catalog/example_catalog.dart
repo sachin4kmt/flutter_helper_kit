@@ -17,7 +17,13 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.extensions,
     title: 'String & Validation',
     sourceFile: 'lib/extensions/string/string_case.dart',
-    apis: ['toSnakeCase', 'toCamelCase', 'isValidateEmail', 'extractPhoneNumber', 'isEmptyOrNull'],
+    apis: [
+      'toSnakeCase',
+      'toCamelCase',
+      'isValidateEmail',
+      'extractPhoneNumber',
+      'isEmptyOrNull'
+    ],
     builder: stringExtensionsDemo,
     description: 'Also uses validation.dart and string_extension.dart',
   ),
@@ -92,7 +98,8 @@ final List<ExampleEntry> exampleCatalog = [
     id: 'w_password_strength',
     category: ExampleCategory.widgets,
     title: 'PasswordStrengthIndicator',
-    sourceFile: 'lib/widgets/password_strength_indicator/password_strength_indicator.dart',
+    sourceFile:
+        'lib/widgets/password_strength_indicator/password_strength_indicator.dart',
     apis: ['PasswordStrengthIndicator', 'PasswordRule', 'PasswordStrength'],
     builder: passwordStrengthDemo,
   ),
@@ -133,7 +140,14 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.widgets,
     title: 'UI Components',
     sourceFile: 'lib/widgets/center_text_divider.dart',
-    apis: ['CenterTextDivider', 'DashDivider', 'GradientText', 'RatingBarWidget', 'Marquee', 'DottedBorderWidget'],
+    apis: [
+      'CenterTextDivider',
+      'DashDivider',
+      'GradientText',
+      'RatingBarWidget',
+      'Marquee',
+      'DottedBorderWidget'
+    ],
     builder: uiComponentsDemo,
   ),
   ExampleEntry(
@@ -164,7 +178,8 @@ final List<ExampleEntry> exampleCatalog = [
     id: 'w_cupertino',
     category: ExampleCategory.widgets,
     title: 'Cupertino Dialogs',
-    sourceFile: 'lib/widgets/app_cupertino_action_sheet/app_cupertino_action_sheet.dart',
+    sourceFile:
+        'lib/widgets/app_cupertino_action_sheet/app_cupertino_action_sheet.dart',
     apis: ['AppCupertinoActionSheet', 'AppCupertinoDialog', 'ActionSheetItem'],
     builder: cupertinoDialogsDemo,
   ),
@@ -295,7 +310,11 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.animation,
     title: 'Widget Animations',
     sourceFile: 'lib/animation/widget_animation_extensions.dart',
-    apis: ['animateWidgetElasticEntry', 'animateWidgetGlassReveal', 'animateWidgetZoomFocus'],
+    apis: [
+      'animateWidgetElasticEntry',
+      'animateWidgetGlassReveal',
+      'animateWidgetZoomFocus'
+    ],
     builder: widgetAnimationsDemo,
     description: '75+ animateWidget* methods available',
   ),
@@ -340,7 +359,12 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.utils,
     title: 'Utils',
     sourceFile: 'lib/utils/ago_time.dart',
-    apis: ['timeAgoCalculated', 'RandomImage', 'RandomPicsumImage', 'SystemUiUtils'],
+    apis: [
+      'timeAgoCalculated',
+      'RandomImage',
+      'RandomPicsumImage',
+      'SystemUiUtils'
+    ],
     builder: utilsDemo,
   ),
   ExampleEntry(

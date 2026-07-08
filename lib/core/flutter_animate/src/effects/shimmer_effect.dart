@@ -95,7 +95,8 @@ class ShimmerEffect extends Effect<double> {
   }
 
   LinearGradient _buildGradient(double value) {
-    final Color col = color ?? defaultColor, transparent = col.withOpacity(0);
+    final Color col = color ?? defaultColor,
+        transparent = col.withValues(alpha: 0);
     final List<Color> cols = colors ?? [transparent, col, transparent];
 
     return LinearGradient(
@@ -162,10 +163,11 @@ class _SweepingGradientTransform extends GradientTransform {
     // set up the transformation matrices:
     Matrix4 transformMtx = Matrix4.identity()
       ..rotateZ(angle)
-      ..scale(r / w * scale);
+      ..scaleByDouble(r / w * scale, r / w * scale, 1.0, 1.0);
 
     double range = w * (1 + scale) / scale;
-    Matrix4 translateMtx = Matrix4.identity()..translate(range * (ratio - 0.5));
+    Matrix4 translateMtx = Matrix4.identity()
+      ..translateByDouble(range * (ratio - 0.5), 0, 0, 1);
 
     // Convert from [-1 - +1] to [0 - 1], & find the pixel location of the gradient center:
     Offset pt = Offset(bounds.left + w * 0.5, bounds.top + h * 0.5);
@@ -176,7 +178,7 @@ class _SweepingGradientTransform extends GradientTransform {
     double dx = pt.dx - loc[0], dy = pt.dy - loc[1];
 
     return Matrix4.identity()
-      ..translate(dx, dy, 0.0) // center origin
+      ..translateByDouble(dx, dy, 0, 1) // center origin
       ..multiply(transformMtx) // rotate and scale
       ..multiply(translateMtx); // translate
   }

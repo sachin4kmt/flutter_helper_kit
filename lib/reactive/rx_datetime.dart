@@ -51,8 +51,8 @@ class RxDateTime extends ValueNotifier<DateTime> {
   }
 
   DateTime get startOfMonth => DateTime(value.year, value.month, 1);
-  DateTime get endOfMonth =>
-      DateTime(value.year, value.month + 1, 1).subtract(const Duration(milliseconds: 1));
+  DateTime get endOfMonth => DateTime(value.year, value.month + 1, 1)
+      .subtract(const Duration(milliseconds: 1));
 
   RxDateTime addDuration(Duration duration) {
     value = value.add(duration);
@@ -70,7 +70,8 @@ class RxDateTime extends ValueNotifier<DateTime> {
     int second = 0,
     int millisecond = 0,
   }) {
-    value = DateTime(value.year, value.month, value.day, hour, minute, second, millisecond);
+    value = DateTime(
+        value.year, value.month, value.day, hour, minute, second, millisecond);
     return this;
   }
 
@@ -87,7 +88,7 @@ class RxDateTime extends ValueNotifier<DateTime> {
 
 /// Nullable reactive [DateTime].
 class RxnDateTime extends ValueNotifier<DateTime?> {
-  RxnDateTime([DateTime? initial]) : super(initial);
+  RxnDateTime([super.initial]);
 
   factory RxnDateTime.nowOrNull() => RxnDateTime(DateTime.now());
 
@@ -97,7 +98,8 @@ class RxnDateTime extends ValueNotifier<DateTime?> {
 
   int? differenceInDays(DateTime other) => value?.difference(other).inDays;
   int? differenceInHours(DateTime other) => value?.difference(other).inHours;
-  int? differenceInMinutes(DateTime other) => value?.difference(other).inMinutes;
+  int? differenceInMinutes(DateTime other) =>
+      value?.difference(other).inMinutes;
 
   String? format([String pattern = 'yyyy-MM-dd HH:mm:ss']) =>
       value == null ? null : _formatDateTime(value!, pattern);
@@ -129,7 +131,8 @@ class RxnDateTime extends ValueNotifier<DateTime?> {
     int millisecond = 0,
   }) {
     if (value != null) {
-      value = DateTime(value!.year, value!.month, value!.day, hour, minute, second, millisecond);
+      value = DateTime(value!.year, value!.month, value!.day, hour, minute,
+          second, millisecond);
     }
     return this;
   }
@@ -156,10 +159,20 @@ String _timeAgo(DateTime value) {
 
 String _formatDateTime(DateTime date, String pattern) {
   final months = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
-  final pad2 = (int n) => n.toString().padLeft(2, '0');
+  String pad2(int n) => n.toString().padLeft(2, '0');
 
   return pattern
       .replaceAll('yyyy', date.year.toString())

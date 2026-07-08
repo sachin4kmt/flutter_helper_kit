@@ -21,7 +21,9 @@ Widget stringExtensionsDemo(BuildContext context) {
         .map(
           (e) => Card(
             child: ListTile(
-              title: Text(e.key, style: const TextStyle(fontFamily: 'monospace', fontSize: 13)),
+              title: Text(e.key,
+                  style:
+                      const TextStyle(fontFamily: 'monospace', fontSize: 13)),
               subtitle: Text('→ ${e.value}'),
             ),
           ),
@@ -34,8 +36,10 @@ Widget numberExtensionsDemo(BuildContext context) {
   return ListView(
     padding: const EdgeInsets.all(16),
     children: [
-      _ResultTile('1.50.toStringAsSmartRounded()', 1.50.toStringAsSmartRounded()),
-      _ResultTile('2.00.toStringAsSmartRounded()', 2.00.toStringAsSmartRounded()),
+      _ResultTile(
+          '1.50.toStringAsSmartRounded()', 1.50.toStringAsSmartRounded()),
+      _ResultTile(
+          '2.00.toStringAsSmartRounded()', 2.00.toStringAsSmartRounded()),
       _ResultTile('16.height()', 'SizedBox widget'),
       16.height(),
     ],
@@ -83,7 +87,8 @@ Widget widgetContextExtensionsDemo(BuildContext context) {
       Center(child: const Text('Hello').paddingAll(12)),
       const SizedBox(height: 12),
       ElevatedButton(
-        onPressed: () => context.showSnackBar(title: const Text('context.showSnackBar()')),
+        onPressed: () =>
+            context.showSnackBar(title: const Text('context.showSnackBar()')),
         child: const Text('Show SnackBar'),
       ),
       const SizedBox(height: 8),
@@ -108,8 +113,10 @@ Widget alignmentExtensionsDemo(BuildContext context) {
     padding: const EdgeInsets.all(16),
     children: [
       _ResultTile('Alignment.topCenter.isTop', '${Alignment.topCenter.isTop}'),
-      _ResultTile('Alignment.center.isCenterVertical', '${Alignment.center.isCenterVertical}'),
-      _ResultTile('Alignment.bottomRight.isRight', '${Alignment.bottomRight.isRight}'),
+      _ResultTile('Alignment.center.isCenterVertical',
+          '${Alignment.center.isCenterVertical}'),
+      _ResultTile(
+          'Alignment.bottomRight.isRight', '${Alignment.bottomRight.isRight}'),
     ],
   );
 }
@@ -124,7 +131,8 @@ class _ResultTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(label, style: const TextStyle(fontFamily: 'monospace', fontSize: 13)),
+        title: Text(label,
+            style: const TextStyle(fontFamily: 'monospace', fontSize: 13)),
         subtitle: Text('→ $value'),
       ),
     );

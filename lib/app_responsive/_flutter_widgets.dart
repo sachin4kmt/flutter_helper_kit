@@ -1,7 +1,5 @@
 part of 'app_responsive.dart';
 
-
-
 final flutterWidgets = HashSet<String>.from({
   'AbsorbPointer',
   'Accumulator',
@@ -123,12 +121,12 @@ final flutterWidgets = HashSet<String>.from({
   'ClipRRect',
   'SharpClipRect',
   'SharpBorderRadius'
-  'SharpCircleBorder'
-  'SharpClipCircle'
-  'SharpRadius'
-  'SharpRectangleBorder'
-  'SharpProcessedRadius'
-  'Color',
+      'SharpCircleBorder'
+      'SharpClipCircle'
+      'SharpRadius'
+      'SharpRectangleBorder'
+      'SharpProcessedRadius'
+      'Color',
   'ColoredBox',
   'ColorFilter',
   'ColorFiltered',

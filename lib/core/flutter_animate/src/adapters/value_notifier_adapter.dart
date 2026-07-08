@@ -7,8 +7,7 @@ import 'package:flutter_helper_kit/core/flutter_animate/flutter_animate.dart';
 ///
 /// See [Adapter] for information on [direction] and [animated].
 class ValueNotifierAdapter extends Adapter {
-  ValueNotifierAdapter(this.notifier, {bool? animated, Direction? direction})
-      : super(animated: animated, direction: direction);
+  ValueNotifierAdapter(this.notifier, {super.animated, super.direction});
 
   final ValueNotifier<double> notifier;
 

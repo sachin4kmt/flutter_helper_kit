@@ -54,4 +54,3 @@ class TicketShadowPainter extends CustomPainter {
     return true;
   }
 }
-

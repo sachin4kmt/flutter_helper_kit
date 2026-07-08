@@ -1,7 +1,5 @@
 part of 'app_responsive.dart';
 
-
-
 extension ScreenUtilPortrait on ScreenUtil {
   /// Portrait width scaled according to design size
   double get portraitWidth {
@@ -40,4 +38,3 @@ extension ScreenUtilPortrait on ScreenUtil {
     return setHeight(height);
   }
 }
-

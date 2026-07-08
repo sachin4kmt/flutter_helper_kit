@@ -1,5 +1,3 @@
-
-
 class RandomPicsumImage {
   /// Get a random image with specified width and height
   static String image({
@@ -38,7 +36,8 @@ class RandomPicsumImage {
     bool grayscale = false,
     int blur = 0,
   }) {
-    final buffer = StringBuffer('https://picsum.photos/seed/$seed/$width/$height');
+    final buffer =
+        StringBuffer('https://picsum.photos/seed/$seed/$width/$height');
 
     final params = <String>[];
     if (grayscale) params.add('grayscale');

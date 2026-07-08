@@ -213,8 +213,10 @@ class FlutterTagState extends State<FlutterTag> with TickerProviderStateMixin {
         case FlutterTagAnimationType.fade:
           return FadeTransition(opacity: _animation, child: tagView());
         case FlutterTagAnimationType.size:
-          final transitionAxis = widget.tagAnimation.sizeTransitionAxis ?? Axis.horizontal;
-          final oldAxisAlignment = widget.tagAnimation.sizeTransitionAxisAlignment ?? 0.0;
+          final transitionAxis =
+              widget.tagAnimation.sizeTransitionAxis ?? Axis.horizontal;
+          final oldAxisAlignment =
+              widget.tagAnimation.sizeTransitionAxisAlignment ?? 0.0;
           return SizeTransition(
             sizeFactor: _animation,
             axis: transitionAxis,

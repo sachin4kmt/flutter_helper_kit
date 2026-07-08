@@ -18,7 +18,8 @@ class AppCupertinoDialog {
       context: context,
       barrierDismissible: false,
       builder: (ctx) => CupertinoAlertDialog(
-        title: Text(title, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
+        title: Text(title,
+            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
         content: content ??
             (message != null
                 ? Padding(
@@ -30,7 +31,8 @@ class AppCupertinoDialog {
             [
               CupertinoDialogAction(
                 onPressed: () => Navigator.pop(ctx, null),
-                child: Text(cancelText, style: const TextStyle(color: Colors.blue)),
+                child: Text(cancelText,
+                    style: const TextStyle(color: Colors.blue)),
               ),
               CupertinoDialogAction(
                 isDestructiveAction: isDestructive,
@@ -94,7 +96,9 @@ class AppCupertinoDialog {
             Navigator.pop(context);
             onConfirm?.call();
           },
-          child: Text(buttonText, style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.w600)),
+          child: Text(buttonText,
+              style: const TextStyle(
+                  color: Colors.blue, fontWeight: FontWeight.w600)),
         ),
       ],
     );
@@ -113,7 +117,9 @@ class AppCupertinoDialog {
       actions: [
         CupertinoDialogAction(
           onPressed: () => Navigator.pop(context),
-          child: Text(buttonText, style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.w600)),
+          child: Text(buttonText,
+              style: const TextStyle(
+                  color: Colors.blue, fontWeight: FontWeight.w600)),
         ),
       ],
     );

@@ -1,14 +1,16 @@
 part of 'app_responsive.dart';
 
-
-
 typedef RebuildFactor = bool Function(MediaQueryData old, MediaQueryData data);
-typedef ScreenUtilInitBuilder = Widget Function(BuildContext context, Widget? child);
+typedef ScreenUtilInitBuilder = Widget Function(
+    BuildContext context, Widget? child);
 
 abstract class RebuildFactors {
-  static bool size(MediaQueryData old, MediaQueryData data) => old.size != data.size;
-  static bool orientation(MediaQueryData old, MediaQueryData data) => old.orientation != data.orientation;
-  static bool sizeAndViewInsets(MediaQueryData old, MediaQueryData data) => old.viewInsets != data.viewInsets;
+  static bool size(MediaQueryData old, MediaQueryData data) =>
+      old.size != data.size;
+  static bool orientation(MediaQueryData old, MediaQueryData data) =>
+      old.orientation != data.orientation;
+  static bool sizeAndViewInsets(MediaQueryData old, MediaQueryData data) =>
+      old.viewInsets != data.viewInsets;
   static bool change(MediaQueryData old, MediaQueryData data) => old != data;
   static bool always(MediaQueryData _, MediaQueryData data) => true;
   static bool none(MediaQueryData _, MediaQueryData data) => false;
@@ -18,10 +20,11 @@ abstract class FontSizeResolvers {
   static double width(num fontSize) => ScreenUtil.instance.setWidth(fontSize);
   static double height(num fontSize) => ScreenUtil.instance.setHeight(fontSize);
   static double radius(num fontSize) => ScreenUtil.instance.radius(fontSize);
-  static double diameter(num fontSize) => ScreenUtil.instance.diameter(fontSize);
-  static double diagonal(num fontSize) => ScreenUtil.instance.diagonal(fontSize);
+  static double diameter(num fontSize) =>
+      ScreenUtil.instance.diameter(fontSize);
+  static double diagonal(num fontSize) =>
+      ScreenUtil.instance.diagonal(fontSize);
 }
-
 
 class ScreenUtilInit extends StatefulWidget {
   const ScreenUtilInit({
@@ -59,7 +62,8 @@ class ScreenUtilInit extends StatefulWidget {
   State<ScreenUtilInit> createState() => _ScreenUtilInitState();
 }
 
-class _ScreenUtilInitState extends State<ScreenUtilInit> with WidgetsBindingObserver {
+class _ScreenUtilInitState extends State<ScreenUtilInit>
+    with WidgetsBindingObserver {
   final _canMarkedToBuild = HashSet<String>();
   final _excludedWidgets = HashSet<String>();
   MediaQueryData? _mediaQueryData;
@@ -68,10 +72,15 @@ class _ScreenUtilInitState extends State<ScreenUtilInit> with WidgetsBindingObse
 
   @override
   void initState() {
-    if (widget.responsiveWidgets != null) _canMarkedToBuild.addAll(widget.responsiveWidgets!);
-    if (widget.excludeWidgets != null) _excludedWidgets.addAll(widget.excludeWidgets!);
+    if (widget.responsiveWidgets != null) {
+      _canMarkedToBuild.addAll(widget.responsiveWidgets!);
+    }
+    if (widget.excludeWidgets != null) {
+      _excludedWidgets.addAll(widget.excludeWidgets!);
+    }
 
-    ScreenUtil.enableScale(enableWH: widget.enableScaleWH, enableText: widget.enableScaleText);
+    ScreenUtil.enableScale(
+        enableWH: widget.enableScaleWH, enableText: widget.enableScaleText);
     _validateSize().then(_screenSizeCompleter.complete);
 
     super.initState();
@@ -104,7 +113,8 @@ class _ScreenUtilInitState extends State<ScreenUtilInit> with WidgetsBindingObse
   void _markNeedsBuildIfAllowed(Element el) {
     final widgetName = el.widget.runtimeType.toString();
     if (_excludedWidgets.contains(widgetName)) return;
-    final allowed = _canMarkedToBuild.contains(widgetName) || !(widgetName.startsWith('_') || flutterWidgets.contains(widgetName));
+    final allowed = _canMarkedToBuild.contains(widgetName) ||
+        !(widgetName.startsWith('_') || flutterWidgets.contains(widgetName));
     if (allowed) el.markNeedsBuild();
   }
 
