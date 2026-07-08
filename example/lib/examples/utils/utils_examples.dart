@@ -40,8 +40,7 @@ Widget utilsDemo(BuildContext context) {
     children: [
       _Tile('timeAgoCalculated()', timeAgoCalculated(ago)),
       _Tile('RandomImage.picsumImage', RandomImage.picsumImage(100, 100)),
-      _Tile('RandomPicsumImage.image',
-          RandomPicsumImage.image(width: 200, height: 120)),
+      _Tile('RandomPicsumImage.image', RandomPicsumImage.image(width: 200, height: 120)),
       ListTile(
         title: const Text('SystemUiUtils.setStatusBarColor'),
         trailing: ElevatedButton(
@@ -63,8 +62,7 @@ class _Tile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(label,
-            style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
+        title: Text(label, style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
         subtitle: Text(value, maxLines: 2, overflow: TextOverflow.ellipsis),
       ),
     );

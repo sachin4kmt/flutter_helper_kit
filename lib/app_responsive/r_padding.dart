@@ -20,6 +20,13 @@ class RPadding extends SingleChildRenderObjectWidget {
       textDirection: Directionality.maybeOf(context),
     );
   }
+
+  @override
+  void updateRenderObject(BuildContext context, RenderPadding renderObject) {
+    renderObject
+      ..padding = padding is REdgeInsets ? padding : padding.r
+      ..textDirection = Directionality.maybeOf(context);
+  }
 }
 
 class REdgeInsets extends EdgeInsets {

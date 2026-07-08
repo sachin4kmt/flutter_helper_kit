@@ -87,10 +87,9 @@ class _MapCustomInfoWindowState extends State<MapCustomInfoWindow> {
       return;
     }
 
-    final devicePixelRatio =
-        !kIsWeb && defaultTargetPlatform == TargetPlatform.android
-            ? adapter.devicePixelRatio(context)
-            : 1.0;
+    final devicePixelRatio = defaultTargetPlatform == TargetPlatform.android
+        ? adapter.devicePixelRatio(context)
+        : 1.0;
     final screenCoordinate = await adapter.getScreenCoordinate(_latLng!);
     final left =
         (screenCoordinate.x.toDouble() / devicePixelRatio) - (_width! / 2);

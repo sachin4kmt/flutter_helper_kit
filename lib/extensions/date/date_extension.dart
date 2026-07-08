@@ -45,10 +45,8 @@ extension DateTimeExtension on DateTime {
     if (isNull) {
       return false;
     }
-    final nowDate = DateTime.now();
-    return year == nowDate.year &&
-        month == nowDate.month &&
-        day == nowDate.day - 1;
+    final yesterday = DateTime.now().subtract(const Duration(days: 1));
+    return isSameDay(yesterday);
   }
 
   /// Returns `true` if the given date is tomorrow.
@@ -62,10 +60,8 @@ extension DateTimeExtension on DateTime {
     if (isNull) {
       return false;
     }
-    final nowDate = DateTime.now();
-    return year == nowDate.year &&
-        month == nowDate.month &&
-        day == nowDate.day + 1;
+    final tomorrow = DateTime.now().add(const Duration(days: 1));
+    return isSameDay(tomorrow);
   }
 
   /// Checks if the current date is in the past
@@ -295,15 +291,18 @@ extension DateTimeExtension on DateTime {
   /// The `previousMonth` extension calculates and returns a new [DateTime] instance
   /// with the same day and time as the original date but adjusted to the exact date of the previous month.
   DateTime previousMonth() {
-    var year = this.year;
-    var month = this.month;
-    if (month == 1) {
-      year--;
-      month = 12;
-    } else {
-      month--;
-    }
-    return DateTime(year, month);
+    final previousYear = month == 1 ? year - 1 : year;
+    final previousMonthValue = month == 1 ? 12 : month - 1;
+    return DateTime(
+      previousYear,
+      previousMonthValue,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      microsecond,
+    );
   }
 
   /// Returns a [DateTime] instance representing the exact date of the next coming month.
@@ -318,16 +317,18 @@ extension DateTimeExtension on DateTime {
   /// The `nextMonth` extension calculates and returns a new [DateTime] instance
   /// with the same day and time as the original date but adjusted to the exact date of the next month.
   DateTime nextMonth() {
-    var year = this.year;
-    var month = this.month;
-
-    if (month == 12) {
-      year++;
-      month = 1;
-    } else {
-      month++;
-    }
-    return DateTime(year, month);
+    final nextYear = month == 12 ? year + 1 : year;
+    final nextMonthValue = month == 12 ? 1 : month + 1;
+    return DateTime(
+      nextYear,
+      nextMonthValue,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      microsecond,
+    );
   }
 
   /// Returns a [DateTime] instance representing the exact date of the previous week.
@@ -394,7 +395,7 @@ extension DateTimeExtension on DateTime {
   /// print(date.weekdayName()); // Output: Monday
   /// ```
   String weekdayName({bool isHalfName = false}) {
-    return switch (day) {
+    return switch (weekday) {
       (DateTime.monday) => isHalfName ? 'Mon' : 'Monday',
       (DateTime.tuesday) => isHalfName ? 'Tue' : 'Tuesday',
       (DateTime.wednesday) => isHalfName ? 'Wed' : 'Wednesday',
@@ -456,8 +457,7 @@ extension DateTimeExtension on DateTime {
   /// int currentTimeStamp = dateTime.currentTimeStamp;
   /// print('Current Timestamp: $currentTimeStamp');
   /// ```
-  int currentTimeStamp() =>
-      (DateTime.now().millisecondsSinceEpoch ~/ 1000).toInt();
+  int currentTimeStamp() => millisecondsSinceEpoch ~/ 1000;
 
   /// Returns the time difference from this [DateTime] to the current DateTime
   /// in Indian language.

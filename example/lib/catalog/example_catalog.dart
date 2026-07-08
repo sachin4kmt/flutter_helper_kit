@@ -1,11 +1,15 @@
 import 'package:example/catalog/example_entry.dart';
 import 'package:example/examples/animation/animation_examples.dart';
+import 'package:example/examples/app_responsive/responsive_examples.dart';
 import 'package:example/examples/app_responsive/screen_util_example.dart';
 import 'package:example/examples/custom_painter/google_logo_example.dart';
 import 'package:example/examples/extensions/extensions_examples.dart';
+import 'package:example/examples/extensions/more_extensions_examples.dart';
 import 'package:example/examples/formatters/formatters_example.dart';
 import 'package:example/examples/reactive/rx_datetime_example.dart';
+import 'package:example/examples/utils/more_utils_examples.dart';
 import 'package:example/examples/utils/utils_examples.dart';
+import 'package:example/examples/live/live_examples.dart';
 import 'package:example/examples/widgets/more_widgets_examples.dart';
 import 'package:example/examples/widgets/widgets_examples.dart';
 
@@ -17,13 +21,7 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.extensions,
     title: 'String & Validation',
     sourceFile: 'lib/extensions/string/string_case.dart',
-    apis: [
-      'toSnakeCase',
-      'toCamelCase',
-      'isValidateEmail',
-      'extractPhoneNumber',
-      'isEmptyOrNull'
-    ],
+    apis: ['toSnakeCase', 'toCamelCase', 'isValidateEmail', 'extractPhoneNumber', 'isEmptyOrNull'],
     builder: stringExtensionsDemo,
     description: 'Also uses validation.dart and string_extension.dart',
   ),
@@ -72,9 +70,118 @@ final List<ExampleEntry> exampleCatalog = [
     id: 'ext_alignment',
     category: ExampleCategory.extensions,
     title: 'Alignment',
-    sourceFile: 'lib/extensions/alignment/alignment_extensions.dart',
-    apis: ['isTop', 'isCenterVertical', 'isRight'],
+    sourceFile: 'lib/extensions/alignment/alignment.dart',
+    apis: ['isTop', 'isCenter', 'isCorner', 'opposite', 'isLeftResolved'],
     builder: alignmentExtensionsDemo,
+  ),
+  ExampleEntry(
+    id: 'ext_bool',
+    category: ExampleCategory.extensions,
+    title: 'Bool Extensions',
+    sourceFile: 'lib/extensions/bool/bool_extensions.dart',
+    apis: ['validate', 'isTrue', 'isFalse', 'toInt', 'toggle'],
+    builder: boolExtensionsDemo,
+  ),
+  ExampleEntry(
+    id: 'ext_int',
+    category: ExampleCategory.extensions,
+    title: 'Int Extensions',
+    sourceFile: 'lib/extensions/number/integer_extension.dart',
+    apis: ['toWords', 'toRoman', 'toOrdinal', 'seconds', 'validate', 'addZeroPrefix'],
+    builder: intExtensionsDemo,
+  ),
+  ExampleEntry(
+    id: 'ext_num',
+    category: ExampleCategory.extensions,
+    title: 'Num Extensions',
+    sourceFile: 'lib/extensions/number/number_extension.dart',
+    apis: ['height', 'width', 'space', 'maxSpace', 'isBetween', 'increaseByPercentage', 'generateLoremIpsumWords'],
+    builder: numExtensionsDemo,
+  ),
+  ExampleEntry(
+    id: 'ext_duration_scope',
+    category: ExampleCategory.extensions,
+    title: 'Duration, Random & Scope',
+    sourceFile: 'lib/extensions/duration/duration_extensions.dart',
+    apis: ['delay', 'let', 'also', 'takeIf', 'generateLoremIpsumWords', 'pastDate'],
+    builder: durationRandomScopeDemo,
+    description: 'Also uses scope_functions_extension.dart and random_extension.dart',
+  ),
+  ExampleEntry(
+    id: 'ext_widget',
+    category: ExampleCategory.extensions,
+    title: 'Widget Extension',
+    sourceFile: 'lib/extensions/widget/widget_extension.dart',
+    apis: ['withSize', 'withWidth', 'visible', 'opacity', 'onTap', 'cornerRadiusWithClipRRect', 'center'],
+    builder: widgetExtensionDemo,
+  ),
+  ExampleEntry(
+    id: 'ext_padding_border',
+    category: ExampleCategory.extensions,
+    title: 'Padding & Border',
+    sourceFile: 'lib/extensions/widget/padding.dart',
+    apis: ['padAll', 'padHorizontal', 'paddingAll', 'paddingSymmetric', 'circularRadius', 'circularSharpRadius'],
+    builder: paddingBorderExtensionsDemo,
+    description: 'Also uses border.dart',
+  ),
+  ExampleEntry(
+    id: 'ext_set_iterable',
+    category: ExampleCategory.extensions,
+    title: 'Set & Iterable',
+    sourceFile: 'lib/extensions/set/set_extension.dart',
+    apis: ['whereSet', 'sorted', 'groupBy', 'maxBy', 'isNullOrEmpty'],
+    builder: setIterableExtensionsDemo,
+    description: 'Also uses iterable_extension.dart',
+  ),
+  ExampleEntry(
+    id: 'ext_listenable',
+    category: ExampleCategory.extensions,
+    title: 'Listenable Extensions',
+    sourceFile: 'lib/extensions/function/listenable_extension.dart',
+    apis: ['builder', 'listen', 'listenChild', 'buildWhenTrue'],
+    builder: listenableExtensionsDemo,
+  ),
+  ExampleEntry(
+    id: 'ext_row_column_list',
+    category: ExampleCategory.extensions,
+    title: 'Row, Column & Widget List',
+    sourceFile: 'lib/extensions/widget/row_extension.dart',
+    apis: ['intrinsicHeight', 'intrinsicWidth', 'expandEvery', 'flexibleEvery', 'spacerEvery'],
+    builder: rowColumnWidgetListDemo,
+    description: 'Also uses column_extension.dart and widget_list_extension.dart',
+  ),
+  ExampleEntry(
+    id: 'ext_map_full',
+    category: ExampleCategory.extensions,
+    title: 'Map Extension',
+    sourceFile: 'lib/extensions/map/map_extension.dart',
+    apis: ['isNullOrEmpty', 'getOrDefault', 'filter', 'addIfNotNull', 'capitalizeKeysFirstCharacter'],
+    builder: mapExtensionDemo,
+  ),
+  ExampleEntry(
+    id: 'ext_color_full',
+    category: ExampleCategory.extensions,
+    title: 'Color Extensions (full)',
+    sourceFile: 'lib/extensions/color/color_extension.dart',
+    apis: ['toHex', 'withColorOpacity', 'lighten', 'darken', 'createMaterialColor', 'isDark'],
+    builder: colorExtensionsFullDemo,
+  ),
+  ExampleEntry(
+    id: 'ext_list_num',
+    category: ExampleCategory.extensions,
+    title: 'List Num',
+    sourceFile: 'lib/extensions/list/list_num.dart',
+    apis: ['total', 'isNotNullAndEmpty', 'isNullAndEmpty'],
+    builder: listNumExtensionDemo,
+  ),
+  ExampleEntry(
+    id: 'ext_date',
+    category: ExampleCategory.extensions,
+    title: 'DateTime Extensions',
+    sourceFile: 'lib/extensions/date/date_extension.dart',
+    apis: ['isInPast', 'isInFuture', 'timeAgo', 'format', 'formatTime', 'timeZoneOffSet'],
+    builder: dateExtensionsDemo,
+    description: 'Also uses date_format.dart',
   ),
 
   // ── Widgets ─────────────────────────────────────────────────────────────
@@ -98,8 +205,7 @@ final List<ExampleEntry> exampleCatalog = [
     id: 'w_password_strength',
     category: ExampleCategory.widgets,
     title: 'PasswordStrengthIndicator',
-    sourceFile:
-        'lib/widgets/password_strength_indicator/password_strength_indicator.dart',
+    sourceFile: 'lib/widgets/password_strength_indicator/password_strength_indicator.dart',
     apis: ['PasswordStrengthIndicator', 'PasswordRule', 'PasswordStrength'],
     builder: passwordStrengthDemo,
   ),
@@ -140,14 +246,7 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.widgets,
     title: 'UI Components',
     sourceFile: 'lib/widgets/center_text_divider.dart',
-    apis: [
-      'CenterTextDivider',
-      'DashDivider',
-      'GradientText',
-      'RatingBarWidget',
-      'Marquee',
-      'DottedBorderWidget'
-    ],
+    apis: ['CenterTextDivider', 'DashDivider', 'GradientText', 'RatingBarWidget', 'Marquee', 'DottedBorderWidget'],
     builder: uiComponentsDemo,
   ),
   ExampleEntry(
@@ -178,8 +277,7 @@ final List<ExampleEntry> exampleCatalog = [
     id: 'w_cupertino',
     category: ExampleCategory.widgets,
     title: 'Cupertino Dialogs',
-    sourceFile:
-        'lib/widgets/app_cupertino_action_sheet/app_cupertino_action_sheet.dart',
+    sourceFile: 'lib/widgets/app_cupertino_action_sheet/app_cupertino_action_sheet.dart',
     apis: ['AppCupertinoActionSheet', 'AppCupertinoDialog', 'ActionSheetItem'],
     builder: cupertinoDialogsDemo,
   ),
@@ -303,6 +401,95 @@ final List<ExampleEntry> exampleCatalog = [
     apis: ['showDialogWithCloseIcon'],
     builder: showDialogCloseDemo,
   ),
+  ExampleEntry(
+    id: 'w_generic_picker',
+    category: ExampleCategory.widgets,
+    title: 'GenericPickerSheet',
+    sourceFile: 'lib/widgets/dropdown_sheet/generic_dropdown_sheet.dart',
+    apis: ['GenericPickerSheet', 'singleSelection', 'multiSelection', 'DropdownItem', 'MyDropdownItem'],
+    builder: genericPickerDemo,
+  ),
+  ExampleEntry(
+    id: 'w_text_icon',
+    category: ExampleCategory.widgets,
+    title: 'TextIcon',
+    sourceFile: 'lib/widgets/text_icon_widget.dart',
+    apis: ['TextIcon'],
+    builder: textIconDemo,
+  ),
+  ExampleEntry(
+    id: 'w_widget_helper',
+    category: ExampleCategory.widgets,
+    title: 'WidgetHelper',
+    sourceFile: 'lib/widgets/widget_helper.dart',
+    apis: ['WidgetHelper.intersperse', 'WidgetHelper.widgetMap'],
+    builder: widgetHelperDemo,
+  ),
+  ExampleEntry(
+    id: 'w_sliver_space',
+    category: ExampleCategory.widgets,
+    title: 'SliverSpace & MaxSpace',
+    sourceFile: 'lib/widgets/space/sliver_space.dart',
+    apis: ['SliverSpace', 'MaxSpace', 'Space.expand'],
+    builder: sliverSpaceDemo,
+    description: 'Also uses space.dart',
+  ),
+  ExampleEntry(
+    id: 'w_avatar_glow_multi',
+    category: ExampleCategory.widgets,
+    title: 'AvatarGlowMultiColor',
+    sourceFile: 'lib/widgets/avatar_glow/avatar_glow_multi_color.dart',
+    apis: ['AvatarGlowMultiColor'],
+    builder: avatarGlowMultiColorDemo,
+  ),
+  ExampleEntry(
+    id: 'w_outline_glow_multi',
+    category: ExampleCategory.widgets,
+    title: 'OutlineAvatarGlowMultiColor',
+    sourceFile: 'lib/widgets/avatar_glow/outline_glow_multi_color.dart',
+    apis: ['OutlineAvatarGlowMultiColor'],
+    builder: outlineGlowMultiColorDemo,
+  ),
+  ExampleEntry(
+    id: 'w_sharp_full',
+    category: ExampleCategory.widgets,
+    title: 'Sharp Corners (full)',
+    sourceFile: 'lib/widgets/sharp_corners/sharp.dart',
+    apis: ['SharpClipRect', 'SharpCircleBorder', 'SharpRadius', 'SharpRectangleBorder'],
+    builder: sharpCornersFullDemo,
+  ),
+  ExampleEntry(
+    id: 'w_shimmer_variants',
+    category: ExampleCategory.widgets,
+    title: 'Shimmer Variants',
+    sourceFile: 'lib/widgets/simmer.dart',
+    apis: ['ProfilePageShimmer', 'ListTileShimmer', 'VideoShimmer', 'YoutubeShimmer', 'PlayStoreShimmer'],
+    builder: shimmerVariantsDemo,
+  ),
+  ExampleEntry(
+    id: 'w_ticket_full',
+    category: ExampleCategory.widgets,
+    title: 'Ticket Clippers (all)',
+    sourceFile: 'lib/widgets/ticket_clippers/rounded_edge.dart',
+    apis: ['RoundedEdgeClipper', 'TicketRoundedEdgeClipper', 'PointedEdgeClipper', 'TicketShadowPainter'],
+    builder: ticketClippersFullDemo,
+  ),
+  ExampleEntry(
+    id: 'w_digit_types',
+    category: ExampleCategory.widgets,
+    title: 'Digit Animation Types',
+    sourceFile: 'lib/widgets/rolling_digit/digit_count_animation.dart',
+    apis: ['UniversalDigitCounter', 'DigitAnimationType'],
+    builder: digitAnimationTypesDemo,
+  ),
+  ExampleEntry(
+    id: 'w_read_more_basic',
+    category: ExampleCategory.widgets,
+    title: 'ReadMoreText (basic)',
+    sourceFile: 'lib/widgets/read_more_text.dart',
+    apis: ['ReadMoreText', 'TrimMode'],
+    builder: readMoreTextBasicDemo,
+  ),
 
   // ── Animation ───────────────────────────────────────────────────────────
   ExampleEntry(
@@ -310,11 +497,7 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.animation,
     title: 'Widget Animations',
     sourceFile: 'lib/animation/widget_animation_extensions.dart',
-    apis: [
-      'animateWidgetElasticEntry',
-      'animateWidgetGlassReveal',
-      'animateWidgetZoomFocus'
-    ],
+    apis: ['animateWidgetElasticEntry', 'animateWidgetGlassReveal', 'animateWidgetZoomFocus'],
     builder: widgetAnimationsDemo,
     description: '75+ animateWidget* methods available',
   ),
@@ -342,6 +525,22 @@ final List<ExampleEntry> exampleCatalog = [
     apis: ['animateSheetReveal', 'animateModalPop'],
     builder: bottomSheetAnimationDemo,
   ),
+  ExampleEntry(
+    id: 'anim_staggered',
+    category: ExampleCategory.animation,
+    title: 'Staggered List Animations',
+    sourceFile: 'lib/animation/widget_list_animation.dart',
+    apis: ['animateStaggeredList', 'animateStaggeredListRight', 'animateStaggeredScale', 'animateStaggeredBounce'],
+    builder: staggeredListAnimationsDemo,
+  ),
+  ExampleEntry(
+    id: 'anim_flutter_animate',
+    category: ExampleCategory.animation,
+    title: 'flutter_animate Core',
+    sourceFile: 'lib/core/flutter_animate/flutter_animate.dart',
+    apis: ['Animate', '.animate()', 'fadeIn', 'slideY', 'scale', 'shake', 'NumDurationExtensions.ms'],
+    builder: flutterAnimateDemo,
+  ),
 
   // ── App Responsive ──────────────────────────────────────────────────────
   ExampleEntry(
@@ -352,6 +551,15 @@ final List<ExampleEntry> exampleCatalog = [
     apis: ['ScreenUtilInit', '.w', '.h', '.sp', '.r', 'RPadding', 'RSizedBox'],
     builder: screenUtilDemo,
   ),
+  ExampleEntry(
+    id: 'resp_sliver',
+    category: ExampleCategory.appResponsive,
+    title: 'Responsive Slivers',
+    sourceFile: 'lib/app_responsive/r_sliver_padding.dart',
+    apis: ['RSliverPadding', 'RSliverSizedBox', 'verticalSpace', 'horizontalSpace', 'REdgeInsets'],
+    builder: sliverResponsiveDemo,
+    description: 'Also uses size_extension.dart and r_sliver_sized_box.dart',
+  ),
 
   // ── Utils ───────────────────────────────────────────────────────────────
   ExampleEntry(
@@ -359,12 +567,7 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.utils,
     title: 'Utils',
     sourceFile: 'lib/utils/ago_time.dart',
-    apis: [
-      'timeAgoCalculated',
-      'RandomImage',
-      'RandomPicsumImage',
-      'SystemUiUtils'
-    ],
+    apis: ['timeAgoCalculated', 'RandomImage', 'RandomPicsumImage', 'SystemUiUtils'],
     builder: utilsDemo,
   ),
   ExampleEntry(
@@ -375,6 +578,84 @@ final List<ExampleEntry> exampleCatalog = [
     apis: ['CallbackMapInfoWindowAdapter', 'MapCustomInfoWindow'],
     builder: mapAdapterDemo,
   ),
+  ExampleEntry(
+    id: 'util_decorations',
+    category: ExampleCategory.utils,
+    title: 'Decorations',
+    sourceFile: 'lib/utils/decorations.dart',
+    apis: ['primaryTextStyle', 'defaultInputDecoration', 'boxDecorationWithShadow', 'boxDecorationRoundedWithShadow', 'radius'],
+    builder: decorationsDemo,
+  ),
+  ExampleEntry(
+    id: 'util_system_chrome',
+    category: ExampleCategory.utils,
+    title: 'System Chrome',
+    sourceFile: 'lib/utils/system_chrome_utils.dart',
+    apis: ['setStatusBarColor', 'setDarkStatusBar', 'setLightStatusBar', 'hideStatusBar', 'showStatusBar'],
+    builder: systemChromeDemo,
+  ),
+  ExampleEntry(
+    id: 'util_validator',
+    category: ExampleCategory.utils,
+    title: 'Password Validator',
+    sourceFile: 'lib/utils/password_validator.dart',
+    apis: ['Validator.hasMinimumLength', 'hasMinimumUppercase', 'hasMinimumLowercase', 'hasMinimumNumericCharacters'],
+    builder: passwordValidatorDemo,
+  ),
+  ExampleEntry(
+    id: 'util_numeral',
+    category: ExampleCategory.utils,
+    title: 'Numeral Utils',
+    sourceFile: 'lib/utils/numberal_utils.dart',
+    apis: ['Numeral.indian', 'Numeral.international'],
+    builder: numeralUtilsDemo,
+  ),
+  ExampleEntry(
+    id: 'util_common',
+    category: ExampleCategory.utils,
+    title: 'Common Functions',
+    sourceFile: 'lib/utils/common_functions.dart',
+    apis: ['hasMatch', 'randomString'],
+    builder: commonFunctionsDemo,
+  ),
+  ExampleEntry(
+    id: 'util_pattern',
+    category: ExampleCategory.utils,
+    title: 'RegExp Patterns',
+    sourceFile: 'lib/utils/pattern.dart',
+    apis: ['RegExpPatterns.url', 'RegExpPatterns.email', 'RegExpPatterns.phone', 'RegExpPatterns.image'],
+    builder: patternUtilsDemo,
+  ),
+  ExampleEntry(
+    id: 'util_flutter_helper',
+    category: ExampleCategory.utils,
+    title: 'Flutter Helper Utils',
+    sourceFile: 'lib/utils/flutter_helper_utils.dart',
+    apis: ['degreeToRadian', 'wait', 'getBytesFromAsset'],
+    builder: flutterHelperUtilsDemo,
+  ),
+  ExampleEntry(
+    id: 'util_printf',
+    category: ExampleCategory.utils,
+    title: 'Printf Console',
+    sourceFile: 'lib/utils/console/printf_console.dart',
+    apis: [
+      'printf',
+      'printfDebug',
+      'printfInfo',
+      'printfSuccess',
+      'printfWarn',
+      'printfError',
+      'printfBox',
+      'printfTable',
+      'printfSeparator',
+      'printHttpRequest',
+      'printHttpResponse',
+      'PrintfStyle',
+      'PrintfConfig',
+    ],
+    builder: printfConsoleDemo,
+  ),
 
   // ── Reactive ────────────────────────────────────────────────────────────
   ExampleEntry(
@@ -384,6 +665,14 @@ final List<ExampleEntry> exampleCatalog = [
     sourceFile: 'lib/reactive/rx_datetime.dart',
     apis: ['RxDateTime', 'format', 'timeAgo', 'addDuration'],
     builder: rxDatetimeDemo,
+  ),
+  ExampleEntry(
+    id: 'rxn_datetime',
+    category: ExampleCategory.reactive,
+    title: 'RxnDateTime',
+    sourceFile: 'lib/reactive/rx_datetime.dart',
+    apis: ['RxnDateTime', 'format', 'timeAgo', 'addDuration'],
+    builder: rxnDatetimeDemo,
   ),
 
   // ── Formatters ──────────────────────────────────────────────────────────
@@ -404,6 +693,34 @@ final List<ExampleEntry> exampleCatalog = [
     sourceFile: 'lib/custom_painter/google_logo_painter.dart',
     apis: ['GoogleLogoWidget'],
     builder: googleLogoDemo,
+  ),
+
+  // ── Live Sandbox (preserved live-only example code) ─────────────────────
+  ExampleEntry(
+    id: 'live_home',
+    category: ExampleCategory.liveSandbox,
+    title: 'Home Screen Sandbox',
+    sourceFile: 'example/lib/home.dart',
+    apis: ['HomeScreen', 'MyCustomTextField', 'AppButton'],
+    builder: liveHomeSandboxDemo,
+    description: 'Original live example home screen — not removed',
+  ),
+  ExampleEntry(
+    id: 'live_custom_text_field',
+    category: ExampleCategory.liveSandbox,
+    title: 'MyCustomTextField',
+    sourceFile: 'example/lib/widgets_example/my_custom_text_field.dart',
+    apis: ['MyCustomTextField'],
+    builder: liveCustomTextFieldDemo,
+  ),
+  ExampleEntry(
+    id: 'live_pagination',
+    category: ExampleCategory.liveSandbox,
+    title: 'Pagination Standalone',
+    sourceFile: 'example/lib/pagination_list_view_example.dart',
+    apis: ['PaginationListViewExample', 'ListViewPagination'],
+    builder: livePaginationStandaloneDemo,
+    description: 'Standalone pagination screen preserved from live project',
   ),
 ];
 

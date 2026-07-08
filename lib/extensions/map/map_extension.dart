@@ -1,4 +1,11 @@
-import 'package:flutter_helper_kit/flutter_helper_kit.dart';
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_helper_kit/extensions/number/smart_round_to_string.dart';
+import 'package:flutter_helper_kit/extensions/string/string_extension.dart';
+
+part 'map_get_or_default.dart';
 
 ///Map
 extension MapExtension<K, V> on Map<K, V>? {
@@ -15,7 +22,7 @@ extension MapExtension<K, V> on Map<K, V>? {
   /// Map<String, int>? map3 = {"a": 1};
   /// print(map3.isNullOrEmpty); // false
   /// ```
-  bool get isNullOrEmpty => this == null || this!.keys.isNullOrEmpty;
+  bool get isNullOrEmpty => this == null || this!.isEmpty;
 
   /// Returns `true` if this nullable map is not `null` and contains at least one key-value pair.
   ///
@@ -92,17 +99,9 @@ extension MapExtension<K, V> on Map<K, V>? {
   /// print(map1.updateAndJoin(map2)); // {a: 1, b: 3, c: 4}
   /// ```
   Map<K, V> updateAndJoin(Map<K, V>? map) {
-    if (isNullOrEmpty) return map ?? {};
-    if (map.isNullOrEmpty) return this ?? {};
-    final newMap = this!;
-    for (final key in map!.keys) {
-      if (this!.containsKey(key)) {
-        newMap[key] = map[key] as V;
-      } else {
-        newMap.addAll({key: map[key] as V});
-      }
-    }
-    return map;
+    if (isNullOrEmpty) return Map<K, V>.from(map ?? {});
+    if (map.isNullOrEmpty) return Map<K, V>.from(this!);
+    return {...this!, ...map!};
   }
 }
 
@@ -126,114 +125,7 @@ extension MapStringKeyExtension<T, V> on Map<String, V>? {
     final map = <String, V>{};
     for (var key in this!.keys) {
       map.addAll({newKey.call(key): this?[key] as V});
-      // map[key] = this?[key] as V;
     }
     return map;
-  }
-}
-
-/// Returns the element of given key in [Map].
-extension MapGetOrDefault<K, V> on Map<K, V> {
-  /// Returns the value associated with the given `key`,
-  ///
-  /// or `defaultValue` if the key does not exists.
-  ///
-  /// ### Example:
-  /// ```dart
-  /// final map = {'name', 'John', 'email': 'john@example.com'};
-  ///
-  /// print(getOrDefault('name', 'Unknown')); // Output: John
-  ///
-  /// print(getOrDefault('email', 'NA')); // Output: john@example.com
-  ///
-  /// print(getOrDefault('age', 'undefined')); // Output: undefined
-  /// ```
-  V? getOrDefault(K key, V? defaultValue) =>
-      containsKey(key) ? this[key]! : defaultValue;
-
-  /// Returns the integer value associated with the given `key`,
-  /// or `defaultValue` if the key does not exist or cannot be converted to `int`.
-  ///
-  /// ### Example:
-  /// ```dart
-  /// final map = {'count': '10', 'views': 20};
-  ///
-  /// print(map.getIntOrDefault('count', 0)); // Output: 10
-  ///
-  /// print(map.getIntOrDefault('views', 0)); // Output: 20
-  ///
-  /// print(map.getIntOrDefault('likes', 5)); // Output: 5
-  /// ```
-  int? getIntOrDefault(K key, int? defaultValue) {
-    if (!containsKey(key)) return defaultValue;
-    final value = this[key];
-    if (value is int) return value;
-    if (value is String) return int.tryParse(value) ?? defaultValue;
-    if (value is num) return value.toInt();
-    return defaultValue;
-  }
-
-  /// Returns the numeric value associated with the given `key`,
-  /// or `defaultValue` if the key does not exist or cannot be converted to `num`.
-  ///
-  /// ### Example:
-  /// ```dart
-  /// final map = {'price': '19.99', 'discount': 5};
-  ///
-  /// print(map.getNumOrDefault('price', 0)); // Output: 19.99
-  ///
-  /// print(map.getNumOrDefault('discount', 0)); // Output: 5
-  ///
-  /// print(map.getNumOrDefault('tax', 2.5)); // Output: 2.5
-  /// ```
-  num? getNumOrDefault(K key, num? defaultValue) {
-    if (!containsKey(key)) return defaultValue;
-    final value = this[key];
-
-    if (value is num) return value;
-    if (value is String) return value.toNum() ?? defaultValue;
-
-    return defaultValue;
-  }
-
-  /// Returns the double value associated with the given `key`,
-  /// or `defaultValue` if the key does not exist or cannot be converted to `double`.
-  ///
-  /// ### Example:
-  /// ```dart
-  /// final map = {'rating': '4.5', 'average': 3.2};
-  ///
-  /// print(map.getDoubleOrDefault('rating', 0.0)); // Output: 4.5
-  ///
-  /// print(map.getDoubleOrDefault('average', 0.0)); // Output: 3.2
-  ///
-  /// print(map.getDoubleOrDefault('score', 1.0)); // Output: 1.0
-  /// ```
-  double? getDoubleOrDefault(K key, double? defaultValue) {
-    if (!containsKey(key)) return defaultValue;
-    final value = this[key];
-    if (value is double) return value;
-    if (value is num) return value.toDouble();
-    if (value is String) return value.toDouble() ?? defaultValue;
-    return defaultValue;
-  }
-
-  /// Returns the string value associated with the given `key`,
-  /// or `defaultValue` if the key does not exist.
-  ///
-  /// ### Example:
-  /// ```dart
-  /// final map = {'name': 'John', 'age': 30};
-  ///
-  /// print(map.getStringOrDefault('name', 'Unknown')); // Output: John
-  ///
-  /// print(map.getStringOrDefault('age', 'N/A')); // Output: 30
-  ///
-  /// print(map.getStringOrDefault('city', 'Not specified')); // Output: Not specified
-  /// ```
-  String? getStringOrDefault(K key, String? defaultValue) {
-    if (!containsKey(key)) return defaultValue;
-    final value = this[key];
-    return value?.toString() ?? defaultValue;
   }
 }

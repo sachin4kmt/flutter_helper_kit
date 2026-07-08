@@ -22,3 +22,28 @@ Widget rxDatetimeDemo(BuildContext context) {
     },
   );
 }
+
+Widget rxnDatetimeDemo(BuildContext context) {
+  final rxn = RxnDateTime(DateTime.now().subtract(const Duration(days: 1)));
+  return ValueListenableBuilder<DateTime?>(
+    valueListenable: rxn,
+    builder: (_, value, __) {
+      return ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          Text('RxnDateTime.format(): ${rxn.format() ?? 'null'}'),
+          Text('value is null: ${value == null}'),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () => rxn.value = DateTime.now(),
+            child: const Text('Set to now'),
+          ),
+          ElevatedButton(
+            onPressed: () => rxn.value = null,
+            child: const Text('Clear (null)'),
+          ),
+        ],
+      );
+    },
+  );
+}

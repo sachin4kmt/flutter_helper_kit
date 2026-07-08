@@ -20,6 +20,7 @@ export 'widgets/text_icon_widget.dart';
 export 'widgets/rounded_checkbox_widget.dart';
 export 'widgets/rating_bar_widget.dart';
 export 'widgets/double_press_back_widget.dart';
+export 'widgets/dropdown_sheet/generic_dropdown_sheet.dart';
 export 'widgets/timer_builder.dart';
 export 'widgets/separated_column.dart';
 export 'widgets/space/sliver_space.dart';

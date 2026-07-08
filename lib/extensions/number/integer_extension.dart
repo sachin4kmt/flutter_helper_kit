@@ -26,7 +26,7 @@ extension IntNullableExtensions on int? {
   /// ```dart
   /// print(5.microseconds()); // Output: 0:00:00.000005
   /// ```
-  Duration microseconds([int value = 0]) => validate(value).milliseconds();
+  Duration microseconds([int value = 0]) => validate(value).microseconds();
 
   /// Returns a duration in milliseconds.
   ///

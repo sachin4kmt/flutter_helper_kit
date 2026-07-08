@@ -37,7 +37,18 @@ class _CatalogHomeState extends State<CatalogHome> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('flutter_helper_kit Examples'),
+        title: const Text('flutter_helper_kit LIVE'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: Center(
+              child: Chip(
+                label: Text('${exampleCatalog.length} demos'),
+                visualDensity: VisualDensity.compact,
+              ),
+            ),
+          ),
+        ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(56),
           child: Padding(
@@ -62,8 +73,7 @@ class _CatalogHomeState extends State<CatalogHome> {
           ),
           for (final category in ExampleCategory.values)
             if (grouped[category]?.isNotEmpty ?? false) ...[
-              _CategoryHeader(
-                  category: category, count: grouped[category]!.length),
+              _CategoryHeader(category: category, count: grouped[category]!.length),
               ...grouped[category]!.map((entry) => _ExampleTile(entry: entry)),
             ],
         ],
@@ -88,10 +98,7 @@ class _CategoryHeader extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             '${category.label} ($count)',
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(fontWeight: FontWeight.w600),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
           ),
         ],
       ),

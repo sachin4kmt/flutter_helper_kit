@@ -12,7 +12,7 @@ extension ListnumManipulation on List<num>? {
   /// List<num>? list3 = [1, 2, 3];
   /// print(list3.isNullAndEmpty); // false
   /// ```
-  bool get isNullAndEmpty => this == null && this!.isEmpty;
+  bool get isNullAndEmpty => this == null || this!.isEmpty;
 
   /// Returns `true` if the list is not `null` and contains at least one element.
   ///

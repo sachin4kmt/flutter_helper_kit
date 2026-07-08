@@ -5,7 +5,7 @@
 /// ```
 library;
 
-export 'extensions/alignment/alignment_extensions.dart';
+export 'extensions/alignment/alignment.dart';
 export 'extensions/bool/bool_extensions.dart';
 export 'extensions/context/build_context_extension.dart';
 export 'extensions/color/color_extension.dart';
@@ -17,7 +17,7 @@ export 'extensions/number/integer_extension.dart';
 export 'extensions/list/list_extension.dart';
 export 'extensions/list/list_null_extension.dart';
 export 'extensions/function/listenable_extension.dart';
-export 'extensions/map/map_extension.dart';
+export 'extensions/map/map.dart';
 export 'extensions/number/number_extension.dart';
 export 'extensions/number/smart_round_to_string.dart';
 export 'extensions/random/random_extension.dart';
@@ -25,6 +25,7 @@ export 'extensions/function/scope_functions_extension.dart';
 export 'extensions/string/string_extension.dart';
 export 'extensions/string/string_case.dart';
 export 'extensions/string/validation.dart';
+export 'extensions/string/string_mask.dart';
 export 'extensions/type_conversion.dart';
 export 'extensions/widget/widget_extension.dart';
 export 'extensions/widget/widget_list_extension.dart';

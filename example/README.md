@@ -1,16 +1,50 @@
-# example
+# Example App (LIVE edition)
 
-A new Flutter project.
+Runnable catalog for [flutter_helper_kit](../README.md). **LIVE** keeps all original sandbox code plus the full kit demo catalog.
 
-## Getting Started
+## Run
 
-This project is a starting point for a Flutter application.
+```bash
+cd example
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Structure
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
+lib/
+├── main.dart                 # ScreenUtilInit + CatalogHome
+├── catalog/
+│   ├── example_catalog.dart  # 83+ demos (kit + live sandbox)
+│   └── catalog_home.dart     # Searchable home
+├── examples/
+│   ├── extensions/           # String, bool, widget, map, …
+│   ├── widgets/              # SliderButton, GenericPickerSheet, …
+│   ├── utils/                # printf, decorations, HTTP logs, …
+│   ├── live/                 # LIVE-only preserved sandboxes
+│   └── …
+├── home.dart                 # Preserved — wired via Live Sandbox catalog
+├── pagination_list_view_example.dart
+├── widgets_example/my_custom_text_field.dart
+└── new_widgets/app_text_field.dart
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Live Sandbox category
+
+These demos map to **example-only** code that was in the live project before the kit sync:
+
+| Demo | File |
+|------|------|
+| Home Screen Sandbox | `example/lib/home.dart` |
+| MyCustomTextField | `example/lib/widgets_example/my_custom_text_field.dart` |
+| Pagination Standalone | `example/lib/pagination_list_view_example.dart` |
+
+Nothing was removed — all live files remain on disk and in the catalog.
+
+## Add a new demo
+
+1. Create a builder under `lib/examples/<category>/`.
+2. Register in `lib/catalog/example_catalog.dart`.
+3. Export new APIs from `../lib/flutter_helper_kit.dart` if needed.
+
+Full package docs: [../README.md](../README.md)

@@ -22,4 +22,5 @@ export 'utils/map_info_window_callback_adapter.dart';
 export 'utils/close_icon_show_dialog.dart';
 export 'utils/pattern.dart';
 export 'utils/type_def.dart';
+export 'utils/console/printf_console.dart';
 export 'reactive/rx_datetime.dart';

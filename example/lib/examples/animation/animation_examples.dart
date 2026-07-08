@@ -44,12 +44,56 @@ Widget gestureAnimationDemo(BuildContext context) {
       child: Container(
         width: 120,
         height: 120,
-        decoration: BoxDecoration(
-            color: Colors.teal, borderRadius: BorderRadius.circular(16)),
+        decoration: BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(16)),
         alignment: Alignment.center,
         child: const Text('Tap me', style: TextStyle(color: Colors.white)),
       ),
     ),
+  );
+}
+
+Widget staggeredListAnimationsDemo(BuildContext context) {
+  final cards = List.generate(
+    6,
+    (i) => Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: ListTile(title: Text('Staggered item ${i + 1}')),
+    ),
+  );
+  return ListView(
+    padding: const EdgeInsets.all(16),
+    children: cards.animateStaggeredList(),
+  );
+}
+
+Widget flutterAnimateDemo(BuildContext context) {
+  return ListView(
+    padding: const EdgeInsets.all(16),
+    children: [
+      _AnimatedCard(
+        label: 'flutter_animate: .animate().fadeIn().slideY()',
+        child: const Text('Fade + Slide')
+            .animate()
+            .fadeIn(duration: 600.ms)
+            .slideY(begin: 0.2, end: 0, duration: 600.ms),
+      ),
+      _AnimatedCard(
+        label: 'flutter_animate: .animate().scale().shake()',
+        child: const Text('Scale + Shake')
+            .animate(onPlay: (c) => c.repeat(reverse: true))
+            .scale(duration: 400.ms)
+            .shake(hz: 2, duration: 400.ms),
+      ),
+      _AnimatedCard(
+        label: 'animateStaggeredScale()',
+        child: const Text('Stagger helper'),
+      ),
+      ...[
+        const Text('Item A'),
+        const Text('Item B'),
+        const Text('Item C'),
+      ].animateStaggeredScale(),
+    ],
   );
 }
 
@@ -86,8 +130,7 @@ class _AnimatedCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(label,
-                style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
+            Text(label, style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
             const SizedBox(height: 12),
             child,
           ],

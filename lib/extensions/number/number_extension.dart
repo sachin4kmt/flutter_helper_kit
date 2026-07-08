@@ -118,7 +118,9 @@ extension NumExt on num? {
   /// ```
   num? percentageDifference(double other) {
     if (isNull()) return null;
-    return (((this ?? 0) - other).abs() / (this ?? 0)) * 100;
+    final current = this ?? 0;
+    if (current == 0) return null;
+    return ((current - other).abs() / current) * 100;
   }
 
   /// Checks if the current value falls between the specified range.
@@ -167,6 +169,7 @@ extension NumExt on num? {
   /// ```
   List<num> randomList({int min = 0, int max = 100}) {
     if (isNull()) return [];
+    if (max <= min) return List<num>.filled(validate().toInt(), min);
     var result = <num>[];
     for (var i = 0; i < (this ?? 0); i++) {
       result.add(math.Random().nextInt(max - min) + min);

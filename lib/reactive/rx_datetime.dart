@@ -88,7 +88,7 @@ class RxDateTime extends ValueNotifier<DateTime> {
 
 /// Nullable reactive [DateTime].
 class RxnDateTime extends ValueNotifier<DateTime?> {
-  RxnDateTime([super.initial]);
+  RxnDateTime(super.initial);
 
   factory RxnDateTime.nowOrNull() => RxnDateTime(DateTime.now());
 

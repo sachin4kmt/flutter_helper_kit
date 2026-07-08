@@ -10,7 +10,7 @@ abstract class RebuildFactors {
   static bool orientation(MediaQueryData old, MediaQueryData data) =>
       old.orientation != data.orientation;
   static bool sizeAndViewInsets(MediaQueryData old, MediaQueryData data) =>
-      old.viewInsets != data.viewInsets;
+      old.size != data.size || old.viewInsets != data.viewInsets;
   static bool change(MediaQueryData old, MediaQueryData data) => old != data;
   static bool always(MediaQueryData _, MediaQueryData data) => true;
   static bool none(MediaQueryData _, MediaQueryData data) => false;
@@ -34,6 +34,7 @@ class ScreenUtilInit extends StatefulWidget {
     this.rebuildFactor = RebuildFactors.size,
     this.designSize = ScreenUtil.defaultSize,
     this.splitScreenMode = false,
+    this.splitScreenMinHeight = ScreenUtilDefaults.splitScreenMinHeight,
     this.minTextAdapt = false,
     this.useInheritedMediaQuery = false,
     this.ensureScreenSize = false,
@@ -47,6 +48,7 @@ class ScreenUtilInit extends StatefulWidget {
   final ScreenUtilInitBuilder? builder;
   final Widget? child;
   final bool splitScreenMode;
+  final double splitScreenMinHeight;
   final bool minTextAdapt;
   final bool useInheritedMediaQuery;
   final bool ensureScreenSize;
@@ -147,14 +149,24 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
         data: mq,
         designSize: widget.designSize,
         splitScreenMode: widget.splitScreenMode,
+        splitScreenMinHeight: widget.splitScreenMinHeight,
         minTextAdapt: widget.minTextAdapt,
         fontSizeResolver: widget.fontSizeResolver,
       );
     }
 
+    Widget buildChild() {
+      final child =
+          widget.builder?.call(context, widget.child) ?? widget.child!;
+      return ResponsiveScope(
+        calculator: ScreenUtil.instance.calculator,
+        child: child,
+      );
+    }
+
     if (!widget.ensureScreenSize) {
       configureScreenUtil();
-      return widget.builder?.call(context, widget.child) ?? widget.child!;
+      return buildChild();
     }
 
     return FutureBuilder<void>(
@@ -162,7 +174,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
       builder: (c, snapshot) {
         configureScreenUtil();
         if (snapshot.connectionState == ConnectionState.done) {
-          return widget.builder?.call(context, widget.child) ?? widget.child!;
+          return buildChild();
         }
         return const SizedBox.shrink();
       },

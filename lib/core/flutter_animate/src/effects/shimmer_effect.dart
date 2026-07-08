@@ -95,8 +95,8 @@ class ShimmerEffect extends Effect<double> {
   }
 
   LinearGradient _buildGradient(double value) {
-    final Color col = color ?? defaultColor,
-        transparent = col.withValues(alpha: 0);
+    final Color col = color ?? defaultColor;
+    final Color transparent = col.withValues(alpha: 0);
     final List<Color> cols = colors ?? [transparent, col, transparent];
 
     return LinearGradient(
@@ -163,7 +163,7 @@ class _SweepingGradientTransform extends GradientTransform {
     // set up the transformation matrices:
     Matrix4 transformMtx = Matrix4.identity()
       ..rotateZ(angle)
-      ..scaleByDouble(r / w * scale, r / w * scale, 1.0, 1.0);
+      ..scaleByDouble(r / w * scale, r / w * scale, 1, 1);
 
     double range = w * (1 + scale) / scale;
     Matrix4 translateMtx = Matrix4.identity()

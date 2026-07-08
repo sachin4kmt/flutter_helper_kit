@@ -10,7 +10,7 @@
 library;
 
 /// Extensions
-export 'extensions/alignment/alignment_extensions.dart';
+export 'extensions/alignment/alignment.dart';
 export 'extensions/bool/bool_extensions.dart';
 export 'extensions/context/build_context_extension.dart';
 export 'extensions/color/color_extension.dart';
@@ -22,7 +22,7 @@ export 'extensions/number/integer_extension.dart';
 export 'extensions/list/list_extension.dart';
 export 'extensions/list/list_null_extension.dart';
 export 'extensions/function/listenable_extension.dart';
-export 'extensions/map/map_extension.dart';
+export 'extensions/map/map.dart';
 export 'extensions/number/number_extension.dart';
 export 'extensions/number/smart_round_to_string.dart';
 export 'extensions/random/random_extension.dart';
@@ -30,6 +30,7 @@ export 'extensions/function/scope_functions_extension.dart';
 export 'extensions/string/string_extension.dart';
 export 'extensions/string/string_case.dart';
 export 'extensions/string/validation.dart';
+export 'extensions/string/string_mask.dart';
 export 'extensions/type_conversion.dart';
 export 'extensions/widget/widget_extension.dart';
 export 'extensions/widget/widget_list_extension.dart';
@@ -60,6 +61,7 @@ export 'utils/map_custom_info_window.dart';
 export 'utils/map_info_window_callback_adapter.dart';
 export 'utils/close_icon_show_dialog.dart';
 export 'utils/pattern.dart';
+export 'utils/console/printf_console.dart';
 
 /// Reactive helpers
 export 'reactive/rx_datetime.dart';
@@ -89,6 +91,7 @@ export 'widgets/text_icon_widget.dart';
 export 'widgets/rounded_checkbox_widget.dart';
 export 'widgets/rating_bar_widget.dart';
 export 'widgets/double_press_back_widget.dart';
+export 'widgets/dropdown_sheet/generic_dropdown_sheet.dart';
 export 'widgets/timer_builder.dart';
 export 'widgets/separated_column.dart';
 export 'widgets/space/sliver_space.dart';

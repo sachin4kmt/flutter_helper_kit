@@ -59,8 +59,7 @@ class _MetaPanel extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(entry.category.icon,
-                    size: 18, color: entry.category.color),
+                Icon(entry.category.icon, size: 18, color: entry.category.color),
                 const SizedBox(width: 8),
                 Text(entry.category.label, style: theme.textTheme.labelLarge),
               ],

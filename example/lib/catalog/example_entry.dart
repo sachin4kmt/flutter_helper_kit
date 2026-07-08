@@ -8,7 +8,8 @@ enum ExampleCategory {
   utils('Utils', Icons.build, Colors.brown),
   reactive('Reactive', Icons.sync, Colors.purple),
   formatters('Formatters', Icons.text_fields, Colors.cyan),
-  customPainter('Custom Painter', Icons.brush, Colors.pink);
+  customPainter('Custom Painter', Icons.brush, Colors.pink),
+  liveSandbox('Live Sandbox', Icons.science, Colors.deepPurple);
 
   const ExampleCategory(this.label, this.icon, this.color);
 

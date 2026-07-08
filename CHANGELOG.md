@@ -1,3 +1,8 @@
+## 1.0.8
+* Synced from `flutter_helper_kit`: printf console, `GenericPickerSheet`, 79+ catalog demos, expanded tests.
+* Preserved all live-only example code (`home.dart`, `MyCustomTextField`, standalone pagination).
+* Added **Live Sandbox** catalog category; kept fixed `degreeToRadian` / `wait` in `flutter_helper_utils.dart`.
+
 ## 1.0.7
 * fix : fix: core utils bugs
 

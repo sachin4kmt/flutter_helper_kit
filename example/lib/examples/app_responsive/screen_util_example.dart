@@ -20,8 +20,7 @@ Widget screenUtilDemo(BuildContext context) {
       SizedBox(height: 16.h),
       RPadding(
         padding: REdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child:
-            Text('RPadding + REdgeInsets', style: TextStyle(fontSize: 14.sp)),
+        child: Text('RPadding + REdgeInsets', style: TextStyle(fontSize: 14.sp)),
       ),
       RSizedBox(height: 8.h),
       Text('Screen: ${1.sw.toStringAsFixed(0)}w × ${1.sh.toStringAsFixed(0)}h'),

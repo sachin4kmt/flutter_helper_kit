@@ -227,7 +227,7 @@ extension NullStringExtension on String? {
   String capitalizeEachWordFirstCharacter() {
     if (isEmptyOrNull) return '';
     final words = this!.split(' ');
-    final formatted = words.map((e) => e.capitalizeFirstCharacter).toList();
+    final formatted = words.map((e) => e.capitalizeFirstCharacter()).toList();
     return formatted.join(' ');
   }
 

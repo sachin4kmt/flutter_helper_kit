@@ -221,22 +221,20 @@ extension ListExtension<T> on List<T>? {
   /// print(separatedList); // [0, 1, 0, 2, 0, 3, 0]
   /// ```
   List<T> separatorEvery(T separator, {bool start = false, bool end = false}) {
-    List<T> list = <T>[];
+    final list = <T>[];
     if (isNullOrEmpty) return list;
 
-    ///First item Top separator
     if (start) {
       list.add(separator);
     }
-    for (int n = 0; n < (this?.length ?? 0); n++) {
-      if (end) {
-        list.addAll([this![n], separator]);
-        continue;
-      }
-      if (!end && (n == ((this?.length ?? 1) - 1))) {
-        list.add(this![n]);
+
+    for (var n = 0; n < this!.length; n++) {
+      list.add(this![n]);
+      if (n < this!.length - 1 || end) {
+        list.add(separator);
       }
     }
+
     return list;
   }
 

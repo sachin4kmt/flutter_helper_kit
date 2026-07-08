@@ -1,40 +1,44 @@
 part of 'app_responsive.dart';
 
-typedef FontSizeResolver = double Function(num fontSize);
-
 class ScreenUtil {
-  static const Size defaultSize = Size(360, 690);
+  static const Size defaultSize = ScreenUtilDefaults.designSize;
 
-  // Singleton instance
   static final ScreenUtil _instance = ScreenUtil._internal();
   factory ScreenUtil() => _instance;
   ScreenUtil._internal();
 
-  // Public static getter
   static ScreenUtil get instance => _instance;
 
-  // Scale flags
   static bool Function() _enableScaleWH = () => true;
   static bool Function() _enableScaleText = () => true;
 
-  // Core properties
   late Size _uiSize;
   late Orientation _orientation;
   late bool _minTextAdapt = false;
   late MediaQueryData _data;
   late bool _splitScreenMode = false;
+  late double _splitScreenMinHeight = ScreenUtilDefaults.splitScreenMinHeight;
   FontSizeResolver? fontSizeResolver;
 
   Set<Element>? _elementsToRebuild;
 
-  /// Enable scale
+  ScaleCalculator get calculator => ScaleCalculator(
+        designSize: _uiSize,
+        deviceSize: _data.size,
+        minTextAdapt: _minTextAdapt,
+        splitScreenMode: _splitScreenMode,
+        splitScreenMinHeight: _splitScreenMinHeight,
+        enableScaleWidth: _enableScaleWH(),
+        enableScaleHeight: _enableScaleWH(),
+        enableScaleText: _enableScaleText(),
+      );
+
   static void enableScale(
       {bool Function()? enableWH, bool Function()? enableText}) {
     _enableScaleWH = enableWH ?? () => true;
     _enableScaleText = enableText ?? () => true;
   }
 
-  /// Ensure window size initialized
   static Future<void> ensureScreenSize([
     ui.FlutterView? window,
     Duration duration = const Duration(milliseconds: 10),
@@ -53,7 +57,6 @@ class ScreenUtil {
     binding.allowFirstFrame();
   }
 
-  /// Register elements to rebuild
   static void registerToBuild(BuildContext context,
       [bool withDescendants = false]) {
     (_instance._elementsToRebuild ??= {}).add(context as Element);
@@ -65,11 +68,11 @@ class ScreenUtil {
     }
   }
 
-  /// Configure ScreenUtil
   static void configure({
     MediaQueryData? data,
     Size? designSize,
     bool? splitScreenMode,
+    double? splitScreenMinHeight,
     bool? minTextAdapt,
     FontSizeResolver? fontSizeResolver,
   }) {
@@ -93,16 +96,18 @@ class ScreenUtil {
       ..fontSizeResolver = fontSizeResolver ?? _instance.fontSizeResolver
       .._minTextAdapt = minTextAdapt ?? _instance._minTextAdapt
       .._splitScreenMode = splitScreenMode ?? _instance._splitScreenMode
+      .._splitScreenMinHeight =
+          splitScreenMinHeight ?? _instance._splitScreenMinHeight
       .._orientation = orientation;
 
     _instance._elementsToRebuild?.forEach((el) => el.markNeedsBuild());
   }
 
-  /// Initialize ScreenUtil
   static void init(
     BuildContext context, {
     Size designSize = defaultSize,
     bool splitScreenMode = false,
+    double splitScreenMinHeight = ScreenUtilDefaults.splitScreenMinHeight,
     bool minTextAdapt = false,
     FontSizeResolver? fontSizeResolver,
   }) {
@@ -111,16 +116,17 @@ class ScreenUtil {
       data: view != null ? MediaQueryData.fromView(view) : null,
       designSize: designSize,
       splitScreenMode: splitScreenMode,
+      splitScreenMinHeight: splitScreenMinHeight,
       minTextAdapt: minTextAdapt,
       fontSizeResolver: fontSizeResolver,
     );
   }
 
-  /// Ensure screen size and init
   static Future<void> ensureScreenSizeAndInit(
     BuildContext context, {
     Size designSize = defaultSize,
     bool splitScreenMode = false,
+    double splitScreenMinHeight = ScreenUtilDefaults.splitScreenMinHeight,
     bool minTextAdapt = false,
     FontSizeResolver? fontSizeResolver,
   }) async {
@@ -130,12 +136,12 @@ class ScreenUtil {
       context,
       designSize: designSize,
       splitScreenMode: splitScreenMode,
+      splitScreenMinHeight: splitScreenMinHeight,
       minTextAdapt: minTextAdapt,
       fontSizeResolver: fontSizeResolver,
     );
   }
 
-  /// Accessors
   Orientation get orientation => _instance._orientation;
   TextScaler get textScaleFactor => _instance._data.textScaler;
   double? get pixelRatio => _instance._data.devicePixelRatio;
@@ -143,38 +149,21 @@ class ScreenUtil {
   double get screenHeight => _instance._data.size.height;
   double get statusBarHeight => _instance._data.padding.top;
   double get bottomBarHeight => _instance._data.padding.bottom;
-  double get scaleWidth =>
-      !_enableScaleWH() ? 1 : screenWidth / _instance._uiSize.width;
-  double get scaleHeight => !_enableScaleWH()
-      ? 1
-      : (_instance._splitScreenMode ? max(screenHeight, 700) : screenHeight) /
-          _instance._uiSize.height;
-  static double get scaleText => !_enableScaleText()
-      ? 1
-      : (_instance._minTextAdapt
-          ? min(instance.scaleWidth, instance.scaleHeight)
-          : instance.scaleWidth);
+  double get scaleWidth => calculator.scaleWidth;
+  double get scaleHeight => calculator.scaleHeight;
+  static double get scaleText => instance.calculator.scaleText;
 
-  /// Adaptation methods
-  double setWidth(num width) => width * scaleWidth;
-  double setHeight(num height) => height * scaleHeight;
-  double radius(num r) => r * min(scaleWidth, scaleHeight);
-  double diagonal(num d) => d * scaleHeight * scaleWidth;
-/* <<<<<<<<<<<<<<  ✨ Windsurf Command ⭐ >>>>>>>>>>>>>>>> */
-  /// The adaptation pixel is according to the larger of the current device's width and height,
-  /// based on the design draft.
-  ///
-  /// The width or height of the design draft is divided by the width or height of the device to
-  /// get the scale, and then the scale is multiplied by the size to be adapted to get the
-  /// adapted size.
-  ///
-  /// [d] is the size of the design draft.
-/* <<<<<<<<<<  739240f2-01c8-4911-865a-ae20d1e68393  >>>>>>>>>>> */
-  double diameter(num d) => d * max(scaleWidth, scaleHeight);
-  static double setSp(num fontSize) =>
-      _instance.fontSizeResolver?.call(fontSize) ?? fontSize * scaleText;
+  double setWidth(num width) => calculator.width(width);
+  double setHeight(num height) => calculator.height(height);
+  double radius(num r) => calculator.radius(r);
+  double diagonal(num d) => calculator.diagonal(d);
+  double diameter(num d) => calculator.diameter(d);
 
-  /// Device type
+  static double setSp(num fontSize) {
+    final calc = instance.calculator;
+    return calc.sp(fontSize, fontSizeResolver: instance.fontSizeResolver);
+  }
+
   static DeviceType deviceType(BuildContext context) {
     var deviceType = DeviceType.web;
     final screenWidth = MediaQuery.of(context).size.width;
@@ -184,9 +173,9 @@ class ScreenUtil {
     if (kIsWeb) {
       deviceType = DeviceType.web;
     } else {
-      bool isMobile = defaultTargetPlatform == TargetPlatform.iOS ||
+      final isMobile = defaultTargetPlatform == TargetPlatform.iOS ||
           defaultTargetPlatform == TargetPlatform.android;
-      bool isTablet =
+      final isTablet =
           (orientation == Orientation.portrait && screenWidth >= 600) ||
               (orientation == Orientation.landscape && screenHeight >= 600);
 
@@ -215,7 +204,6 @@ class ScreenUtil {
     return deviceType;
   }
 
-  /// Spacing helpers
   static SizedBox setVerticalSpacing(num height) =>
       SizedBox(height: instance.setHeight(height));
   static SizedBox setVerticalSpacingFromWidth(num height) =>

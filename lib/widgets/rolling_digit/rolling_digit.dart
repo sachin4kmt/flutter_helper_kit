@@ -894,7 +894,7 @@ class AnimatedDigitWidgetState extends State<AnimatedDigitWidget>
   }
 
   Widget _buildNegativeSymbol() {
-    const String symbolKey = '_AdwChildSymbol';
+    const symbolKey = '_AdwChildSymbol';
     Widget secondChild = _singleDigitData?._buildChangeTextColorWidget(
             context,
             '-',
