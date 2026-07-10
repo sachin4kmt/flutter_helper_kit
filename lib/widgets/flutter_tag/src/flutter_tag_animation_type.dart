@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 /// This is a set of animations that you can use for your [badges.Tag] widget.
 /// Do not use them explicitly, use for example [TagAnimation.slide()] instead.
 enum FlutterTagAnimationType {
+  /// No animation. Prefer [FlutterTagAnimation.none].
+  none,
+
   /// See also:
   /// * [SlideTransition]
   slide,

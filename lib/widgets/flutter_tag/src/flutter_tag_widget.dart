@@ -233,9 +233,8 @@ class FlutterTagState extends State<FlutterTag> with TickerProviderStateMixin {
               alignment: Alignment.center,
               axis: widget.tagAnimation.sizeTransitionAxis ?? Axis.horizontal,
               child: tagView());
-
-        /*default:
-          return tagView();*/
+        case FlutterTagAnimationType.none:
+          return tagView();
       }
     }
 

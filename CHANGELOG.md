@@ -1,3 +1,6 @@
+## 1.0.9
+* Added `FlutterTagAnimation.none` and `FlutterTagAnimationType.none` to disable tag animations.
+
 ## 1.0.8
 * Synced from `flutter_helper_kit`: printf console, `GenericPickerSheet`, 79+ catalog demos, expanded tests.
 * Preserved all live-only example code (`home.dart`, `MyCustomTextField`, standalone pagination).

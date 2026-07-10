@@ -71,6 +71,22 @@ class FlutterTagAnimation {
   // You can do that by setting this to false.
   // Using disappearanceFadeAnimationDuration: Duration.zero is not correct, this will remove the animation entirely
   final bool appearanceDisappearanceFadeAnimationEnabled;
+
+  /// Disables all tag animations.
+  const FlutterTagAnimation.none()
+      : toAnimate = false,
+        animationDuration = Duration.zero,
+        disappearanceFadeAnimationDuration = Duration.zero,
+        animationType = FlutterTagAnimationType.none,
+        loopAnimation = false,
+        curve = Curves.linear,
+        sizeTransitionAxis = null,
+        sizeTransitionAxisAlignment = null,
+        slideTransitionPositionTween = null,
+        colorChangeAnimationCurve = Curves.linear,
+        colorChangeAnimationDuration = Duration.zero,
+        appearanceDisappearanceFadeAnimationEnabled = false;
+
   const FlutterTagAnimation.slide({
     this.toAnimate = true,
     this.animationDuration = const Duration(milliseconds: 500),
