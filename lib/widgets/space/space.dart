@@ -12,7 +12,8 @@ import 'package:flutter/rendering.dart';
 ///
 /// See also:
 ///
-///  * [MaxSpace], a Space that can take, at most, the amount of space specified.
+///  * [SpaceMax], a Space that can take, at most, the amount of space specified.
+///  * [SpaceMin], a flexible Space with a minimum (and optional maximum) extent.
 ///  * [SliverSpace], the sliver version of this widget.
 class Space extends StatelessWidget {
   /// Creates a widget that takes a fixed [mainAxisExtent] of space in the
@@ -86,21 +87,22 @@ class Space extends StatelessWidget {
 /// A widget that takes, at most, an amount of space in a [Row], [Column],
 /// or [Flex] widget.
 ///
-/// A [MaxSpace] widget must be a descendant of a [Row], [Column], or [Flex],
-/// and the path from the [MaxSpace] widget to its enclosing [Row], [Column], or
+/// A [SpaceMax] widget must be a descendant of a [Row], [Column], or [Flex],
+/// and the path from the [SpaceMax] widget to its enclosing [Row], [Column], or
 /// [Flex] must contain only [StatelessWidget]s or [StatefulWidget]s (not other
 /// kinds of widgets, like [RenderObjectWidget]s).
 ///
 /// See also:
 ///
 ///  * [Space], the unflexible version of this widget.
-class MaxSpace extends StatelessWidget {
+///  * [SpaceMin], a flexible Space with a minimum extent.
+class SpaceMax extends StatelessWidget {
   /// Creates a widget that takes, at most, the specified [mainAxisExtent] of
   /// space in a [Row], [Column], or [Flex] widget.
   ///
   /// The [mainAxisExtent] must not be null and must be positive.
   /// The [crossAxisExtent] must be either null or positive.
-  const MaxSpace(
+  const SpaceMax(
     this.mainAxisExtent, {
     super.key,
     this.crossAxisExtent,
@@ -113,7 +115,7 @@ class MaxSpace extends StatelessWidget {
   ///
   /// The [mainAxisExtent] must not be null and must be positive.
   /// The [crossAxisExtent] must be either null or positive.
-  const MaxSpace.expand(
+  const SpaceMax.expand(
     double mainAxisExtent, {
     Key? key,
     Color? color,
@@ -151,6 +153,76 @@ class MaxSpace extends StatelessWidget {
     return Flexible(
       child: _RawSpace(
         mainAxisExtent,
+        crossAxisExtent: crossAxisExtent,
+        color: color,
+      ),
+    );
+  }
+}
+
+/// Deprecated alias for [SpaceMax].
+@Deprecated('Use SpaceMax instead')
+typedef MaxSpace = SpaceMax;
+
+/// A flexible spacer with a minimum gap — optionally capped by [max].
+///
+/// Nothing is required. [maxExpend] defaults from whether [max] is set:
+/// * [max] **not** set → [maxExpend] = `true` (expand like [Spacer], keep [min])
+/// * [max] **set** → [maxExpend] = `false` (clamp to `[min, max]`)
+///
+/// Override [maxExpend] explicitly when needed (e.g. `max: 20, maxExpend: true`
+/// keeps [min] but may grow beyond [max]).
+///
+/// ```dart
+/// SpaceMin()                              // min 0, expand
+/// SpaceMin(min: 10)                       // min 10, expand
+/// SpaceMin(min: 10, max: 20)              // 10–20 (auto maxExpend: false)
+/// SpaceMin(min: 10, max: 20, maxExpend: true)  // min 10, expand past 20
+/// ```
+///
+/// Must be a descendant of a [Row], [Column], or [Flex].
+class SpaceMin extends StatelessWidget {
+  /// Creates a flexible space with [min] (and optional [max]) extent.
+  const SpaceMin({
+    super.key,
+    this.min = 0,
+    this.max,
+    bool? maxExpend,
+    this.crossAxisExtent,
+    this.color,
+  })  : assert(min >= 0 && min < double.infinity),
+        assert(max == null || (max >= min && max < double.infinity)),
+        assert(crossAxisExtent == null || crossAxisExtent >= 0),
+        maxExpend = maxExpend ?? (max == null);
+
+  /// Minimum main-axis extent. Default is `0`.
+  final double min;
+
+  /// Optional maximum main-axis extent.
+  ///
+  /// When set, [maxExpend] defaults to `false` (range `[min, max]`).
+  final double? max;
+
+  /// Whether this space should expand to fill remaining free space.
+  ///
+  /// Defaults to `true` when [max] is null, otherwise `false`.
+  final bool maxExpend;
+
+  /// Optional cross-axis extent (same meaning as [Space.crossAxisExtent]).
+  final double? crossAxisExtent;
+
+  /// The color used to fill the space.
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    final double? effectiveMax = maxExpend ? null : (max ?? min);
+
+    return Flexible(
+      fit: maxExpend ? FlexFit.tight : FlexFit.loose,
+      child: _RawSpaceRange(
+        minExtent: min,
+        maxExtent: effectiveMax,
         crossAxisExtent: crossAxisExtent,
         color: color,
       ),
@@ -202,6 +274,42 @@ class _RawSpace extends LeafRenderObjectWidget {
         DoubleProperty('crossAxisExtent', crossAxisExtent, defaultValue: 0));
     properties.add(ColorProperty('color', color));
     properties.add(EnumProperty<Axis>('fallbackDirection', fallbackDirection));
+  }
+}
+
+/// Flexible main-axis space clamped to `[minExtent, maxExtent]` (or unbounded
+/// max when [maxExtent] is null).
+class _RawSpaceRange extends LeafRenderObjectWidget {
+  const _RawSpaceRange({
+    required this.minExtent,
+    required this.maxExtent,
+    this.crossAxisExtent,
+    this.color,
+  });
+
+  final double minExtent;
+  final double? maxExtent;
+  final double? crossAxisExtent;
+  final Color? color;
+
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    return _RenderSpaceRange(
+      minExtent: minExtent,
+      maxExtent: maxExtent,
+      crossAxisExtent: crossAxisExtent ?? 0,
+      color: color,
+    );
+  }
+
+  @override
+  void updateRenderObject(
+      BuildContext context, _RenderSpaceRange renderObject) {
+    renderObject
+      ..minExtent = minExtent
+      ..maxExtent = maxExtent
+      ..crossAxisExtent = crossAxisExtent ?? 0
+      ..color = color;
   }
 }
 
@@ -344,5 +452,129 @@ class _RenderSpace extends RenderBox {
     properties.add(DoubleProperty('crossAxisExtent', crossAxisExtent));
     properties.add(ColorProperty('color', color));
     properties.add(EnumProperty<Axis>('fallbackDirection', fallbackDirection));
+  }
+}
+
+class _RenderSpaceRange extends RenderBox {
+  _RenderSpaceRange({
+    required double minExtent,
+    double? maxExtent,
+    double? crossAxisExtent,
+    Color? color,
+  })  : _minExtent = minExtent,
+        _maxExtent = maxExtent,
+        _crossAxisExtent = crossAxisExtent,
+        _color = color;
+
+  double get minExtent => _minExtent;
+  double _minExtent;
+  set minExtent(double value) {
+    if (_minExtent != value) {
+      _minExtent = value;
+      markNeedsLayout();
+    }
+  }
+
+  double? get maxExtent => _maxExtent;
+  double? _maxExtent;
+  set maxExtent(double? value) {
+    if (_maxExtent != value) {
+      _maxExtent = value;
+      markNeedsLayout();
+    }
+  }
+
+  double? get crossAxisExtent => _crossAxisExtent;
+  double? _crossAxisExtent;
+  set crossAxisExtent(double? value) {
+    if (_crossAxisExtent != value) {
+      _crossAxisExtent = value;
+      markNeedsLayout();
+    }
+  }
+
+  Color? get color => _color;
+  Color? _color;
+  set color(Color? value) {
+    if (_color != value) {
+      _color = value;
+      markNeedsPaint();
+    }
+  }
+
+  Axis? get _direction {
+    final parentNode = parent;
+    if (parentNode is RenderFlex) {
+      return parentNode.direction;
+    }
+    return null;
+  }
+
+  double _resolveMain(BoxConstraints constraints, Axis direction) {
+    final double maxAvailable = direction == Axis.horizontal
+        ? constraints.maxWidth
+        : constraints.maxHeight;
+    final double upper = maxExtent ?? maxAvailable;
+    return maxAvailable.clamp(minExtent, upper);
+  }
+
+  @override
+  double computeMinIntrinsicWidth(double height) {
+    final Axis? direction = _direction;
+    if (direction == Axis.horizontal) return minExtent;
+    return crossAxisExtent?.isFinite == true ? crossAxisExtent! : 0;
+  }
+
+  @override
+  double computeMaxIntrinsicWidth(double height) {
+    final Axis? direction = _direction;
+    if (direction == Axis.horizontal) return maxExtent ?? minExtent;
+    return crossAxisExtent?.isFinite == true ? crossAxisExtent! : 0;
+  }
+
+  @override
+  double computeMinIntrinsicHeight(double width) {
+    final Axis? direction = _direction;
+    if (direction == Axis.vertical) return minExtent;
+    return crossAxisExtent?.isFinite == true ? crossAxisExtent! : 0;
+  }
+
+  @override
+  double computeMaxIntrinsicHeight(double width) {
+    final Axis? direction = _direction;
+    if (direction == Axis.vertical) return maxExtent ?? minExtent;
+    return crossAxisExtent?.isFinite == true ? crossAxisExtent! : 0;
+  }
+
+  @override
+  Size computeDryLayout(BoxConstraints constraints) {
+    final Axis? direction = _direction;
+    if (direction == null) {
+      throw FlutterError(
+        'A SpaceMin widget must be placed directly inside a Flex widget '
+        '(Row, Column, or Flex).',
+      );
+    }
+
+    final double main = _resolveMain(constraints, direction);
+    final double cross = crossAxisExtent ?? 0;
+
+    if (direction == Axis.horizontal) {
+      return constraints.constrain(Size(main, cross));
+    }
+    return constraints.constrain(Size(cross, main));
+  }
+
+  @override
+  void performLayout() {
+    size = computeDryLayout(constraints);
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    if (color != null) {
+      final Paint paint = Paint()..color = color!;
+      context.canvas.drawRect(offset & size, paint);
+    }
   }
 }

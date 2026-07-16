@@ -428,9 +428,9 @@ final List<ExampleEntry> exampleCatalog = [
   ExampleEntry(
     id: 'w_sliver_space',
     category: ExampleCategory.widgets,
-    title: 'SliverSpace & MaxSpace',
+    title: 'SliverSpace & SpaceMax / SpaceMin',
     sourceFile: 'lib/widgets/space/sliver_space.dart',
-    apis: ['SliverSpace', 'MaxSpace', 'Space.expand'],
+    apis: ['SliverSpace', 'SpaceMax', 'SpaceMin', 'Space.expand'],
     builder: sliverSpaceDemo,
     description: 'Also uses space.dart',
   ),

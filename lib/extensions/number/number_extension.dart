@@ -34,10 +34,21 @@ extension NumExt on num? {
   Widget space() => Space(validate().toDouble());
 
   /// A widget that takes, at most, an amount of space in a [Row], [Column],or [Flex] widget.
-  /// The `maxSpace` property converts the integer value to a [MaxSpace] widget,
+  /// The `spaceMax` property converts the integer value to a [SpaceMax] widget,
   /// which is useful for creating flexible layouts where certain elements
   /// need to occupy a specific amount of space.
-  Widget maxSpace() => MaxSpace(validate().toDouble());
+  Widget spaceMax() => SpaceMax(validate().toDouble());
+
+  /// Deprecated alias for [spaceMax].
+  @Deprecated('Use spaceMax() instead')
+  Widget maxSpace() => spaceMax();
+
+  /// Flexible spacer with a minimum gap. See [SpaceMin].
+  Widget spaceMin({double? max, bool? maxExpend}) => SpaceMin(
+        min: validate().toDouble(),
+        max: max,
+        maxExpend: maxExpend,
+      );
 
   /// This extension provides a way to handle nullable integers and use them to create
   /// a space widget. It validates the nullable integer, converting it to a non-nullable

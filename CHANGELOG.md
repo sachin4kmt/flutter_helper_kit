@@ -1,3 +1,9 @@
+## 1.0.10
+* Added `SpaceMin` (min gap + optional max / expand) and renamed `MaxSpace` → `SpaceMax` (deprecated alias kept).
+* Added `CircleContainer` circular layout widget.
+* Added `DecimalTextInputFormatter` and `NonZeroFormatter`.
+* Added `FlutterDateTime` cross-platform date/time pickers with min/max clamp fix for Cupertino.
+
 ## 1.0.9
 * Added `FlutterTagAnimation.none` and `FlutterTagAnimationType.none` to disable tag animations.
 

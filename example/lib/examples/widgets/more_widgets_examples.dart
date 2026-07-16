@@ -203,14 +203,27 @@ Widget sliverSpaceDemo(BuildContext context) {
         padding: const EdgeInsets.all(16),
         sliver: SliverList(
           delegate: SliverChildListDelegate([
-            const Text('MaxSpace + Space.expand in Row:'),
+            const Text('SpaceMax + Space.expand in Row:'),
             const SizedBox(height: 8),
             Row(
               children: [
                 const Text('Left'),
-                16.maxSpace(),
+                16.spaceMax(),
                 Container(color: Colors.teal.shade100, child: const Text(' expand ')),
               ],
+            ),
+            const SizedBox(height: 16),
+            const Text('SpaceMin(min: 10) between widgets:'),
+            const SizedBox(height: 8),
+            const SizedBox(
+              height: 80,
+              child: Column(
+                children: [
+                  Text('Top'),
+                  SpaceMin(min: 10),
+                  Text('Bottom'),
+                ],
+              ),
             ),
           ]),
         ),
