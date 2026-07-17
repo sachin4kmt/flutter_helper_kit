@@ -1,3 +1,6 @@
+## 1.1.0
+* Added `FlutterTagPosition.topCenter` and `FlutterTagPosition.bottomCenter`.
+
 ## 1.0.10
 * Added `SpaceMin` (min gap + optional max / expand) and renamed `MaxSpace` → `SpaceMax` (deprecated alias kept).
 * Added `CircleContainer` circular layout widget.

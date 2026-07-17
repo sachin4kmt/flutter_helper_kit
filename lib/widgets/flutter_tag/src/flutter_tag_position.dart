@@ -13,12 +13,17 @@ class FlutterTagPosition {
 
   /// Indicates if the badge should be centered within the parent widget.
   final bool isCenter;
+
+  /// Indicates if the badge should be centered horizontally, used by
+  /// [FlutterTagPosition.topCenter] and [FlutterTagPosition.bottomCenter].
+  final bool isHorizontalCenter;
   const FlutterTagPosition._({
     this.top,
     this.end,
     this.bottom,
     this.start,
     this.isCenter = false,
+    this.isHorizontalCenter = false,
   }) : super();
 
   /// Factory method that creates a new instance of this widget
@@ -40,9 +45,31 @@ class FlutterTagPosition {
   }
 
   /// Factory method that creates a new instance of this widget
+  /// centered horizontally at the top, according to [top]
+  factory FlutterTagPosition.topCenter({double top = -8}) {
+    return FlutterTagPosition._(
+      top: top,
+      start: 0,
+      end: 0,
+      isHorizontalCenter: true,
+    );
+  }
+
+  /// Factory method that creates a new instance of this widget
   /// according to [bottom] and [end]
   factory FlutterTagPosition.bottomEnd({double bottom = -8, double end = -10}) {
     return FlutterTagPosition._(bottom: bottom, end: end);
+  }
+
+  /// Factory method that creates a new instance of this widget
+  /// centered horizontally at the bottom, according to [bottom]
+  factory FlutterTagPosition.bottomCenter({double bottom = -8}) {
+    return FlutterTagPosition._(
+      bottom: bottom,
+      start: 0,
+      end: 0,
+      isHorizontalCenter: true,
+    );
   }
 
   /// Factory method that creates a new instance of this widget

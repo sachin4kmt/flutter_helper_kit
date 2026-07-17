@@ -107,7 +107,8 @@ class SpaceMax extends StatelessWidget {
     super.key,
     this.crossAxisExtent,
     this.color,
-  });
+  })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
+        assert(crossAxisExtent == null || crossAxisExtent >= 0);
 
   /// Creates a widget that takes, at most, the specified [mainAxisExtent] of
   /// space in a [Row], [Column], or [Flex] widget and expands in the cross axis
@@ -150,6 +151,16 @@ class SpaceMax extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Axis? scrollAxis = _nearestScrollAxisBeforeFlex(context);
+    if (scrollAxis != null) {
+      return _RawSpace(
+        mainAxisExtent,
+        crossAxisExtent: crossAxisExtent,
+        color: color,
+        fallbackDirection: scrollAxis,
+      );
+    }
+
     return Flexible(
       child: _RawSpace(
         mainAxisExtent,
@@ -181,6 +192,8 @@ typedef MaxSpace = SpaceMax;
 /// ```
 ///
 /// Must be a descendant of a [Row], [Column], or [Flex].
+/// In a [Scrollable], expansion is not finite, so the resolved extent is [max]
+/// when capped, otherwise [min].
 class SpaceMin extends StatelessWidget {
   /// Creates a flexible space with [min] (and optional [max]) extent.
   const SpaceMin({
@@ -217,6 +230,17 @@ class SpaceMin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double? effectiveMax = maxExpend ? null : (max ?? min);
+    final Axis? scrollAxis = _nearestScrollAxisBeforeFlex(context);
+
+    if (scrollAxis != null) {
+      return _RawSpaceRange(
+        minExtent: min,
+        maxExtent: effectiveMax,
+        crossAxisExtent: crossAxisExtent,
+        color: color,
+        fallbackDirection: scrollAxis,
+      );
+    }
 
     return Flexible(
       fit: maxExpend ? FlexFit.tight : FlexFit.loose,
@@ -228,6 +252,23 @@ class SpaceMin extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Returns the scroll axis only when the nearest relevant parent is a
+/// [Scrollable]. A nested [Row]/[Column] inside a scroll view still behaves as
+/// a regular Flex and therefore returns `null`.
+Axis? _nearestScrollAxisBeforeFlex(BuildContext context) {
+  Axis? scrollAxis;
+  context.visitAncestorElements((Element element) {
+    final Widget widget = element.widget;
+    if (widget is Flex) return false;
+    if (widget is Scrollable) {
+      scrollAxis = axisDirectionToAxis(widget.axisDirection);
+      return false;
+    }
+    return true;
+  });
+  return scrollAxis;
 }
 
 class _RawSpace extends LeafRenderObjectWidget {
@@ -285,12 +326,14 @@ class _RawSpaceRange extends LeafRenderObjectWidget {
     required this.maxExtent,
     this.crossAxisExtent,
     this.color,
+    this.fallbackDirection,
   });
 
   final double minExtent;
   final double? maxExtent;
   final double? crossAxisExtent;
   final Color? color;
+  final Axis? fallbackDirection;
 
   @override
   RenderObject createRenderObject(BuildContext context) {
@@ -299,6 +342,7 @@ class _RawSpaceRange extends LeafRenderObjectWidget {
       maxExtent: maxExtent,
       crossAxisExtent: crossAxisExtent ?? 0,
       color: color,
+      fallbackDirection: fallbackDirection,
     );
   }
 
@@ -309,7 +353,8 @@ class _RawSpaceRange extends LeafRenderObjectWidget {
       ..minExtent = minExtent
       ..maxExtent = maxExtent
       ..crossAxisExtent = crossAxisExtent ?? 0
-      ..color = color;
+      ..color = color
+      ..fallbackDirection = fallbackDirection;
   }
 }
 
@@ -461,10 +506,12 @@ class _RenderSpaceRange extends RenderBox {
     double? maxExtent,
     double? crossAxisExtent,
     Color? color,
+    Axis? fallbackDirection,
   })  : _minExtent = minExtent,
         _maxExtent = maxExtent,
         _crossAxisExtent = crossAxisExtent,
-        _color = color;
+        _color = color,
+        _fallbackDirection = fallbackDirection;
 
   double get minExtent => _minExtent;
   double _minExtent;
@@ -502,18 +549,30 @@ class _RenderSpaceRange extends RenderBox {
     }
   }
 
+  Axis? get fallbackDirection => _fallbackDirection;
+  Axis? _fallbackDirection;
+  set fallbackDirection(Axis? value) {
+    if (_fallbackDirection != value) {
+      _fallbackDirection = value;
+      markNeedsLayout();
+    }
+  }
+
   Axis? get _direction {
     final parentNode = parent;
     if (parentNode is RenderFlex) {
       return parentNode.direction;
     }
-    return null;
+    return fallbackDirection;
   }
 
   double _resolveMain(BoxConstraints constraints, Axis direction) {
     final double maxAvailable = direction == Axis.horizontal
         ? constraints.maxWidth
         : constraints.maxHeight;
+    if (!maxAvailable.isFinite) {
+      return maxExtent ?? minExtent;
+    }
     final double upper = maxExtent ?? maxAvailable;
     return maxAvailable.clamp(minExtent, upper);
   }
@@ -551,8 +610,8 @@ class _RenderSpaceRange extends RenderBox {
     final Axis? direction = _direction;
     if (direction == null) {
       throw FlutterError(
-        'A SpaceMin widget must be placed directly inside a Flex widget '
-        '(Row, Column, or Flex).',
+        'A SpaceMin widget must be placed inside a Flex widget '
+        '(Row, Column, or Flex) or a Scrollable.',
       );
     }
 

@@ -48,7 +48,9 @@ class FlutterTagPositioned extends StatelessWidget {
       end: pos.end,
       bottom: pos.bottom,
       start: pos.start,
-      child: child,
+
+      /// Center the child horizontally for topCenter / bottomCenter positions.
+      child: pos.isHorizontalCenter ? Center(child: child) : child,
     );
   }
 }

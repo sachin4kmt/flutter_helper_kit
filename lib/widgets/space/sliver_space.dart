@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 
 /// A sliver that takes a fixed amount of space.
 ///
@@ -21,7 +21,7 @@ class SliverSpace extends LeafRenderObjectWidget {
   /// Must not be null and must be positive.
   final double mainAxisExtent;
 
-  /// The color used to fill the Space.
+  /// The optional color used to paint the sliver gap.
   final Color? color;
 
   @override
