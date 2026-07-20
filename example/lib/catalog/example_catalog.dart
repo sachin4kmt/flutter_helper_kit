@@ -21,7 +21,13 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.extensions,
     title: 'String & Validation',
     sourceFile: 'lib/extensions/string/string_case.dart',
-    apis: ['toSnakeCase', 'toCamelCase', 'isValidateEmail', 'extractPhoneNumber', 'isEmptyOrNull'],
+    apis: [
+      'toSnakeCase',
+      'toCamelCase',
+      'isValidateEmail',
+      'extractPhoneNumber',
+      'isEmptyOrNull'
+    ],
     builder: stringExtensionsDemo,
     description: 'Also uses validation.dart and string_extension.dart',
   ),
@@ -87,7 +93,14 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.extensions,
     title: 'Int Extensions',
     sourceFile: 'lib/extensions/number/integer_extension.dart',
-    apis: ['toWords', 'toRoman', 'toOrdinal', 'seconds', 'validate', 'addZeroPrefix'],
+    apis: [
+      'toWords',
+      'toRoman',
+      'toOrdinal',
+      'seconds',
+      'validate',
+      'addZeroPrefix'
+    ],
     builder: intExtensionsDemo,
   ),
   ExampleEntry(
@@ -95,7 +108,15 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.extensions,
     title: 'Num Extensions',
     sourceFile: 'lib/extensions/number/number_extension.dart',
-    apis: ['height', 'width', 'space', 'maxSpace', 'isBetween', 'increaseByPercentage', 'generateLoremIpsumWords'],
+    apis: [
+      'height',
+      'width',
+      'space',
+      'maxSpace',
+      'isBetween',
+      'increaseByPercentage',
+      'generateLoremIpsumWords'
+    ],
     builder: numExtensionsDemo,
   ),
   ExampleEntry(
@@ -103,16 +124,32 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.extensions,
     title: 'Duration, Random & Scope',
     sourceFile: 'lib/extensions/duration/duration_extensions.dart',
-    apis: ['delay', 'let', 'also', 'takeIf', 'generateLoremIpsumWords', 'pastDate'],
+    apis: [
+      'delay',
+      'let',
+      'also',
+      'takeIf',
+      'generateLoremIpsumWords',
+      'pastDate'
+    ],
     builder: durationRandomScopeDemo,
-    description: 'Also uses scope_functions_extension.dart and random_extension.dart',
+    description:
+        'Also uses scope_functions_extension.dart and random_extension.dart',
   ),
   ExampleEntry(
     id: 'ext_widget',
     category: ExampleCategory.extensions,
     title: 'Widget Extension',
     sourceFile: 'lib/extensions/widget/widget_extension.dart',
-    apis: ['withSize', 'withWidth', 'visible', 'opacity', 'onTap', 'cornerRadiusWithClipRRect', 'center'],
+    apis: [
+      'withSize',
+      'withWidth',
+      'visible',
+      'opacity',
+      'onTap',
+      'cornerRadiusWithClipRRect',
+      'center'
+    ],
     builder: widgetExtensionDemo,
   ),
   ExampleEntry(
@@ -120,7 +157,14 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.extensions,
     title: 'Padding & Border',
     sourceFile: 'lib/extensions/widget/padding.dart',
-    apis: ['padAll', 'padHorizontal', 'paddingAll', 'paddingSymmetric', 'circularRadius', 'circularSharpRadius'],
+    apis: [
+      'padAll',
+      'padHorizontal',
+      'paddingAll',
+      'paddingSymmetric',
+      'circularRadius',
+      'circularSharpRadius'
+    ],
     builder: paddingBorderExtensionsDemo,
     description: 'Also uses border.dart',
   ),
@@ -146,16 +190,29 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.extensions,
     title: 'Row, Column & Widget List',
     sourceFile: 'lib/extensions/widget/row_extension.dart',
-    apis: ['intrinsicHeight', 'intrinsicWidth', 'expandEvery', 'flexibleEvery', 'spacerEvery'],
+    apis: [
+      'intrinsicHeight',
+      'intrinsicWidth',
+      'expandEvery',
+      'flexibleEvery',
+      'spacerEvery'
+    ],
     builder: rowColumnWidgetListDemo,
-    description: 'Also uses column_extension.dart and widget_list_extension.dart',
+    description:
+        'Also uses column_extension.dart and widget_list_extension.dart',
   ),
   ExampleEntry(
     id: 'ext_map_full',
     category: ExampleCategory.extensions,
     title: 'Map Extension',
     sourceFile: 'lib/extensions/map/map_extension.dart',
-    apis: ['isNullOrEmpty', 'getOrDefault', 'filter', 'addIfNotNull', 'capitalizeKeysFirstCharacter'],
+    apis: [
+      'isNullOrEmpty',
+      'getOrDefault',
+      'filter',
+      'addIfNotNull',
+      'capitalizeKeysFirstCharacter'
+    ],
     builder: mapExtensionDemo,
   ),
   ExampleEntry(
@@ -163,7 +220,14 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.extensions,
     title: 'Color Extensions (full)',
     sourceFile: 'lib/extensions/color/color_extension.dart',
-    apis: ['toHex', 'withColorOpacity', 'lighten', 'darken', 'createMaterialColor', 'isDark'],
+    apis: [
+      'toHex',
+      'withColorOpacity',
+      'lighten',
+      'darken',
+      'createMaterialColor',
+      'isDark'
+    ],
     builder: colorExtensionsFullDemo,
   ),
   ExampleEntry(
@@ -179,7 +243,14 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.extensions,
     title: 'DateTime Extensions',
     sourceFile: 'lib/extensions/date/date_extension.dart',
-    apis: ['isInPast', 'isInFuture', 'timeAgo', 'format', 'formatTime', 'timeZoneOffSet'],
+    apis: [
+      'isInPast',
+      'isInFuture',
+      'timeAgo',
+      'format',
+      'formatTime',
+      'timeZoneOffSet'
+    ],
     builder: dateExtensionsDemo,
     description: 'Also uses date_format.dart',
   ),
@@ -205,7 +276,8 @@ final List<ExampleEntry> exampleCatalog = [
     id: 'w_password_strength',
     category: ExampleCategory.widgets,
     title: 'PasswordStrengthIndicator',
-    sourceFile: 'lib/widgets/password_strength_indicator/password_strength_indicator.dart',
+    sourceFile:
+        'lib/widgets/password_strength_indicator/password_strength_indicator.dart',
     apis: ['PasswordStrengthIndicator', 'PasswordRule', 'PasswordStrength'],
     builder: passwordStrengthDemo,
   ),
@@ -246,7 +318,14 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.widgets,
     title: 'UI Components',
     sourceFile: 'lib/widgets/center_text_divider.dart',
-    apis: ['CenterTextDivider', 'DashDivider', 'GradientText', 'RatingBarWidget', 'Marquee', 'DottedBorderWidget'],
+    apis: [
+      'CenterTextDivider',
+      'DashDivider',
+      'GradientText',
+      'RatingBarWidget',
+      'Marquee',
+      'DottedBorderWidget'
+    ],
     builder: uiComponentsDemo,
   ),
   ExampleEntry(
@@ -277,7 +356,8 @@ final List<ExampleEntry> exampleCatalog = [
     id: 'w_cupertino',
     category: ExampleCategory.widgets,
     title: 'Cupertino Dialogs',
-    sourceFile: 'lib/widgets/app_cupertino_action_sheet/app_cupertino_action_sheet.dart',
+    sourceFile:
+        'lib/widgets/app_cupertino_action_sheet/app_cupertino_action_sheet.dart',
     apis: ['AppCupertinoActionSheet', 'AppCupertinoDialog', 'ActionSheetItem'],
     builder: cupertinoDialogsDemo,
   ),
@@ -406,7 +486,13 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.widgets,
     title: 'GenericPickerSheet',
     sourceFile: 'lib/widgets/dropdown_sheet/generic_dropdown_sheet.dart',
-    apis: ['GenericPickerSheet', 'singleSelection', 'multiSelection', 'DropdownItem', 'MyDropdownItem'],
+    apis: [
+      'GenericPickerSheet',
+      'singleSelection',
+      'multiSelection',
+      'DropdownItem',
+      'MyDropdownItem'
+    ],
     builder: genericPickerDemo,
   ),
   ExampleEntry(
@@ -435,6 +521,21 @@ final List<ExampleEntry> exampleCatalog = [
     description: 'Also uses space.dart',
   ),
   ExampleEntry(
+    id: 'w_percent_indicator',
+    category: ExampleCategory.widgets,
+    title: 'Percent Indicators',
+    sourceFile:
+        'lib/widgets/flutter_percent_indicator/flutter_percent_indicator.dart',
+    apis: [
+      'CircularPercentIndicator',
+      'LinearPercentIndicator',
+      'MultiSegmentLinearIndicator',
+      'SegmentLinearIndicator',
+    ],
+    builder: percentIndicatorsDemo,
+    description: 'Circular, linear, and multi-segment progress bars',
+  ),
+  ExampleEntry(
     id: 'w_avatar_glow_multi',
     category: ExampleCategory.widgets,
     title: 'AvatarGlowMultiColor',
@@ -455,7 +556,12 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.widgets,
     title: 'Sharp Corners (full)',
     sourceFile: 'lib/widgets/sharp_corners/sharp.dart',
-    apis: ['SharpClipRect', 'SharpCircleBorder', 'SharpRadius', 'SharpRectangleBorder'],
+    apis: [
+      'SharpClipRect',
+      'SharpCircleBorder',
+      'SharpRadius',
+      'SharpRectangleBorder'
+    ],
     builder: sharpCornersFullDemo,
   ),
   ExampleEntry(
@@ -463,7 +569,13 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.widgets,
     title: 'Shimmer Variants',
     sourceFile: 'lib/widgets/simmer.dart',
-    apis: ['ProfilePageShimmer', 'ListTileShimmer', 'VideoShimmer', 'YoutubeShimmer', 'PlayStoreShimmer'],
+    apis: [
+      'ProfilePageShimmer',
+      'ListTileShimmer',
+      'VideoShimmer',
+      'YoutubeShimmer',
+      'PlayStoreShimmer'
+    ],
     builder: shimmerVariantsDemo,
   ),
   ExampleEntry(
@@ -471,7 +583,12 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.widgets,
     title: 'Ticket Clippers (all)',
     sourceFile: 'lib/widgets/ticket_clippers/rounded_edge.dart',
-    apis: ['RoundedEdgeClipper', 'TicketRoundedEdgeClipper', 'PointedEdgeClipper', 'TicketShadowPainter'],
+    apis: [
+      'RoundedEdgeClipper',
+      'TicketRoundedEdgeClipper',
+      'PointedEdgeClipper',
+      'TicketShadowPainter'
+    ],
     builder: ticketClippersFullDemo,
   ),
   ExampleEntry(
@@ -497,7 +614,11 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.animation,
     title: 'Widget Animations',
     sourceFile: 'lib/animation/widget_animation_extensions.dart',
-    apis: ['animateWidgetElasticEntry', 'animateWidgetGlassReveal', 'animateWidgetZoomFocus'],
+    apis: [
+      'animateWidgetElasticEntry',
+      'animateWidgetGlassReveal',
+      'animateWidgetZoomFocus'
+    ],
     builder: widgetAnimationsDemo,
     description: '75+ animateWidget* methods available',
   ),
@@ -530,7 +651,12 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.animation,
     title: 'Staggered List Animations',
     sourceFile: 'lib/animation/widget_list_animation.dart',
-    apis: ['animateStaggeredList', 'animateStaggeredListRight', 'animateStaggeredScale', 'animateStaggeredBounce'],
+    apis: [
+      'animateStaggeredList',
+      'animateStaggeredListRight',
+      'animateStaggeredScale',
+      'animateStaggeredBounce'
+    ],
     builder: staggeredListAnimationsDemo,
   ),
   ExampleEntry(
@@ -538,7 +664,15 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.animation,
     title: 'flutter_animate Core',
     sourceFile: 'lib/core/flutter_animate/flutter_animate.dart',
-    apis: ['Animate', '.animate()', 'fadeIn', 'slideY', 'scale', 'shake', 'NumDurationExtensions.ms'],
+    apis: [
+      'Animate',
+      '.animate()',
+      'fadeIn',
+      'slideY',
+      'scale',
+      'shake',
+      'NumDurationExtensions.ms'
+    ],
     builder: flutterAnimateDemo,
   ),
 
@@ -556,7 +690,13 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.appResponsive,
     title: 'Responsive Slivers',
     sourceFile: 'lib/app_responsive/r_sliver_padding.dart',
-    apis: ['RSliverPadding', 'RSliverSizedBox', 'verticalSpace', 'horizontalSpace', 'REdgeInsets'],
+    apis: [
+      'RSliverPadding',
+      'RSliverSizedBox',
+      'verticalSpace',
+      'horizontalSpace',
+      'REdgeInsets'
+    ],
     builder: sliverResponsiveDemo,
     description: 'Also uses size_extension.dart and r_sliver_sized_box.dart',
   ),
@@ -567,7 +707,12 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.utils,
     title: 'Utils',
     sourceFile: 'lib/utils/ago_time.dart',
-    apis: ['timeAgoCalculated', 'RandomImage', 'RandomPicsumImage', 'SystemUiUtils'],
+    apis: [
+      'timeAgoCalculated',
+      'RandomImage',
+      'RandomPicsumImage',
+      'SystemUiUtils'
+    ],
     builder: utilsDemo,
   ),
   ExampleEntry(
@@ -583,7 +728,13 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.utils,
     title: 'Decorations',
     sourceFile: 'lib/utils/decorations.dart',
-    apis: ['primaryTextStyle', 'defaultInputDecoration', 'boxDecorationWithShadow', 'boxDecorationRoundedWithShadow', 'radius'],
+    apis: [
+      'primaryTextStyle',
+      'defaultInputDecoration',
+      'boxDecorationWithShadow',
+      'boxDecorationRoundedWithShadow',
+      'radius'
+    ],
     builder: decorationsDemo,
   ),
   ExampleEntry(
@@ -591,7 +742,13 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.utils,
     title: 'System Chrome',
     sourceFile: 'lib/utils/system_chrome_utils.dart',
-    apis: ['setStatusBarColor', 'setDarkStatusBar', 'setLightStatusBar', 'hideStatusBar', 'showStatusBar'],
+    apis: [
+      'setStatusBarColor',
+      'setDarkStatusBar',
+      'setLightStatusBar',
+      'hideStatusBar',
+      'showStatusBar'
+    ],
     builder: systemChromeDemo,
   ),
   ExampleEntry(
@@ -599,7 +756,12 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.utils,
     title: 'Password Validator',
     sourceFile: 'lib/utils/password_validator.dart',
-    apis: ['Validator.hasMinimumLength', 'hasMinimumUppercase', 'hasMinimumLowercase', 'hasMinimumNumericCharacters'],
+    apis: [
+      'Validator.hasMinimumLength',
+      'hasMinimumUppercase',
+      'hasMinimumLowercase',
+      'hasMinimumNumericCharacters'
+    ],
     builder: passwordValidatorDemo,
   ),
   ExampleEntry(
@@ -623,7 +785,12 @@ final List<ExampleEntry> exampleCatalog = [
     category: ExampleCategory.utils,
     title: 'RegExp Patterns',
     sourceFile: 'lib/utils/pattern.dart',
-    apis: ['RegExpPatterns.url', 'RegExpPatterns.email', 'RegExpPatterns.phone', 'RegExpPatterns.image'],
+    apis: [
+      'RegExpPatterns.url',
+      'RegExpPatterns.email',
+      'RegExpPatterns.phone',
+      'RegExpPatterns.image'
+    ],
     builder: patternUtilsDemo,
   ),
   ExampleEntry(

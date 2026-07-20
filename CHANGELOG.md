@@ -1,3 +1,7 @@
+## 1.2.0
+* Added `flutter_percent_indicator` widgets: `CircularPercentIndicator`, `LinearPercentIndicator`, `MultiSegmentLinearIndicator`.
+* Improved `SpaceMin` / `SpaceMax` scrollable support and layout tests.
+
 ## 1.1.0
 * Added `FlutterTagPosition.topCenter` and `FlutterTagPosition.bottomCenter`.
 

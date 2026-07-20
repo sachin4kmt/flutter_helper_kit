@@ -38,7 +38,9 @@ Widget unFocusableDemo(BuildContext context) {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          const TextField(decoration: InputDecoration(labelText: 'Tap outside to dismiss keyboard')),
+          const TextField(
+              decoration: InputDecoration(
+                  labelText: 'Tap outside to dismiss keyboard')),
           const SizedBox(height: 8),
           const Text('Wrapped with UnFocusable'),
         ],
@@ -120,7 +122,8 @@ Widget animatedListWrapperDemo(BuildContext context) {
   return AnimatedListWrapper(
     itemCount: 6,
     animationType: ListAnimationType.slideY,
-    itemBuilder: (_, i) => Card(child: ListTile(title: Text('Animated item $i'))),
+    itemBuilder: (_, i) =>
+        Card(child: ListTile(title: Text('Animated item $i'))),
   );
 }
 
@@ -196,9 +199,11 @@ Widget widgetHelperDemo(BuildContext context) {
 Widget sliverSpaceDemo(BuildContext context) {
   return CustomScrollView(
     slivers: [
-      const SliverToBoxAdapter(child: ListTile(title: Text('Above SliverSpace'))),
+      const SliverToBoxAdapter(
+          child: ListTile(title: Text('Above SliverSpace'))),
       const SliverSpace(24, color: Color(0xFFE3F2FD)),
-      const SliverToBoxAdapter(child: ListTile(title: Text('Below SliverSpace'))),
+      const SliverToBoxAdapter(
+          child: ListTile(title: Text('Below SliverSpace'))),
       SliverPadding(
         padding: const EdgeInsets.all(16),
         sliver: SliverList(
@@ -209,7 +214,8 @@ Widget sliverSpaceDemo(BuildContext context) {
               children: [
                 const Text('Left'),
                 16.spaceMax(),
-                Container(color: Colors.teal.shade100, child: const Text(' expand ')),
+                Container(
+                    color: Colors.teal.shade100, child: const Text(' expand ')),
               ],
             ),
             const SizedBox(height: 16),
@@ -232,10 +238,70 @@ Widget sliverSpaceDemo(BuildContext context) {
   );
 }
 
+Widget percentIndicatorsDemo(BuildContext context) {
+  return ListView(
+    padding: const EdgeInsets.all(16),
+    children: [
+      const Text('CircularPercentIndicator',
+          style: TextStyle(fontWeight: FontWeight.bold)),
+      const SizedBox(height: 12),
+      Center(
+        child: CircularPercentIndicator(
+          radius: 56,
+          lineWidth: 10,
+          percent: 0.72,
+          animation: true,
+          animationDuration: 900,
+          circularStrokeCap: CircularStrokeCap.round,
+          progressColor: Colors.teal,
+          backgroundColor: Colors.teal.shade100,
+          center: const Text('72%'),
+        ),
+      ),
+      const SizedBox(height: 24),
+      const Text('LinearPercentIndicator',
+          style: TextStyle(fontWeight: FontWeight.bold)),
+      const SizedBox(height: 12),
+      LinearPercentIndicator(
+        lineHeight: 14,
+        percent: 0.55,
+        animation: true,
+        barRadius: const Radius.circular(8),
+        progressColor: Colors.indigo,
+        backgroundColor: Colors.indigo.shade100,
+        center: const Text('55%',
+            style: TextStyle(color: Colors.white, fontSize: 11)),
+      ),
+      const SizedBox(height: 24),
+      const Text('MultiSegmentLinearIndicator',
+          style: TextStyle(fontWeight: FontWeight.bold)),
+      const SizedBox(height: 12),
+      MultiSegmentLinearIndicator(
+        lineHeight: 16,
+        animation: true,
+        barRadius: const Radius.circular(8),
+        padding: EdgeInsets.zero,
+        segments: const [
+          SegmentLinearIndicator(
+              percent: 0.25, color: Colors.redAccent, enableStripes: true),
+          SegmentLinearIndicator(percent: 0.35, color: Colors.amber),
+          SegmentLinearIndicator(percent: 0.2, color: Colors.green),
+        ],
+      ),
+    ],
+  );
+}
+
 Widget avatarGlowMultiColorDemo(BuildContext context) {
   return Center(
     child: AvatarGlowMultiColor(
-      glowColors: const [Colors.red, Colors.orange, Colors.yellow, Colors.green, Colors.blue],
+      glowColors: const [
+        Colors.red,
+        Colors.orange,
+        Colors.yellow,
+        Colors.green,
+        Colors.blue
+      ],
       child: CircleAvatar(
         radius: 36,
         backgroundColor: Colors.white,
@@ -263,12 +329,14 @@ Widget sharpCornersFullDemo(BuildContext context) {
     padding: const EdgeInsets.all(16),
     children: [
       SharpClipRect(
-        radius: const SharpBorderRadius.all(SharpRadius(cornerRadius: 20, sharpRatio: 0.5)),
+        radius: const SharpBorderRadius.all(
+            SharpRadius(cornerRadius: 20, sharpRatio: 0.5)),
         child: Container(
           height: 80,
           color: Colors.deepPurple,
           alignment: Alignment.center,
-          child: const Text('SharpClipRect', style: TextStyle(color: Colors.white)),
+          child: const Text('SharpClipRect',
+              style: TextStyle(color: Colors.white)),
         ),
       ),
       const SizedBox(height: 16),
@@ -327,7 +395,8 @@ Widget ticketClippersFullDemo(BuildContext context) {
       const SizedBox(height: 16),
       TicketClipper(
         clipper: TicketRoundedEdgeClipper(),
-        shadow: BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 6),
+        shadow: BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1), blurRadius: 6),
         child: Container(
           height: 100,
           color: Colors.green.shade100,

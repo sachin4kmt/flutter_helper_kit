@@ -36,6 +36,7 @@ export 'widgets/slider_button.dart';
 export 'widgets/custom_banner.dart';
 export 'widgets/center_text_divider.dart';
 export 'widgets/circle_container.dart';
+export 'widgets/flutter_percent_indicator/flutter_percent_indicator.dart';
 export 'widgets/password_strength_indicator/password_rules_enum.dart';
 export 'widgets/password_strength_indicator/password_strength_enum.dart';
 export 'widgets/password_strength_indicator/password_strength_indicator.dart';
