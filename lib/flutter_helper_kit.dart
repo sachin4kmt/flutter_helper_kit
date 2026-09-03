@@ -25,6 +25,7 @@ export 'extensions/function/listenable_extension.dart';
 export 'extensions/map/map.dart';
 export 'extensions/number/number_extension.dart';
 export 'extensions/number/smart_round_to_string.dart';
+export 'extensions/number/currency_extension.dart';
 export 'extensions/random/random_extension.dart';
 export 'extensions/function/scope_functions_extension.dart';
 export 'extensions/string/string_extension.dart';

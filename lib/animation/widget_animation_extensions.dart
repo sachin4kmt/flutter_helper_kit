@@ -252,11 +252,15 @@ extension AnimateOnWidget on Widget {
   Widget animateWidgetErrorShake(
       {required bool trigger,
       Color color = Colors.red,
+      int durationMs = 500,
+      double hz = 10,
       bool repeat = false,
       bool animate = true}) {
     if (!animate || !trigger) return this;
-    return _baseAnimate(repeat: repeat).shakeX(hz: 10, duration: 500.ms).custom(
-          duration: 500.ms,
+    return _baseAnimate(repeat: repeat)
+        .shakeX(hz: hz, duration: durationMs.ms)
+        .custom(
+          duration: durationMs.ms,
           builder: (_, v, c) => Container(
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(

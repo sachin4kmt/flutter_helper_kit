@@ -5,9 +5,12 @@ Widget decorationsDemo(BuildContext context) {
   return ListView(
     padding: const EdgeInsets.all(16),
     children: [
-      Text('primaryTextStyle()', style: primaryTextStyle(size: 18, weight: FontWeight.bold)),
+      Text('primaryTextStyle()',
+          style: primaryTextStyle(size: 18, weight: FontWeight.bold)),
       const SizedBox(height: 12),
-      TextField(decoration: defaultInputDecoration(hint: 'defaultInputDecoration', label: 'Name')),
+      TextField(
+          decoration: defaultInputDecoration(
+              hint: 'defaultInputDecoration', label: 'Name')),
       const SizedBox(height: 12),
       Container(
         padding: const EdgeInsets.all(16),
@@ -75,14 +78,16 @@ class _PasswordValidatorDemoState extends State<_PasswordValidatorDemo> {
           TextField(
             controller: controller,
             obscureText: true,
-            decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+            decoration: const InputDecoration(
+                labelText: 'Password', border: OutlineInputBorder()),
             onChanged: (_) => setState(() {}),
           ),
           const SizedBox(height: 16),
           ...rules.map(
             (r) => ListTile(
               dense: true,
-              leading: Icon(r.$2 ? Icons.check_circle : Icons.circle_outlined, color: r.$2 ? Colors.green : null),
+              leading: Icon(r.$2 ? Icons.check_circle : Icons.circle_outlined,
+                  color: r.$2 ? Colors.green : null),
               title: Text(r.$1),
             ),
           ),
@@ -99,7 +104,8 @@ Widget numeralUtilsDemo(BuildContext context) {
     children: [
       _Tile('Numeral.indian', Numeral(value).indian),
       _Tile('Numeral.international', Numeral(value).international),
-      _Tile('Numeral(3.5M).international', Numeral(3500000, digitAfterDecimal: 1).international),
+      _Tile('Numeral(3.5M).international',
+          Numeral(3500000, digitAfterDecimal: 1).international),
     ],
   );
 }
@@ -121,7 +127,8 @@ class _CommonFunctionsBodyState extends State<_CommonFunctionsBody> {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        _Tile('hasMatch(email)', '${hasMatch('test@mail.com', RegExpPatterns.email)}'),
+        _Tile('hasMatch(email)',
+            '${hasMatch('test@mail.com', RegExpPatterns.email)}'),
         _Tile('randomString()', randomString(length: 12)),
         ElevatedButton(
           onPressed: () => setState(() {}),
@@ -171,7 +178,9 @@ Widget flutterHelperUtilsDemo(BuildContext context) {
           await wait(1000);
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('wait(1000) ≈ ${DateTime.now().difference(start).inMilliseconds}ms')),
+              SnackBar(
+                  content: Text(
+                      'wait(1000) ≈ ${DateTime.now().difference(start).inMilliseconds}ms')),
             );
           }
         },
@@ -195,7 +204,8 @@ Widget printfConsoleDemo(BuildContext context) {
         runSpacing: 8,
         children: [
           ElevatedButton(
-            onPressed: () => printfSuccess({'status': 'ok', 'id': 42}, tag: 'DEMO'),
+            onPressed: () =>
+                printfSuccess({'status': 'ok', 'id': 42}, tag: 'DEMO'),
             child: const Text('printfSuccess'),
           ),
           ElevatedButton(
@@ -253,7 +263,8 @@ class _Tile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(label, style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
+        title: Text(label,
+            style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
         subtitle: Text(value),
       ),
     );

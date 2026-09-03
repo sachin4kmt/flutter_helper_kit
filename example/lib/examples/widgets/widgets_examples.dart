@@ -52,7 +52,8 @@ class _PasswordStrengthDemoState extends State<_PasswordStrengthDemo> {
           TextField(
             controller: controller,
             obscureText: true,
-            decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+            decoration: const InputDecoration(
+                labelText: 'Password', border: OutlineInputBorder()),
             onChanged: (_) => setState(() {}),
           ),
           const SizedBox(height: 16),
@@ -83,7 +84,8 @@ Widget readMoreDemo(BuildContext context) {
               regExp: RegExp(r'Paydrop|WhereToNow'),
               spanBuilder: ({required text, required textStyle}) => TextSpan(
                 text: text,
-                style: textStyle.copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
+                style: textStyle.copyWith(
+                    color: Colors.blue, fontWeight: FontWeight.bold),
               ),
             ),
           ],
@@ -103,7 +105,8 @@ Widget sharpCornersDemo(BuildContext context) {
         borderRadius: SharpBorderRadius(cornerRadius: 24, sharpRatio: 0.6),
       ),
       alignment: Alignment.center,
-      child: const Text('SharpBorderRadius', style: TextStyle(color: Colors.white)),
+      child: const Text('SharpBorderRadius',
+          style: TextStyle(color: Colors.white)),
     ),
   );
 }
@@ -111,7 +114,8 @@ Widget sharpCornersDemo(BuildContext context) {
 Widget flutterTagDemo(BuildContext context) {
   return Center(
     child: FlutterTag(
-      tagContent: const Text('NEW', style: TextStyle(color: Colors.white, fontSize: 10)),
+      tagContent: const Text('NEW',
+          style: TextStyle(color: Colors.white, fontSize: 10)),
       tagStyle: const FlutterTagStyle(tagColor: Colors.red),
       child: Container(
         width: 120,
@@ -128,7 +132,10 @@ Widget avatarGlowDemo(BuildContext context) {
   return Center(
     child: AvatarGlow(
       glowColor: Colors.blue,
-      child: CircleAvatar(radius: 36, backgroundColor: Colors.blue.shade100, child: const Icon(Icons.person)),
+      child: CircleAvatar(
+          radius: 36,
+          backgroundColor: Colors.blue.shade100,
+          child: const Icon(Icons.person)),
     ),
   );
 }
@@ -141,14 +148,16 @@ Widget uiComponentsDemo(BuildContext context) {
       const SizedBox(height: 16),
       const DashDivider(),
       const SizedBox(height: 16),
-      GradientText('GradientText', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+      GradientText('GradientText',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       const SizedBox(height: 16),
       RatingBarWidget(rating: 3.5, onRatingChanged: (_) {}),
       const SizedBox(height: 16),
       Marquee(child: Text('Marquee — scrolls long text horizontally')),
       const SizedBox(height: 16),
       DottedBorderWidget(
-        child: const Padding(padding: EdgeInsets.all(16), child: Text('DottedBorderWidget')),
+        child: const Padding(
+            padding: EdgeInsets.all(16), child: Text('DottedBorderWidget')),
       ),
     ],
   );
@@ -172,7 +181,8 @@ Widget ticketClippersDemo(BuildContext context) {
   return Center(
     child: TicketClipper(
       clipper: PointedEdgeClipper(),
-      shadow: BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 8),
+      shadow:
+          BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 8),
       child: Container(
         width: 280,
         height: 120,
@@ -195,7 +205,8 @@ Widget cupertinoDialogsDemo(BuildContext context) {
             title: 'Choose',
             actions: [
               ActionSheetItem(value: 'a', label: 'Option A'),
-              ActionSheetItem(value: 'b', label: 'Option B', isDestructive: true),
+              ActionSheetItem(
+                  value: 'b', label: 'Option B', isDestructive: true),
             ],
           ),
           child: const Text('AppCupertinoActionSheet'),
@@ -266,7 +277,8 @@ class PaginationListViewExample extends StatefulWidget {
   const PaginationListViewExample({super.key});
 
   @override
-  State<PaginationListViewExample> createState() => _PaginationListViewExampleState();
+  State<PaginationListViewExample> createState() =>
+      _PaginationListViewExampleState();
 }
 
 class _PaginationListViewExampleState extends State<PaginationListViewExample> {
@@ -294,7 +306,10 @@ class _PaginationListViewExampleState extends State<PaginationListViewExample> {
       nextData: fetchMore,
       itemBuilder: (_, i) {
         if (i >= items.length) {
-          return const Center(child: Padding(padding: EdgeInsets.all(16), child: CircularProgressIndicator()));
+          return const Center(
+              child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: CircularProgressIndicator()));
         }
         return ListTile(title: Text(items[i]));
       },

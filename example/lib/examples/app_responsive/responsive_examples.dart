@@ -7,7 +7,8 @@ Widget sliverResponsiveDemo(BuildContext context) {
       SliverToBoxAdapter(
         child: Padding(
           padding: EdgeInsets.all(16.w),
-          child: Text('RSliverPadding + RSliverSizedBox', style: TextStyle(fontSize: 16.sp)),
+          child: Text('RSliverPadding + RSliverSizedBox',
+              style: TextStyle(fontSize: 16.sp)),
         ),
       ),
       RSliverPadding(

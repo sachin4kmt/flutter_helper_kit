@@ -57,7 +57,8 @@ Widget genericPickerDemo(BuildContext context) {
       children: [
         ElevatedButton(
           onPressed: () async {
-            final picked = await GenericPickerSheet.singleSelection<MyDropdownItem>(
+            final picked =
+                await GenericPickerSheet.singleSelection<MyDropdownItem>(
               context: context,
               items: items,
               initialSelected: items.first,
@@ -73,14 +74,17 @@ Widget genericPickerDemo(BuildContext context) {
         const SizedBox(height: 12),
         ElevatedButton(
           onPressed: () async {
-            final picked = await GenericPickerSheet.multiSelection<MyDropdownItem>(
+            final picked =
+                await GenericPickerSheet.multiSelection<MyDropdownItem>(
               context: context,
               items: items,
               initialSelected: [items.first],
             );
             if (context.mounted && picked != null) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Selected: ${picked.map((e) => e.getLabel()).join(', ')}')),
+                SnackBar(
+                    content: Text(
+                        'Selected: ${picked.map((e) => e.getLabel()).join(', ')}')),
               );
             }
           },

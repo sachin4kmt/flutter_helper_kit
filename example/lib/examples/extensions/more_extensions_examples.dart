@@ -38,7 +38,8 @@ Widget numExtensionsDemo(BuildContext context) {
     children: [
       _Tile('100.increaseByPercentage(10)', '${100.increaseByPercentage(10)}'),
       _Tile('50.isBetween(10, 60)', '${50.isBetween(10, 60)}'),
-      _Tile('3.generateLoremIpsumWords()', '${3.generateLoremIpsumWords().substring(0, 40)}…'),
+      _Tile('3.generateLoremIpsumWords()',
+          '${3.generateLoremIpsumWords().substring(0, 40)}…'),
       _Tile('42.toNumeral', Numeral(42000).indian),
       12.height(),
       Row(children: [const Text('A'), 24.width(), const Text('B')]),
@@ -53,7 +54,8 @@ Widget durationRandomScopeDemo(BuildContext context) {
     children: [
       _Tile('ScopeFunction.let', 'hello'.let((s) => s.toUpperCase())),
       _Tile('ScopeFunction.takeIf', '${5.takeIf((v) => v > 3)}'),
-      _Tile('Random.generateLoremIpsumWords(5)', rand.generateLoremIpsumWords(5)),
+      _Tile(
+          'Random.generateLoremIpsumWords(5)', rand.generateLoremIpsumWords(5)),
       _Tile('Random.pastDate(30)', rand.pastDate(30).toString()),
       ElevatedButton(
         onPressed: () async {
@@ -61,7 +63,9 @@ Widget durationRandomScopeDemo(BuildContext context) {
           await const Duration(seconds: 1).delay();
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('delay() took ${DateTime.now().difference(start).inMilliseconds}ms')),
+              SnackBar(
+                  content: Text(
+                      'delay() took ${DateTime.now().difference(start).inMilliseconds}ms')),
             );
           }
         },
@@ -81,11 +85,10 @@ Widget widgetExtensionDemo(BuildContext context) {
           .center()
           .paddingAll(8),
       const SizedBox(height: 12),
-      const Text('WidgetExtension chain')
-          .opacity(opacity: 0.7)
-          .onTap(() {}),
+      const Text('WidgetExtension chain').opacity(opacity: 0.7).onTap(() {}),
       const SizedBox(height: 12),
-      const Text('Hidden').visible(false, defaultWidget: Text('visible(false) → default')),
+      const Text('Hidden')
+          .visible(false, defaultWidget: Text('visible(false) → default')),
     ],
   );
 }
@@ -137,7 +140,8 @@ Widget listenableExtensionsDemo(BuildContext context) {
   return ListView(
     padding: const EdgeInsets.all(16),
     children: [
-      counter.listen((v) => Text('ValueListenable.listen: $v', style: const TextStyle(fontSize: 18))),
+      counter.listen((v) => Text('ValueListenable.listen: $v',
+          style: const TextStyle(fontSize: 18))),
       const SizedBox(height: 16),
       counter.builder(
         builder: (_, __) => ElevatedButton(
@@ -150,9 +154,8 @@ Widget listenableExtensionsDemo(BuildContext context) {
 }
 
 Widget rowColumnWidgetListDemo(BuildContext context) {
-  final chips = ['One', 'Two', 'Three']
-      .map((t) => Chip(label: Text(t)))
-      .toList();
+  final chips =
+      ['One', 'Two', 'Three'].map((t) => Chip(label: Text(t))).toList();
   return Padding(
     padding: const EdgeInsets.all(16),
     child: Column(
@@ -161,7 +164,8 @@ Widget rowColumnWidgetListDemo(BuildContext context) {
         Row(
           children: [
             Expanded(child: Container(height: 40, color: Colors.red.shade200)),
-            Expanded(child: Container(height: 60, color: Colors.green.shade200)),
+            Expanded(
+                child: Container(height: 60, color: Colors.green.shade200)),
           ],
         ).intrinsicHeight(),
         const SizedBox(height: 16),
@@ -222,7 +226,8 @@ Widget listNumExtensionDemo(BuildContext context) {
     children: [
       _Tile('nums.total', '${nums.total}'),
       _Tile('nums.isNotNullAndEmpty', '${nums.isNotNullAndEmpty}'),
-      _Tile('null list.isNullAndEmpty', '${(null as List<num>?).isNullAndEmpty}'),
+      _Tile(
+          'null list.isNullAndEmpty', '${(null as List<num>?).isNullAndEmpty}'),
     ],
   );
 }
@@ -234,7 +239,8 @@ Widget dateExtensionsDemo(BuildContext context) {
     padding: const EdgeInsets.all(16),
     children: [
       _Tile('past.isInPast', '${past.isInPast}'),
-      _Tile('future.isInFuture', '${now.add(const Duration(days: 1)).isInFuture}'),
+      _Tile('future.isInFuture',
+          '${now.add(const Duration(days: 1)).isInFuture}'),
       _Tile('now.formatTime()', now.formatTime()),
       _Tile('now.timeZoneOffSet()', now.timeZoneOffSet()),
     ],
@@ -251,7 +257,8 @@ class _Tile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(label, style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
+        title: Text(label,
+            style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
         subtitle: Text(value),
       ),
     );

@@ -192,6 +192,7 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
           height: widget.lineHeight,
           padding: widget.padding,
           child: Stack(
+            fit: StackFit.expand,
             clipBehavior: Clip.none,
             children: [
               CustomPaint(
@@ -209,9 +210,11 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
                   maskFilter: widget.maskFilter,
                   clipLinearGradient: widget.clipLinearGradient,
                 ),
-                child: widget.center != null
-                    ? Center(child: widget.center)
-                    : const SizedBox.shrink(),
+                child: SizedBox.expand(
+                  child: widget.center != null
+                      ? Center(child: widget.center)
+                      : null,
+                ),
               ),
               if (widget.widgetIndicator != null && _indicatorWidth == 0)
                 Opacity(

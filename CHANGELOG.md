@@ -1,3 +1,9 @@
+## 1.2.1
+* Fixed `LinearPercentIndicator` not painting when `center` is null (`CustomPaint` sized to `SizedBox.shrink()` → zero size). `CustomPaint` now expands via `SizedBox.expand` + `StackFit.expand`.
+* Added `toCurrency` / `toCurrencyText` number extension.
+* Reworked `TextAvatar` (shape, initials modes, tinted bg/text opacity).
+* Added `durationMs` and `hz` to `animateWidgetErrorShake`.
+
 ## 1.2.0
 * Added `flutter_percent_indicator` widgets: `CircularPercentIndicator`, `LinearPercentIndicator`, `MultiSegmentLinearIndicator`.
 * Improved `SpaceMin` / `SpaceMax` scrollable support and layout tests.
