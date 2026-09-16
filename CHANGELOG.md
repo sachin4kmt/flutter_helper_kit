@@ -1,3 +1,6 @@
+## 1.2.2
+* Fixed `GenericPickerSheet` debug assertion: sheet surface uses `Material` instead of `DecoratedBox` over `RadioListTile` / `CheckboxListTile` so ink and tile background render correctly.
+
 ## 1.2.1
 * Fixed `LinearPercentIndicator` not painting when `center` is null (`CustomPaint` sized to `SizedBox.shrink()` → zero size). `CustomPaint` now expands via `SizedBox.expand` + `StackFit.expand`.
 * Added `toCurrency` / `toCurrencyText` number extension.

@@ -136,130 +136,133 @@ class _GenericPickerSheetState<T extends DropdownItem>
 
     return SafeArea(
       bottom: false,
-      child: Container(
-        constraints: BoxConstraints(maxHeight: maxHeight),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (widget.multiSelect)
-                  TextButton(
-                    onPressed: items.isEmpty
-                        ? null
-                        : () {
-                            setState(() {
-                              if (isAllSelected) {
-                                _multiSelected.clear();
-                              } else {
-                                _multiSelected
-                                  ..clear()
-                                  ..addAll(items);
-                              }
-                            });
-                          },
-                    child: Text(
-                      isAllSelected
-                          ? widget.unselectAllLabel
-                          : widget.selectAllLabel,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                  )
-                else
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      widget.singleSelectTitle,
-                      style: theme.textTheme.titleMedium,
-                    ),
-                  ),
-                TextButton(
-                  onPressed: _handleDone,
-                  child: Text(
-                    widget.doneLabel,
-                    style: TextStyle(
-                      color: theme.colorScheme.primary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const Divider(height: 0),
-            Flexible(
-              child: items.isEmpty
-                  ? Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          widget.emptyMessage,
-                          textAlign: TextAlign.center,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
-                        ),
+      child: Material(
+        color: theme.colorScheme.surface,
+        surfaceTintColor: Colors.transparent,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+        clipBehavior: Clip.antiAlias,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: maxHeight),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  if (widget.multiSelect)
+                    TextButton(
+                      onPressed: items.isEmpty
+                          ? null
+                          : () {
+                              setState(() {
+                                if (isAllSelected) {
+                                  _multiSelected.clear();
+                                } else {
+                                  _multiSelected
+                                    ..clear()
+                                    ..addAll(items);
+                                }
+                              });
+                            },
+                      child: Text(
+                        isAllSelected
+                            ? widget.unselectAllLabel
+                            : widget.selectAllLabel,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
                       ),
                     )
-                  : widget.multiSelect
-                      ? ListView.builder(
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.all(16),
-                          itemCount: items.length,
-                          itemBuilder: (_, index) {
-                            final item = items[index];
-                            final isChecked = _multiSelected.contains(item);
-
-                            return CheckboxListTile(
-                              contentPadding: EdgeInsets.zero,
-                              value: isChecked,
-                              onChanged: (_) {
-                                setState(() {
-                                  if (isChecked) {
-                                    _multiSelected.remove(item);
-                                  } else {
-                                    _multiSelected.add(item);
-                                  }
-                                });
-                              },
-                              title: Text(item.getLabel()),
-                              controlAffinity: ListTileControlAffinity.leading,
-                              visualDensity: VisualDensity.compact,
-                              dense: true,
-                            );
-                          },
-                        )
-                      : RadioGroup<T>(
-                          groupValue: _singleSelected,
-                          onChanged: (val) {
-                            setState(() => _singleSelected = val);
-                          },
-                          child: ListView.builder(
+                  else
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        widget.singleSelectTitle,
+                        style: theme.textTheme.titleMedium,
+                      ),
+                    ),
+                  TextButton(
+                    onPressed: _handleDone,
+                    child: Text(
+                      widget.doneLabel,
+                      style: TextStyle(
+                        color: theme.colorScheme.primary,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(height: 0),
+              Flexible(
+                child: items.isEmpty
+                    ? Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            widget.emptyMessage,
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                      )
+                    : widget.multiSelect
+                        ? ListView.builder(
                             shrinkWrap: true,
                             padding: const EdgeInsets.all(16),
                             itemCount: items.length,
                             itemBuilder: (_, index) {
                               final item = items[index];
-                              return RadioListTile<T>(
-                                value: item,
+                              final isChecked = _multiSelected.contains(item);
+
+                              return CheckboxListTile(
+                                contentPadding: EdgeInsets.zero,
+                                value: isChecked,
+                                onChanged: (_) {
+                                  setState(() {
+                                    if (isChecked) {
+                                      _multiSelected.remove(item);
+                                    } else {
+                                      _multiSelected.add(item);
+                                    }
+                                  });
+                                },
                                 title: Text(item.getLabel()),
                                 controlAffinity:
                                     ListTileControlAffinity.leading,
                                 visualDensity: VisualDensity.compact,
-                                contentPadding: EdgeInsets.zero,
                                 dense: true,
-                                toggleable: widget.canUnselectRadio,
                               );
                             },
+                          )
+                        : RadioGroup<T>(
+                            groupValue: _singleSelected,
+                            onChanged: (val) {
+                              setState(() => _singleSelected = val);
+                            },
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              padding: const EdgeInsets.all(16),
+                              itemCount: items.length,
+                              itemBuilder: (_, index) {
+                                final item = items[index];
+                                return RadioListTile<T>(
+                                  value: item,
+                                  title: Text(item.getLabel()),
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
+                                  visualDensity: VisualDensity.compact,
+                                  contentPadding: EdgeInsets.zero,
+                                  dense: true,
+                                  toggleable: widget.canUnselectRadio,
+                                );
+                              },
+                            ),
                           ),
-                        ),
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
