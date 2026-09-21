@@ -1,3 +1,6 @@
+## 1.2.3
+* `TextAvatar`: text color respects [foregroundColor] and [TextStyle.color]; default remains seed + [textOpacity].
+
 ## 1.2.2
 * Fixed `GenericPickerSheet` debug assertion: sheet surface uses `Material` instead of `DecoratedBox` over `RadioListTile` / `CheckboxListTile` so ink and tile background render correctly.
 

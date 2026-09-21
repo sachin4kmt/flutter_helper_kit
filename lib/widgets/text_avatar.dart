@@ -146,7 +146,9 @@ Color resolveTextAvatarSeedColor(
 /// A text avatar with auto initials and tinted colors.
 ///
 /// Background uses [backgroundOpacity] of the seed color (default `0.2`).
-/// Text uses [textOpacity] of the same seed color (default `1.0`).
+/// Text color defaults to [textOpacity] of the same seed (default `1.0`).
+/// Override with [foregroundColor] or [style.color] (e.g. white on a solid
+/// [backgroundOpacity] fill).
 class TextAvatar extends StatelessWidget {
   const TextAvatar({
     super.key,
@@ -161,6 +163,7 @@ class TextAvatar extends StatelessWidget {
     this.includeColor,
     this.backgroundOpacity = 0.2,
     this.textOpacity = 1.0,
+    this.foregroundColor,
     this.upperCase = true,
     this.autoFontSize = true,
     this.style,
@@ -180,6 +183,11 @@ class TextAvatar extends StatelessWidget {
   final Map<String, Color>? includeColor;
   final double backgroundOpacity;
   final double textOpacity;
+
+  /// When set, used instead of seed [textOpacity]. Takes precedence over
+  /// [style.color].
+  final Color? foregroundColor;
+
   final bool upperCase;
   final bool autoFontSize;
   final TextStyle? style;
@@ -217,6 +225,8 @@ class TextAvatar extends StatelessWidget {
     );
 
     final fontSize = autoFontSize ? size * 0.38 : (style?.fontSize ?? 16);
+    final textColor =
+        foregroundColor ?? style?.color ?? colors.foreground;
 
     return SizedBox(
       width: size,
@@ -230,7 +240,7 @@ class TextAvatar extends StatelessWidget {
             overflow: TextOverflow.clip,
             textAlign: TextAlign.center,
             style: (style ?? const TextStyle()).copyWith(
-              color: colors.foreground,
+              color: textColor,
               fontSize: fontSize,
               fontWeight: style?.fontWeight ?? FontWeight.w600,
               height: 1,
