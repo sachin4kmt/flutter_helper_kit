@@ -1,3 +1,10 @@
+## 1.2.5
+* Restores the 1.2.3 API surface (includes `PasswordStrengthIndicator` and `passwordStrength()`). Prefer this over retracted 1.2.4.
+* Includes `TextAvatar` [foregroundColor] / [TextStyle.color] overrides from 1.2.3.
+
+## 1.2.4
+* **Do not use** — removed password strength APIs; reverted on pub.dev / git. Use **1.2.5** instead.
+
 ## 1.2.3
 * `TextAvatar`: text color respects [foregroundColor] and [TextStyle.color]; default remains seed + [textOpacity].
 
