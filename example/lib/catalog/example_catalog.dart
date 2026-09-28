@@ -402,14 +402,6 @@ final List<ExampleEntry> exampleCatalog = [
     builder: tapSafeGestureDemo,
   ),
   ExampleEntry(
-    id: 'w_flutter_list_view',
-    category: ExampleCategory.widgets,
-    title: 'FlutterListView',
-    sourceFile: 'lib/widgets/flutter_list_view.dart',
-    apis: ['FlutterListView', 'FlutterScrollDirection'],
-    builder: flutterListViewDemo,
-  ),
-  ExampleEntry(
     id: 'w_unfocusable',
     category: ExampleCategory.widgets,
     title: 'UnFocusable',

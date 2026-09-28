@@ -1,3 +1,6 @@
+## 1.2.6
+* **Breaking:** Removed `FlutterListView` and `FlutterScrollDirection`. Use `ListViewPagination` or `dynamic_height_list_view` for list layouts.
+
 ## 1.2.5
 * Restores the 1.2.3 API surface (includes `PasswordStrengthIndicator` and `passwordStrength()`). Prefer this over retracted 1.2.4.
 * Includes `TextAvatar` [foregroundColor] / [TextStyle.color] overrides from 1.2.3.

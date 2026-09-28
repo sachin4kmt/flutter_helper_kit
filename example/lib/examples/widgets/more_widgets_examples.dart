@@ -21,17 +21,6 @@ Widget tapSafeGestureDemo(BuildContext context) {
   );
 }
 
-Widget flutterListViewDemo(BuildContext context) {
-  final items = List.generate(8, (i) => 'Row $i');
-  return FlutterListView<String>.separator(
-    items: items,
-    padding: const EdgeInsets.all(16),
-    scrollDirection: FlutterScrollDirection.vertical,
-    separatorBuilder: (_, __) => const Divider(height: 1),
-    itemBuilder: (_, item) => ListTile(title: Text(item)),
-  );
-}
-
 Widget unFocusableDemo(BuildContext context) {
   return UnFocusable(
     child: Padding(

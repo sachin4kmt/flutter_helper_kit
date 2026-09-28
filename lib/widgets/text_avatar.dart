@@ -225,8 +225,7 @@ class TextAvatar extends StatelessWidget {
     );
 
     final fontSize = autoFontSize ? size * 0.38 : (style?.fontSize ?? 16);
-    final textColor =
-        foregroundColor ?? style?.color ?? colors.foreground;
+    final textColor = foregroundColor ?? style?.color ?? colors.foreground;
 
     return SizedBox(
       width: size,
