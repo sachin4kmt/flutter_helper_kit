@@ -1,3 +1,6 @@
+## 1.2.7
+* Fixed `GenericPickerSheet` overlapping Android navigation bar by applying bottom [SafeArea] (removed `bottom: false`).
+
 ## 1.2.6
 * **Breaking:** Removed `FlutterListView` and `FlutterScrollDirection`. Use `ListViewPagination` or `dynamic_height_list_view` for list layouts.
 

@@ -135,7 +135,6 @@ class _GenericPickerSheetState<T extends DropdownItem>
     final isAllSelected = items.isNotEmpty && _multiSelected.containsAll(items);
 
     return SafeArea(
-      bottom: false,
       child: Material(
         color: theme.colorScheme.surface,
         surfaceTintColor: Colors.transparent,
