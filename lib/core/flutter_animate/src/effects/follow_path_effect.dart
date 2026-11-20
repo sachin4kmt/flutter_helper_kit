@@ -39,13 +39,10 @@ class FollowPathEffect extends Effect<double> {
     bool? rotate,
     double? rotationOffset,
     bool? transformHitTests,
-  })  : transformHitTests = transformHitTests ?? defaultTransformHitTests,
-        rotate = rotate ?? defaultRotate,
-        rotationOffset = rotationOffset ?? defaultRotationOffset,
-        super(
-          begin: begin ?? neutralValue,
-          end: end ?? defaultValue,
-        );
+  }) : transformHitTests = transformHitTests ?? defaultTransformHitTests,
+       rotate = rotate ?? defaultRotate,
+       rotationOffset = rotationOffset ?? defaultRotationOffset,
+       super(begin: begin ?? neutralValue, end: end ?? defaultValue);
 
   final bool transformHitTests;
   final bool rotate;
@@ -66,9 +63,10 @@ class FollowPathEffect extends Effect<double> {
 
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) {
-        Tangent? tangent =
-            metric.getTangentForOffset(metric.length * animation.value);
+      builder: (_, _) {
+        Tangent? tangent = metric.getTangentForOffset(
+          metric.length * animation.value,
+        );
 
         Offset position = tangent?.position ?? Offset.zero;
         double rotation = rotate ? -(tangent?.angle ?? 0) + rotationOffset : 0;
@@ -105,16 +103,17 @@ extension FollowPathEffectExtensions<T extends AnimateManager<T>> on T {
     bool? rotate,
     double? rotationOffset,
     bool? transformHitTests,
-  }) =>
-      addEffect(FollowPathEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        path: path,
-        rotate: rotate,
-        rotationOffset: rotationOffset,
-        transformHitTests: transformHitTests,
-      ));
+  }) => addEffect(
+    FollowPathEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      path: path,
+      rotate: rotate,
+      rotationOffset: rotationOffset,
+      transformHitTests: transformHitTests,
+    ),
+  );
 }

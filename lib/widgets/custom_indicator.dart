@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class CustomIndicator extends StatelessWidget {
   final bool isActive;
@@ -7,13 +7,14 @@ class CustomIndicator extends StatelessWidget {
   final Color bgColor;
   final Color indicatorColor;
 
-  const CustomIndicator(
-      {super.key,
-      this.indicatorColor = Colors.blue,
-      this.isActive = false,
-      required this.child,
-      this.opacity = 0.6,
-      this.bgColor = Colors.grey});
+  const CustomIndicator({
+    super.key,
+    this.indicatorColor = Colors.blue,
+    this.isActive = false,
+    required this.child,
+    this.opacity = 0.6,
+    this.bgColor = Colors.grey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +23,17 @@ class CustomIndicator extends StatelessWidget {
     }
     final widget = AbsorbPointer(child: child);
 
-    return Stack(children: <Widget>[
-      widget,
-      if (opacity > 0.0)
-        Opacity(
-          opacity: 0.6,
-          child: Container(
-            color: Colors.grey,
+    return Stack(
+      children: <Widget>[
+        widget,
+        if (opacity > 0.0)
+          Opacity(opacity: 0.6, child: Container(color: Colors.grey)),
+        Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
           ),
         ),
-      Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-        ),
-      )
-    ]);
+      ],
+    );
   }
 }

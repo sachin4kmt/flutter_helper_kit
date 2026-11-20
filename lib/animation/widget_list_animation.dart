@@ -6,11 +6,12 @@ extension GlobalWidgetListAnimations on List<Widget> {
   // ===========================================================================
 
   /// 1. Staggered Vertical Slide (Up/Down)
-  List<Widget> animateStaggeredList(
-      {int intervalMs = 80,
-      int durationMs = 300,
-      double beginY = 0.1,
-      bool animate = true}) {
+  List<Widget> animateStaggeredList({
+    int intervalMs = 80,
+    int durationMs = 300,
+    double beginY = 0.1,
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (index) {
       return this[index]
@@ -21,11 +22,12 @@ extension GlobalWidgetListAnimations on List<Widget> {
   }
 
   /// 2. Staggered Slide from Right
-  List<Widget> animateStaggeredListRight(
-      {int intervalMs = 100,
-      double begin = 0.2,
-      int durationMs = 300,
-      bool animate = true}) {
+  List<Widget> animateStaggeredListRight({
+    int intervalMs = 100,
+    double begin = 0.2,
+    int durationMs = 300,
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (index) {
       return this[index]
@@ -36,11 +38,12 @@ extension GlobalWidgetListAnimations on List<Widget> {
   }
 
   /// 3. Staggered Slide from Left
-  List<Widget> animateStaggeredListLeft(
-      {int intervalMs = 100,
-      double begin = -0.2,
-      int durationMs = 300,
-      bool animate = true}) {
+  List<Widget> animateStaggeredListLeft({
+    int intervalMs = 100,
+    double begin = -0.2,
+    int durationMs = 300,
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (index) {
       return this[index]
@@ -98,10 +101,11 @@ extension GlobalWidgetListAnimations on List<Widget> {
           .animate(delay: (i * intervalMs).ms)
           .fadeIn(duration: duration)
           .scale(
-              begin: Offset(beginScale, beginScale),
-              end: const Offset(1, 1),
-              duration: duration,
-              curve: curve);
+            begin: Offset(beginScale, beginScale),
+            end: const Offset(1, 1),
+            duration: duration,
+            curve: curve,
+          );
     });
   }
 
@@ -122,10 +126,11 @@ extension GlobalWidgetListAnimations on List<Widget> {
   }
 
   /// 8. Items flip into view (X-axis rotation)
-  List<Widget> animateStaggeredFlip(
-      {int intervalMs = 150,
-      Duration duration = const Duration(milliseconds: 600),
-      bool animate = true}) {
+  List<Widget> animateStaggeredFlip({
+    int intervalMs = 150,
+    Duration duration = const Duration(milliseconds: 600),
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (int i) {
       return this[i]
@@ -136,39 +141,48 @@ extension GlobalWidgetListAnimations on List<Widget> {
   }
 
   /// 9. Adds a moving shimmer light effect to each item
-  List<Widget> animateStaggeredShimmer(
-      {Color? color, int intervalMs = 200, bool animate = true}) {
+  List<Widget> animateStaggeredShimmer({
+    Color? color,
+    int intervalMs = 200,
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (int i) {
-      return this[i].animate(delay: (i * intervalMs).ms).shimmer(
-          duration: 1500.ms,
-          color: color ?? Colors.white.withColorOpacity(0.4));
+      return this[i]
+          .animate(delay: (i * intervalMs).ms)
+          .shimmer(
+            duration: 1500.ms,
+            color: color ?? Colors.white.withColorOpacity(0.4),
+          );
     });
   }
 
   /// 10. STAGGERED BOUNCE (Very Organic feel)
-  List<Widget> animateStaggeredBounce(
-      {int intervalMs = 100,
-      Duration duration = const Duration(milliseconds: 600),
-      bool animate = true}) {
+  List<Widget> animateStaggeredBounce({
+    int intervalMs = 100,
+    Duration duration = const Duration(milliseconds: 600),
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (int i) {
       return this[i]
           .animate(delay: (i * intervalMs).ms)
           .fadeIn(duration: duration)
           .scale(
-              begin: const Offset(0.7, 0.7),
-              end: const Offset(1, 1),
-              duration: duration,
-              curve: Curves.elasticOut);
+            begin: const Offset(0.7, 0.7),
+            end: const Offset(1, 1),
+            duration: duration,
+            curve: Curves.elasticOut,
+          );
     });
   }
 
   /// 11. PERSPECTIVE 3D (Premium Card Entry)
-  List<Widget> animateStaggered3D(
-      {int intervalMs = 150,
-      Duration duration = const Duration(milliseconds: 800),
-      bool animate = true}) {
+  List<Widget> animateStaggered3D({
+    int intervalMs = 150,
+    Duration duration = const Duration(milliseconds: 800),
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (int i) {
       return this[i]
@@ -179,13 +193,15 @@ extension GlobalWidgetListAnimations on List<Widget> {
           begin: 0.6,
           end: 0,
           duration: duration,
-          builder: (context, value, child) => Transform(
-            transform: Matrix4.identity()
-              ..setEntry(3, 2, 0.002)
-              ..rotateX(value),
-            alignment: Alignment.center,
-            child: child,
-          ),
+          builder:
+              (context, value, child) => Transform(
+                transform:
+                    Matrix4.identity()
+                      ..setEntry(3, 2, 0.002)
+                      ..rotateX(value),
+                alignment: Alignment.center,
+                child: child,
+              ),
         );
     });
   }
@@ -204,15 +220,18 @@ extension GlobalWidgetListAnimations on List<Widget> {
           .fadeIn(duration: duration)
           .blurXY(begin: beginBlur, end: 0, duration: duration)
           .scale(
-              begin: const Offset(1.1, 1.1),
-              end: const Offset(1, 1),
-              duration: duration);
+            begin: const Offset(1.1, 1.1),
+            end: const Offset(1, 1),
+            duration: duration,
+          );
     });
   }
 
   /// 13. STAGGERED SHAKE ENTRY
-  List<Widget> animateStaggeredShake(
-      {int intervalMs = 100, bool animate = true}) {
+  List<Widget> animateStaggeredShake({
+    int intervalMs = 100,
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (int i) {
       return this[i]
@@ -235,58 +254,72 @@ extension GlobalWidgetListAnimations on List<Widget> {
           .animate(delay: (i * intervalMs).ms)
           .fadeIn(duration: duration)
           .slideX(
-              begin: begin,
-              end: 0,
-              duration: duration,
-              curve: Curves.elasticOut);
+            begin: begin,
+            end: 0,
+            duration: duration,
+            curve: Curves.elasticOut,
+          );
     });
   }
 
   /// 15. PERSPECTIVE FLIP IN
-  List<Widget> animateStaggered3DFlip(
-      {int intervalMs = 120,
-      Duration duration = const Duration(milliseconds: 600),
-      bool animate = true}) {
+  List<Widget> animateStaggered3DFlip({
+    int intervalMs = 120,
+    Duration duration = const Duration(milliseconds: 600),
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (int i) {
       return this[i]
           .animate(delay: (i * intervalMs).ms)
           .fadeIn(duration: duration)
           .flipH(
-              begin: -1,
-              end: 0,
-              duration: duration,
-              curve: Curves.easeOutCubic,
-              alignment: Alignment.center)
+            begin: -1,
+            end: 0,
+            duration: duration,
+            curve: Curves.easeOutCubic,
+            alignment: Alignment.center,
+          )
           .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1));
     });
   }
 
   /// 16. SPIRAL ENTRANCE
-  List<Widget> animateStaggeredSpiral(
-      {int intervalMs = 100,
-      Duration duration = const Duration(milliseconds: 500),
-      bool animate = true}) {
+  List<Widget> animateStaggeredSpiral({
+    int intervalMs = 100,
+    Duration duration = const Duration(milliseconds: 500),
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (int i) {
       return this[i]
           .animate(delay: (i * intervalMs).ms)
           .fadeIn(duration: duration)
           .rotate(
-              begin: 0.5, end: 0, duration: duration, curve: Curves.easeOutBack)
+            begin: 0.5,
+            end: 0,
+            duration: duration,
+            curve: Curves.easeOutBack,
+          )
           .scale(begin: const Offset(0.5, 0.5), end: const Offset(1, 1));
     });
   }
 
   /// 17. SHIMMER GLOW
-  List<Widget> animateStaggeredGlow(
-      {Color shimmerColor = Colors.white24,
-      int intervalMs = 150,
-      bool animate = true}) {
+  List<Widget> animateStaggeredGlow({
+    Color shimmerColor = Colors.white24,
+    int intervalMs = 150,
+    bool animate = true,
+  }) {
     if (!animate) return this;
     return List<Widget>.generate(length, (int i) {
-      return this[i].animate(delay: (i * intervalMs).ms).shimmer(
-          duration: 1800.ms, color: shimmerColor, curve: Curves.easeInOutSine);
+      return this[i]
+          .animate(delay: (i * intervalMs).ms)
+          .shimmer(
+            duration: 1800.ms,
+            color: shimmerColor,
+            curve: Curves.easeInOutSine,
+          );
     });
   }
 
@@ -302,9 +335,10 @@ extension GlobalWidgetListAnimations on List<Widget> {
           .animate(delay: (i * intervalMs).ms)
           .fadeIn(duration: duration)
           .scale(
-              begin: const Offset(1.5, 1.5),
-              end: const Offset(1, 1),
-              curve: Curves.easeOutExpo);
+            begin: const Offset(1.5, 1.5),
+            end: const Offset(1, 1),
+            curve: Curves.easeOutExpo,
+          );
     });
   }
 
@@ -319,10 +353,11 @@ extension GlobalWidgetListAnimations on List<Widget> {
           .animate(delay: (index * intervalMs).ms)
           .fadeIn(duration: 500.ms)
           .scale(
-              begin: const Offset(0.5, 1.5),
-              end: const Offset(1, 1),
-              curve: Curves.elasticOut,
-              duration: 1000.ms);
+            begin: const Offset(0.5, 1.5),
+            end: const Offset(1, 1),
+            curve: Curves.elasticOut,
+            duration: 1000.ms,
+          );
     }).toList();
   }
 }

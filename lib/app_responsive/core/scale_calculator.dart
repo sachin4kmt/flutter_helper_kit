@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 typedef FontSizeResolver = double Function(num fontSize);
 
@@ -34,9 +34,10 @@ class ScaleCalculator {
 
   double get scaleHeight {
     if (!enableScaleHeight) return 1;
-    final effectiveHeight = splitScreenMode
-        ? max(deviceSize.height, splitScreenMinHeight)
-        : deviceSize.height;
+    final effectiveHeight =
+        splitScreenMode
+            ? max(deviceSize.height, splitScreenMinHeight)
+            : deviceSize.height;
     return effectiveHeight / designSize.height;
   }
 
@@ -96,15 +97,15 @@ class ScaleCalculator {
 
   @override
   int get hashCode => Object.hash(
-        designSize,
-        deviceSize,
-        minTextAdapt,
-        splitScreenMode,
-        splitScreenMinHeight,
-        enableScaleWidth,
-        enableScaleHeight,
-        enableScaleText,
-      );
+    designSize,
+    deviceSize,
+    minTextAdapt,
+    splitScreenMode,
+    splitScreenMinHeight,
+    enableScaleWidth,
+    enableScaleHeight,
+    enableScaleText,
+  );
 }
 
 /// Shared defaults for responsive scaling.

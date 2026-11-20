@@ -26,7 +26,7 @@ final List<ExampleEntry> exampleCatalog = [
       'toCamelCase',
       'isValidateEmail',
       'extractPhoneNumber',
-      'isEmptyOrNull'
+      'isEmptyOrNull',
     ],
     builder: stringExtensionsDemo,
     description: 'Also uses validation.dart and string_extension.dart',
@@ -99,7 +99,7 @@ final List<ExampleEntry> exampleCatalog = [
       'toOrdinal',
       'seconds',
       'validate',
-      'addZeroPrefix'
+      'addZeroPrefix',
     ],
     builder: intExtensionsDemo,
   ),
@@ -115,7 +115,7 @@ final List<ExampleEntry> exampleCatalog = [
       'maxSpace',
       'isBetween',
       'increaseByPercentage',
-      'generateLoremIpsumWords'
+      'generateLoremIpsumWords',
     ],
     builder: numExtensionsDemo,
   ),
@@ -130,7 +130,7 @@ final List<ExampleEntry> exampleCatalog = [
       'also',
       'takeIf',
       'generateLoremIpsumWords',
-      'pastDate'
+      'pastDate',
     ],
     builder: durationRandomScopeDemo,
     description:
@@ -148,7 +148,7 @@ final List<ExampleEntry> exampleCatalog = [
       'opacity',
       'onTap',
       'cornerRadiusWithClipRRect',
-      'center'
+      'center',
     ],
     builder: widgetExtensionDemo,
   ),
@@ -163,7 +163,7 @@ final List<ExampleEntry> exampleCatalog = [
       'paddingAll',
       'paddingSymmetric',
       'circularRadius',
-      'circularSharpRadius'
+      'circularSharpRadius',
     ],
     builder: paddingBorderExtensionsDemo,
     description: 'Also uses border.dart',
@@ -195,7 +195,7 @@ final List<ExampleEntry> exampleCatalog = [
       'intrinsicWidth',
       'expandEvery',
       'flexibleEvery',
-      'spacerEvery'
+      'spacerEvery',
     ],
     builder: rowColumnWidgetListDemo,
     description:
@@ -211,7 +211,7 @@ final List<ExampleEntry> exampleCatalog = [
       'getOrDefault',
       'filter',
       'addIfNotNull',
-      'capitalizeKeysFirstCharacter'
+      'capitalizeKeysFirstCharacter',
     ],
     builder: mapExtensionDemo,
   ),
@@ -226,7 +226,7 @@ final List<ExampleEntry> exampleCatalog = [
       'lighten',
       'darken',
       'createMaterialColor',
-      'isDark'
+      'isDark',
     ],
     builder: colorExtensionsFullDemo,
   ),
@@ -249,7 +249,7 @@ final List<ExampleEntry> exampleCatalog = [
       'timeAgo',
       'format',
       'formatTime',
-      'timeZoneOffSet'
+      'timeZoneOffSet',
     ],
     builder: dateExtensionsDemo,
     description: 'Also uses date_format.dart',
@@ -324,7 +324,7 @@ final List<ExampleEntry> exampleCatalog = [
       'GradientText',
       'RatingBarWidget',
       'Marquee',
-      'DottedBorderWidget'
+      'DottedBorderWidget',
     ],
     builder: uiComponentsDemo,
   ),
@@ -483,7 +483,7 @@ final List<ExampleEntry> exampleCatalog = [
       'singleSelection',
       'multiSelection',
       'DropdownItem',
-      'MyDropdownItem'
+      'MyDropdownItem',
     ],
     builder: genericPickerDemo,
   ),
@@ -552,7 +552,7 @@ final List<ExampleEntry> exampleCatalog = [
       'SharpClipRect',
       'SharpCircleBorder',
       'SharpRadius',
-      'SharpRectangleBorder'
+      'SharpRectangleBorder',
     ],
     builder: sharpCornersFullDemo,
   ),
@@ -566,7 +566,7 @@ final List<ExampleEntry> exampleCatalog = [
       'ListTileShimmer',
       'VideoShimmer',
       'YoutubeShimmer',
-      'PlayStoreShimmer'
+      'PlayStoreShimmer',
     ],
     builder: shimmerVariantsDemo,
   ),
@@ -579,7 +579,7 @@ final List<ExampleEntry> exampleCatalog = [
       'RoundedEdgeClipper',
       'TicketRoundedEdgeClipper',
       'PointedEdgeClipper',
-      'TicketShadowPainter'
+      'TicketShadowPainter',
     ],
     builder: ticketClippersFullDemo,
   ),
@@ -609,7 +609,7 @@ final List<ExampleEntry> exampleCatalog = [
     apis: [
       'animateWidgetElasticEntry',
       'animateWidgetGlassReveal',
-      'animateWidgetZoomFocus'
+      'animateWidgetZoomFocus',
     ],
     builder: widgetAnimationsDemo,
     description: '75+ animateWidget* methods available',
@@ -647,7 +647,7 @@ final List<ExampleEntry> exampleCatalog = [
       'animateStaggeredList',
       'animateStaggeredListRight',
       'animateStaggeredScale',
-      'animateStaggeredBounce'
+      'animateStaggeredBounce',
     ],
     builder: staggeredListAnimationsDemo,
   ),
@@ -663,7 +663,7 @@ final List<ExampleEntry> exampleCatalog = [
       'slideY',
       'scale',
       'shake',
-      'NumDurationExtensions.ms'
+      'NumDurationExtensions.ms',
     ],
     builder: flutterAnimateDemo,
   ),
@@ -687,7 +687,7 @@ final List<ExampleEntry> exampleCatalog = [
       'RSliverSizedBox',
       'verticalSpace',
       'horizontalSpace',
-      'REdgeInsets'
+      'REdgeInsets',
     ],
     builder: sliverResponsiveDemo,
     description: 'Also uses size_extension.dart and r_sliver_sized_box.dart',
@@ -703,7 +703,7 @@ final List<ExampleEntry> exampleCatalog = [
       'timeAgoCalculated',
       'RandomImage',
       'RandomPicsumImage',
-      'SystemUiUtils'
+      'SystemUiUtils',
     ],
     builder: utilsDemo,
   ),
@@ -725,7 +725,7 @@ final List<ExampleEntry> exampleCatalog = [
       'defaultInputDecoration',
       'boxDecorationWithShadow',
       'boxDecorationRoundedWithShadow',
-      'radius'
+      'radius',
     ],
     builder: decorationsDemo,
   ),
@@ -739,7 +739,7 @@ final List<ExampleEntry> exampleCatalog = [
       'setDarkStatusBar',
       'setLightStatusBar',
       'hideStatusBar',
-      'showStatusBar'
+      'showStatusBar',
     ],
     builder: systemChromeDemo,
   ),
@@ -752,7 +752,7 @@ final List<ExampleEntry> exampleCatalog = [
       'Validator.hasMinimumLength',
       'hasMinimumUppercase',
       'hasMinimumLowercase',
-      'hasMinimumNumericCharacters'
+      'hasMinimumNumericCharacters',
     ],
     builder: passwordValidatorDemo,
   ),
@@ -781,7 +781,7 @@ final List<ExampleEntry> exampleCatalog = [
       'RegExpPatterns.url',
       'RegExpPatterns.email',
       'RegExpPatterns.phone',
-      'RegExpPatterns.image'
+      'RegExpPatterns.image',
     ],
     builder: patternUtilsDemo,
   ),

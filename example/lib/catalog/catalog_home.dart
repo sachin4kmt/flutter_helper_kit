@@ -1,7 +1,7 @@
 import 'package:example/app/example_scaffold.dart';
 import 'package:example/catalog/example_catalog.dart';
 import 'package:example/catalog/example_entry.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class CatalogHome extends StatefulWidget {
   const CatalogHome({super.key});
@@ -74,7 +74,9 @@ class _CatalogHomeState extends State<CatalogHome> {
           for (final category in ExampleCategory.values)
             if (grouped[category]?.isNotEmpty ?? false) ...[
               _CategoryHeader(
-                  category: category, count: grouped[category]!.length),
+                category: category,
+                count: grouped[category]!.length,
+              ),
               ...grouped[category]!.map((entry) => _ExampleTile(entry: entry)),
             ],
         ],
@@ -99,10 +101,9 @@ class _CategoryHeader extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             '${category.label} ($count)',
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(fontWeight: FontWeight.w600),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -127,9 +128,9 @@ class _ExampleTile extends StatelessWidget {
       ),
       trailing: const Icon(Icons.chevron_right),
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => ExamplePage(entry: entry)),
-        );
+        Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (_) => ExamplePage(entry: entry)));
       },
     );
   }

@@ -39,7 +39,9 @@ class Validator {
   /// Returns `true` if the [password] contains at least [specialCharactersCount] special characters,
   /// otherwise returns `false`.
   static bool hasMinimumSpecialCharacters(
-      String password, int specialCharactersCount) {
+    String password,
+    int specialCharactersCount,
+  ) {
     String pattern =
         r"^(.*?[$&+,\:;/=?@#|'<>.^*()_%!-]){$specialCharactersCount,}";
     return password.contains(RegExp(pattern));

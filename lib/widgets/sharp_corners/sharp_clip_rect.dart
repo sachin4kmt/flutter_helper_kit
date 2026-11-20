@@ -19,9 +19,7 @@ class SharpClipRect extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipPath.shape(
       clipBehavior: clipBehavior,
-      shape: SharpRectangleBorder(
-        borderRadius: radius,
-      ),
+      shape: SharpRectangleBorder(borderRadius: radius),
       child: child,
     );
   }

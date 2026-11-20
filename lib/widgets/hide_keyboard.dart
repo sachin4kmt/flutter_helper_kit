@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class UnFocusable extends StatelessWidget {
   final Widget child;
@@ -8,8 +8,9 @@ class UnFocusable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: FocusScope.of(context).unfocus,
-        child: child);
+      behavior: HitTestBehavior.opaque,
+      onTap: FocusScope.of(context).unfocus,
+      child: child,
+    );
   }
 }

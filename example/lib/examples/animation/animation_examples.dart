@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 Widget widgetAnimationsDemo(BuildContext context) {
@@ -45,7 +45,9 @@ Widget gestureAnimationDemo(BuildContext context) {
         width: 120,
         height: 120,
         decoration: BoxDecoration(
-            color: Colors.teal, borderRadius: BorderRadius.circular(16)),
+          color: Colors.teal,
+          borderRadius: BorderRadius.circular(16),
+        ),
         alignment: Alignment.center,
         child: const Text('Tap me', style: TextStyle(color: Colors.white)),
       ),
@@ -104,11 +106,13 @@ Widget bottomSheetAnimationDemo(BuildContext context) {
       onPressed: () {
         showModalBottomSheet(
           context: context,
-          builder: (_) => Container(
-            height: 180,
-            alignment: Alignment.center,
-            child: const Text('Bottom sheet content'),
-          ).animateSheetReveal(),
+          builder:
+              (_) =>
+                  Container(
+                    height: 180,
+                    alignment: Alignment.center,
+                    child: const Text('Bottom sheet content'),
+                  ).animateSheetReveal(),
         );
       },
       child: const Text('Show animated sheet'),
@@ -131,8 +135,10 @@ class _AnimatedCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(label,
-                style: const TextStyle(fontFamily: 'monospace', fontSize: 12)),
+            Text(
+              label,
+              style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
+            ),
             const SizedBox(height: 12),
             child,
           ],

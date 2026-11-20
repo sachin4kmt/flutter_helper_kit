@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'dart:math' as math;
 
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
@@ -20,9 +20,9 @@ class AvatarGlowMultiColor extends StatefulWidget {
     this.curve = Curves.fastOutSlowIn,
     this.glowRadiusFactor = 0.7,
   }) : assert(
-          glowShape != BoxShape.circle || glowBorderRadius == null,
-          'Cannot specify a border radius if the shape is a circle.',
-        );
+         glowShape != BoxShape.circle || glowBorderRadius == null,
+         'Cannot specify a border radius if the shape is a circle.',
+       );
 
   /// The child widget to display inside the glowing effect.
   final Widget child;
@@ -93,13 +93,12 @@ class _AvatarGlowMultiColorState extends State<AvatarGlowMultiColor>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    );
+    _controller = AnimationController(vsync: this, duration: widget.duration);
 
-    _painter =
-        _GlowMultiPainter(progress: _controller, glowColors: widget.glowColors);
+    _painter = _GlowMultiPainter(
+      progress: _controller,
+      glowColors: widget.glowColors,
+    );
     _opacityTweens = List.generate(widget.glowColors.length, (index) {
       return Tween<double>(begin: 0.3, end: 0);
     });
@@ -146,15 +145,16 @@ class _AvatarGlowMultiColorState extends State<AvatarGlowMultiColor>
     }
     return RepaintBoundary(
       child: CustomPaint(
-        painter: _painter
-          ..curve = widget.curve
-          ..opacityTweens = _opacityTweens
-          ..glowDecoration = BoxDecoration(
-            color: Colors.transparent,
-            shape: widget.glowShape,
-            borderRadius: widget.glowBorderRadius,
-          )
-          ..glowRadiusFactor = widget.glowRadiusFactor,
+        painter:
+            _painter
+              ..curve = widget.curve
+              ..opacityTweens = _opacityTweens
+              ..glowDecoration = BoxDecoration(
+                color: Colors.transparent,
+                shape: widget.glowShape,
+                borderRadius: widget.glowBorderRadius,
+              )
+              ..glowRadiusFactor = widget.glowRadiusFactor,
         child: widget.child,
       ),
     );
@@ -228,11 +228,13 @@ class _GlowMultiPainter extends ChangeNotifier implements CustomPainter {
 
     // We need to draw the glows from the smallest to the largest.
     for (int i = 0; i < glowColors.length; i++) {
-      final paint = Paint()
-        ..color = glowColors[i].withColorOpacity(opacityList[i])
-        ..style = PaintingStyle.fill;
+      final paint =
+          Paint()
+            ..color = glowColors[i].withColorOpacity(opacityList[i])
+            ..style = PaintingStyle.fill;
 
-      final currentRadius = glowRadius +
+      final currentRadius =
+          glowRadius +
           glowRadius * glowRadiusFactor * (i + 1) * currentProgress;
 
       final currentRect = Rect.fromCircle(
@@ -247,10 +249,7 @@ class _GlowMultiPainter extends ChangeNotifier implements CustomPainter {
 
   void _addGlowPath(Rect glowRect) {
     _glowPath.addPath(
-      glowDecoration.getClipPath(
-        glowRect,
-        TextDirection.ltr,
-      ),
+      glowDecoration.getClipPath(glowRect, TextDirection.ltr),
       Offset.zero,
     );
   }

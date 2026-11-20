@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Used by TimerBuilder to determine the next DateTime to trigger a rebuild on
 typedef TimerGenerator = DateTime? Function(DateTime now);
@@ -42,8 +42,10 @@ class TimerBuilder extends StatefulWidget {
 
     /// Builds the widget. Called for every time event or when the widget needs to be built/rebuilt.
     required this.builder,
-  }) : generator = periodicTimer(interval,
-            alignment: alignment ?? getAlignmentUnit(interval));
+  }) : generator = periodicTimer(
+         interval,
+         alignment: alignment ?? getAlignmentUnit(interval),
+       );
 
   /// Rebuilds on a schedule
   TimerBuilder.scheduled(
@@ -96,8 +98,10 @@ class _TimerBuilderState extends State<TimerBuilder> {
   }
 }
 
-TimerGenerator periodicTimer(Duration interval,
-    {Duration alignment = Duration.zero}) {
+TimerGenerator periodicTimer(
+  Duration interval, {
+  Duration alignment = Duration.zero,
+}) {
   assert(interval > Duration.zero);
 
   DateTime? next;
@@ -129,9 +133,11 @@ Stream<DateTime> createTimerStream(
   TimerGenerator generator,
   Future stopSignal,
 ) async* {
-  for (var now = DateTime.now(), next = generator(now);
-      next != null;
-      now = DateTime.now(), next = generator(now)) {
+  for (
+    var now = DateTime.now(), next = generator(now);
+    next != null;
+    now = DateTime.now(), next = generator(now)
+  ) {
     if (now.compareTo(next) > 0) continue;
     Duration waitTime = next.difference(now);
     try {
@@ -163,33 +169,41 @@ Duration getAlignmentUnit(Duration interval) {
 /// If [roundUp] is true, the result is rounded up, otherwise it's rounded down.
 /// If the duration is a multiple of days, the result will be aligned at
 /// the day mark in the timezone of the source datetime.
-DateTime alignDateTime(DateTime dt, Duration alignment,
-    [bool roundUp = false]) {
+DateTime alignDateTime(
+  DateTime dt,
+  Duration alignment, [
+  bool roundUp = false,
+]) {
   assert(alignment >= Duration.zero);
   if (alignment == Duration.zero) return dt;
   final correction = Duration(
-      days: 0,
-      hours: alignment.inDays > 0
-          ? dt.hour
-          : alignment.inHours > 0
-              ? dt.hour % alignment.inHours
-              : 0,
-      minutes: alignment.inHours > 0
-          ? dt.minute
-          : alignment.inMinutes > 0
-              ? dt.minute % alignment.inMinutes
-              : 0,
-      seconds: alignment.inMinutes > 0
-          ? dt.second
-          : alignment.inSeconds > 0
-              ? dt.second % alignment.inSeconds
-              : 0,
-      milliseconds: alignment.inSeconds > 0
-          ? dt.millisecond
-          : alignment.inMilliseconds > 0
-              ? dt.millisecond % alignment.inMilliseconds
-              : 0,
-      microseconds: alignment.inMilliseconds > 0 ? dt.microsecond : 0);
+    days: 0,
+    hours:
+        alignment.inDays > 0
+            ? dt.hour
+            : alignment.inHours > 0
+            ? dt.hour % alignment.inHours
+            : 0,
+    minutes:
+        alignment.inHours > 0
+            ? dt.minute
+            : alignment.inMinutes > 0
+            ? dt.minute % alignment.inMinutes
+            : 0,
+    seconds:
+        alignment.inMinutes > 0
+            ? dt.second
+            : alignment.inSeconds > 0
+            ? dt.second % alignment.inSeconds
+            : 0,
+    milliseconds:
+        alignment.inSeconds > 0
+            ? dt.millisecond
+            : alignment.inMilliseconds > 0
+            ? dt.millisecond % alignment.inMilliseconds
+            : 0,
+    microseconds: alignment.inMilliseconds > 0 ? dt.microsecond : 0,
+  );
   if (correction == Duration.zero) return dt;
   final corrected = dt.subtract(correction);
   final result = roundUp ? corrected.add(alignment) : corrected;

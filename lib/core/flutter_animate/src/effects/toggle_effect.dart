@@ -6,7 +6,7 @@ import 'package:flutter_helper_kit/core/flutter_animate/flutter_animate.dart';
 /// point in time.
 ///
 /// ```
-/// Animate().toggle(duration: 500.ms, builder: (_, value, __) =>
+/// Animate().toggle(duration: 500.ms, builder: (_, value, _) =>
 ///   Text('${value ? "Before Delay" : "After Delay"}'))
 /// ```
 ///
@@ -55,16 +55,10 @@ extension ToggleEffectExtensions<T extends AnimateManager<T>> on T {
     Duration? delay,
     Duration? duration,
     required ToggleEffectBuilder builder,
-  }) =>
-      addEffect(ToggleEffect(
-        delay: delay,
-        duration: duration,
-        builder: builder,
-      ));
+  }) => addEffect(
+    ToggleEffect(delay: delay, duration: duration, builder: builder),
+  );
 }
 
-typedef ToggleEffectBuilder = Widget Function(
-  BuildContext context,
-  bool value,
-  Widget child,
-);
+typedef ToggleEffectBuilder =
+    Widget Function(BuildContext context, bool value, Widget child);

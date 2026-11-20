@@ -1,13 +1,10 @@
 import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/rendering.dart';
 
-typedef AnimatedSamplerBuilder = void Function(
-  ui.Image image,
-  Size size,
-  ui.Canvas canvas,
-);
+typedef AnimatedSamplerBuilder =
+    void Function(ui.Image image, Size size, ui.Canvas canvas);
 
 class AnimatedSampler extends StatelessWidget {
   const AnimatedSampler(
@@ -23,11 +20,7 @@ class AnimatedSampler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _ShaderSamplerBuilder(
-      builder,
-      enabled: enabled,
-      child: child,
-    );
+    return _ShaderSamplerBuilder(builder, enabled: enabled, child: child);
   }
 }
 
@@ -67,9 +60,9 @@ class _RenderShaderSamplerBuilderWidget extends RenderProxyBox {
     required double devicePixelRatio,
     required AnimatedSamplerBuilder builder,
     required bool enabled,
-  })  : _devicePixelRatio = devicePixelRatio,
-        _builder = builder,
-        _enabled = enabled;
+  }) : _devicePixelRatio = devicePixelRatio,
+       _builder = builder,
+       _enabled = enabled;
 
   @override
   OffsetLayer updateCompositedLayer({
@@ -158,9 +151,9 @@ class _ShaderSamplerBuilderLayer extends OffsetLayer {
     addChildrenToScene(builder);
     builder.pop();
     return builder.build().toImageSync(
-          (pixelRatio * bounds.width).ceil(),
-          (pixelRatio * bounds.height).ceil(),
-        );
+      (pixelRatio * bounds.width).ceil(),
+      (pixelRatio * bounds.height).ceil(),
+    );
   }
 
   @override

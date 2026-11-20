@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/app_responsive/app_responsive.dart';
 
 class AppCupertinoDialog {
@@ -17,39 +17,49 @@ class AppCupertinoDialog {
     return showCupertinoDialog<T>(
       context: context,
       barrierDismissible: false,
-      builder: (ctx) => CupertinoAlertDialog(
-        title: Text(title,
-            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
-        content: content ??
-            (message != null
-                ? Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(message, style: const TextStyle(fontSize: 13)),
-                  )
-                : null),
-        actions: actions ??
-            [
-              CupertinoDialogAction(
-                onPressed: () => Navigator.pop(ctx, null),
-                child: Text(cancelText,
-                    style: const TextStyle(color: Colors.blue)),
-              ),
-              CupertinoDialogAction(
-                isDestructiveAction: isDestructive,
-                onPressed: () {
-                  Navigator.pop(ctx, true as T);
-                  onConfirm?.call();
-                },
-                child: Text(
-                  confirmText,
-                  style: TextStyle(
-                    color: isDestructive ? Colors.red : Colors.blue,
-                    fontWeight: FontWeight.w600,
+      builder:
+          (ctx) => CupertinoAlertDialog(
+            title: Text(
+              title,
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+            ),
+            content:
+                content ??
+                (message != null
+                    ? Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Text(
+                        message,
+                        style: const TextStyle(fontSize: 13),
+                      ),
+                    )
+                    : null),
+            actions:
+                actions ??
+                [
+                  CupertinoDialogAction(
+                    onPressed: () => Navigator.pop(ctx, null),
+                    child: Text(
+                      cancelText,
+                      style: const TextStyle(color: Colors.blue),
+                    ),
                   ),
-                ),
-              ),
-            ],
-      ),
+                  CupertinoDialogAction(
+                    isDestructiveAction: isDestructive,
+                    onPressed: () {
+                      Navigator.pop(ctx, true as T);
+                      onConfirm?.call();
+                    },
+                    child: Text(
+                      confirmText,
+                      style: TextStyle(
+                        color: isDestructive ? Colors.red : Colors.blue,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+          ),
     );
   }
 
@@ -96,9 +106,13 @@ class AppCupertinoDialog {
             Navigator.pop(context);
             onConfirm?.call();
           },
-          child: Text(buttonText,
-              style: const TextStyle(
-                  color: Colors.blue, fontWeight: FontWeight.w600)),
+          child: Text(
+            buttonText,
+            style: const TextStyle(
+              color: Colors.blue,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ),
       ],
     );
@@ -117,9 +131,13 @@ class AppCupertinoDialog {
       actions: [
         CupertinoDialogAction(
           onPressed: () => Navigator.pop(context),
-          child: Text(buttonText,
-              style: const TextStyle(
-                  color: Colors.blue, fontWeight: FontWeight.w600)),
+          child: Text(
+            buttonText,
+            style: const TextStyle(
+              color: Colors.blue,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ),
       ],
     );

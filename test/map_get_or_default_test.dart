@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit_extensions.dart';
 
@@ -23,10 +23,7 @@ void main() {
     test('parses strings with alternative keys', () {
       expect(apiMap.getApiStringOrDefault('missing'), isNull);
       expect(
-        apiMap.getApiStringOrDefault(
-          'name',
-          alternativeKeys: ['legacy_name'],
-        ),
+        apiMap.getApiStringOrDefault('name', alternativeKeys: ['legacy_name']),
         'Sachin',
       );
       expect(
@@ -75,10 +72,7 @@ void main() {
     });
 
     test('parses hex colors', () {
-      expect(
-        apiMap.getApiColorOrDefault('theme'),
-        const Color(0xFF172554),
-      );
+      expect(apiMap.getApiColorOrDefault('theme'), const Color(0xFF172554));
     });
 
     test('map helpers merge and exclude keys', () {

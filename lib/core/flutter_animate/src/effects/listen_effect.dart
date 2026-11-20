@@ -41,9 +41,9 @@ class ListenEffect extends Effect<double> {
     required this.callback,
     this.clamp = true,
   }) : super(
-          begin: begin ?? 0.0, // Should this use "smart" defaults?
-          end: end ?? 1.0,
-        );
+         begin: begin ?? 0.0, // Should this use "smart" defaults?
+         end: end ?? 1.0,
+       );
 
   final ValueChanged<double> callback;
   final bool clamp;
@@ -84,14 +84,15 @@ extension ListenEffectExtensions<T extends AnimateManager<T>> on T {
     double? end,
     required ValueChanged<double> callback,
     bool clamp = true,
-  }) =>
-      addEffect(ListenEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        callback: callback,
-        clamp: clamp,
-      ));
+  }) => addEffect(
+    ListenEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      callback: callback,
+      clamp: clamp,
+    ),
+  );
 }

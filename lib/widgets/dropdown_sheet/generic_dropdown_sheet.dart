@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 part 'generic_item.dart';
 
@@ -47,16 +47,17 @@ class GenericPickerSheet<T extends DropdownItem> extends StatefulWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => GenericPickerSheet<T>(
-        items: items,
-        initialSelected: initialSelected != null ? [initialSelected] : [],
-        multiSelect: false,
-        canUnselectRadio: canUnselect,
-        emptyMessage: emptyMessage,
-        singleSelectTitle: singleSelectTitle,
-        doneLabel: doneLabel,
-        onDonePressed: () => donePressed = true,
-      ),
+      builder:
+          (_) => GenericPickerSheet<T>(
+            items: items,
+            initialSelected: initialSelected != null ? [initialSelected] : [],
+            multiSelect: false,
+            canUnselectRadio: canUnselect,
+            emptyMessage: emptyMessage,
+            singleSelectTitle: singleSelectTitle,
+            doneLabel: doneLabel,
+            onDonePressed: () => donePressed = true,
+          ),
     );
 
     if (!donePressed) return initialSelected;
@@ -81,16 +82,17 @@ class GenericPickerSheet<T extends DropdownItem> extends StatefulWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => GenericPickerSheet<T>(
-        items: items,
-        initialSelected: initialSelected,
-        multiSelect: true,
-        emptyMessage: emptyMessage,
-        doneLabel: doneLabel,
-        selectAllLabel: selectAllLabel,
-        unselectAllLabel: unselectAllLabel,
-        onDonePressed: () => donePressed = true,
-      ),
+      builder:
+          (_) => GenericPickerSheet<T>(
+            items: items,
+            initialSelected: initialSelected,
+            multiSelect: true,
+            emptyMessage: emptyMessage,
+            doneLabel: doneLabel,
+            selectAllLabel: selectAllLabel,
+            unselectAllLabel: unselectAllLabel,
+            onDonePressed: () => donePressed = true,
+          ),
     );
 
     if (!donePressed) return null;
@@ -150,19 +152,20 @@ class _GenericPickerSheetState<T extends DropdownItem>
                 children: [
                   if (widget.multiSelect)
                     TextButton(
-                      onPressed: items.isEmpty
-                          ? null
-                          : () {
-                              setState(() {
-                                if (isAllSelected) {
-                                  _multiSelected.clear();
-                                } else {
-                                  _multiSelected
-                                    ..clear()
-                                    ..addAll(items);
-                                }
-                              });
-                            },
+                      onPressed:
+                          items.isEmpty
+                              ? null
+                              : () {
+                                setState(() {
+                                  if (isAllSelected) {
+                                    _multiSelected.clear();
+                                  } else {
+                                    _multiSelected
+                                      ..clear()
+                                      ..addAll(items);
+                                  }
+                                });
+                              },
                       child: Text(
                         isAllSelected
                             ? widget.unselectAllLabel
@@ -193,72 +196,72 @@ class _GenericPickerSheetState<T extends DropdownItem>
               ),
               const Divider(height: 0),
               Flexible(
-                child: items.isEmpty
-                    ? Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Text(
-                            widget.emptyMessage,
-                            textAlign: TextAlign.center,
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onSurfaceVariant,
+                child:
+                    items.isEmpty
+                        ? Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Text(
+                              widget.emptyMessage,
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant,
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    : widget.multiSelect
+                        )
+                        : widget.multiSelect
                         ? ListView.builder(
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.all(16),
+                          itemCount: items.length,
+                          itemBuilder: (_, index) {
+                            final item = items[index];
+                            final isChecked = _multiSelected.contains(item);
+
+                            return CheckboxListTile(
+                              contentPadding: EdgeInsets.zero,
+                              value: isChecked,
+                              onChanged: (_) {
+                                setState(() {
+                                  if (isChecked) {
+                                    _multiSelected.remove(item);
+                                  } else {
+                                    _multiSelected.add(item);
+                                  }
+                                });
+                              },
+                              title: Text(item.getLabel()),
+                              controlAffinity: ListTileControlAffinity.leading,
+                              visualDensity: VisualDensity.compact,
+                              dense: true,
+                            );
+                          },
+                        )
+                        : RadioGroup<T>(
+                          groupValue: _singleSelected,
+                          onChanged: (val) {
+                            setState(() => _singleSelected = val);
+                          },
+                          child: ListView.builder(
                             shrinkWrap: true,
                             padding: const EdgeInsets.all(16),
                             itemCount: items.length,
                             itemBuilder: (_, index) {
                               final item = items[index];
-                              final isChecked = _multiSelected.contains(item);
-
-                              return CheckboxListTile(
-                                contentPadding: EdgeInsets.zero,
-                                value: isChecked,
-                                onChanged: (_) {
-                                  setState(() {
-                                    if (isChecked) {
-                                      _multiSelected.remove(item);
-                                    } else {
-                                      _multiSelected.add(item);
-                                    }
-                                  });
-                                },
+                              return RadioListTile<T>(
+                                value: item,
                                 title: Text(item.getLabel()),
                                 controlAffinity:
                                     ListTileControlAffinity.leading,
                                 visualDensity: VisualDensity.compact,
+                                contentPadding: EdgeInsets.zero,
                                 dense: true,
+                                toggleable: widget.canUnselectRadio,
                               );
                             },
-                          )
-                        : RadioGroup<T>(
-                            groupValue: _singleSelected,
-                            onChanged: (val) {
-                              setState(() => _singleSelected = val);
-                            },
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              padding: const EdgeInsets.all(16),
-                              itemCount: items.length,
-                              itemBuilder: (_, index) {
-                                final item = items[index];
-                                return RadioListTile<T>(
-                                  value: item,
-                                  title: Text(item.getLabel()),
-                                  controlAffinity:
-                                      ListTileControlAffinity.leading,
-                                  visualDensity: VisualDensity.compact,
-                                  contentPadding: EdgeInsets.zero,
-                                  dense: true,
-                                  toggleable: widget.canUnselectRadio,
-                                );
-                              },
-                            ),
                           ),
+                        ),
               ),
             ],
           ),

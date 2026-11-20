@@ -259,12 +259,26 @@ extension MapGetOrDefault<K, V> on Map<K, V> {
       if (value is num) return value != 0;
       if (value is String) {
         final lower = value.trim().toLowerCase();
-        if (['true', '1', 'yes', 'y', 'on', 'active', 'enable']
-            .contains(lower)) {
+        if ([
+          'true',
+          '1',
+          'yes',
+          'y',
+          'on',
+          'active',
+          'enable',
+        ].contains(lower)) {
           return true;
         }
-        if (['false', '0', 'no', 'n', 'off', 'inactive', 'disable']
-            .contains(lower)) {
+        if ([
+          'false',
+          '0',
+          'no',
+          'n',
+          'off',
+          'inactive',
+          'disable',
+        ].contains(lower)) {
           return false;
         }
       }

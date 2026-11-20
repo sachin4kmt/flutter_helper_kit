@@ -26,11 +26,11 @@ class RotateEffect extends Effect<double> {
     double? end,
     this.alignment,
     bool? transformHitTests,
-  })  : transformHitTests = transformHitTests ?? defaultTransformHitTests,
-        super(
-          begin: begin ?? (end == null ? defaultValue : neutralValue),
-          end: end ?? neutralValue,
-        );
+  }) : transformHitTests = transformHitTests ?? defaultTransformHitTests,
+       super(
+         begin: begin ?? (end == null ? defaultValue : neutralValue),
+         end: end ?? neutralValue,
+       );
 
   final Alignment? alignment;
   final bool transformHitTests;
@@ -45,7 +45,7 @@ class RotateEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) {
+      builder: (_, _) {
         return Transform.rotate(
           angle: animation.value * 2 * math.pi,
           alignment: alignment ?? Alignment.center,
@@ -69,14 +69,15 @@ extension RotateEffectExtensions<T extends AnimateManager<T>> on T {
     double? end,
     Alignment? alignment,
     bool? transformHitTests,
-  }) =>
-      addEffect(RotateEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        alignment: alignment,
-        transformHitTests: transformHitTests,
-      ));
+  }) => addEffect(
+    RotateEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      alignment: alignment,
+      transformHitTests: transformHitTests,
+    ),
+  );
 }

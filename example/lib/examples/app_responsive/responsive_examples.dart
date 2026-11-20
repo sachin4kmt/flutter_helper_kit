@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 Widget sliverResponsiveDemo(BuildContext context) {
@@ -7,8 +7,10 @@ Widget sliverResponsiveDemo(BuildContext context) {
       SliverToBoxAdapter(
         child: Padding(
           padding: EdgeInsets.all(16.w),
-          child: Text('RSliverPadding + RSliverSizedBox',
-              style: TextStyle(fontSize: 16.sp)),
+          child: Text(
+            'RSliverPadding + RSliverSizedBox',
+            style: TextStyle(fontSize: 16.sp),
+          ),
         ),
       ),
       RSliverPadding(
@@ -42,11 +44,7 @@ Widget sliverResponsiveDemo(BuildContext context) {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Row(
-            children: [
-              const Text('A'),
-              12.horizontalSpace,
-              const Text('B'),
-            ],
+            children: [const Text('A'), 12.horizontalSpace, const Text('B')],
           ),
         ),
       ),

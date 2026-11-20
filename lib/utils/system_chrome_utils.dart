@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// Sets the status bar color and optional system navigation bar color.
@@ -34,7 +34,8 @@ Future<void> setStatusBarColor(
       statusBarColor: statusBarColor,
       systemNavigationBarColor: systemNavigationBarColor,
       statusBarBrightness: statusBarBrightness,
-      statusBarIconBrightness: statusBarIconBrightness ??
+      statusBarIconBrightness:
+          statusBarIconBrightness ??
           (statusBarColor.isDark() ? Brightness.light : Brightness.dark),
     ),
   );
@@ -53,13 +54,15 @@ Future<void> setStatusBarColor(
 /// setDarkStatusBar();
 /// ```
 void setDarkStatusBar() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.black,
-    systemNavigationBarIconBrightness: Brightness.light,
-    statusBarColor: Colors.transparent,
-    statusBarBrightness: Brightness.light,
-    statusBarIconBrightness: Brightness.dark,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.black,
+      systemNavigationBarIconBrightness: Brightness.light,
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
 }
 
 /// Configures the system UI for a **light-themed status bar** and navigation bar.
@@ -75,13 +78,15 @@ void setDarkStatusBar() {
 /// setLightStatusBar();
 /// ```
 void setLightStatusBar() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.white,
-    systemNavigationBarIconBrightness: Brightness.dark,
-    statusBarColor: Colors.transparent,
-    statusBarBrightness: Brightness.dark,
-    statusBarIconBrightness: Brightness.light,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.light,
+    ),
+  );
 }
 
 /// Hides both the **status bar** and **navigation bar**, making the app fullscreen.

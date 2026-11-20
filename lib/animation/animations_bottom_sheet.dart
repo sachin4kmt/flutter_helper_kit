@@ -17,27 +17,27 @@ extension AnimationsBottomSheet on Widget {
   Widget animateModalPop({int delayMs = 150}) {
     return animate(delay: delayMs.ms)
         .scale(
-            begin: const Offset(0.9, 0.9),
-            end: const Offset(1, 1),
-            curve: Curves.easeOutCubic)
+          begin: const Offset(0.9, 0.9),
+          end: const Offset(1, 1),
+          curve: Curves.easeOutCubic,
+        )
         .fadeIn();
   }
 
   /// 3. Bottom Sheet Header Pulse: Header bar ya handle ko dhire se highlight karna.
   Widget animateSheetHandle() {
-    return animate(onPlay: (controller) => controller.repeat(reverse: true))
-        .fadeIn(duration: 1000.ms)
-        .fadeOut(delay: 500.ms);
+    return animate(
+      onPlay: (controller) => controller.repeat(reverse: true),
+    ).fadeIn(duration: 1000.ms).fadeOut(delay: 500.ms);
   }
 
   /// 4. Action Button Elastic: Confirm/Pay buttons ke liye organic entrance.
   Widget animateSheetAction({int delayMs = 300}) {
-    return animate(
-      delay: delayMs.ms,
-    ).scale(
-        begin: const Offset(0.5, 0.5),
-        end: const Offset(1, 1),
-        curve: Curves.elasticOut,
-        duration: 800.ms);
+    return animate(delay: delayMs.ms).scale(
+      begin: const Offset(0.5, 0.5),
+      end: const Offset(1, 1),
+      curve: Curves.elasticOut,
+      duration: 800.ms,
+    );
   }
 }

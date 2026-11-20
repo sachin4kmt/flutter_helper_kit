@@ -23,18 +23,20 @@ class ScreenUtil {
   Set<Element>? _elementsToRebuild;
 
   ScaleCalculator get calculator => ScaleCalculator(
-        designSize: _uiSize,
-        deviceSize: _data.size,
-        minTextAdapt: _minTextAdapt,
-        splitScreenMode: _splitScreenMode,
-        splitScreenMinHeight: _splitScreenMinHeight,
-        enableScaleWidth: _enableScaleWH(),
-        enableScaleHeight: _enableScaleWH(),
-        enableScaleText: _enableScaleText(),
-      );
+    designSize: _uiSize,
+    deviceSize: _data.size,
+    minTextAdapt: _minTextAdapt,
+    splitScreenMode: _splitScreenMode,
+    splitScreenMinHeight: _splitScreenMinHeight,
+    enableScaleWidth: _enableScaleWH(),
+    enableScaleHeight: _enableScaleWH(),
+    enableScaleText: _enableScaleText(),
+  );
 
-  static void enableScale(
-      {bool Function()? enableWH, bool Function()? enableText}) {
+  static void enableScale({
+    bool Function()? enableWH,
+    bool Function()? enableText,
+  }) {
     _enableScaleWH = enableWH ?? () => true;
     _enableScaleText = enableText ?? () => true;
   }
@@ -57,8 +59,10 @@ class ScreenUtil {
     binding.allowFirstFrame();
   }
 
-  static void registerToBuild(BuildContext context,
-      [bool withDescendants = false]) {
+  static void registerToBuild(
+    BuildContext context, [
+    bool withDescendants = false,
+  ]) {
     (_instance._elementsToRebuild ??= {}).add(context as Element);
 
     if (withDescendants) {
@@ -81,13 +85,15 @@ class ScreenUtil {
       if (designSize != null) _instance._uiSize = designSize;
     } catch (_) {
       throw Exception(
-          'You must either use ScreenUtil.init or ScreenUtilInit first');
+        'You must either use ScreenUtil.init or ScreenUtilInit first',
+      );
     }
 
     final MediaQueryData? deviceData = _instance._data.nonEmptySizeOrNull();
     final Size deviceSize = deviceData?.size ?? _instance._uiSize;
 
-    final orientation = deviceData?.orientation ??
+    final orientation =
+        deviceData?.orientation ??
         (deviceSize.width > deviceSize.height
             ? Orientation.landscape
             : Orientation.portrait);
@@ -173,11 +179,12 @@ class ScreenUtil {
     if (kIsWeb) {
       deviceType = DeviceType.web;
     } else {
-      final isMobile = defaultTargetPlatform == TargetPlatform.iOS ||
+      final isMobile =
+          defaultTargetPlatform == TargetPlatform.iOS ||
           defaultTargetPlatform == TargetPlatform.android;
       final isTablet =
           (orientation == Orientation.portrait && screenWidth >= 600) ||
-              (orientation == Orientation.landscape && screenHeight >= 600);
+          (orientation == Orientation.landscape && screenHeight >= 600);
 
       if (isMobile) {
         deviceType = isTablet ? DeviceType.tablet : DeviceType.mobile;

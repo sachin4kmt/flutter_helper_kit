@@ -151,12 +151,13 @@ extension PasswordValidation on String {
   /// ### Edge Cases:
   /// - Password **must not contain spaces**.
   /// - Default **minimum length is 6**, but can be adjusted.
-  bool isPasswordValidator(
-      {int minLength = 6,
-      int uppercaseCharCount = 0,
-      int lowercaseCharCount = 0,
-      int numericCharCount = 0,
-      int specialCharCount = 0}) {
+  bool isPasswordValidator({
+    int minLength = 6,
+    int uppercaseCharCount = 0,
+    int lowercaseCharCount = 0,
+    int numericCharCount = 0,
+    int specialCharCount = 0,
+  }) {
     if (isEmptyOrNull) return false;
     if (contains(' ')) return false;
     if (minLength != 0 &&
@@ -255,8 +256,9 @@ extension PasswordStrengthExtension on String {
     if (RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$').hasMatch(this)) {
       return 'Medium';
     }
-    if (RegExp(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$')
-        .hasMatch(this)) {
+    if (RegExp(
+      r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$',
+    ).hasMatch(this)) {
       return 'Strong';
     }
     return 'Weak';

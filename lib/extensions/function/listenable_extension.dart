@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 extension ListenableExtension on Listenable {
   /// Provides an `AnimatedBuilder` widget that listens to the `Listenable`
@@ -27,11 +27,7 @@ extension ListenableExtension on Listenable {
   /// );
   /// ```
   Widget builder({required TransitionBuilder builder, Widget? child}) {
-    return AnimatedBuilder(
-      animation: this,
-      builder: builder,
-      child: child,
-    );
+    return AnimatedBuilder(animation: this, builder: builder, child: child);
   }
 }
 
@@ -60,7 +56,8 @@ extension ValueListenableExtension<T> on ValueListenable<T> {
       animation: this, // Listens to the `ValueListenable` for value changes.
       builder: (context, child) {
         return builder(
-            value); // Rebuilds with the current value of the Listenable.
+          value,
+        ); // Rebuilds with the current value of the Listenable.
       },
     );
   }
@@ -99,8 +96,10 @@ extension ValueListenableExtension<T> on ValueListenable<T> {
       child:
           child, // Optionally passes the child to optimize the widget rebuild.
       builder: (context, child) {
-        return builder(value,
-            child); // Rebuilds with the current value and optional child.
+        return builder(
+          value,
+          child,
+        ); // Rebuilds with the current value and optional child.
       },
     );
   }
@@ -126,10 +125,7 @@ extension BoolValueListenableExtension on ValueListenable<bool> {
   ///   onFalse: Text('Inactive'),
   /// );
   /// ```
-  Widget buildWhenTrue(
-    Widget Function() builder, {
-    Widget? onFalse,
-  }) {
+  Widget buildWhenTrue(Widget Function() builder, {Widget? onFalse}) {
     return ValueListenableBuilder<bool>(
       valueListenable: this, // Listens to the bool value.
       builder: (context, value, child) {
@@ -137,8 +133,7 @@ extension BoolValueListenableExtension on ValueListenable<bool> {
           return builder(); // Build widget when value is true.
         }
         return onFalse ??
-            const SizedBox
-                .shrink(); // Build widget when value is false, default is SizedBox.shrink().
+            const SizedBox.shrink(); // Build widget when value is false, default is SizedBox.shrink().
       },
     );
   }

@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/app_responsive/app_responsive.dart';
 import 'package:flutter_helper_kit/extensions/date/date_extension.dart';
 import 'package:flutter_helper_kit/extensions/date/date_format.dart';
@@ -73,8 +73,9 @@ class FlutterDateTime {
       firstDate: first,
       lastDate: last,
       locale: locale,
-      builder: (BuildContext ctx, Widget? child) =>
-          _applyAccent(ctx, child, accentColor),
+      builder:
+          (BuildContext ctx, Widget? child) =>
+              _applyAccent(ctx, child, accentColor),
     );
   }
 
@@ -110,8 +111,9 @@ class FlutterDateTime {
     return showTimePicker(
       context: context,
       initialTime: initialTime,
-      builder: (BuildContext ctx, Widget? child) =>
-          _applyAccent(ctx, child, accentColor),
+      builder:
+          (BuildContext ctx, Widget? child) =>
+              _applyAccent(ctx, child, accentColor),
     );
   }
 
@@ -257,8 +259,9 @@ class FlutterDateTime {
         start: now,
         end: now.add(const Duration(days: 7)),
       ),
-      builder: (BuildContext ctx, Widget? child) =>
-          _applyAccent(ctx, child, accentColor),
+      builder:
+          (BuildContext ctx, Widget? child) =>
+              _applyAccent(ctx, child, accentColor),
     );
   }
 
@@ -270,8 +273,13 @@ class FlutterDateTime {
   static String formatTime(TimeOfDay? time, {bool use24hFormat = true}) {
     if (time == null) return '';
     final DateTime now = DateTime.now();
-    final DateTime dt =
-        DateTime(now.year, now.month, now.day, time.hour, time.minute);
+    final DateTime dt = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      time.hour,
+      time.minute,
+    );
     return dt.format(pattern: use24hFormat ? 'HH:mm' : 'hh:mm a');
   }
 

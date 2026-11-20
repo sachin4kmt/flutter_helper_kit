@@ -28,39 +28,22 @@ class PrintfStyle {
   final bool framed;
 
   /// Green bold text — success messages.
-  static const success = PrintfStyle(
-    foreground: Colors.green,
-    bold: true,
-  );
+  static const success = PrintfStyle(foreground: Colors.green, bold: true);
 
   /// Red bold text — errors.
-  static const error = PrintfStyle(
-    foreground: Colors.red,
-    bold: true,
-  );
+  static const error = PrintfStyle(foreground: Colors.red, bold: true);
 
   /// Orange bold text — warnings.
-  static const warning = PrintfStyle(
-    foreground: Colors.orange,
-    bold: true,
-  );
+  static const warning = PrintfStyle(foreground: Colors.orange, bold: true);
 
   /// Blue text — informational logs.
-  static const info = PrintfStyle(
-    foreground: Colors.blue,
-  );
+  static const info = PrintfStyle(foreground: Colors.blue);
 
   /// Grey italic text — debug noise.
-  static const debug = PrintfStyle(
-    foreground: Colors.grey,
-    italic: true,
-  );
+  static const debug = PrintfStyle(foreground: Colors.grey, italic: true);
 
   /// Cyan underline — network / API logs.
-  static const network = PrintfStyle(
-    foreground: Colors.cyan,
-    underline: true,
-  );
+  static const network = PrintfStyle(foreground: Colors.cyan, underline: true);
 
   PrintfStyle copyWith({
     Color? foreground,

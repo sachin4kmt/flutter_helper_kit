@@ -34,13 +34,10 @@ class ShakeEffect extends Effect<double> {
     double? hz,
     Offset? offset,
     double? rotation,
-  })  : rotation = rotation ?? defaultRotation,
-        hz = hz ?? defaultHz,
-        offset = offset ?? Offset.zero,
-        super(
-          begin: 0,
-          end: 1,
-        );
+  }) : rotation = rotation ?? defaultRotation,
+       hz = hz ?? defaultHz,
+       offset = offset ?? Offset.zero,
+       super(begin: 0, end: 1);
 
   final Offset offset;
   final double rotation;
@@ -62,7 +59,7 @@ class ShakeEffect extends Effect<double> {
 
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) {
+      builder: (_, _) {
         double value = sin(animation.value * count * pi * 2);
         Widget widget = child;
         if (shouldRotate) {
@@ -88,15 +85,16 @@ extension ShakeEffectExtensions<T extends AnimateManager<T>> on T {
     double? hz,
     Offset? offset,
     double? rotation,
-  }) =>
-      addEffect(ShakeEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        hz: hz,
-        offset: offset,
-        rotation: rotation,
-      ));
+  }) => addEffect(
+    ShakeEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      hz: hz,
+      offset: offset,
+      rotation: rotation,
+    ),
+  );
 
   /// Adds a [ShakeEffect] that shakes the target horizontally (via [Transform]).
   T shakeX({
@@ -105,15 +103,16 @@ extension ShakeEffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     double? hz,
     double? amount,
-  }) =>
-      addEffect(ShakeEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        hz: hz,
-        offset: Offset(amount ?? ShakeEffect.defaultMove, 0),
-        rotation: 0,
-      ));
+  }) => addEffect(
+    ShakeEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      hz: hz,
+      offset: Offset(amount ?? ShakeEffect.defaultMove, 0),
+      rotation: 0,
+    ),
+  );
 
   /// Adds a [ShakeEffect] that shakes the target vertically (via [Transform]).
   T shakeY({
@@ -122,13 +121,14 @@ extension ShakeEffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     double? hz,
     double? amount,
-  }) =>
-      addEffect(ShakeEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        hz: hz,
-        offset: Offset(0, amount ?? ShakeEffect.defaultMove),
-        rotation: 0,
-      ));
+  }) => addEffect(
+    ShakeEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      hz: hz,
+      offset: Offset(0, amount ?? ShakeEffect.defaultMove),
+      rotation: 0,
+    ),
+  );
 }

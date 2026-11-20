@@ -1,5 +1,5 @@
 import 'flutter_tag_widget.dart' as badges;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// This is a set of animations that you can use for your [badges.Tag] widget.
 /// Do not use them explicitly, use for example [TagAnimation.slide()] instead.
@@ -29,5 +29,5 @@ enum FlutterTagAnimationType {
 
   /// See also:
   /// * [RotationTransition]
-  flip
+  flip,
 }

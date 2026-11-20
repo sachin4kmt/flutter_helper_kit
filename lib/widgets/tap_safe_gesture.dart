@@ -19,7 +19,7 @@ class TapSafeGesture extends StatefulWidget {
   /// `context` is the current BuildContext.
   /// `onTap` is the function to pass to your button or InkWell.
   final Widget Function(BuildContext context, FutureVoidCallback? onTap)
-      builder;
+  builder;
 
   /// Function that builds a special widget during the wait state.
   /// `context` is the current BuildContext.
@@ -48,53 +48,49 @@ class _TapSafeGestureState extends State<TapSafeGesture> {
 
   @override
   Widget build(BuildContext context) => StreamBuilder<bool>(
-        initialData: false,
-        stream: _tapSafeGestureHandler.busyStream,
-        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          if (snapshot.hasError) {
-            throw StateError(
-              '_TapSafeGesture.busy has error=${snapshot.error}',
-            );
-          }
+    initialData: false,
+    stream: _tapSafeGestureHandler.busyStream,
+    builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+      if (snapshot.hasError) {
+        throw StateError('_TapSafeGesture.busy has error=${snapshot.error}');
+      }
 
-          final isBusy = snapshot.data!;
+      final isBusy = snapshot.data!;
 
-          if (!isBusy) {
-            final onTap = widget.onTap;
+      if (!isBusy) {
+        final onTap = widget.onTap;
 
-            return widget.builder(
-              context,
-              onTap == null
-                  ? null
-                  : () async => _tapSafeGestureHandler.onTap(
-                        () async {
-                          await onTap();
+        return widget.builder(
+          context,
+          onTap == null
+              ? null
+              : () async => _tapSafeGestureHandler.onTap(() async {
+                await onTap();
 
-                          final cooldown = widget.cooldown;
+                final cooldown = widget.cooldown;
 
-                          if (cooldown != null) {
-                            await Future<void>.delayed(cooldown);
-                          }
-                        },
-                      ),
-            );
-          }
+                if (cooldown != null) {
+                  await Future<void>.delayed(cooldown);
+                }
+              }),
+        );
+      }
 
-          final disabledChild = widget.builder(context, null);
+      final disabledChild = widget.builder(context, null);
 
-          if (widget.waitBuilder == null) {
-            return disabledChild;
-          } else {
-            return widget.waitBuilder!(context, disabledChild);
-          }
-        },
-      );
+      if (widget.waitBuilder == null) {
+        return disabledChild;
+      } else {
+        return widget.waitBuilder!(context, disabledChild);
+      }
+    },
+  );
 }
 
 /// Single TapSafeGesture
 class _TapSafeGestureHandler {
   _TapSafeGestureHandler()
-      : _busyController = StreamController<bool>()..add(false);
+    : _busyController = StreamController<bool>()..add(false);
 
   final StreamController<bool> _busyController;
 

@@ -8,7 +8,9 @@ import 'package:flutter/services.dart';
 class NoLeadingSpaceFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     if (newValue.text.startsWith(' ')) {
       final String trimText = newValue.text.trimLeft();
       return TextEditingValue(

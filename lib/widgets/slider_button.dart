@@ -1,7 +1,7 @@
 //https://github.com/anirudhsharma392/Slider-Button/blob/master/lib/src/slider.dart
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/app_responsive/app_responsive.dart';
 import 'package:flutter_helper_kit/core/shimmer_widget.dart';
 import 'package:flutter_helper_kit/widgets/sharp_corners/sharp_border_radius.dart';
@@ -95,13 +95,14 @@ class _SliderButtonState extends State<SliderButton> {
         // Label Section
         Align(
           alignment: widget.alignLabel,
-          child: widget.shimmer && !widget.disable
-              ? ShimmerWidget.fromColors(
-                  baseColor: widget.disable ? Colors.grey : widget.baseColor,
-                  highlightColor: widget.highlightedColor,
-                  child: widget.label ?? const SizedBox.shrink(),
-                )
-              : widget.label,
+          child:
+              widget.shimmer && !widget.disable
+                  ? ShimmerWidget.fromColors(
+                    baseColor: widget.disable ? Colors.grey : widget.baseColor,
+                    highlightColor: widget.highlightedColor,
+                    child: widget.label ?? const SizedBox.shrink(),
+                  )
+                  : widget.label,
         ),
 
         // Slider Section
@@ -129,13 +130,15 @@ class _SliderButtonState extends State<SliderButton> {
   Widget _buildDismissibleButton(double w, double h, double bSize) {
     return Dismissible(
       key: widget.buttonKey ?? UniqueKey(),
-      direction: widget.rightToLeftLocale
-          ? DismissDirection.endToStart
-          : DismissDirection.startToEnd,
+      direction:
+          widget.rightToLeftLocale
+              ? DismissDirection.endToStart
+              : DismissDirection.startToEnd,
       dismissThresholds: {
         widget.rightToLeftLocale
-            ? DismissDirection.endToStart
-            : DismissDirection.startToEnd: widget.dismissThresholds
+                ? DismissDirection.endToStart
+                : DismissDirection.startToEnd:
+            widget.dismissThresholds,
       },
       confirmDismiss: (_) async {
         bool result = (await widget.action()) ?? true;
@@ -162,8 +165,10 @@ class _SliderButtonState extends State<SliderButton> {
       decoration: BoxDecoration(
         boxShadow: widget.boxShadow != null ? [widget.boxShadow!] : null,
         color: color,
-        borderRadius:
-            SharpBorderRadius(cornerRadius: widget.radius.r, sharpRatio: 1),
+        borderRadius: SharpBorderRadius(
+          cornerRadius: widget.radius.r,
+          sharpRatio: 1,
+        ),
       ),
       child: Center(child: widget.icon),
     );
@@ -174,28 +179,38 @@ class _SliderButtonState extends State<SliderButton> {
 
     final decoration = BoxDecoration(
       color: widget.disable ? Colors.grey.shade700 : widget.backgroundColor,
-      borderRadius:
-          SharpBorderRadius(cornerRadius: widget.radius.r, sharpRatio: 1),
-      border: (widget.useGlassEffect && widget.glassBorderColor != null)
-          ? Border.all(
-              color: widget.glassBorderColor!, width: widget.glassBorderWidth.w)
-          : null,
+      borderRadius: SharpBorderRadius(
+        cornerRadius: widget.radius.r,
+        sharpRatio: 1,
+      ),
+      border:
+          (widget.useGlassEffect && widget.glassBorderColor != null)
+              ? Border.all(
+                color: widget.glassBorderColor!,
+                width: widget.glassBorderWidth.w,
+              )
+              : null,
     );
 
     Widget track = Container(
-        height: h,
-        width: w,
-        decoration: decoration,
-        alignment: Alignment.centerLeft,
-        child: content);
+      height: h,
+      width: w,
+      decoration: decoration,
+      alignment: Alignment.centerLeft,
+      child: content,
+    );
 
     if (widget.useGlassEffect) {
       return ClipRRect(
-        borderRadius:
-            SharpBorderRadius(cornerRadius: widget.radius.r, sharpRatio: 1),
+        borderRadius: SharpBorderRadius(
+          cornerRadius: widget.radius.r,
+          sharpRatio: 1,
+        ),
         child: BackdropFilter(
           filter: ImageFilter.blur(
-              sigmaX: widget.glassBlurSigma.r, sigmaY: widget.glassBlurSigma.r),
+            sigmaX: widget.glassBlurSigma.r,
+            sigmaY: widget.glassBlurSigma.r,
+          ),
           child: track,
         ),
       );

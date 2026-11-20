@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
@@ -162,17 +162,22 @@ class MyCustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final inputDecor = context.theme.inputDecorationTheme;
-    final customBorder = (border ??
-        OutlineInputBorder(
-            borderSide:
-                borderSide ?? const BorderSide(color: Colors.transparent),
-            borderRadius:
-                borderRadius ?? const BorderRadius.all(Radius.circular(4))));
+    final customBorder =
+        (border ??
+            OutlineInputBorder(
+              borderSide:
+                  borderSide ?? const BorderSide(color: Colors.transparent),
+              borderRadius:
+                  borderRadius ?? const BorderRadius.all(Radius.circular(4)),
+            ));
     final customErrorBorder = customBorder.copyWith(
-        borderSide: customBorder.borderSide.copyWith(
-            color: errorBorderColor ??
-                inputDecor.errorBorder?.borderSide.color ??
-                Colors.red));
+      borderSide: customBorder.borderSide.copyWith(
+        color:
+            errorBorderColor ??
+            inputDecor.errorBorder?.borderSide.color ??
+            Colors.red,
+      ),
+    );
     return TextFormField(
       controller: controller,
       focusNode: focusNode,
@@ -186,16 +191,18 @@ class MyCustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         label: label,
-        labelStyle: (labelStyle ?? const TextStyle())
-            .copyWith(color: inputDecor.labelStyle?.color ?? Colors.grey),
+        labelStyle: (labelStyle ?? const TextStyle()).copyWith(
+          color: inputDecor.labelStyle?.color ?? Colors.grey,
+        ),
         floatingLabelStyle: floatingLabelStyle,
         hintText: hintText,
-        hintStyle: (hintStyle ?? const TextStyle())
-            .copyWith(color: inputDecor.hintStyle?.color ?? Colors.grey),
+        hintStyle: (hintStyle ?? const TextStyle()).copyWith(
+          color: inputDecor.hintStyle?.color ?? Colors.grey,
+        ),
         hintFadeDuration: hintFadeDuration,
         errorStyle: (errorStyle ?? const TextStyle()).copyWith(
-            color:
-                inputDecor.errorBorder?.borderSide.color ?? errorBorderColor),
+          color: inputDecor.errorBorder?.borderSide.color ?? errorBorderColor,
+        ),
         errorMaxLines: errorMaxLines,
         floatingLabelBehavior: floatingLabelBehavior,
         floatingLabelAlignment: floatingLabelAlignment,
@@ -210,7 +217,8 @@ class MyCustomTextField extends StatelessWidget {
         prefixIcon: prefixIcon,
         prefixIconColor: prefixColor,
         // prefixIconConstraints: prefixConstraints,
-        prefixIconConstraints: prefixConstraints ??
+        prefixIconConstraints:
+            prefixConstraints ??
             (prefixIcon != null
                 ? const BoxConstraints(minHeight: 0, minWidth: 0)
                 : prefixConstraints),
@@ -219,7 +227,8 @@ class MyCustomTextField extends StatelessWidget {
         suffixIcon: suffixIcon,
         suffixStyle: suffixStyle,
         suffixIconColor: suffixIconColor,
-        suffixIconConstraints: suffixIconConstraints ??
+        suffixIconConstraints:
+            suffixIconConstraints ??
             (prefixIcon != null
                 ? const BoxConstraints(minHeight: 0, minWidth: 0)
                 : suffixIconConstraints),
@@ -230,15 +239,19 @@ class MyCustomTextField extends StatelessWidget {
         hoverColor: hoverColor,
         errorBorder: customErrorBorder,
         focusedBorder: customBorder.copyWith(
-            borderSide: customBorder.borderSide.copyWith(
-                color: focusColor ??
-                    inputDecor.errorBorder?.borderSide.color ??
-                    context.primaryColor)),
+          borderSide: customBorder.borderSide.copyWith(
+            color:
+                focusColor ??
+                inputDecor.errorBorder?.borderSide.color ??
+                context.primaryColor,
+          ),
+        ),
         focusedErrorBorder: customErrorBorder,
         disabledBorder: customBorder.copyWith(
-            borderSide: customBorder.borderSide.copyWith(
-                color: inputDecor.disabledBorder?.borderSide.color ??
-                    Colors.grey)),
+          borderSide: customBorder.borderSide.copyWith(
+            color: inputDecor.disabledBorder?.borderSide.color ?? Colors.grey,
+          ),
+        ),
         enabledBorder: customBorder,
         border: customBorder,
         alignLabelWithHint: alignLabelWithHint,
@@ -255,7 +268,8 @@ class MyCustomTextField extends StatelessWidget {
       autocorrect: autocorrect,
       maxLines: maxLines,
       onTap: onTap,
-      onTapOutside: onTapOutside ??
+      onTapOutside:
+          onTapOutside ??
           (v) {
             context.unFocusKeyboard();
           },

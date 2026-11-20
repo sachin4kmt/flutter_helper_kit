@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 import 'package:flutter/foundation.dart'; // Required for kIsWeb
 
@@ -292,11 +292,15 @@ extension BuildContextExension on BuildContext {
     try {
       ScaffoldMessenger.of(this).showSnackBar(
         SnackBar(
-          padding: padding ??
+          padding:
+              padding ??
               EdgeInsets.symmetric(
-                  horizontal: horizontalPadding, vertical: verticalPadding),
+                horizontal: horizontalPadding,
+                vertical: verticalPadding,
+              ),
           shape: RoundedRectangleBorder(
-              borderRadius: borderRadius ?? BorderRadius.circular(8)),
+            borderRadius: borderRadius ?? BorderRadius.circular(8),
+          ),
           backgroundColor: backgroundColor ?? primaryColor.withColorOpacity(.8),
           content: Row(
             children: [
@@ -309,7 +313,7 @@ extension BuildContextExension on BuildContext {
                   children: [
                     if (title != null) title,
                     if (title != null && description != null) 2.height(),
-                    if (description != null) description
+                    if (description != null) description,
                   ],
                 ),
               ),

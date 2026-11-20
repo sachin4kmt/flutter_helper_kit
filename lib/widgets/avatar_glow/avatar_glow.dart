@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'dart:math' as math;
 
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
@@ -21,9 +21,9 @@ class AvatarGlow extends StatefulWidget {
     this.curve = Curves.fastOutSlowIn,
     this.glowRadiusFactor = 0.7,
   }) : assert(
-          glowShape != BoxShape.circle || glowBorderRadius == null,
-          'Cannot specify a border radius if the shape is a circle.',
-        );
+         glowShape != BoxShape.circle || glowBorderRadius == null,
+         'Cannot specify a border radius if the shape is a circle.',
+       );
 
   /// The child widget to display inside the glowing effect.
   final Widget child;
@@ -97,10 +97,7 @@ class _AvatarGlowState extends State<AvatarGlow>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    );
+    _controller = AnimationController(vsync: this, duration: widget.duration);
 
     _painter = _GlowPainter(progress: _controller);
 
@@ -143,16 +140,17 @@ class _AvatarGlowState extends State<AvatarGlow>
   Widget build(BuildContext context) {
     return RepaintBoundary(
       child: CustomPaint(
-        painter: _painter
-          ..curve = widget.curve
-          ..opacityTween = _opacityTween
-          ..glowCount = widget.glowCount
-          ..glowDecoration = BoxDecoration(
-            color: widget.glowColor,
-            shape: widget.glowShape,
-            borderRadius: widget.glowBorderRadius,
-          )
-          ..glowRadiusFactor = widget.glowRadiusFactor,
+        painter:
+            _painter
+              ..curve = widget.curve
+              ..opacityTween = _opacityTween
+              ..glowCount = widget.glowCount
+              ..glowDecoration = BoxDecoration(
+                color: widget.glowColor,
+                shape: widget.glowShape,
+                borderRadius: widget.glowBorderRadius,
+              )
+              ..glowRadiusFactor = widget.glowRadiusFactor,
         child: widget.child,
       ),
     );
@@ -225,9 +223,10 @@ class _GlowPainter extends ChangeNotifier implements CustomPainter {
     final glowColor = glowDecoration.color!;
     final opacity = opacityTween.evaluate(progress);
 
-    final paint = Paint()
-      ..color = glowColor.withColorOpacity(opacity)
-      ..style = PaintingStyle.fill;
+    final paint =
+        Paint()
+          ..color = glowColor.withColorOpacity(opacity)
+          ..style = PaintingStyle.fill;
 
     final glowSize = math.min(size.width, size.height);
     final glowRadius = glowSize / 2;
@@ -254,10 +253,7 @@ class _GlowPainter extends ChangeNotifier implements CustomPainter {
 
   void _addGlowPath(Rect glowRect) {
     _glowPath.addPath(
-      glowDecoration.getClipPath(
-        glowRect,
-        TextDirection.ltr,
-      ),
+      glowDecoration.getClipPath(glowRect, TextDirection.ltr),
       Offset.zero,
     );
   }

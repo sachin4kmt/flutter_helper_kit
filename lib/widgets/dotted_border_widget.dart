@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 // DottedBorderWidget
@@ -41,7 +41,8 @@ class DottedBorderWidgetState extends State<DottedBorderWidget> {
       ),
       child: SharpClipRect(
         radius: SharpBorderRadius.all(
-            SharpRadius(cornerRadius: widget.radius + 1, sharpRatio: 1)),
+          SharpRadius(cornerRadius: widget.radius + 1, sharpRatio: 1),
+        ),
         child: Container(
           padding: widget.padding ?? EdgeInsets.zero,
           child: widget.child,
@@ -68,21 +69,18 @@ class _DottedCustomPaint extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..isAntiAlias = true
-      ..filterQuality = FilterQuality.high
-      ..color = color!
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth!;
+    final Paint paint =
+        Paint()
+          ..isAntiAlias = true
+          ..filterQuality = FilterQuality.high
+          ..color = color!
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = strokeWidth!;
 
     Path path = Path();
-    path.addRRect(RRect.fromLTRBR(
-      0,
-      0,
-      size.width,
-      size.height,
-      Radius.circular(radius!),
-    ));
+    path.addRRect(
+      RRect.fromLTRBR(0, 0, size.width, size.height, Radius.circular(radius!)),
+    );
 
     Path draw = buildDashPath(path, dottedLength!, space!);
     canvas.drawPath(draw, paint);

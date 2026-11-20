@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A custom BoxBorder that draws a gradient border around a widget.
 ///
@@ -18,10 +18,7 @@ class FlutterTagBorderGradient extends BoxBorder {
   ///
   /// The [gradient] parameter is required and defines the color gradient of the border.
   /// The [width] parameter is optional and specifies the width of the border.
-  const FlutterTagBorderGradient({
-    required this.gradient,
-    this.width = 1.0,
-  });
+  const FlutterTagBorderGradient({required this.gradient, this.width = 1.0});
 
   @override
   BorderSide get bottom => BorderSide.none;
@@ -47,8 +44,10 @@ class FlutterTagBorderGradient extends BoxBorder {
     switch (shape) {
       case BoxShape.circle:
         // Circle shape does not support borderRadius.
-        assert(borderRadius == null,
-            'A borderRadius can only be given for rectangular boxes.');
+        assert(
+          borderRadius == null,
+          'A borderRadius can only be given for rectangular boxes.',
+        );
         _paintCircle(canvas, rect);
         break;
       case BoxShape.rectangle:
@@ -75,7 +74,10 @@ class FlutterTagBorderGradient extends BoxBorder {
 
   /// Paints a rectangular border with rounded corners as specified by [borderRadius].
   void _paintRectWithRadius(
-      Canvas canvas, Rect rect, BorderRadius borderRadius) {
+    Canvas canvas,
+    Rect rect,
+    BorderRadius borderRadius,
+  ) {
     final Paint paint = _getPaint(rect);
     // Convert BorderRadius to RRect and adjust for border width.
     final RRect rrect = borderRadius.toRRect(rect).deflate(width / 2);
@@ -93,10 +95,7 @@ class FlutterTagBorderGradient extends BoxBorder {
   @override
   ShapeBorder scale(double t) {
     // Scales the border by a factor of [t].
-    return FlutterTagBorderGradient(
-      gradient: gradient,
-      width: width * t,
-    );
+    return FlutterTagBorderGradient(gradient: gradient, width: width * t);
   }
 
   /// Creates a Paint object with the specified gradient and width.

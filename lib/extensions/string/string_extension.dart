@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:math' as math;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 extension NullStringExtension on String? {
@@ -284,15 +284,19 @@ extension NullStringExtension on String? {
   /// String? emptyText = "";
   /// print(emptyText.toWordsFirstCharacters()); // ""
   /// ```
-  String toWordsFirstCharacters(
-      {int? numberOfCharacters, String splitBy = '\\s+'}) {
+  String toWordsFirstCharacters({
+    int? numberOfCharacters,
+    String splitBy = '\\s+',
+  }) {
     var initials = '';
     if (validate().isEmptyOrNull) {
       return '';
     }
     final nameParts = this!.trim().toUpperCase().split(RegExp(splitBy));
-    var num =
-        math.min(nameParts.length, numberOfCharacters ?? nameParts.length);
+    var num = math.min(
+      nameParts.length,
+      numberOfCharacters ?? nameParts.length,
+    );
     for (var i = 0; i < num; i++) {
       initials += nameParts[i][0];
     }

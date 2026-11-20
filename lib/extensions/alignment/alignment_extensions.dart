@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'core/alignment_axis.dart';
 
@@ -79,9 +79,6 @@ extension AlignmentExtensions on Alignment {
   /// pulling in `Alignment.lerp` semantics.
   Alignment combineWith(Alignment other, {double weight = 0.5}) {
     final t = weight.clamp(0.0, 1.0);
-    return Alignment(
-      x + (other.x - x) * t,
-      y + (other.y - y) * t,
-    );
+    return Alignment(x + (other.x - x) * t, y + (other.y - y) * t);
   }
 }

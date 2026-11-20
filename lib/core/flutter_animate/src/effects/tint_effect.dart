@@ -32,11 +32,11 @@ class TintEffect extends Effect<double> {
     double? begin,
     double? end,
     Color? color,
-  })  : color = color ?? const Color(0xFF000000),
-        super(
-          begin: begin ?? neutralValue,
-          end: end ?? (begin == null ? defaultValue : neutralValue),
-        );
+  }) : color = color ?? const Color(0xFF000000),
+       super(
+         begin: begin ?? neutralValue,
+         end: end ?? (begin == null ? defaultValue : neutralValue),
+       );
 
   final Color color;
 
@@ -50,10 +50,13 @@ class TintEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) => ColorFiltered(
-        colorFilter: ColorFilter.matrix(getTintMatrix(animation.value, color)),
-        child: child,
-      ),
+      builder:
+          (_, _) => ColorFiltered(
+            colorFilter: ColorFilter.matrix(
+              getTintMatrix(animation.value, color),
+            ),
+            child: child,
+          ),
     );
   }
 
@@ -84,15 +87,16 @@ extension TintEffectExtensions<T extends AnimateManager<T>> on T {
     double? begin,
     double? end,
     Color? color,
-  }) =>
-      addEffect(TintEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        color: color,
-      ));
+  }) => addEffect(
+    TintEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      color: color,
+    ),
+  );
 
   /// Adds a [TintEffect] that applies an animated [color] tint to the target (via [ColorFiltered]).
   /// Defaults to a begin value of `1` (100% tint) and an end value of `0` (0% tint).
@@ -103,13 +107,14 @@ extension TintEffectExtensions<T extends AnimateManager<T>> on T {
     double? begin,
     double? end,
     Color? color,
-  }) =>
-      addEffect(TintEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin ?? 1.0,
-        end: end ?? TintEffect.neutralValue,
-        color: color,
-      ));
+  }) => addEffect(
+    TintEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin ?? 1.0,
+      end: end ?? TintEffect.neutralValue,
+      color: color,
+    ),
+  );
 }

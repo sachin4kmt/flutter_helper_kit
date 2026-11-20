@@ -120,8 +120,9 @@ extension IntNullableExtensions on int? {
     if (toString().trim().length < n) {
       charCount = toString().trim().length;
     }
-    return (toString().trim().substring(toString().trim().length - charCount))
-            .toInt() ??
+    return (toString().trim().substring(
+          toString().trim().length - charCount,
+        )).toInt() ??
         0;
   }
 }
@@ -241,8 +242,9 @@ extension IntExtensions on int {
     if (toString().trim().length < n) {
       charCount = toString().trim().length;
     }
-    return (toString().trim().substring(toString().trim().length - charCount))
-            .toInt() ??
+    return (toString().trim().substring(
+          toString().trim().length - charCount,
+        )).toInt() ??
         0;
   }
 
@@ -333,7 +335,12 @@ extension IntExtensions on int {
   String toRoman() {
     if (this < 1 || this > 3999) {
       throw RangeError.range(
-          this, 1, 3999, 'toRoman', 'Value must be between 1 and 3999');
+        this,
+        1,
+        3999,
+        'toRoman',
+        'Value must be between 1 and 3999',
+      );
     }
     const romanNumerals = {
       1000: 'M',
@@ -348,7 +355,7 @@ extension IntExtensions on int {
       9: 'IX',
       5: 'V',
       4: 'IV',
-      1: 'I'
+      1: 'I',
     };
     var number = this;
     final result = StringBuffer();

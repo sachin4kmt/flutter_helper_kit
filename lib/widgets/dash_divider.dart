@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class DashDivider extends StatelessWidget {
   /// Creates a [DashDivider] widget.
@@ -13,8 +13,8 @@ class DashDivider extends StatelessWidget {
     this.dashWidth = 10,
     this.dashSpace = 2,
     this.color,
-  })  : assert(dashWidth >= 1.0 && dashWidth <= 10.0),
-        assert(dashSpace >= 1.0 && dashSpace <= 10.0);
+  }) : assert(dashWidth >= 1.0 && dashWidth <= 10.0),
+       assert(dashSpace >= 1.0 && dashSpace <= 10.0);
 
   /// The height of the divider.
   final double height;

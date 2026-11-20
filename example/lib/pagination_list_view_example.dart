@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 class PaginationListViewExample extends StatefulWidget {
@@ -25,8 +25,10 @@ class _PaginationListViewExampleState extends State<PaginationListViewExample> {
 
     await Future.delayed(const Duration(seconds: 2));
 
-    final newItems =
-        List.generate(10, (index) => 'Item ${items.length + index}');
+    final newItems = List.generate(
+      10,
+      (index) => 'Item ${items.length + index}',
+    );
     setState(() {
       items.addAll(newItems);
       isLoading = false;
@@ -42,9 +44,7 @@ class _PaginationListViewExampleState extends State<PaginationListViewExample> {
       appBar: AppBar(title: const Text('Infinite List View')),
       body: ListViewPagination(
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(items[index]),
-          );
+          return ListTile(title: Text(items[index]));
         },
         itemCount: items.length,
         nextData: fetchMoreData,

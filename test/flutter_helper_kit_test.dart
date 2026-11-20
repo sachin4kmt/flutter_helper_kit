@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
@@ -80,11 +80,15 @@ void main() {
   group('CallbackMapInfoWindowAdapter', () {
     test('delegates to callback', () async {
       final adapter = CallbackMapInfoWindowAdapter(
-        onGetScreenCoordinate: (latLng) async => MapScreenCoordinate(
-            (latLng.latitude * 10).toInt(), (latLng.longitude * 10).toInt()),
+        onGetScreenCoordinate:
+            (latLng) async => MapScreenCoordinate(
+              (latLng.latitude * 10).toInt(),
+              (latLng.longitude * 10).toInt(),
+            ),
       );
-      final result =
-          await adapter.getScreenCoordinate(const MapLatLng(12.5, 77.5));
+      final result = await adapter.getScreenCoordinate(
+        const MapLatLng(12.5, 77.5),
+      );
       expect(result.x, 125);
       expect(result.y, 775);
     });

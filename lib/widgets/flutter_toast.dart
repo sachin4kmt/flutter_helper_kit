@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 enum FlutterToastPosition {
   bottom(0),
@@ -52,8 +52,17 @@ class FlutterToast {
     /// you can specify background border
   }) {
     _FlutterToastView.dismiss();
-    _FlutterToastView.createView(msg, context, duration, position,
-        backgroundColor, textStyle, backgroundRadius, border, rootNavigator);
+    _FlutterToastView.createView(
+      msg,
+      context,
+      duration,
+      position,
+      backgroundColor,
+      textStyle,
+      backgroundRadius,
+      border,
+      rootNavigator,
+    );
   }
 
   /// a fixed value for toast message position
@@ -74,36 +83,38 @@ class _FlutterToastView {
   static bool _isVisible = false;
 
   static void createView(
-      String msg,
+    String msg,
 
-      /// the message you want to show as toast
-      BuildContext context,
-      Duration? duration,
+    /// the message you want to show as toast
+    BuildContext context,
+    Duration? duration,
 
-      /// duration : how long do you want to show the message
-      FlutterToastPosition? position,
+    /// duration : how long do you want to show the message
+    FlutterToastPosition? position,
 
-      /// position : where do you want to show the toast message, you can pass bottom, center, top or any defined value
-      Color background,
+    /// position : where do you want to show the toast message, you can pass bottom, center, top or any defined value
+    Color background,
 
-      /// defines the background color of toast message
-      TextStyle textStyle,
+    /// defines the background color of toast message
+    TextStyle textStyle,
 
-      /// for toast message styling
-      double backgroundRadius,
+    /// for toast message styling
+    double backgroundRadius,
 
-      /// you can apply toast message background radius
-      Border? border,
+    /// you can apply toast message background radius
+    Border? border,
 
-      /// you can specify background border
-      bool? rootNavigator) async {
+    /// you can specify background border
+    bool? rootNavigator,
+  ) async {
     overlayState = Overlay.of(context, rootOverlay: rootNavigator ?? false);
 
     _overlayEntry = OverlayEntry(
-      builder: (BuildContext context) => _FlutterToastWidget(
-          widget: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Container(
+      builder:
+          (BuildContext context) => _FlutterToastWidget(
+            widget: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
                 child: Container(
@@ -115,9 +126,11 @@ class _FlutterToastView {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
                   child: Text(msg, softWrap: true, style: textStyle),
-                )),
+                ),
+              ),
+            ),
+            position: (position?.value ?? FlutterToastPosition.bottom.value),
           ),
-          position: (position?.value ?? FlutterToastPosition.bottom.value)),
     );
     _isVisible = true;
     overlayState!.insert(_overlayEntry!);
@@ -137,10 +150,7 @@ class _FlutterToastView {
 
 /// the widget to implement the toast message
 class _FlutterToastWidget extends StatelessWidget {
-  const _FlutterToastWidget({
-    required this.widget,
-    required this.position,
-  });
+  const _FlutterToastWidget({required this.widget, required this.position});
 
   final Widget widget;
   final int? position;
@@ -149,13 +159,10 @@ class _FlutterToastWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     /// showing the toast message
     return Positioned(
-        top: position == 2 ? MediaQuery.of(context).viewInsets.top + 50 : null,
-        bottom: position == 0
-            ? MediaQuery.of(context).viewInsets.bottom + 50
-            : null,
-        child: Material(
-          color: Colors.transparent,
-          child: widget,
-        ));
+      top: position == 2 ? MediaQuery.of(context).viewInsets.top + 50 : null,
+      bottom:
+          position == 0 ? MediaQuery.of(context).viewInsets.bottom + 50 : null,
+      child: Material(color: Colors.transparent, child: widget),
+    );
   }
 }

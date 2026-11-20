@@ -48,8 +48,12 @@ abstract class Adapter {
   }
 
   // called by implementers to attach the controller, and set an initial value.
-  void config(AnimationController controller, double value,
-      {ChangeNotifier? notifier, VoidCallback? listener}) {
+  void config(
+    AnimationController controller,
+    double value, {
+    ChangeNotifier? notifier,
+    VoidCallback? listener,
+  }) {
     assert(_controller == null, 'An adapter was assigned twice.');
     assert((notifier == null) == (listener == null));
     _controller = controller;

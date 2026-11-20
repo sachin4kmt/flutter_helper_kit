@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -15,11 +15,7 @@ void main() {
       const seed = Colors.red;
       final text = await pumpAvatar(
         tester,
-        const TextAvatar(
-          text: 'Ab',
-          baseColor: seed,
-          textOpacity: 0.8,
-        ),
+        const TextAvatar(text: 'Ab', baseColor: seed, textOpacity: 0.8),
       );
       expect(text.style?.color, seed.withValues(alpha: 0.8));
     });

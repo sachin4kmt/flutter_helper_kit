@@ -1,13 +1,9 @@
 import 'package:example/catalog/example_entry.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 
 class ExampleScaffold extends StatelessWidget {
-  const ExampleScaffold({
-    super.key,
-    required this.entry,
-    required this.body,
-  });
+  const ExampleScaffold({super.key, required this.entry, required this.body});
 
   final ExampleEntry entry;
   final Widget body;
@@ -59,8 +55,11 @@ class _MetaPanel extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(entry.category.icon,
-                    size: 18, color: entry.category.color),
+                Icon(
+                  entry.category.icon,
+                  size: 18,
+                  color: entry.category.color,
+                ),
                 const SizedBox(width: 8),
                 Text(entry.category.label, style: theme.textTheme.labelLarge),
               ],
@@ -81,15 +80,20 @@ class _MetaPanel extends StatelessWidget {
             Wrap(
               spacing: 6,
               runSpacing: 6,
-              children: entry.apis
-                  .map(
-                    (api) => Chip(
-                      label: Text(api, style: const TextStyle(fontSize: 12)),
-                      visualDensity: VisualDensity.compact,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                  )
-                  .toList(),
+              children:
+                  entry.apis
+                      .map(
+                        (api) => Chip(
+                          label: Text(
+                            api,
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          visualDensity: VisualDensity.compact,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                        ),
+                      )
+                      .toList(),
             ),
           ],
         ),
@@ -105,9 +109,6 @@ class ExamplePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExampleScaffold(
-      entry: entry,
-      body: entry.builder(context),
-    );
+    return ExampleScaffold(entry: entry, body: entry.builder(context));
   }
 }

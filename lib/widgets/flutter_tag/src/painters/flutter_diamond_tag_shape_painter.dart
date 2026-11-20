@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../flutter_tag_gradient.dart';
 import '../utils/flutter_gradient_utils.dart';
 
@@ -27,45 +27,46 @@ class FlutterDiamondTagShapePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     /// Create a paint object for the tag's fill color or gradient.
-    final Paint paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill
-      ..shader = tagGradient != null
-          ? FlutterGradientUtils.getGradientShader(
-              tagGradient: tagGradient!,
-              width: size.width,
-              height: size.height,
-            )
-          : null;
+    final Paint paint =
+        Paint()
+          ..color = color
+          ..style = PaintingStyle.fill
+          ..shader =
+              tagGradient != null
+                  ? FlutterGradientUtils.getGradientShader(
+                    tagGradient: tagGradient!,
+                    width: size.width,
+                    height: size.height,
+                  )
+                  : null;
 
     /// Create a paint object for the tag's border color or gradient.
-    final Paint paintBorder = Paint()
-      ..color = borderSide?.color ?? Colors.white
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = borderSide?.width ?? 0
-      ..shader = borderGradient != null
-          ? FlutterGradientUtils.getGradientShader(
-              tagGradient: borderGradient!,
-              width: size.width,
-              height: size.height,
-            )
-          : null;
+    final Paint paintBorder =
+        Paint()
+          ..color = borderSide?.color ?? Colors.white
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = borderSide?.width ?? 0
+          ..shader =
+              borderGradient != null
+                  ? FlutterGradientUtils.getGradientShader(
+                    tagGradient: borderGradient!,
+                    width: size.width,
+                    height: size.height,
+                  )
+                  : null;
 
     /// Define the path for the diamond shape.
-    final Path path = Path()
-      ..moveTo(size.width / 2, 0)
-
-      /// Top vertex
-      ..lineTo(size.width, size.height / 2)
-
-      /// Right vertex
-      ..lineTo(size.width / 2, size.height)
-
-      /// Bottom vertex
-      ..lineTo(0, size.height / 2)
-
-      /// Left vertex
-      ..close();
+    final Path path =
+        Path()
+          ..moveTo(size.width / 2, 0)
+          /// Top vertex
+          ..lineTo(size.width, size.height / 2)
+          /// Right vertex
+          ..lineTo(size.width / 2, size.height)
+          /// Bottom vertex
+          ..lineTo(0, size.height / 2)
+          /// Left vertex
+          ..close();
 
     /// Close the path
 

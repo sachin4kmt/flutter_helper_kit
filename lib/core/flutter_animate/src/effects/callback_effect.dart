@@ -114,10 +114,7 @@ extension CallbackEffectExtensions<T extends AnimateManager<T>> on T {
     Duration? delay,
     Duration? duration,
     required ValueChanged<bool> callback,
-  }) =>
-      addEffect(CallbackEffect(
-        delay: delay,
-        duration: duration,
-        callback: callback,
-      ));
+  }) => addEffect(
+    CallbackEffect(delay: delay, duration: duration, callback: callback),
+  );
 }

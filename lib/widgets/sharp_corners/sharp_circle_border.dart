@@ -1,13 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/foundation.dart';
 
 import 'sharp_rectangle_border.dart';
 
 class SharpCircleBorder extends OutlinedBorder {
-  const SharpCircleBorder({
-    super.side,
-    this.borderAlign = BorderAlign.inside,
-  });
+  const SharpCircleBorder({super.side, this.borderAlign = BorderAlign.inside});
 
   final BorderAlign borderAlign;
 
@@ -25,10 +22,7 @@ class SharpCircleBorder extends OutlinedBorder {
 
   @override
   ShapeBorder scale(double t) {
-    return SharpCircleBorder(
-      side: side.scale(t),
-      borderAlign: borderAlign,
-    );
+    return SharpCircleBorder(side: side.scale(t), borderAlign: borderAlign);
   }
 
   @override

@@ -1,10 +1,4 @@
-enum PasswordRule {
-  length,
-  capital,
-  lowercase,
-  number,
-  symbol;
-}
+enum PasswordRule { length, capital, lowercase, number, symbol }
 
 /*extension PasswordRuleColor on PasswordRule {
   Color get color {

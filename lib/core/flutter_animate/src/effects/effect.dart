@@ -47,7 +47,9 @@ class Effect<T> {
 
   /// Returns an animation based on the controller, entry, and begin/end values.
   Animation<T> buildAnimation(
-      AnimationController controller, EffectEntry entry) {
+    AnimationController controller,
+    EffectEntry entry,
+  ) {
     return entry
         .buildAnimation(controller)
         .drive(Tween<T>(begin: begin, end: end));
@@ -118,12 +120,13 @@ extension EffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     double? begin,
     double? end,
-  }) =>
-      addEffect(Effect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-      ));
+  }) => addEffect(
+    Effect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+    ),
+  );
 }

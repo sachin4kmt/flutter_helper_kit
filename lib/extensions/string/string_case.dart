@@ -60,9 +60,9 @@ extension StringCaseExtensions on String {
   /// Splits string into words by underscores, hyphens, camelCase, or spaces.
   List<String> _splitWords() {
     return replaceAllMapped(
-      RegExp(r'([a-z0-9])([A-Z])'),
-      (m) => '${m[1]} ${m[2]}',
-    )
+          RegExp(r'([a-z0-9])([A-Z])'),
+          (m) => '${m[1]} ${m[2]}',
+        )
         .replaceAll(RegExp(r'[_\-\s]+'), ' ')
         .trim()
         .split(' ')
@@ -71,7 +71,8 @@ extension StringCaseExtensions on String {
   }
 
   /// Capitalizes the first letter of a word.
-  String _capitalize(String word) => word.isEmpty
-      ? word
-      : word[0].toUpperCase() + word.substring(1).toLowerCase();
+  String _capitalize(String word) =>
+      word.isEmpty
+          ? word
+          : word[0].toUpperCase() + word.substring(1).toLowerCase();
 }

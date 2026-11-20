@@ -14,7 +14,7 @@ import 'package:flutter_helper_kit/core/flutter_animate/flutter_animate.dart';
 /// foo.animate()
 ///   .fadeOut(duration: 500.ms)
 ///   .swap( // inherits duration from fadeOut
-///     builder: (_, __) => Bar().animate().fadeIn(),
+///     builder: (_, _) => Bar().animate().fadeIn(),
 ///   )
 /// ```
 ///
@@ -60,7 +60,7 @@ class SwapEffect extends Effect<void> {
     // this could use toggleBuilder, but everything is pre-built, so this is simpler:
     return AnimatedBuilder(
       animation: controller,
-      builder: (_, __) => (controller.value < ratio) ? child : endChild,
+      builder: (_, _) => (controller.value < ratio) ? child : endChild,
     );
   }
 }
@@ -74,9 +74,5 @@ extension SwapEffectExtensions<T extends AnimateManager<T>> on T {
     Duration? duration,
     required TransitionBuilder builder,
   }) =>
-      addEffect(SwapEffect(
-        delay: delay,
-        duration: duration,
-        builder: builder,
-      ));
+      addEffect(SwapEffect(delay: delay, duration: duration, builder: builder));
 }

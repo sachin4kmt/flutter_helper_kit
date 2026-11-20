@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'alignment_extensions.dart';
 import 'core/alignment_axis.dart';

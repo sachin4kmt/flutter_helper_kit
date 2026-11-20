@@ -1,5 +1,5 @@
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 enum TrimMode { length, line }
 
@@ -14,7 +14,7 @@ class Annotation {
 
   final RegExp regExp;
   final TextSpan Function({required String text, required TextStyle textStyle})
-      spanBuilder;
+  spanBuilder;
 }
 
 class ReadMoreTextEnhanced extends StatefulWidget {
@@ -50,9 +50,9 @@ class ReadMoreTextEnhanced extends StatefulWidget {
     this.textWidthBasis,
     this.textHeightBehavior,
     this.selectionColor,
-  })  : richData = null,
-        richPreData = null,
-        richPostData = null;
+  }) : richData = null,
+       richPreData = null,
+       richPostData = null;
 
   const ReadMoreTextEnhanced.rich(
     TextSpan this.richData, {
@@ -83,12 +83,12 @@ class ReadMoreTextEnhanced extends StatefulWidget {
     this.textWidthBasis,
     this.textHeightBehavior,
     this.selectionColor,
-  })  : data = null,
-        annotations = null,
-        preDataText = null,
-        postDataText = null,
-        preDataTextStyle = null,
-        postDataTextStyle = null;
+  }) : data = null,
+       annotations = null,
+       preDataText = null,
+       postDataText = null,
+       preDataTextStyle = null,
+       postDataTextStyle = null;
 
   final ValueNotifier<bool>? isCollapsed;
 
@@ -188,10 +188,14 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
     }
 
     // replacing groups '(' => to non capturing groups '(?:'
-    return RegExp(annotations
-        .map((a) =>
-            '(${a.regExp.pattern.replaceAll(_nonCapturingGroupPattern, '(?:')})')
-        .join('|'));
+    return RegExp(
+      annotations
+          .map(
+            (a) =>
+                '(${a.regExp.pattern.replaceAll(_nonCapturingGroupPattern, '(?:')})',
+          )
+          .join('|'),
+    );
   }
 
   @override
@@ -222,7 +226,9 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-        valueListenable: _effectiveIsCollapsed, builder: _builder);
+      valueListenable: _effectiveIsCollapsed,
+      builder: _builder,
+    );
   }
 
   Widget _builder(BuildContext context, bool isCollapsed, Widget? child) {
@@ -234,8 +240,9 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
       effectiveTextStyle = widget.style!;
     }
     if (MediaQuery.boldTextOf(context)) {
-      effectiveTextStyle = effectiveTextStyle
-          .merge(const TextStyle(fontWeight: FontWeight.bold));
+      effectiveTextStyle = effectiveTextStyle.merge(
+        const TextStyle(fontWeight: FontWeight.bold),
+      );
     }
     final registrar = SelectionContainer.maybeOf(context);
     final textScaler = widget.textScaler ?? MediaQuery.textScalerOf(context);
@@ -248,18 +255,22 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
     final overflow = widget.overflow ?? defaultTextStyle.overflow;
     final textWidthBasis =
         widget.textWidthBasis ?? defaultTextStyle.textWidthBasis;
-    final textHeightBehavior = widget.textHeightBehavior ??
+    final textHeightBehavior =
+        widget.textHeightBehavior ??
         defaultTextStyle.textHeightBehavior ??
         DefaultTextHeightBehavior.maybeOf(context);
-    final selectionColor = widget.selectionColor ??
+    final selectionColor =
+        widget.selectionColor ??
         DefaultSelectionStyle.of(context).selectionColor ??
         DefaultSelectionStyle.defaultColor;
 
     final colorClickableText =
         widget.colorClickableText ?? Theme.of(context).colorScheme.secondary;
-    final defaultLessStyle = widget.lessStyle ??
+    final defaultLessStyle =
+        widget.lessStyle ??
         effectiveTextStyle.copyWith(color: colorClickableText);
-    final defaultMoreStyle = widget.moreStyle ??
+    final defaultMoreStyle =
+        widget.moreStyle ??
         effectiveTextStyle.copyWith(color: colorClickableText);
     final defaultDelimiterStyle = widget.delimiterStyle ?? effectiveTextStyle;
 
@@ -270,11 +281,12 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
     );
 
     final delimiter = TextSpan(
-      text: isCollapsed
-          ? widget.trimCollapsedText.isNotEmpty
-              ? widget.delimiter
-              : ''
-          : '',
+      text:
+          isCollapsed
+              ? widget.trimCollapsedText.isNotEmpty
+                  ? widget.delimiter
+                  : ''
+              : '',
       style: defaultDelimiterStyle,
       recognizer: _recognizer,
     );
@@ -291,24 +303,28 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
           preTextSpan = widget.richPreData;
         } else if (widget.preDataText != null) {
           preTextSpan = TextSpan(
-              text: '${widget.preDataText!} ',
-              style: widget.preDataTextStyle ?? effectiveTextStyle);
+            text: '${widget.preDataText!} ',
+            style: widget.preDataTextStyle ?? effectiveTextStyle,
+          );
         }
 
         if (widget.richPostData != null) {
           postTextSpan = widget.richPostData;
         } else if (widget.postDataText != null) {
           postTextSpan = TextSpan(
-              text: ' ${widget.postDataText!}',
-              style: widget.postDataTextStyle ?? effectiveTextStyle);
+            text: ' ${widget.postDataText!}',
+            style: widget.postDataTextStyle ?? effectiveTextStyle,
+          );
         }
 
         final TextSpan dataTextSpan;
         // Constructed by ReadMoreTextEnhanced.rich(...)
         if (widget.richData != null) {
           assert(_isTextSpan(widget.richData!));
-          dataTextSpan =
-              TextSpan(style: effectiveTextStyle, children: [widget.richData!]);
+          dataTextSpan = TextSpan(
+            style: effectiveTextStyle,
+            children: [widget.richData!],
+          );
           // Constructed by ReadMoreTextEnhanced(...)
         } else {
           dataTextSpan = _buildAnnotatedTextSpan(
@@ -320,11 +336,13 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
         }
 
         // Create a TextSpan with data
-        final text = TextSpan(children: [
-          if (preTextSpan != null) preTextSpan,
-          dataTextSpan,
-          if (postTextSpan != null) postTextSpan
-        ]);
+        final text = TextSpan(
+          children: [
+            if (preTextSpan != null) preTextSpan,
+            dataTextSpan,
+            if (postTextSpan != null) postTextSpan,
+          ],
+        );
 
         // Layout and measure link
         final textPainter = TextPainter(
@@ -360,15 +378,17 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
           final readMoreSize = linkSize.width + delimiterSize.width;
           final pos = textPainter.getPositionForOffset(
             Offset(
-                textDirection == TextDirection.rtl
-                    ? readMoreSize
-                    : textSize.width - readMoreSize,
-                textSize.height),
+              textDirection == TextDirection.rtl
+                  ? readMoreSize
+                  : textSize.width - readMoreSize,
+              textSize.height,
+            ),
           );
           endIndex = textPainter.getOffsetBefore(pos.offset) ?? 0;
         } else {
-          final pos = textPainter
-              .getPositionForOffset(textSize.bottomLeft(Offset.zero));
+          final pos = textPainter.getPositionForOffset(
+            textSize.bottomLeft(Offset.zero),
+          );
           endIndex = pos.offset;
           linkLongerThanLine = true;
         }
@@ -379,17 +399,20 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
             // Constructed by ReadMoreTextEnhanced.rich(...)
             if (widget.richData != null) {
               final trimResult = _trimTextSpan(
-                  textSpan: dataTextSpan,
-                  spanStartIndex: 0,
-                  endIndex: widget.trimLength,
-                  splitByRunes: true);
+                textSpan: dataTextSpan,
+                spanStartIndex: 0,
+                endIndex: widget.trimLength,
+                splitByRunes: true,
+              );
 
               if (trimResult.didTrim) {
-                textSpan = TextSpan(children: [
-                  if (isCollapsed) trimResult.textSpan else dataTextSpan,
-                  delimiter,
-                  link
-                ]);
+                textSpan = TextSpan(
+                  children: [
+                    if (isCollapsed) trimResult.textSpan else dataTextSpan,
+                    delimiter,
+                    link,
+                  ],
+                );
               } else {
                 textSpan = dataTextSpan;
               }
@@ -397,20 +420,19 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
             // Constructed by ReadMoreTextEnhanced(...)
             else {
               if (widget.trimLength < widget.data!.runes.length) {
-                final effectiveDataTextSpan = isCollapsed
-                    ? _trimTextSpan(
-                            textSpan: dataTextSpan,
-                            spanStartIndex: 0,
-                            endIndex: widget.trimLength,
-                            splitByRunes: true)
-                        .textSpan
-                    : dataTextSpan;
+                final effectiveDataTextSpan =
+                    isCollapsed
+                        ? _trimTextSpan(
+                          textSpan: dataTextSpan,
+                          spanStartIndex: 0,
+                          endIndex: widget.trimLength,
+                          splitByRunes: true,
+                        ).textSpan
+                        : dataTextSpan;
 
-                textSpan = TextSpan(children: <TextSpan>[
-                  effectiveDataTextSpan,
-                  delimiter,
-                  link
-                ]);
+                textSpan = TextSpan(
+                  children: <TextSpan>[effectiveDataTextSpan, delimiter, link],
+                );
               } else {
                 textSpan = dataTextSpan;
               }
@@ -418,14 +440,15 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
             break;
           case TrimMode.line:
             if (textPainter.didExceedMaxLines) {
-              final effectiveDataTextSpan = isCollapsed
-                  ? _trimTextSpan(
-                          textSpan: dataTextSpan,
-                          spanStartIndex: 0,
-                          endIndex: endIndex,
-                          splitByRunes: false)
-                      .textSpan
-                  : dataTextSpan;
+              final effectiveDataTextSpan =
+                  isCollapsed
+                      ? _trimTextSpan(
+                        textSpan: dataTextSpan,
+                        spanStartIndex: 0,
+                        endIndex: endIndex,
+                        splitByRunes: false,
+                      ).textSpan
+                      : dataTextSpan;
 
               textSpan = TextSpan(
                 children: <TextSpan>[
@@ -442,11 +465,13 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
         }
 
         return RichText(
-          text: TextSpan(children: [
-            if (preTextSpan != null) preTextSpan,
-            textSpan,
-            if (postTextSpan != null) postTextSpan
-          ]),
+          text: TextSpan(
+            children: [
+              if (preTextSpan != null) preTextSpan,
+              textSpan,
+              if (postTextSpan != null) postTextSpan,
+            ],
+          ),
           textAlign: textAlign,
           textDirection: textDirection,
           locale: locale,
@@ -463,9 +488,11 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
     );
     if (registrar != null) {
       result = MouseRegion(
-          cursor: DefaultSelectionStyle.of(context).mouseCursor ??
-              SystemMouseCursors.text,
-          child: result);
+        cursor:
+            DefaultSelectionStyle.of(context).mouseCursor ??
+            SystemMouseCursors.text,
+        child: result,
+      );
     }
     if (widget.semanticsLabel != null) {
       result = Semantics(
@@ -507,7 +534,9 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
         }
 
         final content = matchedAnnotation.spanBuilder(
-            text: matchedText, textStyle: textStyle);
+          text: matchedText,
+          textStyle: textStyle,
+        );
 
         assert(_isTextSpan(content));
         contents.add(content);
@@ -537,9 +566,10 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
       spanEndIndex += textLen;
 
       if (spanEndIndex >= endIndex) {
-        final newText = splitByRunes
-            ? String.fromCharCodes(text.runes, 0, endIndex - spanStartIndex)
-            : text.substring(0, endIndex - spanStartIndex);
+        final newText =
+            splitByRunes
+                ? String.fromCharCodes(text.runes, 0, endIndex - spanStartIndex)
+                : text.substring(0, endIndex - spanStartIndex);
 
         final nextSpan = TextSpan(
           text: newText,
@@ -555,7 +585,10 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
         );
 
         return _TextSpanTrimResult(
-            textSpan: nextSpan, spanEndIndex: spanEndIndex, didTrim: true);
+          textSpan: nextSpan,
+          spanEndIndex: spanEndIndex,
+          didTrim: true,
+        );
       }
     }
 
@@ -567,10 +600,11 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
       for (final child in children) {
         if (child is TextSpan) {
           final result = _trimTextSpan(
-              textSpan: child,
-              spanStartIndex: spanEndIndex,
-              endIndex: endIndex,
-              splitByRunes: splitByRunes);
+            textSpan: child,
+            spanStartIndex: spanEndIndex,
+            endIndex: endIndex,
+            splitByRunes: splitByRunes,
+          );
 
           spanEndIndex = result.spanEndIndex;
           newChildren.add(result.textSpan);
@@ -586,23 +620,27 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
       }
     }
 
-    final resultTextSpan = didTrim
-        ? TextSpan(
-            text: textSpan.text,
-            children: newChildren, // update children
-            style: textSpan.style,
-            recognizer: textSpan.recognizer,
-            mouseCursor: textSpan.mouseCursor,
-            onEnter: textSpan.onEnter,
-            onExit: textSpan.onExit,
-            semanticsLabel: textSpan.semanticsLabel,
-            locale: textSpan.locale,
-            spellOut: textSpan.spellOut,
-          )
-        : textSpan;
+    final resultTextSpan =
+        didTrim
+            ? TextSpan(
+              text: textSpan.text,
+              children: newChildren, // update children
+              style: textSpan.style,
+              recognizer: textSpan.recognizer,
+              mouseCursor: textSpan.mouseCursor,
+              onEnter: textSpan.onEnter,
+              onExit: textSpan.onExit,
+              semanticsLabel: textSpan.semanticsLabel,
+              locale: textSpan.locale,
+              spellOut: textSpan.spellOut,
+            )
+            : textSpan;
 
     return _TextSpanTrimResult(
-        textSpan: resultTextSpan, spanEndIndex: spanEndIndex, didTrim: didTrim);
+      textSpan: resultTextSpan,
+      spanEndIndex: spanEndIndex,
+      didTrim: didTrim,
+    );
   }
 
   bool _isTextSpan(InlineSpan span) {
@@ -621,10 +659,11 @@ class ReadMoreTextEnhancedState extends State<ReadMoreTextEnhanced> {
 
 @immutable
 class _TextSpanTrimResult {
-  const _TextSpanTrimResult(
-      {required this.textSpan,
-      required this.spanEndIndex,
-      required this.didTrim});
+  const _TextSpanTrimResult({
+    required this.textSpan,
+    required this.spanEndIndex,
+    required this.didTrim,
+  });
 
   final TextSpan textSpan;
   final int spanEndIndex;

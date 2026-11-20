@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// Extension for nullable `DateTime` to provide null check functionality.
@@ -97,15 +97,15 @@ extension DateTimeExtension on DateTime {
   /// number of days to the original date. The time components (hour, minute, second,
   /// millisecond, microsecond) remain unchanged.
   DateTime addDays(int amount) => DateTime(
-        year,
-        month,
-        day + amount,
-        hour,
-        minute,
-        second,
-        millisecond,
-        microsecond,
-      );
+    year,
+    month,
+    day + amount,
+    hour,
+    minute,
+    second,
+    millisecond,
+    microsecond,
+  );
 
   /// Adds a certain amount of hours to this date and returns a new [DateTime] instance.
   ///
@@ -120,15 +120,15 @@ extension DateTimeExtension on DateTime {
   /// number of hours to the original date. The date components (year, month, day)
   /// remain unchanged.
   DateTime addHours(int amount) => DateTime(
-        year,
-        month,
-        day,
-        hour + amount,
-        minute,
-        second,
-        millisecond,
-        microsecond,
-      );
+    year,
+    month,
+    day,
+    hour + amount,
+    minute,
+    second,
+    millisecond,
+    microsecond,
+  );
 
   /// Returns a [DateTime] representing the day after this [DateTime].
   ///
@@ -493,8 +493,9 @@ extension DateTimeExtension on DateTime {
     // Calculate the time difference in milliseconds
     int timeDifferenceMilliseconds = istOffsetMinutes * 60 * 1000;
     // Apply the time difference to the server time
-    DateTime istDateTime =
-        currentTime.add(Duration(milliseconds: timeDifferenceMilliseconds));
+    DateTime istDateTime = currentTime.add(
+      Duration(milliseconds: timeDifferenceMilliseconds),
+    );
     final iSTDate =
         istDateTime.toIso8601String().replaceAll('Z', '').toDateTime();
     return iSTDate;
@@ -507,7 +508,7 @@ extension DateTimeExtension on DateTime {
   int countSeconds(DateTime? differenceDateTime) {
     int difference =
         (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
-            millisecondsSinceEpoch;
+        millisecondsSinceEpoch;
     int count = (difference / 1000).truncate();
     // return count > 1 ? count.toString() + ' seconds' : 'Just now';
     return count;
@@ -520,7 +521,7 @@ extension DateTimeExtension on DateTime {
   int countMinutes(DateTime? differenceDateTime) {
     int difference =
         (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
-            millisecondsSinceEpoch;
+        millisecondsSinceEpoch;
     int count = (difference / 60000).truncate();
     // return count.toString() + (count > 1 ? ' minutes' : ' minute');
     return count;
@@ -543,7 +544,7 @@ extension DateTimeExtension on DateTime {
   int countHours(DateTime? differenceDateTime) {
     int difference =
         (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
-            millisecondsSinceEpoch;
+        millisecondsSinceEpoch;
     int count = (difference / 3600000).truncate();
     // return count.toString() + (count > 1 ? ' hours' : ' hour');
     return count;
@@ -557,7 +558,7 @@ extension DateTimeExtension on DateTime {
   int countDays(DateTime? differenceDateTime) {
     int difference =
         (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
-            millisecondsSinceEpoch;
+        millisecondsSinceEpoch;
     int count = (difference / 86400000).truncate();
     // return count.toString() + (count > 1 ? ' days' : ' day');
     return count;
@@ -578,9 +579,9 @@ extension DateTimeExtension on DateTime {
   int countWeeks(DateTime? differenceDateTime) {
     int difference =
         (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
-            millisecondsSinceEpoch;
+        millisecondsSinceEpoch;
     int count = (difference / 604800000).truncate();
-/*    if (count > 3) {
+    /*    if (count > 3) {
       // return '1 month';
       return 1;
     }*/
@@ -604,7 +605,7 @@ extension DateTimeExtension on DateTime {
   int countMonths(DateTime? differenceDateTime) {
     int difference =
         (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
-            millisecondsSinceEpoch;
+        millisecondsSinceEpoch;
     int count = (difference / 2628003000).round();
     return count;
   }
@@ -624,7 +625,7 @@ extension DateTimeExtension on DateTime {
   int countYears(DateTime? differenceDateTime) {
     int difference =
         (differenceDateTime ?? DateTime.now()).millisecondsSinceEpoch -
-            millisecondsSinceEpoch;
+        millisecondsSinceEpoch;
     int count = (difference / 31536000000).truncate();
     // return count.toString() + (count > 1 ? ' years' : ' year');
     return count;
@@ -642,14 +643,6 @@ extension DateTimeExtension on DateTime {
   /// DateTime? utcDateTime = dateTime.asUtc;
   /// print('UTC DateTime: $utcDateTime');
   /// ```
-  DateTime? asUtc() => isNull
-      ? null
-      : DateTime.utc(
-          year,
-          month,
-          day,
-          hour,
-          minute,
-          second,
-        );
+  DateTime? asUtc() =>
+      isNull ? null : DateTime.utc(year, month, day, hour, minute, second);
 }

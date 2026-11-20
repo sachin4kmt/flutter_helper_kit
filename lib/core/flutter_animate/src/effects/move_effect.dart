@@ -24,11 +24,11 @@ class MoveEffect extends Effect<Offset> {
     Offset? begin,
     Offset? end,
     bool? transformHitTests,
-  })  : transformHitTests = transformHitTests ?? defaultTransformHitTests,
-        super(
-          begin: begin ?? (end == null ? defaultValue : neutralValue),
-          end: end ?? neutralValue,
-        );
+  }) : transformHitTests = transformHitTests ?? defaultTransformHitTests,
+       super(
+         begin: begin ?? (end == null ? defaultValue : neutralValue),
+         end: end ?? neutralValue,
+       );
 
   final bool transformHitTests;
 
@@ -42,7 +42,7 @@ class MoveEffect extends Effect<Offset> {
     Animation<Offset> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<Offset>(
       animation: animation,
-      builder: (_, __) {
+      builder: (_, _) {
         return Transform.translate(
           offset: animation.value,
           transformHitTests: transformHitTests,
@@ -64,15 +64,16 @@ extension MoveEffectExtensions<T extends AnimateManager<T>> on T {
     Offset? begin,
     Offset? end,
     bool? transformHitTests,
-  }) =>
-      addEffect(MoveEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        transformHitTests: transformHitTests,
-      ));
+  }) => addEffect(
+    MoveEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      transformHitTests: transformHitTests,
+    ),
+  );
 
   /// Adds a [MoveEffect] that moves the target horizontally between the specified [begin] and [end]
   /// pixel amounts (via [Transform.translate]).
@@ -86,14 +87,16 @@ extension MoveEffectExtensions<T extends AnimateManager<T>> on T {
   }) {
     begin ??= end == null ? MoveEffect.defaultMove : MoveEffect.neutralMove;
     end ??= MoveEffect.neutralMove;
-    return addEffect(MoveEffect(
-      delay: delay,
-      duration: duration,
-      curve: curve,
-      begin: MoveEffect.neutralValue.copyWith(dx: begin),
-      end: MoveEffect.neutralValue.copyWith(dx: end),
-      transformHitTests: transformHitTests,
-    ));
+    return addEffect(
+      MoveEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: MoveEffect.neutralValue.copyWith(dx: begin),
+        end: MoveEffect.neutralValue.copyWith(dx: end),
+        transformHitTests: transformHitTests,
+      ),
+    );
   }
 
   /// Adds a [MoveEffect] that moves the target vertically between the specified [begin] and [end]
@@ -108,14 +111,16 @@ extension MoveEffectExtensions<T extends AnimateManager<T>> on T {
   }) {
     begin ??= end == null ? MoveEffect.defaultMove : MoveEffect.neutralMove;
     end ??= MoveEffect.neutralMove;
-    return addEffect(MoveEffect(
-      delay: delay,
-      duration: duration,
-      curve: curve,
-      begin: MoveEffect.neutralValue.copyWith(dy: begin),
-      end: MoveEffect.neutralValue.copyWith(dy: end),
-      transformHitTests: transformHitTests,
-    ));
+    return addEffect(
+      MoveEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: MoveEffect.neutralValue.copyWith(dy: begin),
+        end: MoveEffect.neutralValue.copyWith(dy: end),
+        transformHitTests: transformHitTests,
+      ),
+    );
   }
 
   // Note: there is no moveXY because diagonal movement isn't a significant use case.

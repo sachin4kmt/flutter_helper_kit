@@ -39,13 +39,13 @@ class FlipEffect extends Effect<double> {
     alignment,
     perspective,
     direction,
-  })  : alignment = alignment ?? Alignment.center,
-        perspective = perspective ?? defaultPerspective,
-        direction = direction ?? defaultAxis,
-        super(
-          begin: begin ?? (end == null ? defaultValue : neutralValue),
-          end: end ?? neutralValue,
-        );
+  }) : alignment = alignment ?? Alignment.center,
+       perspective = perspective ?? defaultPerspective,
+       direction = direction ?? defaultAxis,
+       super(
+         begin: begin ?? (end == null ? defaultValue : neutralValue),
+         end: end ?? neutralValue,
+       );
 
   final Alignment alignment;
   final double perspective;
@@ -61,11 +61,16 @@ class FlipEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) => Transform(
-        alignment: alignment,
-        transform: getTransformMatrix(animation.value, direction, perspective),
-        child: child,
-      ),
+      builder:
+          (_, _) => Transform(
+            alignment: alignment,
+            transform: getTransformMatrix(
+              animation.value,
+              direction,
+              perspective,
+            ),
+            child: child,
+          ),
     );
   }
 
@@ -75,10 +80,22 @@ class FlipEffect extends Effect<double> {
     double perspective,
   ) {
     final Matrix4 mtx = Matrix4(
-      1.0, 0.0, 0.0, 0.0, //
-      0.0, 1.0, 0.0, 0.0, //
-      0.0, 0.0, 1.0, 0.002 * perspective, //
-      0.0, 0.0, 0.0, 1.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0, //
+      0.0,
+      1.0,
+      0.0,
+      0.0, //
+      0.0,
+      0.0,
+      1.0,
+      0.002 * perspective, //
+      0.0,
+      0.0,
+      0.0,
+      1.0,
     );
     if (value != 0) {
       if (direction == Axis.vertical) {
@@ -106,17 +123,18 @@ extension FlipEffectExtensions<T extends AnimateManager<T>> on T {
     Alignment? alignment,
     double? perspective,
     Axis? direction,
-  }) =>
-      addEffect(FlipEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        alignment: alignment,
-        perspective: perspective,
-        direction: direction,
-      ));
+  }) => addEffect(
+    FlipEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      alignment: alignment,
+      perspective: perspective,
+      direction: direction,
+    ),
+  );
 
   /// Adds a [FlipEffect] that animates a horizontal 2.5D card flip rotation effect (via [Transform]).
   /// The [begin] and [end] values specify the number of "flips" (ie. half turns,
@@ -129,17 +147,18 @@ extension FlipEffectExtensions<T extends AnimateManager<T>> on T {
     double? end,
     Alignment? alignment,
     double? perspective,
-  }) =>
-      addEffect(FlipEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        alignment: alignment,
-        perspective: perspective,
-        direction: Axis.horizontal,
-      ));
+  }) => addEffect(
+    FlipEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      alignment: alignment,
+      perspective: perspective,
+      direction: Axis.horizontal,
+    ),
+  );
 
   /// Adds a [FlipEffect] that animates a vertical 2.5D card flip rotation effect (via [Transform]).
   /// The [begin] and [end] values specify the number of "flips" (ie. half turns,
@@ -152,15 +171,16 @@ extension FlipEffectExtensions<T extends AnimateManager<T>> on T {
     double? end,
     Alignment? alignment,
     double? perspective,
-  }) =>
-      addEffect(FlipEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        alignment: alignment,
-        perspective: perspective,
-        direction: Axis.vertical,
-      ));
+  }) => addEffect(
+    FlipEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      alignment: alignment,
+      perspective: perspective,
+      direction: Axis.vertical,
+    ),
+  );
 }

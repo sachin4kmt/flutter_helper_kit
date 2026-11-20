@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'dart:math' as math;
 
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
@@ -114,13 +114,12 @@ class _OutlineAvatarGlowState extends State<OutlineAvatarGlow>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    );
+    _controller = AnimationController(vsync: this, duration: widget.duration);
 
-    _painter =
-        _OutlineGlowPainter(progress: _controller, glowColor: widget.glowColor);
+    _painter = _OutlineGlowPainter(
+      progress: _controller,
+      glowColor: widget.glowColor,
+    );
 
     if (widget.animate) {
       _startAnimation();
@@ -161,16 +160,17 @@ class _OutlineAvatarGlowState extends State<OutlineAvatarGlow>
   Widget build(BuildContext context) {
     return RepaintBoundary(
       child: CustomPaint(
-        painter: _painter
-          ..curve = widget.curve
-          ..opacityTween = _opacityTween
-          ..glowCount = widget.glowCount
-          ..glowDecoration = BoxDecoration(
-            color: Colors.transparent,
-            shape: widget.glowShape,
-            borderRadius: widget.glowBorderRadius,
-          )
-          ..glowRadiusFactor = widget.glowRadiusFactor,
+        painter:
+            _painter
+              ..curve = widget.curve
+              ..opacityTween = _opacityTween
+              ..glowCount = widget.glowCount
+              ..glowDecoration = BoxDecoration(
+                color: Colors.transparent,
+                shape: widget.glowShape,
+                borderRadius: widget.glowBorderRadius,
+              )
+              ..glowRadiusFactor = widget.glowRadiusFactor,
         child: widget.child,
       ),
     );
@@ -235,11 +235,12 @@ class _OutlineGlowPainter extends ChangeNotifier implements CustomPainter {
   void paint(Canvas canvas, Size size) {
     final opacity = _opacityTween!.evaluate(progress);
 
-    final paint = Paint()
-      ..color = glowColor.withColorOpacity(opacity)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth =
-          4.0; // Adjust this value to change the thickness of the line
+    final paint =
+        Paint()
+          ..color = glowColor.withColorOpacity(opacity)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth =
+              4.0; // Adjust this value to change the thickness of the line
 
     final glowSize = math.min(size.width, size.height);
     final glowRadius = glowSize / 2;

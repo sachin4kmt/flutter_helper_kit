@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'dart:math' as math;
 import 'flutter_tag_gradient_type.dart';
 
@@ -51,13 +51,13 @@ class FlutterTagGradient {
     this.stops,
     this.tileMode = TileMode.clamp,
     this.transform,
-  })  : gradientType = FlutterTagGradientType.linear,
-        center = null,
-        radius = null,
-        focal = null,
-        focalRadius = null,
-        startAngle = null,
-        endAngle = null;
+  }) : gradientType = FlutterTagGradientType.linear,
+       center = null,
+       radius = null,
+       focal = null,
+       focalRadius = null,
+       startAngle = null,
+       endAngle = null;
 
   /// Constructs a radial gradient.
   const FlutterTagGradient.radial({
@@ -69,11 +69,11 @@ class FlutterTagGradient {
     this.focal,
     this.focalRadius = 0.0,
     this.transform,
-  })  : gradientType = FlutterTagGradientType.radial,
-        begin = null,
-        end = null,
-        startAngle = null,
-        endAngle = null;
+  }) : gradientType = FlutterTagGradientType.radial,
+       begin = null,
+       end = null,
+       startAngle = null,
+       endAngle = null;
 
   /// Constructs a sweep gradient.
   const FlutterTagGradient.sweep({
@@ -84,12 +84,12 @@ class FlutterTagGradient {
     this.endAngle = math.pi * 2,
     this.stops,
     this.transform,
-  })  : gradientType = FlutterTagGradientType.sweep,
-        begin = null,
-        end = null,
-        radius = null,
-        focal = null,
-        focalRadius = null;
+  }) : gradientType = FlutterTagGradientType.sweep,
+       begin = null,
+       end = null,
+       radius = null,
+       focal = null,
+       focalRadius = null;
 
   /// Returns the appropriate [Gradient] object based on the gradient type.
   Gradient gradient() {

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_helper_kit/utils/console/printf_console.dart';
 
@@ -38,9 +38,13 @@ void main() {
   group('PrintfLevel', () {
     test('orders by priority', () {
       expect(
-          PrintfLevel.error.priority, greaterThan(PrintfLevel.debug.priority));
+        PrintfLevel.error.priority,
+        greaterThan(PrintfLevel.debug.priority),
+      );
       expect(
-          PrintfLevel.warning.priority, greaterThan(PrintfLevel.info.priority));
+        PrintfLevel.warning.priority,
+        greaterThan(PrintfLevel.info.priority),
+      );
     });
   });
 

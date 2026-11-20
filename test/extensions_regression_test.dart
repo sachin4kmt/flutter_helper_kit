@@ -22,10 +22,7 @@ void main() {
 
     test('currentTimeStamp uses instance value', () {
       final past = DateTime(2020, 1, 1, 12);
-      expect(
-        past.currentTimeStamp(),
-        past.millisecondsSinceEpoch ~/ 1000,
-      );
+      expect(past.currentTimeStamp(), past.millisecondsSinceEpoch ~/ 1000);
     });
 
     test('previousMonth and nextMonth preserve day and time', () {
@@ -57,10 +54,15 @@ void main() {
     });
 
     test('separatorEvery supports start and end separators', () {
-      expect(
-        [1, 2, 3].separatorEvery(0, start: true, end: true),
-        [0, 1, 0, 2, 0, 3, 0],
-      );
+      expect([1, 2, 3].separatorEvery(0, start: true, end: true), [
+        0,
+        1,
+        0,
+        2,
+        0,
+        3,
+        0,
+      ]);
     });
   });
 
@@ -81,10 +83,7 @@ void main() {
 
   group('StringExtension regressions', () {
     test('capitalizeEachWordFirstCharacter capitalizes every word', () {
-      expect(
-        'hello world'.capitalizeEachWordFirstCharacter(),
-        'Hello World',
-      );
+      expect('hello world'.capitalizeEachWordFirstCharacter(), 'Hello World');
     });
   });
 

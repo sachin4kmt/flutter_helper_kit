@@ -19,7 +19,7 @@ import 'package:flutter_helper_kit/core/flutter_animate/flutter_animate.dart';
 /// See [Adapter] for information on [direction] and [animated].
 class ValueAdapter extends ValueNotifierAdapter {
   ValueAdapter(double value, {super.animated, super.direction})
-      : super(ValueNotifier<double>(value));
+    : super(ValueNotifier<double>(value));
 
   set value(double value) => notifier.value = value;
 }

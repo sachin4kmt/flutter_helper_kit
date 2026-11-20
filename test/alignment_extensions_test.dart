@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_helper_kit/extensions/alignment/alignment.dart';
 
@@ -36,18 +36,9 @@ void main() {
     test('resolves directional geometry for LTR and RTL', () {
       const geometry = AlignmentDirectional.topStart;
 
-      expect(
-        geometry.isTopResolved(TextDirection.ltr),
-        isTrue,
-      );
-      expect(
-        geometry.isLeftResolved(TextDirection.ltr),
-        isTrue,
-      );
-      expect(
-        geometry.isRightResolved(TextDirection.rtl),
-        isTrue,
-      );
+      expect(geometry.isTopResolved(TextDirection.ltr), isTrue);
+      expect(geometry.isLeftResolved(TextDirection.ltr), isTrue);
+      expect(geometry.isRightResolved(TextDirection.rtl), isTrue);
     });
   });
 

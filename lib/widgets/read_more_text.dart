@@ -1,11 +1,8 @@
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// TrimMode enum
-enum TrimMode {
-  length,
-  line,
-}
+enum TrimMode { length, line }
 
 class ReadMoreText extends StatefulWidget {
   /// Creates a [ReadMoreText] widget.
@@ -128,9 +125,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
 
     TextSpan link = TextSpan(
       text: _readMore ? widget.trimCollapsedText : widget.trimExpandedText,
-      style: effectiveTextStyle!.copyWith(
-        color: colorClickableText,
-      ),
+      style: effectiveTextStyle!.copyWith(color: colorClickableText),
       recognizer: TapGestureRecognizer()..onTap = _onTapLink,
     );
 
@@ -140,10 +135,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
         final double maxWidth = constraints.maxWidth;
 
         // Create a TextSpan with data
-        final text = TextSpan(
-          style: effectiveTextStyle,
-          text: widget.data,
-        );
+        final text = TextSpan(style: effectiveTextStyle, text: widget.data);
 
         // Layout and measure link
         TextPainter textPainter = TextPainter(
@@ -168,10 +160,9 @@ class ReadMoreTextState extends State<ReadMoreText> {
         int? endIndex;
 
         if (linkSize.width < maxWidth) {
-          final pos = textPainter.getPositionForOffset(Offset(
-            textSize.width - linkSize.width,
-            textSize.height,
-          ));
+          final pos = textPainter.getPositionForOffset(
+            Offset(textSize.width - linkSize.width, textSize.height),
+          );
           endIndex = textPainter.getOffsetBefore(pos.offset);
         } else {
           var pos = textPainter.getPositionForOffset(
@@ -187,33 +178,29 @@ class ReadMoreTextState extends State<ReadMoreText> {
             if (widget.trimLength < widget.data.length) {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
-                text: _readMore
-                    ? widget.data.substring(0, widget.trimLength)
-                    : widget.data,
+                text:
+                    _readMore
+                        ? widget.data.substring(0, widget.trimLength)
+                        : widget.data,
                 children: <TextSpan>[link],
               );
             } else {
-              textSpan = TextSpan(
-                style: effectiveTextStyle,
-                text: widget.data,
-              );
+              textSpan = TextSpan(style: effectiveTextStyle, text: widget.data);
             }
             break;
           case TrimMode.line:
             if (textPainter.didExceedMaxLines) {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
-                text: _readMore
-                    ? widget.data.substring(0, endIndex) +
-                        (linkLongerThanLine ? _kLineSeparator : '')
-                    : widget.data,
+                text:
+                    _readMore
+                        ? widget.data.substring(0, endIndex) +
+                            (linkLongerThanLine ? _kLineSeparator : '')
+                        : widget.data,
                 children: <TextSpan>[link],
               );
             } else {
-              textSpan = TextSpan(
-                style: effectiveTextStyle,
-                text: widget.data,
-              );
+              textSpan = TextSpan(style: effectiveTextStyle, text: widget.data);
             }
             break;
           /*default:
@@ -221,8 +208,11 @@ class ReadMoreTextState extends State<ReadMoreText> {
                 'TrimMode type: ${widget.trimMode} is not supported');*/
         }
 
-        return SelectableText.rich(textSpan,
-            textAlign: textAlign, textDirection: textDirection);
+        return SelectableText.rich(
+          textSpan,
+          textAlign: textAlign,
+          textDirection: textDirection,
+        );
       },
     );
 
@@ -230,9 +220,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
       result = Semantics(
         textDirection: widget.textDirection,
         label: widget.semanticsLabel,
-        child: ExcludeSemantics(
-          child: result,
-        ),
+        child: ExcludeSemantics(child: result),
       );
     }
     return result;

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// Border radius utilities.
@@ -143,7 +143,8 @@ extension SharpBorderExtension on num? {
   /// ),
   /// ```
   BorderRadius get circularSharpRadius => SharpBorderRadius.all(
-      SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1),
+  );
 
   /// Left border radius.
   ///
@@ -157,7 +158,8 @@ extension SharpBorderExtension on num? {
   /// ),
   /// ```
   BorderRadius get leftSharpRadius => SharpBorderRadius.horizontal(
-      left: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    left: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1),
+  );
 
   /// Right border radius.
   ///
@@ -171,7 +173,8 @@ extension SharpBorderExtension on num? {
   /// ),
   /// ```
   BorderRadius get rightSharpRadius => SharpBorderRadius.horizontal(
-      right: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    right: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1),
+  );
 
   /// Top border radius.
   ///
@@ -185,7 +188,8 @@ extension SharpBorderExtension on num? {
   /// ),
   /// ```
   BorderRadius get topSharpRadius => SharpBorderRadius.vertical(
-      top: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    top: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1),
+  );
 
   /// Bottom border radius.
   ///
@@ -199,7 +203,8 @@ extension SharpBorderExtension on num? {
   /// ),
   /// ```
   BorderRadius get bottomSharpRadius => SharpBorderRadius.vertical(
-      bottom: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    bottom: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1),
+  );
 
   /// Top-left corner border radius.
   ///
@@ -213,8 +218,8 @@ extension SharpBorderExtension on num? {
   /// ),
   /// ```
   BorderRadius get topLeftSharpRadius => SharpBorderRadius.only(
-      topLeft:
-          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    topLeft: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1),
+  );
 
   /// Top-right corner border radius.
   ///
@@ -228,8 +233,8 @@ extension SharpBorderExtension on num? {
   /// ),
   /// ```
   BorderRadius get topRightSharpRadius => SharpBorderRadius.only(
-      topRight:
-          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    topRight: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1),
+  );
 
   /// Bottom-left corner border radius.
   ///
@@ -243,8 +248,11 @@ extension SharpBorderExtension on num? {
   /// ),
   /// ```
   BorderRadius get bottomLeftSharpRadius => SharpBorderRadius.only(
-      bottomLeft:
-          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    bottomLeft: SharpRadius(
+      cornerRadius: (this ?? 0).toDouble(),
+      sharpRatio: 1,
+    ),
+  );
 
   /// Bottom-left corner border radius.
   ///
@@ -258,6 +266,9 @@ extension SharpBorderExtension on num? {
   /// ),
   /// ```
   BorderRadius get bottomRightSharpRadius => SharpBorderRadius.only(
-      bottomRight:
-          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    bottomRight: SharpRadius(
+      cornerRadius: (this ?? 0).toDouble(),
+      sharpRatio: 1,
+    ),
+  );
 }

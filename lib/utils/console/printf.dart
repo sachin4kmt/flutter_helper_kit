@@ -43,7 +43,8 @@ void printf(
     stackTraceIndex: stackTraceIndex,
   );
 
-  final appliedStyle = style ??
+  final appliedStyle =
+      style ??
       (foreground != null ||
               background != null ||
               italic ||
@@ -54,16 +55,16 @@ void printf(
               doubleUnderline ||
               framed
           ? PrintfStyle(
-              foreground: foreground,
-              background: background,
-              italic: italic,
-              bold: bold,
-              underline: underline,
-              invert: invert,
-              strike: strike,
-              doubleUnderline: doubleUnderline,
-              framed: framed,
-            )
+            foreground: foreground,
+            background: background,
+            italic: italic,
+            bold: bold,
+            underline: underline,
+            invert: invert,
+            strike: strike,
+            doubleUnderline: doubleUnderline,
+            framed: framed,
+          )
           : level.defaultStyle);
 
   developer.log(
@@ -153,8 +154,12 @@ void printfTable(
   rows.forEach((key, value) {
     buffer.writeln('${key.padRight(width)} : $value');
   });
-  printf(buffer.toString().trimRight(),
-      tag: tag, level: level, timestamp: true);
+  printf(
+    buffer.toString().trimRight(),
+    tag: tag,
+    level: level,
+    timestamp: true,
+  );
 }
 
 /// Logs an outgoing HTTP request without coupling to `http` or `dio`.
@@ -213,11 +218,7 @@ bool _shouldPrint(PrintfLevel level) {
   return level.priority >= PrintfConfig.minLevel.priority;
 }
 
-Object? _resolvePayload(
-  Object? data, {
-  Object? mapKey,
-  int? listIndex,
-}) {
+Object? _resolvePayload(Object? data, {Object? mapKey, int? listIndex}) {
   var obj = data;
   if (mapKey != null && data is Map) {
     obj = data[mapKey];
@@ -299,10 +300,7 @@ class _FrameLocation {
   final int column;
 }
 
-String? _callerLinkFromStackTrace(
-  String stackTraceText, {
-  int extraSkip = 0,
-}) {
+String? _callerLinkFromStackTrace(String stackTraceText, {int extraSkip = 0}) {
   final frames = stackTraceText.split('\n');
   var skipped = 0;
   for (final frame in frames) {

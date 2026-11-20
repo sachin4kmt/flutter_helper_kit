@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'password_rules_enum.dart';
 import 'password_strength_enum.dart';
@@ -40,7 +40,7 @@ class PasswordStrengthIndicator extends StatefulWidget {
       PasswordRule.capital,
       PasswordRule.lowercase,
       PasswordRule.number,
-      PasswordRule.symbol
+      PasswordRule.symbol,
     ],
   });
 
@@ -70,30 +70,33 @@ class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
   }
 
   Map<PasswordRule, _PasswordRuleConfig> get _ruleConfig => {
-        PasswordRule.length: _PasswordRuleConfig(
-          text: () => widget.maxLength != null
-              ? 'Contain between ${widget.minLength}-${widget.maxLength} Characters'
-              : 'Contain at least ${widget.minLength} Characters',
-          isValid: checkLength,
-        ),
-        PasswordRule.capital: _PasswordRuleConfig(
-          text: () => 'At least one CAPITAL letter',
-          isValid: () => capitalReg.hasMatch(widget.textController.text),
-        ),
-        PasswordRule.lowercase: _PasswordRuleConfig(
-          text: () => 'At least one simple letter',
-          isValid: () => simpleReg.hasMatch(widget.textController.text),
-        ),
-        PasswordRule.number: _PasswordRuleConfig(
-            text: () => 'At least one number',
-            isValid: () => numReg.hasMatch(widget.textController.text)),
-        PasswordRule.symbol: _PasswordRuleConfig(
-          text: () => 'At least one special character',
-          isValid: () => symbolsReg.hasMatch(widget.textController.text),
-        ),
-      };
+    PasswordRule.length: _PasswordRuleConfig(
+      text:
+          () =>
+              widget.maxLength != null
+                  ? 'Contain between ${widget.minLength}-${widget.maxLength} Characters'
+                  : 'Contain at least ${widget.minLength} Characters',
+      isValid: checkLength,
+    ),
+    PasswordRule.capital: _PasswordRuleConfig(
+      text: () => 'At least one CAPITAL letter',
+      isValid: () => capitalReg.hasMatch(widget.textController.text),
+    ),
+    PasswordRule.lowercase: _PasswordRuleConfig(
+      text: () => 'At least one simple letter',
+      isValid: () => simpleReg.hasMatch(widget.textController.text),
+    ),
+    PasswordRule.number: _PasswordRuleConfig(
+      text: () => 'At least one number',
+      isValid: () => numReg.hasMatch(widget.textController.text),
+    ),
+    PasswordRule.symbol: _PasswordRuleConfig(
+      text: () => 'At least one special character',
+      isValid: () => symbolsReg.hasMatch(widget.textController.text),
+    ),
+  };
 
-/*  void calculateStrength() {
+  /*  void calculateStrength() {
     double total = 0;
     final activeRules = widget.rules.length;
 
@@ -160,7 +163,8 @@ class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
     return Colors.grey.shade300; // inactive boxes
   }
 
-  int get passedCount => widget.rules.where((rule) {
+  int get passedCount =>
+      widget.rules.where((rule) {
         switch (rule) {
           case PasswordRule.length:
             return checkLength();
@@ -231,13 +235,20 @@ class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
       children: [
         Container(
           alignment: Alignment.centerLeft,
-          child: condition
-              ? widget.successWidget ??
-                  Icon(widget.successIcon ?? Icons.check,
-                      color: Colors.green, size: 14)
-              : widget.unSuccessWidget ??
-                  Icon(widget.unSuccessIcon ?? Icons.clear,
-                      color: Colors.red, size: 14),
+          child:
+              condition
+                  ? widget.successWidget ??
+                      Icon(
+                        widget.successIcon ?? Icons.check,
+                        color: Colors.green,
+                        size: 14,
+                      )
+                  : widget.unSuccessWidget ??
+                      Icon(
+                        widget.unSuccessIcon ?? Icons.clear,
+                        color: Colors.red,
+                        size: 14,
+                      ),
         ),
         const SizedBox(width: 12),
         SizedBox(
@@ -245,9 +256,10 @@ class PasswordStrengthIndicatorState extends State<PasswordStrengthIndicator> {
             text,
             textAlign: TextAlign.left,
             style: TextStyle(
-                fontSize: 14,
-                color: condition ? Colors.green : Colors.red,
-                height: 1.5),
+              fontSize: 14,
+              color: condition ? Colors.green : Colors.red,
+              height: 1.5,
+            ),
           ),
         ),
       ],

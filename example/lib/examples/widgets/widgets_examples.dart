@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 Widget appButtonDemo(BuildContext context) {
-  return Center(
-    child: AppButton(onTap: () {}, text: 'AppButton'),
-  );
+  return Center(child: AppButton(onTap: () {}, text: 'AppButton'));
 }
 
 Widget sliderButtonDemo(BuildContext context) {
@@ -53,7 +51,9 @@ class _PasswordStrengthDemoState extends State<_PasswordStrengthDemo> {
             controller: controller,
             obscureText: true,
             decoration: const InputDecoration(
-                labelText: 'Password', border: OutlineInputBorder()),
+              labelText: 'Password',
+              border: OutlineInputBorder(),
+            ),
             onChanged: (_) => setState(() {}),
           ),
           const SizedBox(height: 16),
@@ -82,11 +82,14 @@ Widget readMoreDemo(BuildContext context) {
           annotations: [
             Annotation(
               regExp: RegExp(r'Paydrop|WhereToNow'),
-              spanBuilder: ({required text, required textStyle}) => TextSpan(
-                text: text,
-                style: textStyle.copyWith(
-                    color: Colors.blue, fontWeight: FontWeight.bold),
-              ),
+              spanBuilder:
+                  ({required text, required textStyle}) => TextSpan(
+                    text: text,
+                    style: textStyle.copyWith(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
             ),
           ],
         ),
@@ -105,8 +108,10 @@ Widget sharpCornersDemo(BuildContext context) {
         borderRadius: SharpBorderRadius(cornerRadius: 24, sharpRatio: 0.6),
       ),
       alignment: Alignment.center,
-      child: const Text('SharpBorderRadius',
-          style: TextStyle(color: Colors.white)),
+      child: const Text(
+        'SharpBorderRadius',
+        style: TextStyle(color: Colors.white),
+      ),
     ),
   );
 }
@@ -114,8 +119,10 @@ Widget sharpCornersDemo(BuildContext context) {
 Widget flutterTagDemo(BuildContext context) {
   return Center(
     child: FlutterTag(
-      tagContent: const Text('NEW',
-          style: TextStyle(color: Colors.white, fontSize: 10)),
+      tagContent: const Text(
+        'NEW',
+        style: TextStyle(color: Colors.white, fontSize: 10),
+      ),
       tagStyle: const FlutterTagStyle(tagColor: Colors.red),
       child: Container(
         width: 120,
@@ -133,9 +140,10 @@ Widget avatarGlowDemo(BuildContext context) {
     child: AvatarGlow(
       glowColor: Colors.blue,
       child: CircleAvatar(
-          radius: 36,
-          backgroundColor: Colors.blue.shade100,
-          child: const Icon(Icons.person)),
+        radius: 36,
+        backgroundColor: Colors.blue.shade100,
+        child: const Icon(Icons.person),
+      ),
     ),
   );
 }
@@ -148,8 +156,10 @@ Widget uiComponentsDemo(BuildContext context) {
       const SizedBox(height: 16),
       const DashDivider(),
       const SizedBox(height: 16),
-      GradientText('GradientText',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+      GradientText(
+        'GradientText',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
       const SizedBox(height: 16),
       RatingBarWidget(rating: 3.5, onRatingChanged: (_) {}),
       const SizedBox(height: 16),
@@ -157,7 +167,9 @@ Widget uiComponentsDemo(BuildContext context) {
       const SizedBox(height: 16),
       DottedBorderWidget(
         child: const Padding(
-            padding: EdgeInsets.all(16), child: Text('DottedBorderWidget')),
+          padding: EdgeInsets.all(16),
+          child: Text('DottedBorderWidget'),
+        ),
       ),
     ],
   );
@@ -181,8 +193,10 @@ Widget ticketClippersDemo(BuildContext context) {
   return Center(
     child: TicketClipper(
       clipper: PointedEdgeClipper(),
-      shadow:
-          BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 8),
+      shadow: BoxShadow(
+        color: Colors.black.withValues(alpha: 0.15),
+        blurRadius: 8,
+      ),
       child: Container(
         width: 280,
         height: 120,
@@ -200,24 +214,29 @@ Widget cupertinoDialogsDemo(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       children: [
         ElevatedButton(
-          onPressed: () => AppCupertinoActionSheet.showActionSheet<String>(
-            context: context,
-            title: 'Choose',
-            actions: [
-              ActionSheetItem(value: 'a', label: 'Option A'),
-              ActionSheetItem(
-                  value: 'b', label: 'Option B', isDestructive: true),
-            ],
-          ),
+          onPressed:
+              () => AppCupertinoActionSheet.showActionSheet<String>(
+                context: context,
+                title: 'Choose',
+                actions: [
+                  ActionSheetItem(value: 'a', label: 'Option A'),
+                  ActionSheetItem(
+                    value: 'b',
+                    label: 'Option B',
+                    isDestructive: true,
+                  ),
+                ],
+              ),
           child: const Text('AppCupertinoActionSheet'),
         ),
         const SizedBox(height: 8),
         ElevatedButton(
-          onPressed: () => AppCupertinoDialog.info(
-            context: context,
-            title: 'Info',
-            message: 'AppCupertinoDialog.info()',
-          ),
+          onPressed:
+              () => AppCupertinoDialog.info(
+                context: context,
+                title: 'Info',
+                message: 'AppCupertinoDialog.info()',
+              ),
           child: const Text('AppCupertinoDialog.info'),
         ),
       ],
@@ -307,9 +326,11 @@ class _PaginationListViewExampleState extends State<PaginationListViewExample> {
       itemBuilder: (_, i) {
         if (i >= items.length) {
           return const Center(
-              child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: CircularProgressIndicator()));
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
         return ListTile(title: Text(items[i]));
       },

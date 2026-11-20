@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../sharp_corners/sharp.dart';
 import 'flutter_tag_gradient.dart';
@@ -46,15 +46,16 @@ class FlutterTagStyle {
     this.padding = const EdgeInsets.all(5.0),
   }) : super();
 
-  FlutterTagStyle copyWith(
-      {FlutterTagShape? shape,
-      SharpBorderRadius? borderRadius,
-      Color? tagColor,
-      BorderSide? borderSide,
-      double? elevation,
-      FlutterTagGradient? tagGradient,
-      FlutterTagGradient? borderGradient,
-      EdgeInsetsGeometry? padding}) {
+  FlutterTagStyle copyWith({
+    FlutterTagShape? shape,
+    SharpBorderRadius? borderRadius,
+    Color? tagColor,
+    BorderSide? borderSide,
+    double? elevation,
+    FlutterTagGradient? tagGradient,
+    FlutterTagGradient? borderGradient,
+    EdgeInsetsGeometry? padding,
+  }) {
     return FlutterTagStyle(
       shape: shape ?? this.shape,
       borderRadius: borderRadius ?? this.borderRadius,

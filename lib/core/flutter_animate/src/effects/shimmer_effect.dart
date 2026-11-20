@@ -54,10 +54,7 @@ class ShimmerEffect extends Effect<double> {
     this.angle,
     this.blendMode,
     this.padding,
-  }) : super(
-          begin: 0,
-          end: 1,
-        );
+  }) : super(begin: 0, end: 1);
 
   final Color? color;
   final List<Color>? colors;
@@ -83,7 +80,7 @@ class ShimmerEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) {
+      builder: (_, _) {
         LinearGradient gradient = _buildGradient(animation.value);
         return ShaderMask(
           blendMode: blendMode ?? defaultBlendMode,
@@ -126,19 +123,20 @@ extension ShimmerEffectExtensions<T extends AnimateManager<T>> on T {
     double? angle,
     BlendMode? blendMode,
     double? padding,
-  }) =>
-      addEffect(ShimmerEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        color: color,
-        colors: colors,
-        stops: stops,
-        size: size,
-        angle: angle,
-        blendMode: blendMode,
-        padding: padding,
-      ));
+  }) => addEffect(
+    ShimmerEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      color: color,
+      colors: colors,
+      stops: stops,
+      size: size,
+      angle: angle,
+      blendMode: blendMode,
+      padding: padding,
+    ),
+  );
 }
 
 class _SweepingGradientTransform extends GradientTransform {
@@ -161,13 +159,14 @@ class _SweepingGradientTransform extends GradientTransform {
     double r = (cos(angle) * w).abs() + (sin(angle) * h).abs();
 
     // set up the transformation matrices:
-    Matrix4 transformMtx = Matrix4.identity()
-      ..rotateZ(angle)
-      ..scaleByDouble(r / w * scale, r / w * scale, 1, 1);
+    Matrix4 transformMtx =
+        Matrix4.identity()
+          ..rotateZ(angle)
+          ..scaleByDouble(r / w * scale, r / w * scale, 1, 1);
 
     double range = w * (1 + scale) / scale;
-    Matrix4 translateMtx = Matrix4.identity()
-      ..translateByDouble(range * (ratio - 0.5), 0, 0, 1);
+    Matrix4 translateMtx =
+        Matrix4.identity()..translateByDouble(range * (ratio - 0.5), 0, 0, 1);
 
     // Convert from [-1 - +1] to [0 - 1], & find the pixel location of the gradient center:
     Offset pt = Offset(bounds.left + w * 0.5, bounds.top + h * 0.5);

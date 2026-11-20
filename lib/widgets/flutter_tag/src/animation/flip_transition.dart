@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class FlipTransition extends AnimatedWidget {
   /// Creates a flip transition.
@@ -39,19 +39,22 @@ class FlipTransition extends AnimatedWidget {
     final bool isUnder = (animation.value > 0.5);
 
     return Transform(
-      transform: (axis == Axis.horizontal)
-          ? (Matrix4.rotationY(angle))
-          : (Matrix4.rotationX(angle)),
+      transform:
+          (axis == Axis.horizontal)
+              ? (Matrix4.rotationY(angle))
+              : (Matrix4.rotationX(angle)),
       alignment: alignment,
-      child: isUnder
-          ? Transform(
-              transform: (axis == Axis.horizontal)
-                  ? (Matrix4.rotationY(pi))
-                  : (Matrix4.rotationX(pi)),
-              alignment: alignment,
-              child: child,
-            )
-          : child,
+      child:
+          isUnder
+              ? Transform(
+                transform:
+                    (axis == Axis.horizontal)
+                        ? (Matrix4.rotationY(pi))
+                        : (Matrix4.rotationX(pi)),
+                alignment: alignment,
+                child: child,
+              )
+              : child,
     );
   }
 }

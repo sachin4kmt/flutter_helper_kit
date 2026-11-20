@@ -14,10 +14,7 @@ extension PathSharpCornersExtensions on Path {
       final d = radius.d;
       final p = radius.p;
       this
-        ..moveTo(
-          math.max(width / 2, width - p),
-          0,
-        )
+        ..moveTo(math.max(width / 2, width - p), 0)
         ..cubicTo(
           width - (p - a),
           0,
@@ -27,10 +24,7 @@ extension PathSharpCornersExtensions on Path {
           d,
         )
         ..relativeArcToPoint(
-          Offset(
-            radius.circularSectionLength,
-            radius.circularSectionLength,
-          ),
+          Offset(radius.circularSectionLength, radius.circularSectionLength),
           radius: radius.radius,
         )
         ..cubicTo(
@@ -59,10 +53,7 @@ extension PathSharpCornersExtensions on Path {
       final d = radius.d;
       final p = radius.p;
       this
-        ..lineTo(
-          width,
-          math.max(height / 2, height - p),
-        )
+        ..lineTo(width, math.max(height / 2, height - p))
         ..cubicTo(
           width,
           height - (p - a),
@@ -72,10 +63,7 @@ extension PathSharpCornersExtensions on Path {
           height - (p - a - b - c),
         )
         ..relativeArcToPoint(
-          Offset(
-            -radius.circularSectionLength,
-            radius.circularSectionLength,
-          ),
+          Offset(-radius.circularSectionLength, radius.circularSectionLength),
           radius: radius.radius,
         )
         ..cubicTo(
@@ -103,23 +91,10 @@ extension PathSharpCornersExtensions on Path {
       final d = radius.d;
       final p = radius.p;
       this
-        ..lineTo(
-          math.min(width / 2, p),
-          height,
-        )
-        ..cubicTo(
-          p - a,
-          height,
-          p - a - b,
-          height,
-          p - a - b - c,
-          height - d,
-        )
+        ..lineTo(math.min(width / 2, p), height)
+        ..cubicTo(p - a, height, p - a - b, height, p - a - b - c, height - d)
         ..relativeArcToPoint(
-          Offset(
-            -radius.circularSectionLength,
-            -radius.circularSectionLength,
-          ),
+          Offset(-radius.circularSectionLength, -radius.circularSectionLength),
           radius: radius.radius,
         )
         ..cubicTo(
@@ -147,33 +122,13 @@ extension PathSharpCornersExtensions on Path {
       final d = radius.d;
       final p = radius.p;
       this
-        ..lineTo(
-          0,
-          math.min(height / 2, p),
-        )
-        ..cubicTo(
-          0,
-          p - a,
-          0,
-          p - a - b,
-          d,
-          p - a - b - c,
-        )
+        ..lineTo(0, math.min(height / 2, p))
+        ..cubicTo(0, p - a, 0, p - a - b, d, p - a - b - c)
         ..relativeArcToPoint(
-          Offset(
-            radius.circularSectionLength,
-            -radius.circularSectionLength,
-          ),
+          Offset(radius.circularSectionLength, -radius.circularSectionLength),
           radius: radius.radius,
         )
-        ..cubicTo(
-          p - a - b,
-          0,
-          p - a,
-          0,
-          math.min(width / 2, p),
-          0,
-        )
+        ..cubicTo(p - a - b, 0, p - a, 0, math.min(width / 2, p), 0)
         ..close();
     } else {
       this

@@ -30,9 +30,9 @@ class CustomEffect extends Effect<double> {
     double? end,
     required this.builder,
   }) : super(
-          begin: begin ?? 0.0, // Should this use "smart" defaults?
-          end: end ?? 1.0,
-        );
+         begin: begin ?? 0.0, // Should this use "smart" defaults?
+         end: end ?? 1.0,
+       );
 
   final CustomEffectBuilder builder;
 
@@ -46,7 +46,7 @@ class CustomEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (ctx, __) => builder(ctx, animation.value, child),
+      builder: (ctx, _) => builder(ctx, animation.value, child),
     );
   }
 }
@@ -63,19 +63,17 @@ extension CustomEffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     double? begin,
     double? end,
-  }) =>
-      addEffect(CustomEffect(
-        builder: builder,
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-      ));
+  }) => addEffect(
+    CustomEffect(
+      builder: builder,
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+    ),
+  );
 }
 
-typedef CustomEffectBuilder = Widget Function(
-  BuildContext context,
-  double value,
-  Widget child,
-);
+typedef CustomEffectBuilder =
+    Widget Function(BuildContext context, double value, Widget child);

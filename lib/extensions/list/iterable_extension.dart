@@ -338,7 +338,8 @@ extension NullableElementNullableIterableExtension<T> on Iterable<T?>? {
   /// ```
   T? minBy<K extends Comparable<K>>(K Function(T element) selector) =>
       validate().reduceOrNull(
-          (a, b) => selector(a).compareTo(selector(b)) <= 0 ? a : b);
+        (a, b) => selector(a).compareTo(selector(b)) <= 0 ? a : b,
+      );
 
   /// Filters the elements based on the provided [predicate], ignoring `null` values.
   ///

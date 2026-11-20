@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// Default App Button
@@ -60,14 +60,12 @@ class AppButtonState extends State<AppButton>
     if (widget.enableScaleAnimation.validate(value: true)) {
       _controller = AnimationController(
         vsync: this,
-        duration: const Duration(
-          milliseconds: 50,
-        ),
+        duration: const Duration(milliseconds: 50),
         lowerBound: 0.0,
         upperBound: 0.1,
       )..addListener(() {
-          setState(() {});
-        });
+        setState(() {});
+      });
     }
     super.initState();
   }
@@ -92,10 +90,7 @@ class AppButtonState extends State<AppButton>
         onPointerUp: (details) {
           _controller?.reverse();
         },
-        child: Transform.scale(
-          scale: _scale,
-          child: buildButton(),
-        ),
+        child: Transform.scale(scale: _scale, child: buildButton()),
       );
     } else {
       return buildButton();
@@ -107,7 +102,8 @@ class AppButtonState extends State<AppButton>
       padding: widget.margin ?? EdgeInsets.zero,
       child: MaterialButton(
         minWidth: widget.width,
-        padding: widget.padding ??
+        padding:
+            widget.padding ??
             const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
         onPressed: widget.enabled ? widget.onTap : null,
         color: widget.color ?? Colors.white,
@@ -120,13 +116,13 @@ class AppButtonState extends State<AppButton>
         hoverColor: widget.hoverColor,
         splashColor: widget.splashColor,
         disabledTextColor: widget.disabledTextColor,
-        child: widget.child ??
+        child:
+            widget.child ??
             Text(
               widget.text.validate(),
-              style: widget.textStyle ??
-                  TextStyle(
-                    color: widget.textColor ?? textPrimaryColor,
-                  ),
+              style:
+                  widget.textStyle ??
+                  TextStyle(color: widget.textColor ?? textPrimaryColor),
             ),
       ),
     );

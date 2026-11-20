@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 Widget screenUtilDemo(BuildContext context) {
@@ -20,8 +20,10 @@ Widget screenUtilDemo(BuildContext context) {
       SizedBox(height: 16.h),
       RPadding(
         padding: REdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child:
-            Text('RPadding + REdgeInsets', style: TextStyle(fontSize: 14.sp)),
+        child: Text(
+          'RPadding + REdgeInsets',
+          style: TextStyle(fontSize: 14.sp),
+        ),
       ),
       RSizedBox(height: 8.h),
       Text('Screen: ${1.sw.toStringAsFixed(0)}w × ${1.sh.toStringAsFixed(0)}h'),

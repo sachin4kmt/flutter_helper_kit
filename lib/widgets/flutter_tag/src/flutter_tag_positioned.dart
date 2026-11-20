@@ -22,11 +22,7 @@ class FlutterTagPositioned extends StatelessWidget {
   /// [key] is used to identify this widget in the widget tree.
   /// [position] determines the badge's position relative to its parent.
   /// [child] is the widget to be positioned according to the [position].
-  const FlutterTagPositioned({
-    super.key,
-    this.position,
-    required this.child,
-  });
+  const FlutterTagPositioned({super.key, this.position, required this.child});
 
   @override
   Widget build(BuildContext context) {

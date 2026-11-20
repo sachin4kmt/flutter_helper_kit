@@ -22,11 +22,11 @@ class ElevationEffect extends Effect<double> {
     double? end,
     Color? color,
     this.borderRadius,
-  })  : color = color ?? const Color(0xFF000000),
-        super(
-          begin: begin ?? neutralValue,
-          end: end ?? (begin == null ? defaultValue : neutralValue),
-        );
+  }) : color = color ?? const Color(0xFF000000),
+       super(
+         begin: begin ?? neutralValue,
+         end: end ?? (begin == null ? defaultValue : neutralValue),
+       );
 
   final Color color;
   final BorderRadius? borderRadius;
@@ -41,13 +41,14 @@ class ElevationEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) => PhysicalModel(
-        elevation: animation.value,
-        shadowColor: color,
-        color: const Color(0x00000000),
-        borderRadius: borderRadius,
-        child: child,
-      ),
+      builder:
+          (_, _) => PhysicalModel(
+            elevation: animation.value,
+            shadowColor: color,
+            color: const Color(0x00000000),
+            borderRadius: borderRadius,
+            child: child,
+          ),
     );
   }
 }
@@ -64,14 +65,15 @@ extension ElevationEffectExtensions<T extends AnimateManager<T>> on T {
     double? end,
     Color? color,
     BorderRadius? borderRadius,
-  }) =>
-      addEffect(ElevationEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        color: color,
-        borderRadius: borderRadius,
-      ));
+  }) => addEffect(
+    ElevationEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      color: color,
+      borderRadius: borderRadius,
+    ),
+  );
 }

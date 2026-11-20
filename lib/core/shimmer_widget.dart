@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Lightweight shimmer effect without external packages.
 class ShimmerWidget {

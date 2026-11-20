@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A colored segment for [MultiSegmentLinearIndicator].
 class SegmentLinearIndicator {
@@ -104,10 +104,10 @@ class _MultiSegmentLinearIndicatorState
       ).animate(
         CurvedAnimation(parent: _animationController!, curve: widget.curve),
       )..addListener(() {
-          setState(() {
-            _segmentPercents[index] = _segmentAnimations[index].value;
-          });
+        setState(() {
+          _segmentPercents[index] = _segmentAnimations[index].value;
         });
+      });
     });
   }
 
@@ -120,8 +120,9 @@ class _MultiSegmentLinearIndicatorState
       if (_segmentPercents.length != widget.segments.length) {
         _segmentPercents = List.filled(widget.segments.length, 0.0);
       }
-      _animationController!.duration =
-          Duration(milliseconds: widget.animationDuration);
+      _animationController!.duration = Duration(
+        milliseconds: widget.animationDuration,
+      );
       _setupAnimations();
       _animationController!.forward(from: 0.0);
     } else if (!widget.animation) {
@@ -187,9 +188,10 @@ class _MultiSegmentPainter extends CustomPainter {
 
     for (var i = 0; i < segments.length; i++) {
       final segmentWidth = size.width * segmentPercents[i];
-      final segmentPaint = Paint()
-        ..color = segments[i].color
-        ..style = PaintingStyle.fill;
+      final segmentPaint =
+          Paint()
+            ..color = segments[i].color
+            ..style = PaintingStyle.fill;
 
       final segmentPath = Path();
       final rect = Rect.fromLTWH(startX, 0, segmentWidth, size.height);
@@ -227,19 +229,22 @@ class _MultiSegmentPainter extends CustomPainter {
   }
 
   void _drawStripes(Canvas canvas, double startX, double width, double height) {
-    final stripePaint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.3)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
+    final stripePaint =
+        Paint()
+          ..color = Colors.white.withValues(alpha: 0.3)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2;
 
     const stripeSpacing = 8.0;
 
     canvas.save();
     canvas.clipRect(Rect.fromLTWH(startX, 0, width, height));
 
-    for (var x = startX - height;
-        x < startX + width + height;
-        x += stripeSpacing) {
+    for (
+      var x = startX - height;
+      x < startX + width + height;
+      x += stripeSpacing
+    ) {
       canvas.drawLine(Offset(x, height), Offset(x + height, 0), stripePaint);
     }
     canvas.restore();

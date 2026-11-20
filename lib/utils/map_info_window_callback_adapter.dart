@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'map_custom_info_window.dart';
 
@@ -23,7 +23,7 @@ class CallbackMapInfoWindowAdapter implements MapInfoWindowAdapter {
   });
 
   final Future<MapScreenCoordinate> Function(MapLatLng latLng)
-      onGetScreenCoordinate;
+  onGetScreenCoordinate;
   final double Function(BuildContext context)? onDevicePixelRatio;
 
   @override

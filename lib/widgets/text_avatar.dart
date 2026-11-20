@@ -1,14 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/extensions/color/color_extension.dart';
 import 'package:flutter_helper_kit/extensions/map/map_extension.dart';
 import 'package:flutter_helper_kit/extensions/string/string_extension.dart';
 
 /// Avatar container shape.
-enum AvatarShape {
-  circle,
-  rounded,
-  square,
-}
+enum AvatarShape { circle, rounded, square }
 
 /// How initials are derived from [TextAvatar.text].
 enum InitialsMode {
@@ -28,10 +24,7 @@ enum InitialsMode {
 /// Resolved background + text colors from a single seed color.
 @immutable
 class TextAvatarColors {
-  const TextAvatarColors({
-    required this.background,
-    required this.foreground,
-  });
+  const TextAvatarColors({required this.background, required this.foreground});
 
   final Color background;
   final Color foreground;
@@ -210,7 +203,8 @@ class TextAvatar extends StatelessWidget {
     final displayText =
         upperCase ? initialsRaw.toUpperCase() : initialsRaw.toLowerCase();
 
-    final seed = backgroundColor ??
+    final seed =
+        backgroundColor ??
         resolveTextAvatarSeedColor(
           text,
           initialsRaw,

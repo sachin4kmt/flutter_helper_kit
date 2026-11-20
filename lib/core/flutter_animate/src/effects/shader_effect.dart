@@ -39,11 +39,8 @@ class ShaderEffect extends Effect<double> {
     this.overflow,
     ShaderLayer? layer,
     this.update,
-  })  : layer = layer ?? ShaderLayer.replace,
-        super(
-          begin: 0,
-          end: 1,
-        );
+  }) : layer = layer ?? ShaderLayer.replace,
+       super(begin: 0, end: 1);
 
   final ui.FragmentShader? shader;
   final EdgeInsets? overflow;
@@ -61,7 +58,7 @@ class ShaderEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) {
+      builder: (_, _) {
         return AnimatedSampler(
           (ui.Image image, Size size, Canvas canvas) {
             ShaderUpdateDetails details = ShaderUpdateDetails(
@@ -111,16 +108,17 @@ extension ShaderEffectExtensions<T extends AnimateManager<T>> on T {
     EdgeInsets? overflow,
     ShaderLayer? layer,
     ShaderUpdateCallback? update,
-  }) =>
-      addEffect(ShaderEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        shader: shader,
-        overflow: overflow,
-        layer: layer,
-        update: update,
-      ));
+  }) => addEffect(
+    ShaderEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      shader: shader,
+      overflow: overflow,
+      layer: layer,
+      update: update,
+    ),
+  );
 }
 
 enum ShaderLayer { foreground, background, replace }
@@ -189,5 +187,5 @@ class ShaderUpdateDetails {
 }
 
 /// Function signature for [ShaderEffect] update handlers.
-typedef ShaderUpdateCallback = EdgeInsets? Function(
-    ShaderUpdateDetails details);
+typedef ShaderUpdateCallback =
+    EdgeInsets? Function(ShaderUpdateDetails details);

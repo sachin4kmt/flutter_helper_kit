@@ -1,14 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   Widget host(Widget child) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(child: child),
-      ),
-    );
+    return MaterialApp(home: Scaffold(body: Center(child: child)));
   }
 
   group('Space', () {
@@ -18,11 +14,7 @@ void main() {
         host(
           const SizedBox(
             width: 100,
-            child: Row(
-              children: [
-                Space(24, key: key),
-              ],
-            ),
+            child: Row(children: [Space(24, key: key)]),
           ),
         ),
       );
@@ -103,9 +95,7 @@ void main() {
             height: 40,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: const [
-                SpaceMin(min: 10, max: 30, key: key),
-              ],
+              children: const [SpaceMin(min: 10, max: 30, key: key)],
             ),
           ),
         ),
@@ -116,24 +106,22 @@ void main() {
     });
   });
 
-  testWidgets('SliverSpace contributes its fixed scroll extent',
-      (tester) async {
+  testWidgets('SliverSpace contributes its fixed scroll extent', (
+    tester,
+  ) async {
     const key = Key('sliver-space');
     await tester.pumpWidget(
       host(
         const SizedBox(
           height: 100,
-          child: CustomScrollView(
-            slivers: [
-              SliverSpace(24, key: key),
-            ],
-          ),
+          child: CustomScrollView(slivers: [SliverSpace(24, key: key)]),
         ),
       ),
     );
 
-    final renderObject =
-        tester.renderObject<RenderSliverSpace>(find.byKey(key));
+    final renderObject = tester.renderObject<RenderSliverSpace>(
+      find.byKey(key),
+    );
     expect(renderObject.geometry?.scrollExtent, 24);
   });
 }

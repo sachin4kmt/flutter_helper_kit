@@ -1,5 +1,5 @@
 import 'package:example/widgets_example/my_custom_text_field.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 print(a);
               },
               text: 'Show dialog',
-            )
+            ),
           ],
         ),
       ),

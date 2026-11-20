@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/app_responsive/app_responsive.dart';
 
 /// A circular container with equal width and height from [size].
@@ -87,7 +87,9 @@ class CircleContainer extends StatelessWidget {
     if (border != null) return border;
     if (borderWidth != null || borderColor != null) {
       return Border.all(
-          width: borderWidth ?? 1, color: borderColor ?? Colors.black12);
+        width: borderWidth ?? 1,
+        color: borderColor ?? Colors.black12,
+      );
     }
     return null;
   }
@@ -105,8 +107,9 @@ class CircleContainer extends StatelessWidget {
     if (paddingAll == null) return child;
 
     return RPadding(
-        padding: REdgeInsets.all(paddingAll!),
-        child: child ?? const SizedBox.shrink());
+      padding: REdgeInsets.all(paddingAll!),
+      child: child ?? const SizedBox.shrink(),
+    );
   }
 
   @override

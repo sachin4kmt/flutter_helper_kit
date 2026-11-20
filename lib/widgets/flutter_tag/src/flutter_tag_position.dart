@@ -74,8 +74,10 @@ class FlutterTagPosition {
 
   /// Factory method that creates a new instance of this widget
   /// according to [bottom] and [start]
-  factory FlutterTagPosition.bottomStart(
-      {double bottom = -8, double start = -10}) {
+  factory FlutterTagPosition.bottomStart({
+    double bottom = -8,
+    double start = -10,
+  }) {
     return FlutterTagPosition._(bottom: bottom, start: start);
   }
 
@@ -87,6 +89,11 @@ class FlutterTagPosition {
     bool isCenter = false,
   }) {
     return FlutterTagPosition._(
-        top: top, end: end, bottom: bottom, start: start, isCenter: isCenter);
+      top: top,
+      end: end,
+      bottom: bottom,
+      start: start,
+      isCenter: isCenter,
+    );
   }
 }

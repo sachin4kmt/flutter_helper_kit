@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 
 /// Utility class to manage system UI (status bar, nav bar) appearance globally.
@@ -34,9 +34,10 @@ class SystemUiUtils {
     final SystemUiOverlayStyle style = SystemUiOverlayStyle(
       statusBarColor: isTransparent ? Colors.transparent : color,
       statusBarIconBrightness: iconBrightness, // Android
-      statusBarBrightness: iconBrightness == Brightness.dark
-          ? Brightness.light
-          : Brightness.dark, // iOS - inverted
+      statusBarBrightness:
+          iconBrightness == Brightness.dark
+              ? Brightness.light
+              : Brightness.dark, // iOS - inverted
     );
     SystemChrome.setSystemUIOverlayStyle(style);
   }
@@ -91,7 +92,8 @@ class SystemUiUtils {
     Color colorBehindStatusBar, {
     Brightness? forceBrightness,
   }) {
-    final Brightness iconBrightness = forceBrightness ??
+    final Brightness iconBrightness =
+        forceBrightness ??
         (ThemeData.estimateBrightnessForColor(colorBehindStatusBar) ==
                 Brightness.dark
             ? Brightness.light
@@ -115,13 +117,14 @@ class SystemUiUtils {
   /// SystemUiUtils.resetSystemUI(context);
   /// ```
   static void resetSystemUI(BuildContext context) {
-    final Brightness platformBrightness = MediaQuery.of(
-      context,
-    ).platformBrightness;
+    final Brightness platformBrightness =
+        MediaQuery.of(context).platformBrightness;
 
-    final SystemUiOverlayStyle style = platformBrightness == Brightness.dark
-        ? SystemUiOverlayStyle.light // white icons
-        : SystemUiOverlayStyle.dark; // black icons
+    final SystemUiOverlayStyle style =
+        platformBrightness == Brightness.dark
+            ? SystemUiOverlayStyle
+                .light // white icons
+            : SystemUiOverlayStyle.dark; // black icons
 
     SystemChrome.setSystemUIOverlayStyle(style);
   }

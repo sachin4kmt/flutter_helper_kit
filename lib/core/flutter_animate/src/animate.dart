@@ -102,7 +102,7 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     Expanded: (parent, child) {
       Expanded o = parent as Expanded;
       return Expanded(key: o.key, flex: o.flex, child: child);
-    }
+    },
   };
 
   /// Creates an Animate instance that will manage a list of effects and apply
@@ -120,8 +120,8 @@ class Animate extends StatefulWidget with AnimateManager<Animate> {
     this.adapter,
     this.value,
     this.target,
-  })  : autoPlay = autoPlay ?? true,
-        delay = delay ?? Duration.zero {
+  }) : autoPlay = autoPlay ?? true,
+       delay = delay ?? Duration.zero {
     warn(
       autoPlay != false || onPlay == null,
       'Animate.onPlay is not called when Animate.autoPlay=false',
@@ -418,21 +418,20 @@ extension AnimateWidgetExtensions on Widget {
     Adapter? adapter,
     double? target,
     double? value,
-  }) =>
-      Animate(
-        key: key,
-        effects: effects,
-        onInit: onInit,
-        onPlay: onPlay,
-        onComplete: onComplete,
-        autoPlay: autoPlay,
-        delay: delay,
-        controller: controller,
-        adapter: adapter,
-        target: target,
-        value: value,
-        child: this,
-      );
+  }) => Animate(
+    key: key,
+    effects: effects,
+    onInit: onInit,
+    onPlay: onPlay,
+    onComplete: onComplete,
+    autoPlay: autoPlay,
+    delay: delay,
+    controller: controller,
+    adapter: adapter,
+    target: target,
+    value: value,
+    child: this,
+  );
 }
 
 /// The builder type used by [Animate.reparentTypes]. It must accept an existing

@@ -19,10 +19,7 @@ class CrossfadeEffect extends Effect<double> {
     super.curve,
     required this.builder,
     this.alignment,
-  }) : super(
-          begin: 0,
-          end: 1,
-        );
+  }) : super(begin: 0, end: 1);
 
   final WidgetBuilder builder;
   final Alignment? alignment;
@@ -55,12 +52,13 @@ extension CrossfadeEffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     required WidgetBuilder builder,
     Alignment? alignment,
-  }) =>
-      addEffect(CrossfadeEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        builder: builder,
-        alignment: alignment,
-      ));
+  }) => addEffect(
+    CrossfadeEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      builder: builder,
+      alignment: alignment,
+    ),
+  );
 }

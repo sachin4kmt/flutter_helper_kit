@@ -119,15 +119,14 @@ extension AnimateListExtensions on List<Widget> {
     bool? autoPlay,
     Duration? delay,
     Duration? interval,
-  }) =>
-      AnimateList(
-        effects: effects,
-        onInit: onInit,
-        onPlay: onPlay,
-        onComplete: onComplete,
-        autoPlay: autoPlay,
-        delay: delay,
-        interval: interval,
-        children: this,
-      );
+  }) => AnimateList(
+    effects: effects,
+    onInit: onInit,
+    onPlay: onPlay,
+    onComplete: onComplete,
+    autoPlay: autoPlay,
+    delay: delay,
+    interval: interval,
+    children: this,
+  );
 }

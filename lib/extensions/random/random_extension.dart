@@ -35,8 +35,9 @@ extension RandomExtension on math.Random {
   /// ```
   DateTime pastDate([int days = 5 * 365]) {
     final int randomDays = nextInt(days);
-    final DateTime randomDate = DateTime.now()
-        .subtract(Duration(days: randomDays, seconds: nextInt(60 * 60 * 24)));
+    final DateTime randomDate = DateTime.now().subtract(
+      Duration(days: randomDays, seconds: nextInt(60 * 60 * 24)),
+    );
     return randomDate;
   }
 
@@ -53,8 +54,9 @@ extension RandomExtension on math.Random {
   /// ```
   DateTime futureDate([int days = 5 * 365]) {
     final int randomDays = nextInt(days);
-    final DateTime randomDate = DateTime.now()
-        .add(Duration(days: randomDays, seconds: nextInt(60 * 60 * 24)));
+    final DateTime randomDate = DateTime.now().add(
+      Duration(days: randomDays, seconds: nextInt(60 * 60 * 24)),
+    );
     return randomDate;
   }
 }

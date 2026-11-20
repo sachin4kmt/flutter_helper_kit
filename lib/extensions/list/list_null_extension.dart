@@ -23,7 +23,8 @@ extension ListNullExtension<T> on List<T>? {
 
     // Iterable.generate use karke list ko expand kar rahe hain
     return List<T>.from(
-        Iterable.generate(times, (_) => this!).expand((element) => element));
+      Iterable.generate(times, (_) => this!).expand((element) => element),
+    );
   }
 }
 

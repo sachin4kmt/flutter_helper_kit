@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/extensions/number/smart_round_to_string.dart';
 
 /// Number grouping style for [NumCurrencyExtension.toCurrency].
@@ -236,16 +236,14 @@ Text _currencyText(
     text: parts.symbol,
     style: resolvedSymbolStyle,
   );
-  final TextSpan amountSpan = TextSpan(
-    text: parts.amount,
-    style: amountStyle,
-  );
+  final TextSpan amountSpan = TextSpan(text: parts.amount, style: amountStyle);
 
   return Text.rich(
     TextSpan(
-      children: parts.symbolPosition == CurrencySymbolPosition.leading
-          ? <InlineSpan>[symbolSpan, amountSpan]
-          : <InlineSpan>[amountSpan, symbolSpan],
+      children:
+          parts.symbolPosition == CurrencySymbolPosition.leading
+              ? <InlineSpan>[symbolSpan, amountSpan]
+              : <InlineSpan>[amountSpan, symbolSpan],
     ),
     key: key,
     textAlign: textAlign,
@@ -288,16 +286,18 @@ _CurrencyParts _formatCurrency(
 }) {
   assert(decimalDigits >= 0);
 
-  final num prepared = smartDecimal
-      ? value.toNumAsSmartRound(maxPrecision: decimalDigits)
-      : _fixedRound(value, decimalDigits);
+  final num prepared =
+      smartDecimal
+          ? value.toNumAsSmartRound(maxPrecision: decimalDigits)
+          : _fixedRound(value, decimalDigits);
 
   final bool isNegative = prepared < 0;
   final num absolute = prepared.abs();
 
-  final String raw = smartDecimal
-      ? absolute.toStringAsSmartRounded(maxPrecision: decimalDigits)
-      : absolute.toStringAsFixed(decimalDigits);
+  final String raw =
+      smartDecimal
+          ? absolute.toStringAsSmartRounded(maxPrecision: decimalDigits)
+          : absolute.toStringAsFixed(decimalDigits);
 
   final parts = raw.split('.');
   final String groupedInt = _groupInteger(parts[0], style);

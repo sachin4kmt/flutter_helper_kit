@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/extensions/list/list_extension.dart';
 
 class WidgetHelper {
@@ -47,8 +47,6 @@ class WidgetHelper {
     List<T> widgets,
     List<Widget> Function(T) mapFunc,
   ) {
-    return [
-      ...widgets.map(mapFunc).expand((element) => element),
-    ];
+    return [...widgets.map(mapFunc).expand((element) => element)];
   }
 }

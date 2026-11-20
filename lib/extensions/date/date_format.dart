@@ -82,7 +82,9 @@ extension DateTimeFormatExtension on DateTime {
     // Replace using regex to avoid unwanted replacements
     patternMap.forEach((key, value) {
       formatted = formatted.replaceAllMapped(
-          RegExp(r'\b' + key + r'\b'), (match) => value);
+        RegExp(r'\b' + key + r'\b'),
+        (match) => value,
+      );
     });
 
     return formatted;

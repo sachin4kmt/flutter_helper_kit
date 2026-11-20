@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Color Extensions
 extension Hex on Color {
@@ -29,7 +29,12 @@ extension Hex on Color {
     assert(value >= 0.0 && value <= 1.0);
     // ignore: unnecessary_this
     return this.withValues(
-        alpha: value, red: r, blue: b, green: g, colorSpace: colorSpace);
+      alpha: value,
+      red: r,
+      blue: b,
+      green: g,
+      colorSpace: colorSpace,
+    );
   }
 
   /// Returns `true` if the color is dark, otherwise `false`.
@@ -117,8 +122,9 @@ extension Hex on Color {
     assert(amount >= 0 && amount <= 1, 'Percentage must be between 0 and 1');
 
     final hsl = HSLColor.fromColor(this);
-    final hslLight =
-        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+    final hslLight = hsl.withLightness(
+      (hsl.lightness + amount).clamp(0.0, 1.0),
+    );
 
     return hslLight.toColor();
   }
@@ -161,7 +167,12 @@ extension MaterialColorExtension on MaterialColor {
   Color withColorOpacity(double value) {
     assert(value >= 0.0 && value <= 1.0);
     return withValues(
-        alpha: value, red: r, blue: b, green: g, colorSpace: colorSpace);
+      alpha: value,
+      red: r,
+      blue: b,
+      green: g,
+      colorSpace: colorSpace,
+    );
   }
 
   /// Returns `true` if the color is dark, otherwise `false`.
@@ -254,8 +265,9 @@ extension MaterialColorExtension on MaterialColor {
     assert(amount >= 0 && amount <= 1, 'Percentage must be between 0 and 1');
 
     final hsl = HSLColor.fromColor(this);
-    final hslLight =
-        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+    final hslLight = hsl.withLightness(
+      (hsl.lightness + amount).clamp(0.0, 1.0),
+    );
 
     return hslLight.toColor();
   }

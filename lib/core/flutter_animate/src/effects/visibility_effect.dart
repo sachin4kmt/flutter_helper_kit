@@ -20,31 +20,33 @@ class VisibilityEffect extends Effect<bool> {
     super.curve,
     bool? end,
     bool? maintain,
-  })  : maintain = maintain ?? defaultMaintain,
-        super(
-          begin: !(end ?? neutralValue),
-          end: end ?? neutralValue,
-        );
+  }) : maintain = maintain ?? defaultMaintain,
+       super(begin: !(end ?? neutralValue), end: end ?? neutralValue);
 
   final bool maintain;
 
   @override
-  Widget build(BuildContext context, Widget child,
-      AnimationController controller, EffectEntry entry) {
+  Widget build(
+    BuildContext context,
+    Widget child,
+    AnimationController controller,
+    EffectEntry entry,
+  ) {
     double ratio = getEndRatio(controller, entry);
     return getToggleBuilder(
       animation: controller,
       child: child,
       toggle: () => begin! == (controller.value < ratio),
-      builder: (_, b, __) => Visibility(
-        visible: b,
-        maintainSize: maintain,
-        maintainAnimation: maintain,
-        maintainState: maintain,
-        maintainSemantics: maintain,
-        maintainInteractivity: maintain,
-        child: child,
-      ),
+      builder:
+          (_, b, _) => Visibility(
+            visible: b,
+            maintainSize: maintain,
+            maintainAnimation: maintain,
+            maintainState: maintain,
+            maintainSemantics: maintain,
+            maintainInteractivity: maintain,
+            child: child,
+          ),
     );
   }
 }
@@ -57,37 +59,32 @@ extension VisibilityEffectExtensions<T extends AnimateManager<T>> on T {
     Duration? duration,
     bool? end,
     bool? maintain,
-  }) =>
-      addEffect(VisibilityEffect(
-        delay: delay,
-        duration: duration,
-        end: end,
-        maintain: maintain,
-      ));
+  }) => addEffect(
+    VisibilityEffect(
+      delay: delay,
+      duration: duration,
+      end: end,
+      maintain: maintain,
+    ),
+  );
 
   /// Adds a [VisibilityEffect] that toggles the visibility of the target to `true` (via [Visibility]).
-  T show({
-    Duration? delay,
-    Duration? duration,
-    bool? maintain,
-  }) =>
-      addEffect(VisibilityEffect(
-        delay: delay,
-        duration: duration,
-        end: true,
-        maintain: maintain,
-      ));
+  T show({Duration? delay, Duration? duration, bool? maintain}) => addEffect(
+    VisibilityEffect(
+      delay: delay,
+      duration: duration,
+      end: true,
+      maintain: maintain,
+    ),
+  );
 
   /// Adds a [VisibilityEffect] that toggles the visibility of the target to `false` (via [Visibility]).
-  T hide({
-    Duration? delay,
-    Duration? duration,
-    bool? maintain,
-  }) =>
-      addEffect(VisibilityEffect(
-        delay: delay,
-        duration: duration,
-        end: false,
-        maintain: maintain,
-      ));
+  T hide({Duration? delay, Duration? duration, bool? maintain}) => addEffect(
+    VisibilityEffect(
+      delay: delay,
+      duration: duration,
+      end: false,
+      maintain: maintain,
+    ),
+  );
 }

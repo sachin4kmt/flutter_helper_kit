@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// returns default InputDecoration for AppTextField widget
@@ -40,8 +40,11 @@ TextStyle primaryTextStyle({
   );
 }
 
-InputDecoration defaultInputDecoration(
-    {String? hint, String? label, TextStyle? textStyle}) {
+InputDecoration defaultInputDecoration({
+  String? hint,
+  String? label,
+  TextStyle? textStyle,
+}) {
   return InputDecoration(
     labelText: label,
     hintText: hint,
@@ -94,9 +97,10 @@ Decoration boxDecorationDefault({
   DecorationImage? image,
 }) {
   return BoxDecoration(
-    borderRadius: (shape != null && shape == BoxShape.circle)
-        ? null
-        : (borderRadius ?? radius()),
+    borderRadius:
+        (shape != null && shape == BoxShape.circle)
+            ? null
+            : (borderRadius ?? radius()),
     boxShadow: boxShadow ?? defaultBoxShadow(),
     color: color ?? Colors.white,
     gradient: gradient,
@@ -144,7 +148,8 @@ Decoration boxDecorationWithShadow({
   BorderRadius? borderRadius,
 }) {
   return BoxDecoration(
-    boxShadow: boxShadow ??
+    boxShadow:
+        boxShadow ??
         defaultBoxShadow(
           shadowColor: shadowColor,
           blurRadius: blurRadius,
@@ -196,6 +201,6 @@ List<BoxShadow> defaultBoxShadow({
       blurRadius: blurRadius ?? defaultBlurRadius,
       spreadRadius: spreadRadius ?? defaultSpreadRadius,
       offset: offset,
-    )
+    ),
   ];
 }

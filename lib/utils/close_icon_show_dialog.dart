@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 Future<T?> showDialogWithCloseIcon<T>({
@@ -34,12 +34,16 @@ Future<T?> showDialogWithCloseIcon<T>({
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
         content: FlutterTag(
-          tagStyle: closeButtonStyle ??
+          tagStyle:
+              closeButtonStyle ??
               const FlutterTagStyle(
-                  tagColor: Colors.red, shape: FlutterTagShape.circle),
+                tagColor: Colors.red,
+                shape: FlutterTagShape.circle,
+              ),
           stackFit: StackFit.passthrough,
           position: closeButtonPosition ?? FlutterTagPosition.topStart(),
-          tagAnimation: closeButtonAnimation ??
+          tagAnimation:
+              closeButtonAnimation ??
               const FlutterTagAnimation.rotation(toAnimate: false),
           onTap: () {
             if (onTapCloseIcon != null) {
@@ -48,11 +52,7 @@ Future<T?> showDialogWithCloseIcon<T>({
               Navigator.of(context).pop();
             }
           },
-          tagContent: closeIcon ??
-              const Icon(
-                Icons.close,
-                color: Colors.white,
-              ),
+          tagContent: closeIcon ?? const Icon(Icons.close, color: Colors.white),
           child: Card(
             shape: shape,
             borderOnForeground: false,
@@ -62,11 +62,7 @@ Future<T?> showDialogWithCloseIcon<T>({
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  title,
-                  20.maxSpace(),
-                  content,
-                ],
+                children: [title, 20.maxSpace(), content],
               ),
             ),
           ),

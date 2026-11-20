@@ -4,11 +4,8 @@ class RSliverPadding extends SingleChildRenderObjectWidget {
   /// Creates an adapt sliver padding widget.
   ///
   /// The [padding] argument must not be null.
-  const RSliverPadding({
-    super.key,
-    required this.padding,
-    Widget? sliver,
-  }) : super(child: sliver);
+  const RSliverPadding({super.key, required this.padding, Widget? sliver})
+    : super(child: sliver);
 
   /// The amount of space by which to inset the sliver.
   final EdgeInsets padding;

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 enum ImageSet {
@@ -107,9 +107,7 @@ class RandomImage {
     final imageSize = '${size.width.toInt()}x${size.height.toInt()}';
     final imageText = text ?? imageSize;
     final data =
-        'https://dummyimage.com/$imageSize.${imageType.name}/${bgColor.toHex(
-      leadingHashSign: false,
-    )}/${fgColor.toHex(leadingHashSign: false)}&text=$imageText';
+        'https://dummyimage.com/$imageSize.${imageType.name}/${bgColor.toHex(leadingHashSign: false)}/${fgColor.toHex(leadingHashSign: false)}&text=$imageText';
     // debugPrint(data);
     return data;
   }

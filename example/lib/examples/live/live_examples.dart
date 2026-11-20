@@ -1,7 +1,7 @@
 import 'package:example/home.dart';
 import 'package:example/pagination_list_view_example.dart';
 import 'package:example/widgets_example/my_custom_text_field.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 /// Live-only sandbox demos preserved from the original example app.
@@ -59,10 +59,10 @@ Widget genericPickerDemo(BuildContext context) {
           onPressed: () async {
             final picked =
                 await GenericPickerSheet.singleSelection<MyDropdownItem>(
-              context: context,
-              items: items,
-              initialSelected: items.first,
-            );
+                  context: context,
+                  items: items,
+                  initialSelected: items.first,
+                );
             if (context.mounted && picked != null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Selected: ${picked.getLabel()}')),
@@ -76,15 +76,17 @@ Widget genericPickerDemo(BuildContext context) {
           onPressed: () async {
             final picked =
                 await GenericPickerSheet.multiSelection<MyDropdownItem>(
-              context: context,
-              items: items,
-              initialSelected: [items.first],
-            );
+                  context: context,
+                  items: items,
+                  initialSelected: [items.first],
+                );
             if (context.mounted && picked != null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                    content: Text(
-                        'Selected: ${picked.map((e) => e.getLabel()).join(', ')}')),
+                  content: Text(
+                    'Selected: ${picked.map((e) => e.getLabel()).join(', ')}',
+                  ),
+                ),
               );
             }
           },

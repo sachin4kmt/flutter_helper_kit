@@ -4,18 +4,9 @@ import 'package:flutter_helper_kit/flutter_helper_kit_extensions.dart';
 void main() {
   group('StringMaskExtension', () {
     test('masks middle characters with custom start and end', () {
-      expect(
-        '9876543210'.mask(visibleStart: 2, visibleEnd: 4),
-        '98****3210',
-      );
-      expect(
-        '9876543210'.mask(visibleStart: 0, visibleEnd: 4),
-        '******3210',
-      );
-      expect(
-        '9876543210'.mask(visibleStart: 3, visibleEnd: 0),
-        '987*******',
-      );
+      expect('9876543210'.mask(visibleStart: 2, visibleEnd: 4), '98****3210');
+      expect('9876543210'.mask(visibleStart: 0, visibleEnd: 4), '******3210');
+      expect('9876543210'.mask(visibleStart: 3, visibleEnd: 0), '987*******');
     });
 
     test('returns empty string for null or empty input', () {
@@ -29,7 +20,9 @@ void main() {
 
     test('masks short strings when maskIfShorter is true', () {
       expect(
-          '12'.mask(visibleStart: 2, visibleEnd: 2, maskIfShorter: true), '**');
+        '12'.mask(visibleStart: 2, visibleEnd: 2, maskIfShorter: true),
+        '**',
+      );
     });
 
     test('supports custom mask character', () {
@@ -76,11 +69,7 @@ void main() {
 
     test('supports separator formatting', () {
       expect(
-        '9876543210'.maskPhone(
-          visibleStart: 2,
-          visibleEnd: 4,
-          separator: ' ',
-        ),
+        '9876543210'.maskPhone(visibleStart: 2, visibleEnd: 4, separator: ' '),
         '98 ** ** 32 10',
       );
     });

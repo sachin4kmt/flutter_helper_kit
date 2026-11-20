@@ -9,8 +9,12 @@ import 'package:flutter/foundation.dart';
 /// - If [allowFromNow] is passed, format will use the From prefix, ie. a date
 ///   5 minutes from now in 'en' locale will display as "5 minutes from now"
 
-String timeAgoCalculated(DateTime date,
-    {DateTime? clock, bool allowFromNow = false, bool inHindi = false}) {
+String timeAgoCalculated(
+  DateTime date, {
+  DateTime? clock,
+  bool allowFromNow = false,
+  bool inHindi = false,
+}) {
   if (kDebugMode) {
     print(date.toString());
   }
@@ -66,9 +70,11 @@ String timeAgoCalculated(DateTime date,
     result = messages.years(years.round());
   }
 
-  return [prefix, result, suffix]
-      .where((str) => str.isNotEmpty)
-      .join(messages.wordSeparator());
+  return [
+    prefix,
+    result,
+    suffix,
+  ].where((str) => str.isNotEmpty).join(messages.wordSeparator());
 }
 
 class _EnMessages implements LookupMessages {

@@ -1,14 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'sharp_border_radius.dart';
 import 'sharp_radius.dart';
 
-enum BorderAlign {
-  inside,
-  center,
-  outside,
-}
+enum BorderAlign { inside, center, outside }
 
 class SharpRectangleBorder extends OutlinedBorder {
   const SharpRectangleBorder({
@@ -83,26 +79,24 @@ class SharpRectangleBorder extends OutlinedBorder {
         case BorderAlign.inside:
           return borderRadius -
               SharpBorderRadius.all(
-                SharpRadius(
-                  cornerRadius: side.width,
-                  sharpRatio: 1.0,
-                ),
+                SharpRadius(cornerRadius: side.width, sharpRatio: 1.0),
               );
         case BorderAlign.center:
           return borderRadius -
               SharpBorderRadius.all(
-                SharpRadius(
-                  cornerRadius: side.width / 2,
-                  sharpRatio: 1.0,
-                ),
+                SharpRadius(cornerRadius: side.width / 2, sharpRatio: 1.0),
               );
         case BorderAlign.outside:
           return borderRadius;
       }
     }();
 
-    if ([radius.bottomLeft, radius.bottomRight, radius.topLeft, radius.topRight]
-        .every((x) => x.sharpRatio == 0.0)) {
+    if ([
+      radius.bottomLeft,
+      radius.bottomRight,
+      radius.topLeft,
+      radius.topRight,
+    ].every((x) => x.sharpRatio == 0.0)) {
       return Path()..addRRect(radius.resolve(textDirection).toRRect(innerRect));
     }
 
@@ -119,8 +113,12 @@ class SharpRectangleBorder extends OutlinedBorder {
     SharpBorderRadius radius, {
     TextDirection? textDirection,
   }) {
-    if ([radius.bottomLeft, radius.bottomRight, radius.topLeft, radius.topRight]
-        .every((x) => x.sharpRatio == 0.0)) {
+    if ([
+      radius.bottomLeft,
+      radius.bottomRight,
+      radius.topLeft,
+      radius.topRight,
+    ].every((x) => x.sharpRatio == 0.0)) {
       return Path()..addRRect(radius.resolve(textDirection).toRRect(rect));
     }
 
@@ -164,20 +162,14 @@ class SharpRectangleBorder extends OutlinedBorder {
             case BorderAlign.inside:
               return borderRadius -
                   SharpBorderRadius.all(
-                    SharpRadius(
-                      cornerRadius: side.width / 2,
-                      sharpRatio: 1.0,
-                    ),
+                    SharpRadius(cornerRadius: side.width / 2, sharpRatio: 1.0),
                   );
             case BorderAlign.center:
               return borderRadius;
             case BorderAlign.outside:
               return borderRadius +
                   SharpBorderRadius.all(
-                    SharpRadius(
-                      cornerRadius: side.width / 2,
-                      sharpRatio: 1.0,
-                    ),
+                    SharpRadius(cornerRadius: side.width / 2, sharpRatio: 1.0),
                   );
           }
         }();
@@ -188,10 +180,7 @@ class SharpRectangleBorder extends OutlinedBorder {
           textDirection: textDirection,
         );
 
-        canvas.drawPath(
-          outerPath,
-          side.toPaint(),
-        );
+        canvas.drawPath(outerPath, side.toPaint());
 
         break;
     }

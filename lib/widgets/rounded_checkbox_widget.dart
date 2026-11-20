@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../flutter_helper_kit.dart';
 
 ///Widget that draw a beautiful checkbox rounded. Provided with animation if wanted
@@ -81,7 +81,8 @@ class RoundedCheckBoxState extends State<RoundedCheckBox> {
     checkedColor = widget.checkedColor ?? Colors.green;
     uncheckedColor = widget.uncheckedColor;
     borderColor = widget.borderColor ?? Colors.grey;
-    checkedWidget = widget.checkedWidget ??
+    checkedWidget =
+        widget.checkedWidget ??
         Icon(Icons.check, color: Colors.white, size: size! - 6);
     uncheckedWidget = widget.uncheckedWidget ?? const SizedBox.shrink();
     super.initState();
@@ -90,12 +91,13 @@ class RoundedCheckBoxState extends State<RoundedCheckBox> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap != null
-          ? () {
-              setState(() => isChecked = !isChecked!);
-              widget.onTap?.call(isChecked);
-            }
-          : null,
+      onTap:
+          widget.onTap != null
+              ? () {
+                setState(() => isChecked = !isChecked!);
+                widget.onTap?.call(isChecked);
+              }
+              : null,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -107,10 +109,7 @@ class RoundedCheckBoxState extends State<RoundedCheckBox> {
               width: size,
               decoration: BoxDecoration(
                 color: isChecked! ? checkedColor : uncheckedColor,
-                border: widget.border ??
-                    Border.all(
-                      color: borderColor,
-                    ),
+                border: widget.border ?? Border.all(color: borderColor),
                 borderRadius: BorderRadius.circular(size! / 2),
               ),
               child: isChecked! ? checkedWidget! : uncheckedWidget!,
@@ -121,8 +120,10 @@ class RoundedCheckBoxState extends State<RoundedCheckBox> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 8.width(),
-                Text(widget.text, style: widget.textStyle ?? primaryTextStyle())
-                    .flexible(),
+                Text(
+                  widget.text,
+                  style: widget.textStyle ?? primaryTextStyle(),
+                ).flexible(),
               ],
             ).flexible(),
         ],

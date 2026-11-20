@@ -74,18 +74,18 @@ class FlutterTagAnimation {
 
   /// Disables all tag animations.
   const FlutterTagAnimation.none()
-      : toAnimate = false,
-        animationDuration = Duration.zero,
-        disappearanceFadeAnimationDuration = Duration.zero,
-        animationType = FlutterTagAnimationType.none,
-        loopAnimation = false,
-        curve = Curves.linear,
-        sizeTransitionAxis = null,
-        sizeTransitionAxisAlignment = null,
-        slideTransitionPositionTween = null,
-        colorChangeAnimationCurve = Curves.linear,
-        colorChangeAnimationDuration = Duration.zero,
-        appearanceDisappearanceFadeAnimationEnabled = false;
+    : toAnimate = false,
+      animationDuration = Duration.zero,
+      disappearanceFadeAnimationDuration = Duration.zero,
+      animationType = FlutterTagAnimationType.none,
+      loopAnimation = false,
+      curve = Curves.linear,
+      sizeTransitionAxis = null,
+      sizeTransitionAxisAlignment = null,
+      slideTransitionPositionTween = null,
+      colorChangeAnimationCurve = Curves.linear,
+      colorChangeAnimationDuration = Duration.zero,
+      appearanceDisappearanceFadeAnimationEnabled = false;
 
   const FlutterTagAnimation.slide({
     this.toAnimate = true,
@@ -99,10 +99,10 @@ class FlutterTagAnimation {
     ),
     this.colorChangeAnimationCurve = Curves.linear,
     this.colorChangeAnimationDuration = Duration.zero,
-  })  : animationType = FlutterTagAnimationType.slide,
-        sizeTransitionAxis = null,
-        appearanceDisappearanceFadeAnimationEnabled = true,
-        sizeTransitionAxisAlignment = null;
+  }) : animationType = FlutterTagAnimationType.slide,
+       sizeTransitionAxis = null,
+       appearanceDisappearanceFadeAnimationEnabled = true,
+       sizeTransitionAxisAlignment = null;
 
   const FlutterTagAnimation.fade({
     this.toAnimate = true,
@@ -112,11 +112,11 @@ class FlutterTagAnimation {
     this.curve = Curves.easeOutCubic,
     this.colorChangeAnimationCurve = Curves.linear,
     this.colorChangeAnimationDuration = Duration.zero,
-  })  : animationType = FlutterTagAnimationType.fade,
-        sizeTransitionAxis = null,
-        sizeTransitionAxisAlignment = null,
-        appearanceDisappearanceFadeAnimationEnabled = false,
-        slideTransitionPositionTween = null;
+  }) : animationType = FlutterTagAnimationType.fade,
+       sizeTransitionAxis = null,
+       sizeTransitionAxisAlignment = null,
+       appearanceDisappearanceFadeAnimationEnabled = false,
+       slideTransitionPositionTween = null;
 
   const FlutterTagAnimation.size({
     this.toAnimate = true,
@@ -129,8 +129,8 @@ class FlutterTagAnimation {
     this.colorChangeAnimationCurve = Curves.linear,
     this.colorChangeAnimationDuration = Duration.zero,
     this.appearanceDisappearanceFadeAnimationEnabled = true,
-  })  : animationType = FlutterTagAnimationType.size,
-        slideTransitionPositionTween = null;
+  }) : animationType = FlutterTagAnimationType.size,
+       slideTransitionPositionTween = null;
 
   const FlutterTagAnimation.rotation({
     this.toAnimate = true,
@@ -140,11 +140,11 @@ class FlutterTagAnimation {
     this.curve = Curves.elasticOut,
     this.colorChangeAnimationCurve = Curves.linear,
     this.colorChangeAnimationDuration = Duration.zero,
-  })  : animationType = FlutterTagAnimationType.rotation,
-        sizeTransitionAxis = null,
-        sizeTransitionAxisAlignment = null,
-        appearanceDisappearanceFadeAnimationEnabled = true,
-        slideTransitionPositionTween = null;
+  }) : animationType = FlutterTagAnimationType.rotation,
+       sizeTransitionAxis = null,
+       sizeTransitionAxisAlignment = null,
+       appearanceDisappearanceFadeAnimationEnabled = true,
+       slideTransitionPositionTween = null;
 
   const FlutterTagAnimation.scale({
     this.toAnimate = true,
@@ -155,10 +155,10 @@ class FlutterTagAnimation {
     this.colorChangeAnimationCurve = Curves.linear,
     this.colorChangeAnimationDuration = Duration.zero,
     this.appearanceDisappearanceFadeAnimationEnabled = true,
-  })  : animationType = FlutterTagAnimationType.scale,
-        sizeTransitionAxis = null,
-        sizeTransitionAxisAlignment = null,
-        slideTransitionPositionTween = null;
+  }) : animationType = FlutterTagAnimationType.scale,
+       sizeTransitionAxis = null,
+       sizeTransitionAxisAlignment = null,
+       slideTransitionPositionTween = null;
 
   const FlutterTagAnimation.flip({
     this.toAnimate = true,
@@ -168,12 +168,12 @@ class FlutterTagAnimation {
     this.curve = Curves.easeOutCubic,
     this.appearanceDisappearanceFadeAnimationEnabled = true,
     this.sizeTransitionAxis = Axis.horizontal,
-  })  : animationType = FlutterTagAnimationType.flip,
-        // sizeTransitionAxis = null,
-        colorChangeAnimationCurve = Curves.linearToEaseOut,
-        colorChangeAnimationDuration = Duration.zero,
-        sizeTransitionAxisAlignment = null,
-        slideTransitionPositionTween = null;
+  }) : animationType = FlutterTagAnimationType.flip,
+       // sizeTransitionAxis = null,
+       colorChangeAnimationCurve = Curves.linearToEaseOut,
+       colorChangeAnimationDuration = Duration.zero,
+       sizeTransitionAxisAlignment = null,
+       slideTransitionPositionTween = null;
 }
 
 class SlideTween {

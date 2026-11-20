@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'shadow_radius.dart';
 import 'ticket_painter.dart';
 
 class TicketClipper extends StatelessWidget {
-  const TicketClipper(
-      {super.key,
-      required this.clipper,
-      this.shadow,
-      required this.child,
-      this.shadowRadius});
+  const TicketClipper({
+    super.key,
+    required this.clipper,
+    this.shadow,
+    required this.child,
+    this.shadowRadius,
+  });
 
   /// - [TicketRoundedEdgeClipper] that can be used with [ClipPath] to clip widget in Ticket Rounded Edge shape
   /// - [PointedEdgeClipper] that can be used with [ClipPath] to clip widget in Pointed Edge shape

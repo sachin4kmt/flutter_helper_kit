@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'dart:math' as math;
 
 class OutlineAvatarGlowMultiColor extends StatefulWidget {
@@ -104,10 +104,7 @@ class _OutlineAvatarGlowMultiColorState
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    );
+    _controller = AnimationController(vsync: this, duration: widget.duration);
 
     _painter = _OutlineMultiGlowPainter(progress: _controller);
 
@@ -146,18 +143,19 @@ class _OutlineAvatarGlowMultiColorState
     }
     return RepaintBoundary(
       child: CustomPaint(
-        painter: _painter
-          ..curve = widget.curve
-          ..opacityTween = _opacityTween
-          ..glowCount = widget.glowColors.length
-          ..glowDecoration = BoxDecoration(
-            color: Colors.transparent,
-            shape: widget.glowShape,
-            borderRadius: widget.glowBorderRadius,
-          )
-          ..glowRadiusFactor = widget.glowRadiusFactor
-          ..glowColors =
-              widget.glowColors, // Pass the glow colors to the painter
+        painter:
+            _painter
+              ..curve = widget.curve
+              ..opacityTween = _opacityTween
+              ..glowCount = widget.glowColors.length
+              ..glowDecoration = BoxDecoration(
+                color: Colors.transparent,
+                shape: widget.glowShape,
+                borderRadius: widget.glowBorderRadius,
+              )
+              ..glowRadiusFactor = widget.glowRadiusFactor
+              ..glowColors =
+                  widget.glowColors, // Pass the glow colors to the painter
         child: widget.child,
       ),
     );
@@ -208,12 +206,14 @@ class _OutlineMultiGlowPainter extends ChangeNotifier implements CustomPainter {
       //   radius: currentRadius,
       // );
 
-      final paint = Paint()
-        ..color = glowColors[
-            i % glowColors.length] // Use modulo to cycle through colors
-        ..style = PaintingStyle.stroke
-        ..strokeWidth =
-            4.0; // Adjust this value to change the thickness of the line
+      final paint =
+          Paint()
+            ..color =
+                glowColors[i %
+                    glowColors.length] // Use modulo to cycle through colors
+            ..style = PaintingStyle.stroke
+            ..strokeWidth =
+                4.0; // Adjust this value to change the thickness of the line
 
       canvas.drawCircle(size.center(Offset.zero), currentRadius, paint);
     }

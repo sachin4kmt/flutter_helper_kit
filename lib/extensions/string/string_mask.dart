@@ -125,14 +125,15 @@ extension StringMaskExtension on String? {
       maskIfShorter: maskIfShorter,
     );
 
-    final maskedDomain = maskDomain
-        ? domain.mask(
-            visibleStart: domainVisibleStart,
-            visibleEnd: domainVisibleEnd,
-            maskChar: maskChar,
-            maskIfShorter: maskIfShorter,
-          )
-        : domain;
+    final maskedDomain =
+        maskDomain
+            ? domain.mask(
+              visibleStart: domainVisibleStart,
+              visibleEnd: domainVisibleEnd,
+              maskChar: maskChar,
+              maskIfShorter: maskIfShorter,
+            )
+            : domain;
 
     return '$maskedLocal@$maskedDomain';
   }

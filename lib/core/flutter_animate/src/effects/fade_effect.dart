@@ -17,9 +17,9 @@ class FadeEffect extends Effect<double> {
     double? begin,
     double? end,
   }) : super(
-          begin: begin ?? (end == null ? defaultValue : neutralValue),
-          end: end ?? neutralValue,
-        );
+         begin: begin ?? (end == null ? defaultValue : neutralValue),
+         end: end ?? neutralValue,
+       );
 
   @override
   Widget build(
@@ -45,14 +45,15 @@ extension FadeEffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     double? begin,
     double? end,
-  }) =>
-      addEffect(FadeEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-      ));
+  }) => addEffect(
+    FadeEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+    ),
+  );
 
   /// Adds a [FadeEffect] that animates the opacity of the target between the
   /// specified [begin] value and `1.0` (via [FadeTransition]).
@@ -61,14 +62,15 @@ extension FadeEffectExtensions<T extends AnimateManager<T>> on T {
     Duration? duration,
     Curve? curve,
     double? begin,
-  }) =>
-      addEffect(FadeEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin ?? FadeEffect.defaultValue,
-        end: 1.0,
-      ));
+  }) => addEffect(
+    FadeEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin ?? FadeEffect.defaultValue,
+      end: 1.0,
+    ),
+  );
 
   /// Adds a [FadeEffect] that animates the opacity of the target between `0.0`
   /// and the specified [end] value (via [FadeTransition]).
@@ -77,12 +79,13 @@ extension FadeEffectExtensions<T extends AnimateManager<T>> on T {
     Duration? duration,
     Curve? curve,
     double? begin,
-  }) =>
-      addEffect(FadeEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin ?? FadeEffect.neutralValue,
-        end: 0.0,
-      ));
+  }) => addEffect(
+    FadeEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin ?? FadeEffect.neutralValue,
+      end: 0.0,
+    ),
+  );
 }

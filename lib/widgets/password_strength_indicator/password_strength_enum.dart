@@ -1,13 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
-enum PasswordStrength {
-  none,
-  weak,
-  fair,
-  good,
-  strong,
-  veryStrong;
-}
+enum PasswordStrength { none, weak, fair, good, strong, veryStrong }
 
 extension PasswordStrengthLable on PasswordStrength {
   String get label {

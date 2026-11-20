@@ -23,9 +23,9 @@ class SlideEffect extends Effect<Offset> {
     Offset? begin,
     Offset? end,
   }) : super(
-          begin: begin ?? (end == null ? defaultValue : neutralValue),
-          end: end ?? neutralValue,
-        );
+         begin: begin ?? (end == null ? defaultValue : neutralValue),
+         end: end ?? neutralValue,
+       );
 
   @override
   Widget build(
@@ -51,14 +51,15 @@ extension SlideEffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     Offset? begin,
     Offset? end,
-  }) =>
-      addEffect(SlideEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-      ));
+  }) => addEffect(
+    SlideEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+    ),
+  );
 
   /// Adds a [SlideEffect] that moves the target horizontally based on a fraction of its size
   /// per the specified [begin] and [end] values (via [SlideTransition]).
@@ -71,13 +72,15 @@ extension SlideEffectExtensions<T extends AnimateManager<T>> on T {
   }) {
     begin ??= end == null ? SlideEffect.defaultSlide : SlideEffect.neutralSlide;
     end ??= SlideEffect.neutralSlide;
-    return addEffect(SlideEffect(
-      delay: delay,
-      duration: duration,
-      curve: curve,
-      begin: SlideEffect.neutralValue.copyWith(dx: begin),
-      end: SlideEffect.neutralValue.copyWith(dx: end),
-    ));
+    return addEffect(
+      SlideEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: SlideEffect.neutralValue.copyWith(dx: begin),
+        end: SlideEffect.neutralValue.copyWith(dx: end),
+      ),
+    );
   }
 
   /// Adds a [SlideEffect] that moves the target vertically based on a fraction of its size
@@ -91,13 +94,15 @@ extension SlideEffectExtensions<T extends AnimateManager<T>> on T {
   }) {
     begin ??= end == null ? SlideEffect.defaultSlide : SlideEffect.neutralSlide;
     end ??= SlideEffect.neutralSlide;
-    return addEffect(SlideEffect(
-      delay: delay,
-      duration: duration,
-      curve: curve,
-      begin: SlideEffect.neutralValue.copyWith(dy: begin),
-      end: SlideEffect.neutralValue.copyWith(dy: end),
-    ));
+    return addEffect(
+      SlideEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: SlideEffect.neutralValue.copyWith(dy: begin),
+        end: SlideEffect.neutralValue.copyWith(dy: end),
+      ),
+    );
   }
 
   // Note: there is no slideXY because diagonal movement isn't a significant use case.

@@ -2,37 +2,35 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_helper_kit/widgets/sharp_corners/sharp.dart';
 
 class SharpBorderRadius extends BorderRadius {
-  SharpBorderRadius({
-    required double cornerRadius,
-    double sharpRatio = 0,
-  }) : this.only(
-          topLeft: SharpRadius(
-            cornerRadius: cornerRadius,
-            sharpRatio: sharpRatio,
-          ),
-          topRight: SharpRadius(
-            cornerRadius: cornerRadius,
-            sharpRatio: sharpRatio,
-          ),
-          bottomLeft: SharpRadius(
-            cornerRadius: cornerRadius,
-            sharpRatio: sharpRatio,
-          ),
-          bottomRight: SharpRadius(
-            cornerRadius: cornerRadius,
-            sharpRatio: sharpRatio,
-          ),
-        );
+  SharpBorderRadius({required double cornerRadius, double sharpRatio = 0})
+    : this.only(
+        topLeft: SharpRadius(
+          cornerRadius: cornerRadius,
+          sharpRatio: sharpRatio,
+        ),
+        topRight: SharpRadius(
+          cornerRadius: cornerRadius,
+          sharpRatio: sharpRatio,
+        ),
+        bottomLeft: SharpRadius(
+          cornerRadius: cornerRadius,
+          sharpRatio: sharpRatio,
+        ),
+        bottomRight: SharpRadius(
+          cornerRadius: cornerRadius,
+          sharpRatio: sharpRatio,
+        ),
+      );
 
   /// Creates a border radius where all radii are [radius].
 
   const SharpBorderRadius.all(SharpRadius radius)
-      : this.only(
-          topLeft: radius,
-          topRight: radius,
-          bottomLeft: radius,
-          bottomRight: radius,
-        );
+    : this.only(
+        topLeft: radius,
+        topRight: radius,
+        bottomLeft: radius,
+        bottomRight: radius,
+      );
 
   /// Creates a vertically symmetric border radius where the top and bottom
   /// sides of the rectangle have the same radii.
@@ -40,11 +38,11 @@ class SharpBorderRadius extends BorderRadius {
     SharpRadius top = SharpRadius.zero,
     SharpRadius bottom = SharpRadius.zero,
   }) : this.only(
-          topLeft: top,
-          topRight: top,
-          bottomLeft: bottom,
-          bottomRight: bottom,
-        );
+         topLeft: top,
+         topRight: top,
+         bottomLeft: bottom,
+         bottomRight: bottom,
+       );
 
   /// Creates a horizontally symmetrical border radius where the left and right
   /// sides of the rectangle have the same radii.
@@ -52,11 +50,11 @@ class SharpBorderRadius extends BorderRadius {
     SharpRadius left = SharpRadius.zero,
     SharpRadius right = SharpRadius.zero,
   }) : this.only(
-          topLeft: left,
-          topRight: right,
-          bottomLeft: left,
-          bottomRight: right,
-        );
+         topLeft: left,
+         topRight: right,
+         bottomLeft: left,
+         bottomRight: right,
+       );
 
   /// Creates a border radius with only the given non-zero values. The other
   /// corners will be right angles.
@@ -116,27 +114,18 @@ class SharpBorderRadius extends BorderRadius {
       width: width,
       height: height,
     );
-    final processedBottomLeft = topLeft == bottomLeft
-        ? processedTopLeft
-        : SharpProcessedRadius(
-            bottomLeft,
-            width: width,
-            height: height,
-          );
-    final processedBottomRight = bottomLeft == bottomRight
-        ? processedBottomLeft
-        : SharpProcessedRadius(
-            bottomRight,
-            width: width,
-            height: height,
-          );
-    final processedTopRight = topRight == bottomRight
-        ? processedBottomRight
-        : SharpProcessedRadius(
-            topRight,
-            width: width,
-            height: height,
-          );
+    final processedBottomLeft =
+        topLeft == bottomLeft
+            ? processedTopLeft
+            : SharpProcessedRadius(bottomLeft, width: width, height: height);
+    final processedBottomRight =
+        bottomLeft == bottomRight
+            ? processedBottomLeft
+            : SharpProcessedRadius(bottomRight, width: width, height: height);
+    final processedTopRight =
+        topRight == bottomRight
+            ? processedBottomRight
+            : SharpProcessedRadius(topRight, width: width, height: height);
 
     result
       ..addSharpTopRight(processedTopRight, rect)
@@ -253,7 +242,10 @@ class SharpBorderRadius extends BorderRadius {
   ///
   /// {@macro dart.ui.shadow.lerp}
   static SharpBorderRadius? lerp(
-      SharpBorderRadius? a, SharpBorderRadius? b, double t) {
+    SharpBorderRadius? a,
+    SharpBorderRadius? b,
+    double t,
+  ) {
     if (a == null && b == null) return null;
     if (a == null) return b! * t;
     if (b == null) return a * (1.0 - t);
@@ -267,11 +259,11 @@ class SharpBorderRadius extends BorderRadius {
 
   @override
   BorderRadius resolve(TextDirection? direction) => BorderRadius.only(
-        topLeft: topLeft,
-        topRight: topRight,
-        bottomLeft: bottomLeft,
-        bottomRight: bottomRight,
-      );
+    topLeft: topLeft,
+    topRight: topRight,
+    bottomLeft: bottomLeft,
+    bottomRight: bottomRight,
+  );
 
   @override
   String toString() {

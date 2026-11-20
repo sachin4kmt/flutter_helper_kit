@@ -23,9 +23,9 @@ class BlurEffect extends Effect<Offset> {
     Offset? begin,
     Offset? end,
   }) : super(
-          begin: begin ?? neutralValue,
-          end: end ?? (begin == null ? defaultValue : neutralValue),
-        );
+         begin: begin ?? neutralValue,
+         end: end ?? (begin == null ? defaultValue : neutralValue),
+       );
 
   @override
   Widget build(
@@ -37,7 +37,7 @@ class BlurEffect extends Effect<Offset> {
     Animation<Offset> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<Offset>(
       animation: animation,
-      builder: (_, __) {
+      builder: (_, _) {
         final double sigmaX = _normalizeSigma(animation.value.dx);
         final double sigmaY = _normalizeSigma(animation.value.dy);
         return ImageFiltered(
@@ -71,14 +71,15 @@ extension BlurEffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     Offset? begin,
     Offset? end,
-  }) =>
-      addEffect(BlurEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-      ));
+  }) => addEffect(
+    BlurEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+    ),
+  );
 
   /// Adds a [BlurEffect] that animates a horizontal blur on the target between
   /// the specified [begin] and [end] blur radiuses (via [ImageFiltered]).
@@ -91,13 +92,15 @@ extension BlurEffectExtensions<T extends AnimateManager<T>> on T {
   }) {
     end ??= (begin == null ? BlurEffect.defaultBlur : BlurEffect.neutralBlur);
     begin ??= BlurEffect.neutralBlur;
-    return addEffect(BlurEffect(
-      delay: delay,
-      duration: duration,
-      curve: curve,
-      begin: BlurEffect.neutralValue.copyWith(dx: begin),
-      end: BlurEffect.neutralValue.copyWith(dx: end),
-    ));
+    return addEffect(
+      BlurEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: BlurEffect.neutralValue.copyWith(dx: begin),
+        end: BlurEffect.neutralValue.copyWith(dx: end),
+      ),
+    );
   }
 
   /// Adds a [BlurEffect] that animates a vertical blur on the target between
@@ -111,13 +114,15 @@ extension BlurEffectExtensions<T extends AnimateManager<T>> on T {
   }) {
     end ??= (begin == null ? BlurEffect.defaultBlur : BlurEffect.neutralBlur);
     begin ??= BlurEffect.neutralBlur;
-    return addEffect(BlurEffect(
-      delay: delay,
-      duration: duration,
-      curve: curve,
-      begin: BlurEffect.neutralValue.copyWith(dy: begin),
-      end: BlurEffect.neutralValue.copyWith(dy: end),
-    ));
+    return addEffect(
+      BlurEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: BlurEffect.neutralValue.copyWith(dy: begin),
+        end: BlurEffect.neutralValue.copyWith(dy: end),
+      ),
+    );
   }
 
   /// Adds a [BlurEffect] that animates a uniform blur on the target between
@@ -131,12 +136,14 @@ extension BlurEffectExtensions<T extends AnimateManager<T>> on T {
   }) {
     end ??= (begin == null ? BlurEffect.defaultBlur : BlurEffect.neutralBlur);
     begin ??= BlurEffect.neutralBlur;
-    return addEffect(BlurEffect(
-      delay: delay,
-      duration: duration,
-      curve: curve,
-      begin: Offset(begin, begin),
-      end: Offset(end, end),
-    ));
+    return addEffect(
+      BlurEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: Offset(begin, begin),
+        end: Offset(end, end),
+      ),
+    );
   }
 }

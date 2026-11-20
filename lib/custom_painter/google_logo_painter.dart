@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A widget that displays the Google logo using CustomPaint.
 ///
@@ -52,9 +52,10 @@ class _GoogleLogoPainter extends CustomPainter {
     final Rect bounds = Offset(0, verticalOffset) & Size.square(length);
     final Offset center = bounds.center;
     final double arcThickness = size.width / 4.5;
-    final Paint paint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = arcThickness;
+    final Paint paint =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = arcThickness;
 
     // Helper function to draw each arc
     void drawArc(double startAngle, double sweepAngle, Color color) {

@@ -1,10 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'shadow_radius.dart';
 
 class TicketShadowPainter extends CustomPainter {
-  TicketShadowPainter(
-      {required this.clipper, required this.shadowRadius, this.shadow});
+  TicketShadowPainter({
+    required this.clipper,
+    required this.shadowRadius,
+    this.shadow,
+  });
 
   final CustomClipper<Path> clipper;
   final BoxShadow? shadow;
@@ -20,32 +23,44 @@ class TicketShadowPainter extends CustomPainter {
       final shadowOffset = shadow!.offset;
 
       final spreadSize = Size(w + spreadRadius * 2, h + spreadRadius * 2);
-      final clipPath = clipper.getClip(spreadSize).shift(
+      final clipPath = clipper
+          .getClip(spreadSize)
+          .shift(
             Offset(
-                shadowOffset.dx - spreadRadius, shadowOffset.dy - spreadRadius),
+              shadowOffset.dx - spreadRadius,
+              shadowOffset.dy - spreadRadius,
+            ),
           );
       Offset offset = Offset(
-          shadowOffset.dx - spreadRadius, shadowOffset.dy - spreadRadius);
+        shadowOffset.dx - spreadRadius,
+        shadowOffset.dy - spreadRadius,
+      );
 
       canvas.clipPath(clipPath);
       canvas.drawPath(
-          Path()
-            ..addRRect(RRect.fromRectAndCorners(
-                Rect.fromCenter(
-                    center: Offset(
-                      centerOffset.dx + offset.dx,
-                      centerOffset.dy + offset.dy,
-                    ),
-                    width: w,
-                    height: h),
-                topLeft: shadowRadius.topLeft,
-                topRight: shadowRadius.topRight,
-                bottomLeft: shadowRadius.bottomLeft,
-                bottomRight: shadowRadius.bottomRight)),
-          paint);
+        Path()..addRRect(
+          RRect.fromRectAndCorners(
+            Rect.fromCenter(
+              center: Offset(
+                centerOffset.dx + offset.dx,
+                centerOffset.dy + offset.dy,
+              ),
+              width: w,
+              height: h,
+            ),
+            topLeft: shadowRadius.topLeft,
+            topRight: shadowRadius.topRight,
+            bottomLeft: shadowRadius.bottomLeft,
+            bottomRight: shadowRadius.bottomRight,
+          ),
+        ),
+        paint,
+      );
     } else {
       canvas.drawPath(
-          clipper.getClip(size), Paint()..color = Colors.transparent);
+        clipper.getClip(size),
+        Paint()..color = Colors.transparent,
+      );
     }
   }
 

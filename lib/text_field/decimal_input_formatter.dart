@@ -40,7 +40,7 @@ import 'package:flutter/services.dart';
 /// // Show live error:
 /// ValueListenableBuilder<String?>(
 ///   valueListenable: errorText,
-///   builder: (_, error, __) => Text(error ?? ''),
+///   builder: (_, error, _) => Text(error ?? ''),
 /// );
 /// ```
 class DecimalTextInputFormatter extends TextInputFormatter {
@@ -53,14 +53,14 @@ class DecimalTextInputFormatter extends TextInputFormatter {
     this.valueNotifier,
     this.minErrorText,
     this.maxErrorText,
-  })  : assert(
-          decimalRange == null || decimalRange >= 0,
-          'decimalRange must be null or >= 0',
-        ),
-        assert(
-          min == null || max == null || min <= max,
-          'min must be less than or equal to max',
-        );
+  }) : assert(
+         decimalRange == null || decimalRange >= 0,
+         'decimalRange must be null or >= 0',
+       ),
+       assert(
+         min == null || max == null || min <= max,
+         'min must be less than or equal to max',
+       );
 
   /// Number of digits allowed after the decimal point.
   ///

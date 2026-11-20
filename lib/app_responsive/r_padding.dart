@@ -32,7 +32,7 @@ class RPadding extends SingleChildRenderObjectWidget {
 class REdgeInsets extends EdgeInsets {
   /// Creates adapt insets from offsets from the left, top, right, and bottom.
   REdgeInsets.fromLTRB(double left, double top, double right, double bottom)
-      : super.fromLTRB(left.r, top.r, right.r, bottom.r);
+    : super.fromLTRB(left.r, top.r, right.r, bottom.r);
 
   /// Creates adapt insets where all the offsets are `value`.
   ///
@@ -56,10 +56,8 @@ class REdgeInsets extends EdgeInsets {
   /// const REdgeInsets.symmetric(vertical: 8.0)
   /// ```
   /// {@end-tool}
-  REdgeInsets.symmetric({
-    double vertical = 0,
-    double horizontal = 0,
-  }) : super.symmetric(vertical: vertical.r, horizontal: horizontal.r);
+  REdgeInsets.symmetric({double vertical = 0, double horizontal = 0})
+    : super.symmetric(vertical: vertical.r, horizontal: horizontal.r);
 
   /// Creates adapt insets with only the given values non-zero.
   ///
@@ -76,16 +74,15 @@ class REdgeInsets extends EdgeInsets {
     double right = 0,
     double left = 0,
     double top = 0,
-  }) : super.only(
-          bottom: bottom.r,
-          right: right.r,
-          left: left.r,
-          top: top.r,
-        );
+  }) : super.only(bottom: bottom.r, right: right.r, left: left.r, top: top.r);
 
   @override
-  EdgeInsets copyWith(
-      {double? left, double? top, double? right, double? bottom}) {
+  EdgeInsets copyWith({
+    double? left,
+    double? top,
+    double? right,
+    double? bottom,
+  }) {
     return REdgeInsets.only(
       left: left ?? this.left,
       top: top ?? this.top,
@@ -149,12 +146,7 @@ class REdgeInsetsDirectional extends EdgeInsetsDirectional {
     double end = 0,
     double start = 0,
     double top = 0,
-  }) : super.only(
-          bottom: bottom.r,
-          start: start.r,
-          end: end.r,
-          top: top.r,
-        );
+  }) : super.only(bottom: bottom.r, start: start.r, end: end.r, top: top.r);
 
   /// Creates adapt insets from offsets from the start, top, end, and bottom.
   REdgeInsetsDirectional.fromSTEB(
@@ -162,12 +154,7 @@ class REdgeInsetsDirectional extends EdgeInsetsDirectional {
     double top,
     double end,
     double bottom,
-  ) : super.fromSTEB(
-          start.r,
-          top.r,
-          end.r,
-          bottom.r,
-        );
+  ) : super.fromSTEB(start.r, top.r, end.r, bottom.r);
 
   static REdgeInsetsDirectional get zero => REdgeInsetsDirectional.all(0);
 }
@@ -178,20 +165,27 @@ extension WidgetPaddingX on Widget {
 
   Widget rPaddingSymmetric({double horizontal = 0.0, double vertical = 0.0}) =>
       RPadding(
-          padding:
-              REdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
-          child: this);
+        padding: REdgeInsets.symmetric(
+          horizontal: horizontal,
+          vertical: vertical,
+        ),
+        child: this,
+      );
 
   Widget rPaddingOnly({
     double left = 0.0,
     double top = 0.0,
     double right = 0.0,
     double bottom = 0.0,
-  }) =>
-      RPadding(
-          padding: REdgeInsets.only(
-              top: top, left: left, right: right, bottom: bottom),
-          child: this);
+  }) => RPadding(
+    padding: REdgeInsets.only(
+      top: top,
+      left: left,
+      right: right,
+      bottom: bottom,
+    ),
+    child: this,
+  );
 
   Widget get rPaddingZero => RPadding(padding: EdgeInsets.zero, child: this);
 }

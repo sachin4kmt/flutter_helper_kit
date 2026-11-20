@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../flutter_tag_gradient.dart';
 import '../flutter_tag_shape.dart';
@@ -17,31 +17,36 @@ class FlutterDrawingUtils {
     BorderSide? borderSide,
   }) {
     final painterFactories = {
-      FlutterTagShape.cloud: () => FlutterCloudTagShapePainter(
+      FlutterTagShape.cloud:
+          () => FlutterCloudTagShapePainter(
             color: color ?? Colors.blue,
             tagGradient: tagGradient,
             borderSide: borderSide,
             borderGradient: borderGradient,
           ),
-      FlutterTagShape.star: () => FlutterStarTagShapePainter(
+      FlutterTagShape.star:
+          () => FlutterStarTagShapePainter(
             color: color ?? Colors.blue,
             tagGradient: tagGradient,
             borderSide: borderSide,
             borderGradient: borderGradient,
           ),
-      FlutterTagShape.diamond: () => FlutterDiamondTagShapePainter(
+      FlutterTagShape.diamond:
+          () => FlutterDiamondTagShapePainter(
             color: color ?? Colors.blue,
             tagGradient: tagGradient,
             borderSide: borderSide,
             borderGradient: borderGradient,
           ),
-      FlutterTagShape.hexagon: () => FlutterHexagonTagShapePainter(
+      FlutterTagShape.hexagon:
+          () => FlutterHexagonTagShapePainter(
             color: color ?? Colors.blue,
             tagGradient: tagGradient,
             borderSide: borderSide,
             borderGradient: borderGradient,
           ),
-      FlutterTagShape.pentagon: () => FlutterPentagonTagShapePainter(
+      FlutterTagShape.pentagon:
+          () => FlutterPentagonTagShapePainter(
             color: color ?? Colors.blue,
             tagGradient: tagGradient,
             borderSide: borderSide,

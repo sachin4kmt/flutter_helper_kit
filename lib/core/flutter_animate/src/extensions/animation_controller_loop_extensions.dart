@@ -47,9 +47,12 @@ extension AnimationControllerLoopExtensions on AnimationController {
     if (count != null) {
       // timeout ~1 tick before it should complete (@120hz):
       int t = period!.inMilliseconds * count - 8;
-      tickerFuture.timeout(Duration(milliseconds: t), onTimeout: () async {
-        if (isAnimating) animateTo(reverse && count.isEven ? min! : max!);
-      });
+      tickerFuture.timeout(
+        Duration(milliseconds: t),
+        onTimeout: () async {
+          if (isAnimating) animateTo(reverse && count.isEven ? min! : max!);
+        },
+      );
     }
 
     return tickerFuture;

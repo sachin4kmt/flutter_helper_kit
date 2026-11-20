@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ListViewPagination extends StatefulWidget {
   const ListViewPagination({
@@ -21,10 +20,10 @@ class ListViewPagination extends StatefulWidget {
     this.loadingWidget,
     this.scrollThreshold = 400,
     this.hasNext = false,
-  })  : _separated = false,
-        _separatorBuilder = null,
-        semanticChildCount = null,
-        itemExtent = null;
+  }) : _separated = false,
+       _separatorBuilder = null,
+       semanticChildCount = null,
+       itemExtent = null;
 
   const ListViewPagination.separated({
     required this.itemBuilder,
@@ -48,8 +47,8 @@ class ListViewPagination extends StatefulWidget {
     this.loadingWidget,
     this.scrollThreshold = 300,
     this.hasNext = false,
-  })  : _separated = true,
-        _separatorBuilder = separatorBuilder;
+  }) : _separated = true,
+       _separatorBuilder = separatorBuilder;
   final double scrollThreshold;
   final VoidCallback? nextData;
   final bool hasNext;
@@ -119,7 +118,7 @@ class _InfiniteListViewState extends State<ListViewPagination> {
           physics: widget.physics,
           shrinkWrap: widget.shrinkWrap,
           separatorBuilder:
-              widget._separatorBuilder ?? (_, __) => const Divider(),
+              widget._separatorBuilder ?? (_, _) => const Divider(),
           itemCount: widget.hasNext ? widget.itemCount + 1 : widget.itemCount,
         ),
       );
@@ -154,11 +153,13 @@ class _InfiniteListViewState extends State<ListViewPagination> {
 
     switch (widget.scrollDirection) {
       case Axis.vertical:
-        isScrollDirection = scrollDirection == AxisDirection.down ||
+        isScrollDirection =
+            scrollDirection == AxisDirection.down ||
             scrollDirection == AxisDirection.up;
         break;
       case Axis.horizontal:
-        isScrollDirection = scrollDirection == AxisDirection.left ||
+        isScrollDirection =
+            scrollDirection == AxisDirection.left ||
             scrollDirection == AxisDirection.right;
         break;
     }

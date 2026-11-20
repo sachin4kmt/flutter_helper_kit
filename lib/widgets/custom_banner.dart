@@ -1,12 +1,14 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 const double _kBannerDefaultOffset = 40.0;
 const double _kBannerDefaultHeight = 12.0;
 const Color _kBannerDefaultColor = Color(0xA0B71C1C);
-const BoxShadow _kBannerDefaultShadow =
-    BoxShadow(color: Color(0x7F000000), blurRadius: 6.0);
+const BoxShadow _kBannerDefaultShadow = BoxShadow(
+  color: Color(0x7F000000),
+  blurRadius: 6.0,
+);
 
 /// Where to show a [Banner].
 ///
@@ -114,8 +116,7 @@ class _CustomBannerPainter extends CustomPainter {
   double _translationY(double height) {
     return switch (location) {
       CustomBannerLocation.bottomStart ||
-      CustomBannerLocation.bottomEnd =>
-        height - _totalBottomOffset,
+      CustomBannerLocation.bottomEnd => height - _totalBottomOffset,
       CustomBannerLocation.topStart || CustomBannerLocation.topEnd => 0.0,
     };
   }
@@ -125,22 +126,22 @@ class _CustomBannerPainter extends CustomPainter {
         switch ((layoutDirection, location)) {
           (
             TextDirection.rtl,
-            CustomBannerLocation.topStart || CustomBannerLocation.bottomEnd
+            CustomBannerLocation.topStart || CustomBannerLocation.bottomEnd,
           ) =>
             1,
           (
             TextDirection.ltr,
-            CustomBannerLocation.topStart || CustomBannerLocation.bottomEnd
+            CustomBannerLocation.topStart || CustomBannerLocation.bottomEnd,
           ) =>
             -1,
           (
             TextDirection.rtl,
-            CustomBannerLocation.bottomStart || CustomBannerLocation.topEnd
+            CustomBannerLocation.bottomStart || CustomBannerLocation.topEnd,
           ) =>
             -1,
           (
             TextDirection.ltr,
-            CustomBannerLocation.bottomStart || CustomBannerLocation.topEnd
+            CustomBannerLocation.bottomStart || CustomBannerLocation.topEnd,
           ) =>
             1,
         };
@@ -189,12 +190,14 @@ class CustomBanner extends StatelessWidget {
         layoutDirection ?? Directionality.of(context);
 
     // Default text style based on banner height
-    final TextStyle effectiveTextStyle = textStyle ??
+    final TextStyle effectiveTextStyle =
+        textStyle ??
         TextStyle(
-            color: _kBannerDefaultColor,
-            fontSize: bannerHeight * 0.85,
-            fontWeight: FontWeight.w900,
-            height: 1.0);
+          color: _kBannerDefaultColor,
+          fontSize: bannerHeight * 0.85,
+          fontWeight: FontWeight.w900,
+          height: 1.0,
+        );
 
     return ClipRect(
       // Ensure banner doesn't draw outside the child boundaries

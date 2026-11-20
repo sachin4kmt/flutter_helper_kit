@@ -25,9 +25,9 @@ class SaturateEffect extends Effect<double> {
     double? begin,
     double? end,
   }) : super(
-          begin: begin ?? (end == null ? defaultValue : neutralValue),
-          end: end ?? neutralValue,
-        );
+         begin: begin ?? (end == null ? defaultValue : neutralValue),
+         end: end ?? neutralValue,
+       );
 
   @override
   Widget build(
@@ -39,10 +39,11 @@ class SaturateEffect extends Effect<double> {
     Animation<double> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) => ColorFiltered(
-        colorFilter: ColorFilter.matrix(getColorMatrix(animation.value)),
-        child: child,
-      ),
+      builder:
+          (_, _) => ColorFiltered(
+            colorFilter: ColorFilter.matrix(getColorMatrix(animation.value)),
+            child: child,
+          ),
     );
   }
 
@@ -71,14 +72,15 @@ extension SaturateEffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     double? begin,
     double? end,
-  }) =>
-      addEffect(SaturateEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-      ));
+  }) => addEffect(
+    SaturateEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+    ),
+  );
 
   /// Adds a [SaturateEffect] that animates the color saturation of the target.
   /// Defaults to a begin value of `1` (normal saturation) and
@@ -89,12 +91,13 @@ extension SaturateEffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     double? begin,
     double? end,
-  }) =>
-      addEffect(SaturateEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin ?? SaturateEffect.neutralValue,
-        end: end ?? SaturateEffect.defaultValue,
-      ));
+  }) => addEffect(
+    SaturateEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin ?? SaturateEffect.neutralValue,
+      end: end ?? SaturateEffect.defaultValue,
+    ),
+  );
 }

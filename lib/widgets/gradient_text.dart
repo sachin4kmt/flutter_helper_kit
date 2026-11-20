@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class GradientText extends StatelessWidget {
   const GradientText(
@@ -71,10 +71,7 @@ class GradientText extends StatelessWidget {
     );
 
     if (gradient == null) {
-      return Semantics(
-        container: true,
-        child: textWidget,
-      );
+      return Semantics(container: true, child: textWidget);
     }
 
     return Semantics(
@@ -85,7 +82,8 @@ class GradientText extends StatelessWidget {
           if (debug) {
             if (kDebugMode) {
               print(
-                  'GradientText: Creating shader with bounds: $bounds and gradient: $gradient');
+                'GradientText: Creating shader with bounds: $bounds and gradient: $gradient',
+              );
             }
           }
           return gradient!.createShader(

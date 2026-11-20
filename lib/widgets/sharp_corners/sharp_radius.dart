@@ -1,18 +1,13 @@
 import 'dart:ui';
 
 class SharpRadius extends Radius {
-  const SharpRadius({
-    required double cornerRadius,
-    required this.sharpRatio,
-  }) : super.circular(cornerRadius);
+  const SharpRadius({required double cornerRadius, required this.sharpRatio})
+    : super.circular(cornerRadius);
 
   final double sharpRatio;
   double get cornerRadius => x;
 
-  static const zero = SharpRadius(
-    cornerRadius: 0,
-    sharpRatio: 0,
-  );
+  static const zero = SharpRadius(cornerRadius: 0, sharpRatio: 0);
 
   /// Unary negation operator.
   ///
@@ -23,10 +18,8 @@ class SharpRadius extends Radius {
   /// and then adding the result to another radius is equivalent to subtracting
   /// a radius of one pixel from the other.
   @override
-  Radius operator -() => SharpRadius(
-        cornerRadius: -cornerRadius,
-        sharpRatio: sharpRatio,
-      );
+  Radius operator -() =>
+      SharpRadius(cornerRadius: -cornerRadius, sharpRatio: sharpRatio);
 
   /// Binary subtraction operator.
   ///
@@ -73,9 +66,9 @@ class SharpRadius extends Radius {
   /// right-hand-side operand (a double).
   @override
   SharpRadius operator *(double operand) => SharpRadius(
-        cornerRadius: cornerRadius * operand,
-        sharpRatio: sharpRatio * operand,
-      );
+    cornerRadius: cornerRadius * operand,
+    sharpRatio: sharpRatio * operand,
+  );
 
   /// Division operator.
   ///
@@ -84,9 +77,9 @@ class SharpRadius extends Radius {
   /// operand (a double).
   @override
   SharpRadius operator /(double operand) => SharpRadius(
-        cornerRadius: cornerRadius / operand,
-        sharpRatio: sharpRatio / operand,
-      );
+    cornerRadius: cornerRadius / operand,
+    sharpRatio: sharpRatio / operand,
+  );
 
   /// Integer (truncating) division operator.
   ///
@@ -95,9 +88,9 @@ class SharpRadius extends Radius {
   /// operand (a double), rounded towards zero.
   @override
   SharpRadius operator ~/(double operand) => SharpRadius(
-        cornerRadius: (cornerRadius ~/ operand).toDouble(),
-        sharpRatio: (sharpRatio ~/ operand).toDouble(),
-      );
+    cornerRadius: (cornerRadius ~/ operand).toDouble(),
+    sharpRatio: (sharpRatio ~/ operand).toDouble(),
+  );
 
   /// Modulo (remainder) operator.
   ///
@@ -106,9 +99,9 @@ class SharpRadius extends Radius {
   /// right-hand-side operand (a double).
   @override
   SharpRadius operator %(double operand) => SharpRadius(
-        cornerRadius: cornerRadius % operand,
-        sharpRatio: sharpRatio % operand,
-      );
+    cornerRadius: cornerRadius % operand,
+    sharpRatio: sharpRatio % operand,
+  );
 
   /// Linearly interpolate between two smooth radii.
   ///

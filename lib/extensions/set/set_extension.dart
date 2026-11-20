@@ -250,7 +250,8 @@ extension SetExtension<E> on Set<E> {
   /// print(set.sortedByDescending((e) => e.length)); // {banana, cherry, apple}
   /// ```
   Set<E> sortedByDescending<K extends Comparable<K>>(
-      K Function(E element) key) {
+    K Function(E element) key,
+  ) {
     return sorted((a, b) => key(b).compareTo(key(a)));
   }
 }

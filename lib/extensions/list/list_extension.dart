@@ -1,5 +1,5 @@
 import 'dart:math' as math;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 extension ListExtension<T> on List<T>? {
   /// Returns `true` if this list is either `null` or empty.
@@ -325,7 +325,8 @@ extension ListExtNotNoll<T> on List<T?>? {
     return this
             ?.where((e) => e != null) // Filter out null values from the list
             .map(
-                (e) => f(e as T)) // Apply the map function to non-null elements
+              (e) => f(e as T),
+            ) // Apply the map function to non-null elements
             .toList() ??
         <R>[]; // Return the result as a list
   }

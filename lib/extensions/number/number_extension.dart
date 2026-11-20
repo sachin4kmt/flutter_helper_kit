@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Num Extensions
 extension NumExt on num? {
@@ -44,11 +44,8 @@ extension NumExt on num? {
   Widget maxSpace() => spaceMax();
 
   /// Flexible spacer with a minimum gap. See [SpaceMin].
-  Widget spaceMin({double? max, bool? maxExpend}) => SpaceMin(
-        min: validate().toDouble(),
-        max: max,
-        maxExpend: maxExpend,
-      );
+  Widget spaceMin({double? max, bool? maxExpend}) =>
+      SpaceMin(min: validate().toDouble(), max: max, maxExpend: maxExpend);
 
   /// This extension provides a way to handle nullable integers and use them to create
   /// a space widget. It validates the nullable integer, converting it to a non-nullable
@@ -206,9 +203,10 @@ extension NumExt on num? {
     }
 
     // Round the number to the specified decimal places
-    final roundedValue = decimalPlaces > 0
-        ? (this ?? 0.0).toStringAsFixed(decimalPlaces)
-        : toString();
+    final roundedValue =
+        decimalPlaces > 0
+            ? (this ?? 0.0).toStringAsFixed(decimalPlaces)
+            : toString();
 
     // Add prefix and suffix if the number exceeds the threshold
     if ((this ?? 0) > max) {
@@ -230,19 +228,26 @@ extension NumExt on num? {
   }
 
   SharpBorderRadius get circularSharpBorderRadius => SharpBorderRadius.all(
-      SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1),
+  );
   SharpBorderRadius get topLeftSharpBorderRadius => SharpBorderRadius.only(
-      topLeft:
-          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    topLeft: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1),
+  );
   SharpBorderRadius get topRightSharpBorderRadius => SharpBorderRadius.only(
-      topRight:
-          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    topRight: SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1),
+  );
   SharpBorderRadius get bottomLeftSharpBorderRadius => SharpBorderRadius.only(
-      bottomLeft:
-          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    bottomLeft: SharpRadius(
+      cornerRadius: (this ?? 0).toDouble(),
+      sharpRatio: 1,
+    ),
+  );
   SharpBorderRadius get bottomRightSharpRadius => SharpBorderRadius.only(
-      bottomRight:
-          SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1));
+    bottomRight: SharpRadius(
+      cornerRadius: (this ?? 0).toDouble(),
+      sharpRatio: 1,
+    ),
+  );
   SharpRadius get sharpRadius =>
       SharpRadius(cornerRadius: (this ?? 0).toDouble(), sharpRatio: 1);
 }

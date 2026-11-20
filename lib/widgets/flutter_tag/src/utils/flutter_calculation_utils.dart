@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../flutter_tag_position.dart';
 
@@ -45,8 +45,9 @@ class FlutterCalculationUtils {
 
     if (position.top != null && position.start != null) {
       return EdgeInsets.only(
-          top: getUpdatedPadding(position.top),
-          left: getUpdatedPadding(position.start));
+        top: getUpdatedPadding(position.top),
+        left: getUpdatedPadding(position.start),
+      );
     }
     return EdgeInsets.only(
       top: getUpdatedPadding(position.top),
@@ -77,8 +78,10 @@ class FlutterCalculationUtils {
   }
 
   /// Calculates the center offset for a given size.
-  static Offset calculateCenterOffset(
-      {required double width, required double height}) {
+  static Offset calculateCenterOffset({
+    required double width,
+    required double height,
+  }) {
     return Offset(width / 2, height / 2);
   }
 

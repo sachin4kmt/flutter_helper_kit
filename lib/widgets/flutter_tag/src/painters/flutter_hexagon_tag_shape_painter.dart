@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../flutter_tag_gradient.dart';
 import '../utils/flutter_gradient_utils.dart';
@@ -20,28 +20,32 @@ class FlutterHexagonTagShapePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..shader = tagGradient != null
-          ? FlutterGradientUtils.getGradientShader(
-              tagGradient: tagGradient!,
-              width: size.width,
-              height: size.height,
-            )
-          : null;
+    final paint =
+        Paint()
+          ..color = color
+          ..shader =
+              tagGradient != null
+                  ? FlutterGradientUtils.getGradientShader(
+                    tagGradient: tagGradient!,
+                    width: size.width,
+                    height: size.height,
+                  )
+                  : null;
 
-    final paintBorder = Paint()
-      ..color = borderSide?.color ?? Colors.white
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = borderSide?.width ?? 0
-      ..shader = borderGradient != null
-          ? FlutterGradientUtils.getGradientShader(
-              tagGradient: borderGradient!,
-              width: size.width,
-              height: size.height,
-            )
-          : null;
+    final paintBorder =
+        Paint()
+          ..color = borderSide?.color ?? Colors.white
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = borderSide?.width ?? 0
+          ..shader =
+              borderGradient != null
+                  ? FlutterGradientUtils.getGradientShader(
+                    tagGradient: borderGradient!,
+                    width: size.width,
+                    height: size.height,
+                  )
+                  : null;
 
     final path = Path();
     final double width = size.width;

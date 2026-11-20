@@ -17,9 +17,9 @@ class AlignEffect extends Effect<Alignment> {
     Alignment? begin,
     Alignment? end,
   }) : super(
-          begin: begin ?? (end == null ? defaultValue : neutralValue),
-          end: end ?? neutralValue,
-        );
+         begin: begin ?? (end == null ? defaultValue : neutralValue),
+         end: end ?? neutralValue,
+       );
 
   @override
   Widget build(
@@ -31,11 +31,8 @@ class AlignEffect extends Effect<Alignment> {
     Animation<Alignment> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<Alignment>(
       animation: animation,
-      builder: (_, __) {
-        return Align(
-          alignment: animation.value,
-          child: child,
-        );
+      builder: (_, _) {
+        return Align(alignment: animation.value, child: child);
       },
     );
   }
@@ -51,12 +48,13 @@ extension AlignEffectExtensions<T extends AnimateManager<T>> on T {
     Curve? curve,
     Alignment? begin,
     Alignment? end,
-  }) =>
-      addEffect(AlignEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-      ));
+  }) => addEffect(
+    AlignEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+    ),
+  );
 }

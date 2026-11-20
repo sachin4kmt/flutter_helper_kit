@@ -51,8 +51,11 @@ class RxDateTime extends ValueNotifier<DateTime> {
   }
 
   DateTime get startOfMonth => DateTime(value.year, value.month, 1);
-  DateTime get endOfMonth => DateTime(value.year, value.month + 1, 1)
-      .subtract(const Duration(milliseconds: 1));
+  DateTime get endOfMonth => DateTime(
+    value.year,
+    value.month + 1,
+    1,
+  ).subtract(const Duration(milliseconds: 1));
 
   RxDateTime addDuration(Duration duration) {
     value = value.add(duration);
@@ -71,7 +74,14 @@ class RxDateTime extends ValueNotifier<DateTime> {
     int millisecond = 0,
   }) {
     value = DateTime(
-        value.year, value.month, value.day, hour, minute, second, millisecond);
+      value.year,
+      value.month,
+      value.day,
+      hour,
+      minute,
+      second,
+      millisecond,
+    );
     return this;
   }
 
@@ -131,8 +141,15 @@ class RxnDateTime extends ValueNotifier<DateTime?> {
     int millisecond = 0,
   }) {
     if (value != null) {
-      value = DateTime(value!.year, value!.month, value!.day, hour, minute,
-          second, millisecond);
+      value = DateTime(
+        value!.year,
+        value!.month,
+        value!.day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
     return this;
   }

@@ -1,8 +1,8 @@
 part of 'app_responsive.dart';
 
 typedef RebuildFactor = bool Function(MediaQueryData old, MediaQueryData data);
-typedef ScreenUtilInitBuilder = Widget Function(
-    BuildContext context, Widget? child);
+typedef ScreenUtilInitBuilder =
+    Widget Function(BuildContext context, Widget? child);
 
 abstract class RebuildFactors {
   static bool size(MediaQueryData old, MediaQueryData data) =>
@@ -82,7 +82,9 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
     }
 
     ScreenUtil.enableScale(
-        enableWH: widget.enableScaleWH, enableText: widget.enableScaleText);
+      enableWH: widget.enableScaleWH,
+      enableText: widget.enableScaleText,
+    );
     _validateSize().then(_screenSizeCompleter.complete);
 
     super.initState();
@@ -115,7 +117,8 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   void _markNeedsBuildIfAllowed(Element el) {
     final widgetName = el.widget.runtimeType.toString();
     if (_excludedWidgets.contains(widgetName)) return;
-    final allowed = _canMarkedToBuild.contains(widgetName) ||
+    final allowed =
+        _canMarkedToBuild.contains(widgetName) ||
         !(widgetName.startsWith('_') || flutterWidgets.contains(widgetName));
     if (allowed) el.markNeedsBuild();
   }

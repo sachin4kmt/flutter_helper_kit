@@ -1,20 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 Widget tapSafeGestureDemo(BuildContext context) {
   return Center(
     child: TapSafeGesture(
       cooldown: const Duration(seconds: 2),
-      builder: (context, onTap) => ElevatedButton(
-        onPressed: onTap,
-        child: const Text('TapSafeGesture (2s cooldown)'),
-      ),
+      builder:
+          (context, onTap) => ElevatedButton(
+            onPressed: onTap,
+            child: const Text('TapSafeGesture (2s cooldown)'),
+          ),
       onTap: () async {
         await Future.delayed(const Duration(seconds: 1));
         if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Tap completed')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('Tap completed')));
         }
       },
     ),
@@ -28,8 +29,10 @@ Widget unFocusableDemo(BuildContext context) {
       child: Column(
         children: [
           const TextField(
-              decoration: InputDecoration(
-                  labelText: 'Tap outside to dismiss keyboard')),
+            decoration: InputDecoration(
+              labelText: 'Tap outside to dismiss keyboard',
+            ),
+          ),
           const SizedBox(height: 8),
           const Text('Wrapped with UnFocusable'),
         ],
@@ -84,11 +87,7 @@ class _CustomIndicatorDemoState extends State<_CustomIndicatorDemo> {
 Widget separatedColumnDemo(BuildContext context) {
   return SeparatedColumn(
     separatorBuilder: (_, __) => const Divider(),
-    children: const [
-      Text('Item 1'),
-      Text('Item 2'),
-      Text('Item 3'),
-    ],
+    children: const [Text('Item 1'), Text('Item 2'), Text('Item 3')],
   );
 }
 
@@ -111,8 +110,8 @@ Widget animatedListWrapperDemo(BuildContext context) {
   return AnimatedListWrapper(
     itemCount: 6,
     animationType: ListAnimationType.slideY,
-    itemBuilder: (_, i) =>
-        Card(child: ListTile(title: Text('Animated item $i'))),
+    itemBuilder:
+        (_, i) => Card(child: ListTile(title: Text('Animated item $i'))),
   );
 }
 
@@ -146,11 +145,12 @@ Widget roundedCheckBoxDemo(BuildContext context) {
 Widget showDialogCloseDemo(BuildContext context) {
   return Center(
     child: ElevatedButton(
-      onPressed: () => showDialogWithCloseIcon(
-        context: context,
-        title: const Icon(Icons.info_outline, size: 40),
-        content: const Text('Dialog with animated close icon'),
-      ),
+      onPressed:
+          () => showDialogWithCloseIcon(
+            context: context,
+            title: const Icon(Icons.info_outline, size: 40),
+            content: const Text('Dialog with animated close icon'),
+          ),
       child: const Text('showDialogWithCloseIcon'),
     ),
   );
@@ -177,10 +177,7 @@ Widget widgetHelperDemo(BuildContext context) {
     padding: const EdgeInsets.all(16),
     children: WidgetHelper.widgetMap(
       items,
-      (item) => [
-        ListTile(title: Text(item)),
-        const Divider(height: 1),
-      ],
+      (item) => [ListTile(title: Text(item)), const Divider(height: 1)],
     ),
   );
 }
@@ -189,10 +186,12 @@ Widget sliverSpaceDemo(BuildContext context) {
   return CustomScrollView(
     slivers: [
       const SliverToBoxAdapter(
-          child: ListTile(title: Text('Above SliverSpace'))),
+        child: ListTile(title: Text('Above SliverSpace')),
+      ),
       const SliverSpace(24, color: Color(0xFFE3F2FD)),
       const SliverToBoxAdapter(
-          child: ListTile(title: Text('Below SliverSpace'))),
+        child: ListTile(title: Text('Below SliverSpace')),
+      ),
       SliverPadding(
         padding: const EdgeInsets.all(16),
         sliver: SliverList(
@@ -204,7 +203,9 @@ Widget sliverSpaceDemo(BuildContext context) {
                 const Text('Left'),
                 16.spaceMax(),
                 Container(
-                    color: Colors.teal.shade100, child: const Text(' expand ')),
+                  color: Colors.teal.shade100,
+                  child: const Text(' expand '),
+                ),
               ],
             ),
             const SizedBox(height: 16),
@@ -213,11 +214,7 @@ Widget sliverSpaceDemo(BuildContext context) {
             const SizedBox(
               height: 80,
               child: Column(
-                children: [
-                  Text('Top'),
-                  SpaceMin(min: 10),
-                  Text('Bottom'),
-                ],
+                children: [Text('Top'), SpaceMin(min: 10), Text('Bottom')],
               ),
             ),
           ]),
@@ -231,8 +228,10 @@ Widget percentIndicatorsDemo(BuildContext context) {
   return ListView(
     padding: const EdgeInsets.all(16),
     children: [
-      const Text('CircularPercentIndicator',
-          style: TextStyle(fontWeight: FontWeight.bold)),
+      const Text(
+        'CircularPercentIndicator',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
       const SizedBox(height: 12),
       Center(
         child: CircularPercentIndicator(
@@ -248,8 +247,10 @@ Widget percentIndicatorsDemo(BuildContext context) {
         ),
       ),
       const SizedBox(height: 24),
-      const Text('LinearPercentIndicator',
-          style: TextStyle(fontWeight: FontWeight.bold)),
+      const Text(
+        'LinearPercentIndicator',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
       const SizedBox(height: 12),
       LinearPercentIndicator(
         lineHeight: 14,
@@ -258,12 +259,16 @@ Widget percentIndicatorsDemo(BuildContext context) {
         barRadius: const Radius.circular(8),
         progressColor: Colors.indigo,
         backgroundColor: Colors.indigo.shade100,
-        center: const Text('55%',
-            style: TextStyle(color: Colors.white, fontSize: 11)),
+        center: const Text(
+          '55%',
+          style: TextStyle(color: Colors.white, fontSize: 11),
+        ),
       ),
       const SizedBox(height: 24),
-      const Text('MultiSegmentLinearIndicator',
-          style: TextStyle(fontWeight: FontWeight.bold)),
+      const Text(
+        'MultiSegmentLinearIndicator',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
       const SizedBox(height: 12),
       MultiSegmentLinearIndicator(
         lineHeight: 16,
@@ -272,7 +277,10 @@ Widget percentIndicatorsDemo(BuildContext context) {
         padding: EdgeInsets.zero,
         segments: const [
           SegmentLinearIndicator(
-              percent: 0.25, color: Colors.redAccent, enableStripes: true),
+            percent: 0.25,
+            color: Colors.redAccent,
+            enableStripes: true,
+          ),
           SegmentLinearIndicator(percent: 0.35, color: Colors.amber),
           SegmentLinearIndicator(percent: 0.2, color: Colors.green),
         ],
@@ -289,7 +297,7 @@ Widget avatarGlowMultiColorDemo(BuildContext context) {
         Colors.orange,
         Colors.yellow,
         Colors.green,
-        Colors.blue
+        Colors.blue,
       ],
       child: CircleAvatar(
         radius: 36,
@@ -319,13 +327,16 @@ Widget sharpCornersFullDemo(BuildContext context) {
     children: [
       SharpClipRect(
         radius: const SharpBorderRadius.all(
-            SharpRadius(cornerRadius: 20, sharpRatio: 0.5)),
+          SharpRadius(cornerRadius: 20, sharpRatio: 0.5),
+        ),
         child: Container(
           height: 80,
           color: Colors.deepPurple,
           alignment: Alignment.center,
-          child: const Text('SharpClipRect',
-              style: TextStyle(color: Colors.white)),
+          child: const Text(
+            'SharpClipRect',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ),
       const SizedBox(height: 16),
@@ -385,7 +396,9 @@ Widget ticketClippersFullDemo(BuildContext context) {
       TicketClipper(
         clipper: TicketRoundedEdgeClipper(),
         shadow: BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1), blurRadius: 6),
+          color: Colors.black.withValues(alpha: 0.1),
+          blurRadius: 6,
+        ),
         child: Container(
           height: 100,
           color: Colors.green.shade100,
@@ -433,9 +446,12 @@ class _DigitTypesDemoState extends State<_DigitTypesDemo> {
             DropdownButton<DigitAnimationType>(
               value: _type,
               onChanged: (v) => setState(() => _type = v!),
-              items: DigitAnimationType.values
-                  .map((t) => DropdownMenuItem(value: t, child: Text(t.name)))
-                  .toList(),
+              items:
+                  DigitAnimationType.values
+                      .map(
+                        (t) => DropdownMenuItem(value: t, child: Text(t.name)),
+                      )
+                      .toList(),
             ),
           ],
         ),

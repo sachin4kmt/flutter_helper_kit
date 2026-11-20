@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
 
 Widget formattersDemo(BuildContext context) {
@@ -9,10 +9,7 @@ Widget formattersDemo(BuildContext context) {
       children: [
         TextField(
           controller: controller,
-          inputFormatters: [
-            NoLeadingSpaceFormatter(),
-            NoSpaceFormatter(),
-          ],
+          inputFormatters: [NoLeadingSpaceFormatter(), NoSpaceFormatter()],
           decoration: const InputDecoration(
             labelText: 'No leading/trailing spaces',
             border: OutlineInputBorder(),

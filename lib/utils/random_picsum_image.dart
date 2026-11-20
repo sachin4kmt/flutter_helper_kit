@@ -20,11 +20,7 @@ class RandomPicsumImage {
   }
 
   /// Get an image by ID
-  static String byId({
-    required int id,
-    int width = 400,
-    int height = 300,
-  }) {
+  static String byId({required int id, int width = 400, int height = 300}) {
     return 'https://picsum.photos/id/$id/$width/$height';
   }
 
@@ -36,8 +32,9 @@ class RandomPicsumImage {
     bool grayscale = false,
     int blur = 0,
   }) {
-    final buffer =
-        StringBuffer('https://picsum.photos/seed/$seed/$width/$height');
+    final buffer = StringBuffer(
+      'https://picsum.photos/seed/$seed/$width/$height',
+    );
 
     final params = <String>[];
     if (grayscale) params.add('grayscale');
@@ -51,10 +48,7 @@ class RandomPicsumImage {
   }
 
   /// Get random image info (JSON API - for custom usage)
-  static String list({
-    int page = 1,
-    int limit = 30,
-  }) {
+  static String list({int page = 1, int limit = 30}) {
     return 'https://picsum.photos/v2/list?page=$page&limit=$limit';
   }
 

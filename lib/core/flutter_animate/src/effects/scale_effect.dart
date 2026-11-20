@@ -23,11 +23,11 @@ class ScaleEffect extends Effect<Offset> {
     Offset? end,
     this.alignment,
     bool? transformHitTests,
-  })  : transformHitTests = transformHitTests ?? defaultTransformHitTests,
-        super(
-          begin: begin ?? (end == null ? defaultValue : neutralValue),
-          end: end ?? neutralValue,
-        );
+  }) : transformHitTests = transformHitTests ?? defaultTransformHitTests,
+       super(
+         begin: begin ?? (end == null ? defaultValue : neutralValue),
+         end: end ?? neutralValue,
+       );
 
   final Alignment? alignment;
   final bool transformHitTests;
@@ -42,7 +42,7 @@ class ScaleEffect extends Effect<Offset> {
     Animation<Offset> animation = buildAnimation(controller, entry);
     return getOptimizedBuilder<Offset>(
       animation: animation,
-      builder: (_, __) {
+      builder: (_, _) {
         return Transform.scale(
           scaleX: _normalizeScale(animation.value.dx),
           scaleY: _normalizeScale(animation.value.dy),
@@ -73,16 +73,17 @@ extension ScaleEffectExtensions<T extends AnimateManager<T>> on T {
     Offset? end,
     Alignment? alignment,
     bool? transformHitTests,
-  }) =>
-      addEffect(ScaleEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        alignment: alignment,
-        transformHitTests: transformHitTests,
-      ));
+  }) => addEffect(
+    ScaleEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      alignment: alignment,
+      transformHitTests: transformHitTests,
+    ),
+  );
 
   /// Adds a [ScaleEffect] that scales the target horizontally between
   /// the specified [begin] and [end] values (via [Transform.scale]).
@@ -98,15 +99,17 @@ extension ScaleEffectExtensions<T extends AnimateManager<T>> on T {
     begin ??=
         (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
     end ??= ScaleEffect.neutralScale;
-    return addEffect(ScaleEffect(
-      delay: delay,
-      duration: duration,
-      curve: curve,
-      begin: ScaleEffect.neutralValue.copyWith(dx: begin),
-      end: ScaleEffect.neutralValue.copyWith(dx: end),
-      alignment: alignment,
-      transformHitTests: transformHitTests,
-    ));
+    return addEffect(
+      ScaleEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: ScaleEffect.neutralValue.copyWith(dx: begin),
+        end: ScaleEffect.neutralValue.copyWith(dx: end),
+        alignment: alignment,
+        transformHitTests: transformHitTests,
+      ),
+    );
   }
 
   /// Adds a [ScaleEffect] that scales the target vertically between
@@ -123,15 +126,17 @@ extension ScaleEffectExtensions<T extends AnimateManager<T>> on T {
     begin ??=
         (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
     end ??= ScaleEffect.neutralScale;
-    return addEffect(ScaleEffect(
-      delay: delay,
-      duration: duration,
-      curve: curve,
-      begin: ScaleEffect.neutralValue.copyWith(dy: begin),
-      end: ScaleEffect.neutralValue.copyWith(dy: end),
-      alignment: alignment,
-      transformHitTests: transformHitTests,
-    ));
+    return addEffect(
+      ScaleEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: ScaleEffect.neutralValue.copyWith(dy: begin),
+        end: ScaleEffect.neutralValue.copyWith(dy: end),
+        alignment: alignment,
+        transformHitTests: transformHitTests,
+      ),
+    );
   }
 
   /// Adds a [ScaleEffect] that scales the target uniformly between
@@ -148,14 +153,16 @@ extension ScaleEffectExtensions<T extends AnimateManager<T>> on T {
     begin ??=
         (end == null ? ScaleEffect.defaultScale : ScaleEffect.neutralScale);
     end ??= ScaleEffect.neutralScale;
-    return addEffect(ScaleEffect(
-      delay: delay,
-      duration: duration,
-      curve: curve,
-      begin: Offset(begin, begin),
-      end: Offset(end, end),
-      alignment: alignment,
-      transformHitTests: transformHitTests,
-    ));
+    return addEffect(
+      ScaleEffect(
+        delay: delay,
+        duration: duration,
+        curve: curve,
+        begin: Offset(begin, begin),
+        end: Offset(end, end),
+        alignment: alignment,
+        transformHitTests: transformHitTests,
+      ),
+    );
   }
 }

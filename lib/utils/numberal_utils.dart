@@ -20,7 +20,7 @@ class Numeral {
   ///
   /// Throws an AssertionError if [digitAfterDecimal] is not less than 4.
   Numeral(this.number, {this.digitAfterDecimal = 0})
-      : assert(digitAfterDecimal < 4);
+    : assert(digitAfterDecimal < 4);
 
   /// Formats the number in the Indian numeral system.
   ///

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// The smallest possible value of an int within 64 bits.
 const int intMinValue = -9007199254740991;
@@ -36,7 +36,8 @@ class NP {
   static num digitLength(dynamic number) {
     final eSplit = parseNum(number).toString().toLowerCase().split('e');
     final digit = eSplit[0].split('.');
-    final len = (digit.length == 2 ? digit[1].length : 0) -
+    final len =
+        (digit.length == 2 ? digit[1].length : 0) -
         (eSplit.length == 2 ? int.parse(eSplit[1]) : 0);
     return len > 0 ? len : 0;
   }
@@ -50,19 +51,24 @@ class NP {
         if (!number.toLowerCase().contains('e')) {
           return num.parse(number.replaceAll('.', ''));
         }
-        return num.parse(num.parse(number)
-            .toStringAsFixed(dLen as int)
-            .replaceAll(dLen == 0 ? '' : '.', ''));
+        return num.parse(
+          num.parse(
+            number,
+          ).toStringAsFixed(dLen as int).replaceAll(dLen == 0 ? '' : '.', ''),
+        );
       } else if (number is num) {
-        return num.parse(number
-            .toStringAsFixed(dLen as int)
-            .replaceAll(dLen == 0 ? '' : '.', ''));
+        return num.parse(
+          number
+              .toStringAsFixed(dLen as int)
+              .replaceAll(dLen == 0 ? '' : '.', ''),
+        );
       }
 
       throw FormatException('$number is not of type num and String');
     }
     throw Exception(
-        '$number is beyond boundary when transfer to integer, the results may not be accurate');
+      '$number is beyond boundary when transfer to integer, the results may not be accurate',
+    );
   }
 
   /// 检测数字是否越界，如果越界给出提示
@@ -71,7 +77,8 @@ class NP {
     if (_boundaryCheckingState) {
       if (number > inMaxValue || number < intMinValue) {
         throw Exception(
-            '$number is beyond boundary when transfer to integer, the results may not be accurate');
+          '$number is beyond boundary when transfer to integer, the results may not be accurate',
+        );
       }
     }
   }
@@ -83,8 +90,11 @@ class NP {
   /// 譬如 times(1, 2, [22,33])
   static num times(dynamic num1, dynamic num2, [List<dynamic>? others]) {
     if (others != null) {
-      return times(times(num1, num2), others[0],
-          others.length >= 2 ? others.sublist(1) : null);
+      return times(
+        times(num1, num2),
+        others[0],
+        others.length >= 2 ? others.sublist(1) : null,
+      );
     }
     num num1Changed = float2Fixed(num1);
     num num2Changed = float2Fixed(num2);
@@ -99,8 +109,11 @@ class NP {
   /// 精确加法
   static num plus(dynamic num1, dynamic num2, [List<dynamic>? others]) {
     if (others != null) {
-      return plus(plus(num1, num2), others[0],
-          others.length >= 2 ? others.sublist(1) : null);
+      return plus(
+        plus(num1, num2),
+        others[0],
+        others.length >= 2 ? others.sublist(1) : null,
+      );
     }
     num baseNum = pow(10, max(digitLength(num1), digitLength(num2)));
     return (times(num1, baseNum) + times(num2, baseNum)) / baseNum;
@@ -109,8 +122,11 @@ class NP {
   /// 精确减法
   static num minus(dynamic num1, dynamic num2, [List<dynamic>? others]) {
     if (others != null) {
-      return minus(minus(num1, num2), others[0],
-          others.length >= 2 ? others.sublist(1) : null);
+      return minus(
+        minus(num1, num2),
+        others[0],
+        others.length >= 2 ? others.sublist(1) : null,
+      );
     }
     num baseNum = pow(10, max(digitLength(num1), digitLength(num2)));
 
@@ -120,15 +136,20 @@ class NP {
   /// 精确除法
   static num divide(dynamic num1, dynamic num2, [List<dynamic>? others]) {
     if (others != null) {
-      return divide(divide(num1, num2), others[0],
-          others.length >= 2 ? others.sublist(1) : null);
+      return divide(
+        divide(num1, num2),
+        others[0],
+        others.length >= 2 ? others.sublist(1) : null,
+      );
     }
     num num1Changed = float2Fixed(num1);
     num num2Changed = float2Fixed(num2);
     checkBoundary(num1Changed);
     checkBoundary(num2Changed);
-    return times(num1Changed / num2Changed,
-        (pow(10, digitLength(num2) - digitLength(num1))));
+    return times(
+      num1Changed / num2Changed,
+      (pow(10, digitLength(num2) - digitLength(num1))),
+    );
   }
 
   /// 四舍五入
@@ -144,8 +165,10 @@ class NP {
   }
 }
 
-const TextStyle _$defaultTextStyle =
-    TextStyle(color: Colors.black, fontSize: 25);
+const TextStyle _$defaultTextStyle = TextStyle(
+  color: Colors.black,
+  fontSize: 25,
+);
 
 /// 为了适配flutter 2 中的 `WidgetsBinding.instance` 可能为 `null`
 ///
@@ -163,8 +186,8 @@ class WidgetsBindingx {
 typedef FormatValue = String Function(String value);
 
 /// #### 自定义每一个 Widget
-typedef AnimatedSingleWidgetBuilder = Widget Function(
-    Size size, String value, bool isNumber, Widget child);
+typedef AnimatedSingleWidgetBuilder =
+    Widget Function(Size size, String value, bool isNumber, Widget child);
 
 /// #### 当值符合条件时，改变颜色
 typedef ValueChangeTextStyle = TextStyle Function(TextStyle style);
@@ -221,16 +244,22 @@ class SingleDigitData {
   bool useTextSize;
 
   /// 单个包装的字符/数字依赖配置数据源
-  SingleDigitData(
-      {this.size,
-      this.useTextSize = false,
-      this.valueColors,
-      this.prefixAndSuffixFollowValueColor = true,
-      this.builder});
+  SingleDigitData({
+    this.size,
+    this.useTextSize = false,
+    this.valueColors,
+    this.prefixAndSuffixFollowValueColor = true,
+    this.builder,
+  });
 
   Widget? _buildChangeTextColorWidget(
-      BuildContext context, String val, TextStyle textStyle,
-      [Key? key, Duration? duration, Curve? curve]) {
+    BuildContext context,
+    String val,
+    TextStyle textStyle, [
+    Key? key,
+    Duration? duration,
+    Curve? curve,
+  ]) {
     final vc = _getLastValidValueColor();
     if (vc == null) return null;
 
@@ -242,12 +271,13 @@ class SingleDigitData {
     });
     // 使用颜色动画
     return _AnimatedDigitColorWidget(
-        key: key,
-        text: val,
-        baseStyle: textStyle,
-        targetColor: vc.color,
-        duration: d,
-        curve: c);
+      key: key,
+      text: val,
+      baseStyle: textStyle,
+      targetColor: vc.color,
+      duration: d,
+      curve: c,
+    );
   }
 
   ValueColor? _getLastValidValueColor() {
@@ -265,8 +295,11 @@ class SingleDigitData {
 /// The [SingleDigitData] `DI` provider widget
 class SingleDigitProvider extends InheritedWidget {
   /// The [SingleDigitData] `DI` provider widget
-  const SingleDigitProvider(
-      {super.key, required this.data, required super.child});
+  const SingleDigitProvider({
+    super.key,
+    required this.data,
+    required super.child,
+  });
 
   final SingleDigitData data;
 
@@ -291,7 +324,8 @@ class SingleDigitProvider extends InheritedWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(
-        DiagnosticsProperty<SingleDigitData>('data', data, showName: false));
+      DiagnosticsProperty<SingleDigitData>('data', data, showName: false),
+    );
   }
 }
 
@@ -592,10 +626,14 @@ class AnimatedDigitWidget extends StatefulWidget {
     this.valueColors,
     this.firstScrollAnimate = true,
     this.enableMinIntegerDigits = false,
-  })  : assert(separateLength >= 1,
-            '@separateLength at least greater than or equal to 1'),
-        assert(!(value == null && controller == null),
-            'the @value & @controller cannot be null at the same time') {
+  }) : assert(
+         separateLength >= 1,
+         '@separateLength at least greater than or equal to 1',
+       ),
+       assert(
+         !(value == null && controller == null),
+         'the @value & @controller cannot be null at the same time',
+       ) {
     if (textStyle != null) {
       if (textStyle.color == null) {
         _textStyle = textStyle.copyWith(color: Colors.black);
@@ -735,8 +773,10 @@ class AnimatedDigitWidgetState extends State<AnimatedDigitWidget>
     if (!widget.enableSeparator && fractionDigits < 1) {
       result = numSplitArr.first;
     }
-    final List<String> digitList =
-        List.from(numSplitArr.first.characters, growable: false);
+    final List<String> digitList = List.from(
+      numSplitArr.first.characters,
+      growable: false,
+    );
     if (widget.enableSeparator) {
       int len = digitList.length - 1;
       final separateSymbol = widget.separateSymbol ?? '';
@@ -752,17 +792,19 @@ class AnimatedDigitWidgetState extends State<AnimatedDigitWidget>
     if (fractionDigits > 0) {
       List<String> fractionList = List.from(numSplitArr.last.characters);
       if (fractionList.length > fractionDigits) {
-        fractionList =
-            fractionList.take(fractionDigits).toList(growable: false);
+        fractionList = fractionList
+            .take(fractionDigits)
+            .toList(growable: false);
       } else {
         final padRightLen = fractionDigits - fractionList.length;
         //Equivalent to `padRight(padRightLen, "0")`
         fractionList.addAll(List.generate(padRightLen, (index) => '0'));
       }
-      final strbuff = StringBuffer()
-        ..writeAll(digitList)
-        ..write(widget.decimalSeparator)
-        ..writeAll(fractionList);
+      final strbuff =
+          StringBuffer()
+            ..writeAll(digitList)
+            ..write(widget.decimalSeparator)
+            ..writeAll(fractionList);
       result = strbuff.toString();
     } else {
       result = digitList.join('');
@@ -800,8 +842,10 @@ class AnimatedDigitWidgetState extends State<AnimatedDigitWidget>
     });
 
     if (widget.valueColors != null) {
-      _singleDigitData =
-          SingleDigitData(useTextSize: true, valueColors: widget.valueColors);
+      _singleDigitData = SingleDigitData(
+        useTextSize: true,
+        valueColors: widget.valueColors,
+      );
     }
 
     if (_dirty) {
@@ -814,7 +858,10 @@ class AnimatedDigitWidgetState extends State<AnimatedDigitWidget>
     // Wrap the rendered Row with AnimatedSize so that when children count/size changes
     // the overall width/height will animate smoothly instead of jump.
     final Widget animated = AnimatedSize(
-        duration: widget.duration, curve: widget.curve, child: _build());
+      duration: widget.duration,
+      curve: widget.curve,
+      child: _build(),
+    );
 
     if (_singleDigitData != null) {
       return SingleDigitProvider(data: _singleDigitData!, child: animated);
@@ -834,9 +881,10 @@ class AnimatedDigitWidgetState extends State<AnimatedDigitWidget>
           duration: widget.duration,
           curve: widget.curve,
           child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: _widgets),
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _widgets,
+          ),
         ),
         if (widget.suffix != null) _buildChangeTextColorWidget(widget.suffix!),
       ],
@@ -848,7 +896,13 @@ class AnimatedDigitWidgetState extends State<AnimatedDigitWidget>
     final sdd = _singleDigitData;
     if (sdd == null || !sdd.prefixAndSuffixFollowValueColor) return result;
     return sdd._buildChangeTextColorWidget(
-            context, val, style, null, widget.duration, widget.curve) ??
+          context,
+          val,
+          style,
+          null,
+          widget.duration,
+          widget.curve,
+        ) ??
         result;
   }
 
@@ -873,10 +927,11 @@ class AnimatedDigitWidgetState extends State<AnimatedDigitWidget>
     if (value == 0 || lenNew == lenOld) {
       if (lenNew < lenOld) {
         _widgets.removeRange(
-            lenNew - 1,
-            (lenOld - lenNew) +
-                widget.fractionDigits +
-                (widget.fractionDigits > 0 ? 1 : 0));
+          lenNew - 1,
+          (lenOld - lenNew) +
+              widget.fractionDigits +
+              (widget.fractionDigits > 0 ? 1 : 0),
+        );
       }
       // 检查最小整数位数
       if (widget.enableMinIntegerDigits &&
@@ -895,13 +950,15 @@ class AnimatedDigitWidgetState extends State<AnimatedDigitWidget>
 
   Widget _buildNegativeSymbol() {
     const symbolKey = '_AdwChildSymbol';
-    Widget secondChild = _singleDigitData?._buildChangeTextColorWidget(
-            context,
-            '-',
-            style,
-            const ValueKey(symbolKey),
-            widget.duration,
-            widget.curve) ??
+    Widget secondChild =
+        _singleDigitData?._buildChangeTextColorWidget(
+          context,
+          '-',
+          style,
+          const ValueKey(symbolKey),
+          widget.duration,
+          widget.curve,
+        ) ??
         Text('-', key: const ValueKey(symbolKey), style: style);
     return AnimatedCrossFade(
       key: const ValueKey('_AdwAnimaNegativeSymbol'),
@@ -1119,8 +1176,9 @@ class _AnimatedSingleWidgetState extends State<_AnimatedSingleWidget> {
     if (widget.textScaler != null) {
       textScaler = widget.textScaler!;
     } else {
-      textScaler =
-          TextScaler.linear(platformDispatcher?.textScaleFactor ?? 1.0);
+      textScaler = TextScaler.linear(
+        platformDispatcher?.textScaleFactor ?? 1.0,
+      );
     }
 
     TextPainter painter = TextPainter(
@@ -1161,8 +1219,11 @@ class _AnimatedSingleWidgetState extends State<_AnimatedSingleWidget> {
   /// 滚动到距离 [scrollOffset]
   Future<void> _scrollTo() async {
     _computeScrollOffset();
-    await scrollController.animateTo(scrollOffset,
-        duration: _duration, curve: _curve);
+    await scrollController.animateTo(
+      scrollOffset,
+      duration: _duration,
+      curve: _curve,
+    );
   }
 
   /// 计算需要滚动的距离 [scrollOffset]
@@ -1199,10 +1260,11 @@ class _AnimatedSingleWidgetState extends State<_AnimatedSingleWidget> {
       );
     } else {
       child = Container(
-          width: valueSize.width,
-          height: valueSize.height,
-          decoration: _boxDecoration,
-          child: child);
+        width: valueSize.width,
+        height: valueSize.height,
+        decoration: _boxDecoration,
+        child: child,
+      );
     }
     return AbsorbPointer(absorbing: true, child: child);
   }
@@ -1246,8 +1308,15 @@ class _AnimatedSingleWidgetState extends State<_AnimatedSingleWidget> {
     Widget child = defaultBuildSingleWidget(val);
     if (data == null) return child;
     final SingleDigitData sdd = data!;
-    child = sdd._buildChangeTextColorWidget(
-            context, val, _textStyle, null, widget.duration, widget.curve) ??
+    child =
+        sdd._buildChangeTextColorWidget(
+          context,
+          val,
+          _textStyle,
+          null,
+          widget.duration,
+          widget.curve,
+        ) ??
         child;
     if (sdd.builder != null) {
       child = sdd.builder!(valueSize, val, isNumber, child);
@@ -1313,13 +1382,17 @@ class _AnimatedDigitColorWidgetState extends State<_AnimatedDigitColorWidget>
     final Color? animValue = _colorAnim.value ?? _currentShownColor;
     if (oldWidget.targetColor != widget.targetColor) {
       _controller.duration = widget.duration;
-      _colorAnim = ColorTween(begin: animValue, end: widget.targetColor)
-          .animate(CurvedAnimation(parent: _controller, curve: widget.curve));
+      _colorAnim = ColorTween(
+        begin: animValue,
+        end: widget.targetColor,
+      ).animate(CurvedAnimation(parent: _controller, curve: widget.curve));
       _controller.forward(from: 0.0);
     } else if (oldWidget.baseStyle.color != widget.baseStyle.color) {
       final Color? from = _colorAnim.value ?? widget.baseStyle.color;
-      _colorAnim = ColorTween(begin: from, end: widget.targetColor)
-          .animate(CurvedAnimation(parent: _controller, curve: widget.curve));
+      _colorAnim = ColorTween(
+        begin: from,
+        end: widget.targetColor,
+      ).animate(CurvedAnimation(parent: _controller, curve: widget.curve));
       _controller.forward(from: 0.0);
     }
   }
@@ -1336,8 +1409,10 @@ class _AnimatedDigitColorWidgetState extends State<_AnimatedDigitColorWidget>
       animation: _colorAnim,
       builder: (context, child) {
         final color = _colorAnim.value ?? widget.baseStyle.color;
-        return Text(widget.text,
-            style: widget.baseStyle.copyWith(color: color));
+        return Text(
+          widget.text,
+          style: widget.baseStyle.copyWith(color: color),
+        );
       },
     );
   }

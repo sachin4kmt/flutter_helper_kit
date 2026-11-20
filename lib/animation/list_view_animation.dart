@@ -117,7 +117,9 @@ class AnimatedListWrapper extends StatelessWidget {
         return loadingWidget!
             .animate(onPlay: (controller) => controller.repeat())
             .shimmer(
-                duration: 1200.ms, color: Colors.grey.withColorOpacity(0.3));
+              duration: 1200.ms,
+              color: Colors.grey.withColorOpacity(0.3),
+            );
       },
     );
   }
@@ -133,7 +135,10 @@ class AnimatedListWrapper extends StatelessWidget {
 
     switch (animationType) {
       case ListAnimationType.morph:
-        return child.animate(delay: delay).fadeIn(duration: 500.ms).scale(
+        return child
+            .animate(delay: delay)
+            .fadeIn(duration: 500.ms)
+            .scale(
               begin: const Offset(0.5, 1.5),
               end: const Offset(1, 1),
               curve: Curves.elasticOut,
@@ -143,10 +148,11 @@ class AnimatedListWrapper extends StatelessWidget {
         return child
             .animate(delay: delay)
             .scale(
-                begin: const Offset(0.3, 0.3),
-                end: const Offset(1, 1),
-                duration: 600.ms,
-                curve: Curves.bounceOut)
+              begin: const Offset(0.3, 0.3),
+              end: const Offset(1, 1),
+              duration: 600.ms,
+              curve: Curves.bounceOut,
+            )
             .fadeIn(duration: 400.ms);
 
       case ListAnimationType.slideSkew:
@@ -157,8 +163,8 @@ class AnimatedListWrapper extends StatelessWidget {
             .custom(
               begin: 0.2,
               end: 0,
-              builder: (_, v, c) =>
-                  Transform(transform: Matrix4.skewX(v), child: c),
+              builder:
+                  (_, v, c) => Transform(transform: Matrix4.skewX(v), child: c),
             );
 
       case ListAnimationType.spiral:
@@ -166,9 +172,10 @@ class AnimatedListWrapper extends StatelessWidget {
             .animate(delay: delay)
             .fadeIn(duration: 500.ms)
             .scale(
-                begin: const Offset(0, 0),
-                end: const Offset(1, 1),
-                curve: Curves.easeOutBack)
+              begin: const Offset(0, 0),
+              end: const Offset(1, 1),
+              curve: Curves.easeOutBack,
+            )
             .rotate(begin: 0.5, end: 0);
 
       case ListAnimationType.reveal:
@@ -186,20 +193,32 @@ class AnimatedListWrapper extends StatelessWidget {
             .fadeIn();
 
       case ListAnimationType.elastic:
-        return child.animate(delay: delay).fadeIn().slideX(
-            begin: 0.5, end: 0, curve: Curves.elasticOut, duration: 800.ms);
+        return child
+            .animate(delay: delay)
+            .fadeIn()
+            .slideX(
+              begin: 0.5,
+              end: 0,
+              curve: Curves.elasticOut,
+              duration: 800.ms,
+            );
 
       case ListAnimationType.rotate3D:
-        return child.animate(delay: delay).fadeIn().custom(
+        return child
+            .animate(delay: delay)
+            .fadeIn()
+            .custom(
               begin: -0.5,
               end: 0,
-              builder: (_, v, c) => Transform(
-                transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.001)
-                  ..rotateY(v),
-                alignment: Alignment.centerLeft,
-                child: c,
-              ),
+              builder:
+                  (_, v, c) => Transform(
+                    transform:
+                        Matrix4.identity()
+                          ..setEntry(3, 2, 0.001)
+                          ..rotateY(v),
+                    alignment: Alignment.centerLeft,
+                    child: c,
+                  ),
             );
 
       case ListAnimationType.shimmerReveal:
@@ -223,16 +242,21 @@ class AnimatedListWrapper extends StatelessWidget {
             .scale(begin: const Offset(1.5, 1.5), curve: Curves.easeOutExpo);
 
       case ListAnimationType.perspective:
-        return child.animate(delay: delay).fadeIn().custom(
+        return child
+            .animate(delay: delay)
+            .fadeIn()
+            .custom(
               begin: 0.5,
               end: 0,
-              builder: (_, v, c) => Transform(
-                transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.001)
-                  ..rotateX(v),
-                alignment: Alignment.center,
-                child: c,
-              ),
+              builder:
+                  (_, v, c) => Transform(
+                    transform:
+                        Matrix4.identity()
+                          ..setEntry(3, 2, 0.001)
+                          ..rotateX(v),
+                    alignment: Alignment.center,
+                    child: c,
+                  ),
             );
 
       case ListAnimationType.glass:

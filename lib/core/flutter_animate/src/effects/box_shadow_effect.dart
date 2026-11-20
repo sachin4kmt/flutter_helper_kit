@@ -15,7 +15,10 @@ import 'package:flutter_helper_kit/core/flutter_animate/flutter_animate.dart';
 class BoxShadowEffect extends Effect<BoxShadow> {
   static const BoxShadow? neutralValue = null;
   static const BoxShadow defaultValue = BoxShadow(
-      color: Color(0x80000000), blurRadius: 8.0, offset: Offset(0.0, 4.0));
+    color: Color(0x80000000),
+    blurRadius: 8.0,
+    offset: Offset(0.0, 4.0),
+  );
 
   const BoxShadowEffect({
     super.delay,
@@ -25,9 +28,9 @@ class BoxShadowEffect extends Effect<BoxShadow> {
     BoxShadow? end,
     this.borderRadius,
   }) : super(
-          begin: begin ?? neutralValue,
-          end: end ?? (begin == null ? defaultValue : neutralValue),
-        );
+         begin: begin ?? neutralValue,
+         end: end ?? (begin == null ? defaultValue : neutralValue),
+       );
 
   final BorderRadius? borderRadius;
 
@@ -41,13 +44,14 @@ class BoxShadowEffect extends Effect<BoxShadow> {
     Animation<double> animation = entry.buildAnimation(controller);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) => DecoratedBox(
-        decoration: BoxDecoration(
-          boxShadow: [BoxShadow.lerp(begin, end, animation.value)!],
-          borderRadius: borderRadius,
-        ),
-        child: child,
-      ),
+      builder:
+          (_, _) => DecoratedBox(
+            decoration: BoxDecoration(
+              boxShadow: [BoxShadow.lerp(begin, end, animation.value)!],
+              borderRadius: borderRadius,
+            ),
+            child: child,
+          ),
     );
   }
 }
@@ -63,13 +67,14 @@ extension BoxShadowEffectExtensions<T extends AnimateManager<T>> on T {
     BoxShadow? begin,
     BoxShadow? end,
     BorderRadius? borderRadius,
-  }) =>
-      addEffect(BoxShadowEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        borderRadius: borderRadius,
-      ));
+  }) => addEffect(
+    BoxShadowEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      borderRadius: borderRadius,
+    ),
+  );
 }

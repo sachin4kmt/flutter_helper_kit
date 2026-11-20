@@ -1,25 +1,14 @@
 /// Vertical placement on the [-1, 1] alignment axis.
-enum AlignmentVertical {
-  top,
-  center,
-  bottom,
-}
+enum AlignmentVertical { top, center, bottom }
 
 /// Horizontal placement on the [-1, 1] alignment axis.
-enum AlignmentHorizontal {
-  left,
-  center,
-  right,
-}
+enum AlignmentHorizontal { left, center, right }
 
 /// Default tolerance for comparing alignment coordinates to zero.
 const double kAlignmentEpsilon = 1e-10;
 
 /// Returns `true` when [value] is effectively zero for alignment math.
-bool alignmentIsNearZero(
-  double value, {
-  double epsilon = kAlignmentEpsilon,
-}) =>
+bool alignmentIsNearZero(double value, {double epsilon = kAlignmentEpsilon}) =>
     value.abs() < epsilon;
 
 /// Resolves [y] to a vertical axis bucket.

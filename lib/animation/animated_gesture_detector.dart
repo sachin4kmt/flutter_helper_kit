@@ -62,11 +62,7 @@ extension TapEffectExt on TapEffect {
             duration: 120.ms,
             curve: Curves.easeInOut,
           ),
-          FadeEffect(
-            begin: 1.0,
-            end: 0.4,
-            duration: 120.ms,
-          ),
+          FadeEffect(begin: 1.0, end: 0.4, duration: 120.ms),
         ];
 
       case TapEffect.bounce:

@@ -35,9 +35,9 @@ class ColorEffect extends Effect<Color?> {
     Color? end,
     this.blendMode,
   }) : super(
-          begin: begin ?? neutralValue,
-          end: end ?? (begin == null ? defaultValue : neutralValue),
-        );
+         begin: begin ?? neutralValue,
+         end: end ?? (begin == null ? defaultValue : neutralValue),
+       );
 
   final BlendMode? blendMode;
 
@@ -51,8 +51,9 @@ class ColorEffect extends Effect<Color?> {
     Animation<double> animation = entry.buildAnimation(controller);
     return getOptimizedBuilder<double>(
       animation: animation,
-      builder: (_, __) {
-        Color color = ColorTween(begin: begin, end: end).evaluate(animation) ??
+      builder: (_, _) {
+        Color color =
+            ColorTween(begin: begin, end: end).evaluate(animation) ??
             const Color(0x00000000);
         return ColorFiltered(
           colorFilter: ColorFilter.mode(color, blendMode ?? defaultBlendMode),
@@ -75,13 +76,14 @@ extension ColorEffectExtension<T extends AnimateManager<T>> on T {
     Color? begin,
     Color? end,
     BlendMode? blendMode,
-  }) =>
-      addEffect(ColorEffect(
-        delay: delay,
-        duration: duration,
-        curve: curve,
-        begin: begin,
-        end: end,
-        blendMode: blendMode,
-      ));
+  }) => addEffect(
+    ColorEffect(
+      delay: delay,
+      duration: duration,
+      curve: curve,
+      begin: begin,
+      end: end,
+      blendMode: blendMode,
+    ),
+  );
 }

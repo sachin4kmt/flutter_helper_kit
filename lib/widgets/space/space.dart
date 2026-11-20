@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/rendering.dart';
 
 /// A widget that takes a fixed amount of space in the direction of its parent.
@@ -26,23 +26,20 @@ class Space extends StatelessWidget {
     super.key,
     this.crossAxisExtent,
     this.color,
-  })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
-        assert(crossAxisExtent == null || crossAxisExtent >= 0);
+  }) : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
+       assert(crossAxisExtent == null || crossAxisExtent >= 0);
 
   /// Creates a widget that takes a fixed [mainAxisExtent] of space in the
   /// direction of its parent and expands in the cross axis direction.
   ///
   /// The [mainAxisExtent] must not be null and must be positive.
-  const Space.expand(
-    double mainAxisExtent, {
-    Key? key,
-    Color? color,
-  }) : this(
-          mainAxisExtent,
-          key: key,
-          crossAxisExtent: double.infinity,
-          color: color,
-        );
+  const Space.expand(double mainAxisExtent, {Key? key, Color? color})
+    : this(
+        mainAxisExtent,
+        key: key,
+        crossAxisExtent: double.infinity,
+        color: color,
+      );
 
   /// The amount of space this widget takes in the direction of its parent.
   ///
@@ -107,8 +104,8 @@ class SpaceMax extends StatelessWidget {
     super.key,
     this.crossAxisExtent,
     this.color,
-  })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
-        assert(crossAxisExtent == null || crossAxisExtent >= 0);
+  }) : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
+       assert(crossAxisExtent == null || crossAxisExtent >= 0);
 
   /// Creates a widget that takes, at most, the specified [mainAxisExtent] of
   /// space in a [Row], [Column], or [Flex] widget and expands in the cross axis
@@ -116,16 +113,13 @@ class SpaceMax extends StatelessWidget {
   ///
   /// The [mainAxisExtent] must not be null and must be positive.
   /// The [crossAxisExtent] must be either null or positive.
-  const SpaceMax.expand(
-    double mainAxisExtent, {
-    Key? key,
-    Color? color,
-  }) : this(
-          mainAxisExtent,
-          key: key,
-          crossAxisExtent: double.infinity,
-          color: color,
-        );
+  const SpaceMax.expand(double mainAxisExtent, {Key? key, Color? color})
+    : this(
+        mainAxisExtent,
+        key: key,
+        crossAxisExtent: double.infinity,
+        color: color,
+      );
 
   /// The amount of space this widget takes in the direction of the parent.
   ///
@@ -203,10 +197,10 @@ class SpaceMin extends StatelessWidget {
     bool? maxExpend,
     this.crossAxisExtent,
     this.color,
-  })  : assert(min >= 0 && min < double.infinity),
-        assert(max == null || (max >= min && max < double.infinity)),
-        assert(crossAxisExtent == null || crossAxisExtent >= 0),
-        maxExpend = maxExpend ?? (max == null);
+  }) : assert(min >= 0 && min < double.infinity),
+       assert(max == null || (max >= min && max < double.infinity)),
+       assert(crossAxisExtent == null || crossAxisExtent >= 0),
+       maxExpend = maxExpend ?? (max == null);
 
   /// Minimum main-axis extent. Default is `0`.
   final double min;
@@ -277,8 +271,8 @@ class _RawSpace extends LeafRenderObjectWidget {
     this.crossAxisExtent,
     this.color,
     this.fallbackDirection,
-  })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
-        assert(crossAxisExtent == null || crossAxisExtent >= 0);
+  }) : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
+       assert(crossAxisExtent == null || crossAxisExtent >= 0);
 
   final double mainAxisExtent;
 
@@ -312,7 +306,8 @@ class _RawSpace extends LeafRenderObjectWidget {
     super.debugFillProperties(properties);
     properties.add(DoubleProperty('mainAxisExtent', mainAxisExtent));
     properties.add(
-        DoubleProperty('crossAxisExtent', crossAxisExtent, defaultValue: 0));
+      DoubleProperty('crossAxisExtent', crossAxisExtent, defaultValue: 0),
+    );
     properties.add(ColorProperty('color', color));
     properties.add(EnumProperty<Axis>('fallbackDirection', fallbackDirection));
   }
@@ -348,7 +343,9 @@ class _RawSpaceRange extends LeafRenderObjectWidget {
 
   @override
   void updateRenderObject(
-      BuildContext context, _RenderSpaceRange renderObject) {
+    BuildContext context,
+    _RenderSpaceRange renderObject,
+  ) {
     renderObject
       ..minExtent = minExtent
       ..maxExtent = maxExtent
@@ -364,10 +361,10 @@ class _RenderSpace extends RenderBox {
     double? crossAxisExtent,
     Axis? fallbackDirection,
     Color? color,
-  })  : _mainAxisExtent = mainAxisExtent,
-        _crossAxisExtent = crossAxisExtent,
-        _color = color,
-        _fallbackDirection = fallbackDirection;
+  }) : _mainAxisExtent = mainAxisExtent,
+       _crossAxisExtent = crossAxisExtent,
+       _color = color,
+       _fallbackDirection = fallbackDirection;
 
   double get mainAxisExtent => _mainAxisExtent;
   double _mainAxisExtent;
@@ -507,11 +504,11 @@ class _RenderSpaceRange extends RenderBox {
     double? crossAxisExtent,
     Color? color,
     Axis? fallbackDirection,
-  })  : _minExtent = minExtent,
-        _maxExtent = maxExtent,
-        _crossAxisExtent = crossAxisExtent,
-        _color = color,
-        _fallbackDirection = fallbackDirection;
+  }) : _minExtent = minExtent,
+       _maxExtent = maxExtent,
+       _crossAxisExtent = crossAxisExtent,
+       _color = color,
+       _fallbackDirection = fallbackDirection;
 
   double get minExtent => _minExtent;
   double _minExtent;
@@ -567,9 +564,10 @@ class _RenderSpaceRange extends RenderBox {
   }
 
   double _resolveMain(BoxConstraints constraints, Axis direction) {
-    final double maxAvailable = direction == Axis.horizontal
-        ? constraints.maxWidth
-        : constraints.maxHeight;
+    final double maxAvailable =
+        direction == Axis.horizontal
+            ? constraints.maxWidth
+            : constraints.maxHeight;
     if (!maxAvailable.isFinite) {
       return maxExtent ?? minExtent;
     }

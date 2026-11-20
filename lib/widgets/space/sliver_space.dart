@@ -10,11 +10,8 @@ class SliverSpace extends LeafRenderObjectWidget {
   /// Creates a sliver that takes a fixed [mainAxisExtent] of space.
   ///
   /// The [mainAxisExtent] must not be null and must be positive.
-  const SliverSpace(
-    this.mainAxisExtent, {
-    super.key,
-    this.color,
-  }) : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity);
+  const SliverSpace(this.mainAxisExtent, {super.key, this.color})
+    : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity);
 
   /// The amount of space this widget takes in the direction of the parent.
   ///
@@ -26,15 +23,14 @@ class SliverSpace extends LeafRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return RenderSliverSpace(
-      mainAxisExtent: mainAxisExtent,
-      color: color,
-    );
+    return RenderSliverSpace(mainAxisExtent: mainAxisExtent, color: color);
   }
 
   @override
   void updateRenderObject(
-      BuildContext context, RenderSliverSpace renderObject) {
+    BuildContext context,
+    RenderSliverSpace renderObject,
+  ) {
     renderObject
       ..mainAxisExtent = mainAxisExtent
       ..color = color;
@@ -49,11 +45,9 @@ class SliverSpace extends LeafRenderObjectWidget {
 }
 
 class RenderSliverSpace extends RenderSliver {
-  RenderSliverSpace({
-    required double mainAxisExtent,
-    Color? color,
-  })  : _mainAxisExtent = mainAxisExtent,
-        _color = color;
+  RenderSliverSpace({required double mainAxisExtent, Color? color})
+    : _mainAxisExtent = mainAxisExtent,
+      _color = color;
 
   double get mainAxisExtent => _mainAxisExtent;
   double _mainAxisExtent;
@@ -94,7 +88,8 @@ class RenderSliverSpace extends RenderSliver {
       cacheExtent: cacheExtent,
       maxPaintExtent: mainAxisExtent,
       hitTestExtent: paintExtent,
-      hasVisualOverflow: mainAxisExtent > constraints.remainingPaintExtent ||
+      hasVisualOverflow:
+          mainAxisExtent > constraints.remainingPaintExtent ||
           constraints.scrollOffset > 0.0,
     );
   }

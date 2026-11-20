@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_helper_kit/extensions/number/currency_extension.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -8,10 +8,7 @@ void main() {
       expect(100000.toCurrency(smartDecimal: false), '₹1,00,000.00');
       expect(1000000.toCurrency(smartDecimal: false), '₹10,00,000.00');
       expect(10000000.toCurrency(smartDecimal: false), '₹1,00,00,000.00');
-      expect(
-        1234567.89.toCurrency(smartDecimal: false),
-        '₹12,34,567.89',
-      );
+      expect(1234567.89.toCurrency(smartDecimal: false), '₹12,34,567.89');
     });
 
     test('smart decimal trims trailing zeros', () {

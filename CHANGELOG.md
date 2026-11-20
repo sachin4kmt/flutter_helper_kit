@@ -1,3 +1,7 @@
+## 1.3.0
+* **Breaking:** Flutter 3.50+ — migrate to `material_ui` and `cupertino_ui` instead of deprecated `package:flutter/material.dart` / `cupertino.dart`.
+* Minimum SDK: Dart `>=3.7`, Flutter `>=3.50.0`.
+
 ## 1.2.7
 * Fixed `GenericPickerSheet` overlapping Android navigation bar by applying bottom [SafeArea] (removed `bottom: false`).
 

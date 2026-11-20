@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Padding utilities.
 extension PaddingExtension on num {
@@ -114,14 +114,16 @@ extension PaddingWidgetExtension on Widget {
     double right = 0.0,
   }) {
     return Padding(
-        padding: EdgeInsets.fromLTRB(left, top, right, bottom), child: this);
+      padding: EdgeInsets.fromLTRB(left, top, right, bottom),
+      child: this,
+    );
   }
 
   /// return padding symmetric
   Padding paddingSymmetric({double vertical = 0.0, double horizontal = 0.0}) {
     return Padding(
-        padding:
-            EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal),
-        child: this);
+      padding: EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal),
+      child: this,
+    );
   }
 }
