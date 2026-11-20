@@ -1,3 +1,6 @@
+## 1.3.1
+* Updated README: Flutter 3.50, `material_ui` / `cupertino_ui`, install `^1.3.0`, API tables, migration notes.
+
 ## 1.3.0
 * **Breaking:** Flutter 3.50+ — migrate to `material_ui` and `cupertino_ui` instead of deprecated `package:flutter/material.dart` / `cupertino.dart`.
 * Minimum SDK: Dart `>=3.7`, Flutter `>=3.50.0`.

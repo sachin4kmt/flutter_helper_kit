@@ -1,8 +1,11 @@
 # flutter_helper_kit
 
-A production-ready Flutter utility kit — extensions, widgets, animations, responsive sizing, and utils in **one package with zero external dependencies** (Flutter SDK only).
+A production-ready Flutter utility kit — extensions, widgets, animations, responsive sizing, and utils.
 
 Consolidates helpers previously spread across `custom_helper` folders (Paydrop, WhereToNow, etc.) into a single maintainable package.
+
+**Requirements:** [Flutter](https://flutter.dev) **≥ 3.50**, Dart **≥ 3.7**.  
+From **1.3.0** onward the kit uses standalone design libraries [`material_ui`](https://pub.dev/packages/material_ui) and [`cupertino_ui`](https://pub.dev/packages/cupertino_ui) (pulled in automatically) instead of deprecated `package:flutter/material.dart` / `cupertino.dart`.
 
 [![pub package](https://img.shields.io/pub/v/flutter_helper_kit.svg)](https://pub.dev/packages/flutter_helper_kit)
 
@@ -14,7 +17,7 @@ Consolidates helpers previously spread across `custom_helper` folders (Paydrop, 
 
 ```yaml
 dependencies:
-  flutter_helper_kit: ^1.0.6
+  flutter_helper_kit: ^1.3.0
 ```
 
 ```bash
@@ -23,7 +26,11 @@ flutter pub add flutter_helper_kit
 
 ```dart
 import 'package:flutter_helper_kit/flutter_helper_kit.dart';
+// In app UI code, prefer material_ui (Flutter 3.50+):
+import 'package:material_ui/material_ui.dart';
 ```
+
+`material_ui` and `cupertino_ui` are **direct dependencies** of this package — you do not need to add them unless your app uses Material/Cupertino widgets outside the kit (then add the same versions as in [pubspec.yaml](pubspec.yaml) or rely on pub’s resolver).
 
 ### Modular imports (smaller compile surface)
 
@@ -44,7 +51,7 @@ Every feature maps to a `lib/` path. Use this table to find the right file.
 | Module | Source path | Key APIs |
 |--------|-------------|----------|
 | **Extensions** | `lib/extensions/` | String, Color, DateTime, List, Map, Widget, Context, Alignment, Type conversion |
-| **Widgets** | `lib/widgets/` | AppButton, SliderButton, ReadMore, FlutterTag, Sharp corners, Pagination, etc. |
+| **Widgets** | `lib/widgets/` | AppButton, SliderButton, GenericPickerSheet, ReadMore, FlutterTag, percent indicators, Pagination, etc. |
 | **Animation** | `lib/animation/` | 75+ `animateWidget*`, list animations, `AnimatedGestureDetector` |
 | **App Responsive** | `lib/app_responsive/` | `ScreenUtilInit`, `.w`, `.h`, `.sp`, `.r`, `RPadding`, `RSizedBox` |
 | **Reactive** | `lib/reactive/` | `RxDateTime`, `RxnDateTime` (ValueNotifier-based) |
@@ -162,6 +169,13 @@ TicketClipper(
   child: Container(color: Colors.orange),
 );
 
+// Bottom-sheet single / multi select
+await GenericPickerSheet.singleSelection<MyDropdownItem>(
+  context: context,
+  items: items,
+  initialSelected: selected,
+);
+
 // Infinite scroll list
 ListViewPagination(
   itemCount: items.length,
@@ -169,17 +183,32 @@ ListViewPagination(
   nextData: fetchMore,
   itemBuilder: (_, i) => ListTile(title: Text(items[i])),
 );
+
+// Currency display (Indian / international grouping)
+1234567.89.toCurrency();
+12345.6.toCurrencyText(textStyle: Theme.of(context).textTheme.titleLarge);
+
+// Text avatar (tinted bg + seed text, or foregroundColor / style.color)
+TextAvatar(
+  text: 'Jane Doe',
+  baseColor: Theme.of(context).colorScheme.primary,
+  backgroundOpacity: 0.1,
+  textOpacity: 0.9,
+);
 ```
 
 | Widget | File |
 |--------|------|
 | `AppButton` | `widgets/app_button.dart` |
 | `SliderButton` | `widgets/slider_button.dart` |
+| `GenericPickerSheet` | `widgets/dropdown_sheet/generic_dropdown_sheet.dart` |
 | `PasswordStrengthIndicator` | `widgets/password_strength_indicator/` |
 | `ReadMoreText` / `ReadMoreTextEnhanced` | `widgets/read_more_text.dart`, `read_more_enhanced.dart` |
 | `FlutterTag` | `widgets/flutter_tag/` |
+| `CircularPercentIndicator`, `LinearPercentIndicator` | `widgets/flutter_percent_indicator/` |
 | `SharpBorderRadius`, `SharpClipRect` | `widgets/sharp_corners/` |
 | `ListViewPagination` | `widgets/list_view_pagination.dart` |
+| `TextAvatar` | `widgets/text_avatar.dart` |
 | `CenterTextDivider`, `CustomBanner` | `widgets/center_text_divider.dart`, `custom_banner.dart` |
 | `AvatarGlow`, `OutlineGlow` | `widgets/avatar_glow/` |
 | `TicketClipper` | `widgets/ticket_clippers/` |
@@ -283,6 +312,7 @@ TextField(
 
 - `integer_extension.dart`, `double_extension.dart`, `number_extension.dart`
 - `smart_round_to_string.dart` — `toStringAsSmartRounded()`
+- `currency_extension.dart` — `toCurrency()`, `toCurrencyText()` (₹ grouping, styles)
 - `height()`, `width()`, `circularBorderRadius` spacing helpers
 
 </details>
@@ -349,6 +379,19 @@ TextField(
 | `RoundedCheckBox` | `rounded_checkbox_widget.dart` |
 | `RatingBarWidget` | `rating_bar_widget.dart` |
 | `TimerBuilder` | `timer_builder.dart` |
+| `GenericPickerSheet` | `dropdown_sheet/generic_dropdown_sheet.dart` |
+| `DecimalTextInputFormatter`, `NonZeroFormatter` | `lib/text_field/` (see formatters) |
+
+</details>
+
+<details>
+<summary><strong>Charts & progress</strong></summary>
+
+| Widget | File |
+|--------|------|
+| `CircularPercentIndicator` | `flutter_percent_indicator/circular_percent_indicator.dart` |
+| `LinearPercentIndicator` | `flutter_percent_indicator/linear_percent_indicator.dart` |
+| `MultiSegmentLinearIndicator` | `flutter_percent_indicator/multi_segment_linear_indicator.dart` |
 
 </details>
 
@@ -370,6 +413,15 @@ Callback types in `utils/type_def.dart`:
 | `Get.context` in Cupertino dialogs | Pass `context:` parameter |
 | `Rx<DateTime>` (GetX) | `RxDateTime` / `RxnDateTime` |
 | Google Maps `LatLng` in info window | `MapLatLng` + `MapInfoWindowAdapter` |
+
+## Upgrading to 1.3.0+ (Flutter 3.50)
+
+| Topic | Action |
+|--------|--------|
+| SDK | Use Flutter **3.50+** and Dart **3.7+** |
+| Material imports | Run `dart fix --apply --code=migrate_design_widgets` in your app, or change `package:flutter/material.dart` → `package:material_ui/material_ui.dart` |
+| `FlutterListView` | **Removed** in 1.2.6 — use `ListViewPagination`, `ListView`, or [`dynamic_height_list_view`](https://pub.dev/packages/dynamic_height_list_view) |
+| Changelog | See [CHANGELOG.md](CHANGELOG.md) for 1.2.x breaking removals and fixes |
 
 ---
 
